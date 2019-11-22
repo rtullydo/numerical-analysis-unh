@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2019-11-22T12:46:28-05:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<figure class="figure-like"><pre class="plainprint">#Loops and arrays
+#Numerical Analysis
+#9/5/2019
+#Ryan Tully-Doyle
+
+#This set of examples will focus on loops and arrays, which are structures
+#that we will be using constantly.
+#A for loop runs over an index that goes through a prescribed set of numbers.
+#The formatting is slightly different than other languages, but powerful
+#in a mathematics context.
+
+#the following loop will run for values of i starting at 1 and ending at 10.
+#Each iteration will perform the same command.
+
+for i = 1:10
+  disp(i) #display the current value of i
+end
+
+#unlike other langauges, non-integer indicies can be used in octave/matlab.
+
+for i = 1:.1:10 #starts at 1, counts by .1 until reaching 10
+  disp(i) #display the current value of i
+end
+
+#it is useful to be able to exit a loop on a condition. in octave, this
+#command is called break
+
+for i=1:10
+  disp(i)
+  if i == 5
+    printf("You have to stop now!\n") #\n tells printf to break the line
+    break
+  end
+end
+
+#Next, we'll look at how octave deals with arrays, or lists of numbers.
+#Functions in octave by default can act on arrays or scalars without using loops
+
+X = 12:17;
+disp(X)
+
+#you might wish to know how long an array is
+
+length(X)
+
+#you might like to know the largest element in an array
+
+max(X)
+
+#If you want to refer to a specific element in an array, you can extract it
+#by invoking its index.
+
+X(3) #calls the third entry of X
+
+#You can take slices of arrays by using index ranges
+
+X(3:5) #calls the third through fifth entry of X
+
+#As octave is natively an array based language, vector operations are natural.
+#arrays of the appropriate sizes can be added, subtracted and multiplied by scalars.
+
+X=1:10;
+Y = 2:11;
+X + Y
+Y - Y
+2*X
+
+#since mathematical functions are natively array functions, you can apply a function
+#to an array.
+
+sin(X)
+
+#Every time you use an operation that might be ambiguous (things involving
+#multiplication and subtraction, add a . to the operation to specify that you
+#want the operation to be applied to each entry.
+
+X.^2
+</pre>
+<figcaption><span class="type">Listing</span> <span class="codenumber">8.2.</span> Loops and arrays</figcaption></figure><span class="incontext"><a href="section-8.html#listing-2">in-context</a></span>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2019-11-22T12:46:28-05:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script><script>$(function () {
+    // Make *any* div with class 'sagecell-octave' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-octave',
+                           linked: true,
+                           languages: ['octave'],
+                           evalButtonText: 'Evaluate (Octave)'});
+});
+</script>
+</head>
+<body>
+<h6 class="heading"><span class="type">Paragraph</span></h6>
+<p>We'll now present an example of the bisection method used to compute the value of \(\sqrt{2}\text{.}\) <div class="sagecell-octave" id="sage-11"><script type="text/x-sage">f = @(x) x.^2 - 2;
+a = 1;
+b = 2;
+tol = .5*10^-4;
+M = (a+b)/2;
+max_iter = 1000;
+iter = 0;
+err = 1;
+
+
+while err > tol
+    iter = iter + 1;
+    if iter > max_iter
+        break
+    endif
+
+    if f(a)*f(M) < 0
+        b = M;
+    else
+        a = M;
+    endif
+
+    m = (a+b)/2;
+    err = abs((m - M)/m);
+    M = m;
+endwhile
+
+printf('The approximation is %d', m)
+</script></div></p>
+<span class="incontext"><a href="sec-root.html#p-40">in-context</a></span>
+</body>
+</html>

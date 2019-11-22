@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2019-11-22T12:46:28-05:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script><script>$(function () {
+    // Make *any* div with class 'sagecell-octave' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-octave',
+                           linked: true,
+                           languages: ['octave'],
+                           evalButtonText: 'Evaluate (Octave)'});
+});
+</script>
+</head>
+<body>
+<h6 class="heading"><span class="type">Paragraph</span></h6>
+<p>At this point, we can solve the system using octave and row reduction. As long as there are no three consecutive points that are collinear, this system will have a unique solution (that is, the coefficient matrix is invertible). <div class="sagecell-octave" id="sage-37"><script type="text/x-sage">system = [1,1,1,1,0,0,0,0,2;8,4,2,1,0,0,0,0,4;0,0,0,0,8,4,2,1,4;0,0,0,0,27,9,3,1,1;12,4,1,0,-12,-4,-1,0,0;12,2,0,0,-12,-2,0,0,0;6,2,0,0,0,0,0,0,0;0,0,0,0,6,2,0,0,0];
+coeefs = rref(system)(:,9) #this row reduces the system and takes the answer column, which is column 9
+f1 = coeefs(1:4)'; #these take the coefficients associated with the first and second spline
+f2 = coeefs(5:8)'; #and put the polynomials in vector form
+X1 = 1:.01:2;
+X2 = 2:.01:3;
+Y1 = polyval(f1, X1);#evaluates each spline segment on the correct domain
+Y2 = polyval(f2, X2);
+plot(X1, Y1, 'r', X2, Y2, 'b')
+hold on
+scatter([1,2,3],[2,4,1],400) #plots the original points.
+</script></div></p>
+<span class="incontext"><a href="section-5.html#p-114">in-context</a></span>
+</body>
+</html>

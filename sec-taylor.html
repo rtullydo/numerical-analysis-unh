@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2019-11-22T12:46:28-05:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Taylor polynomials</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    asciimath2jax: {
+        ignoreClass: ".*",
+        processClass: "has_am"
+    },
+    jax: ["input/AsciiMath"],
+    extensions: ["asciimath2jax.js"],
+    TeX: {
+        extensions: ["extpfeil.js", "autobold.js", "https://pretextbook.org/js/lib/mathjaxknowl.js", ],
+        // scrolling to fragment identifiers is controlled by other Javascript
+        positionToHash: false,
+        equationNumbers: { autoNumber: "none", useLabelIds: true, },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    // HTML-CSS output Jax to be dropped for MathJax 3.0
+    "HTML-CSS": {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+    CommonHTML: {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+});
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML-full"></script><script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script><script>$(function () {
+    // Make *any* div with class 'sagecell-octave' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-octave',
+                           linked: true,
+                           languages: ['octave'],
+                           evalButtonText: 'Evaluate (Octave)'});
+});
+</script><script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.12/pretext.js"></script><script src="https://pretextbook.org/js/0.12/pretext_add_on.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/toc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/setcolors.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/features.css" rel="stylesheet" type="text/css">
+<script>var logged_in = false;
+var role = 'student';
+var guest_access = true;
+var login_required = false;
+var js_version = 0.12;
+</script>
+</head>
+<body class="mathbook-article has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div class="hidden-content" style="display:none">\(\DeclareMathOperator{\RE}{Re}
+\DeclareMathOperator{\IM}{Im}
+\DeclareMathOperator{\ess}{ess}
+\DeclareMathOperator{\intr}{int}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator\re{\mathrm {Re~}}
+\DeclareMathOperator\im{\mathrm {Im~}}
+\newcommand\dd{\mathrm d}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\To}{\longrightarrow}
+\newcommand{\hilbert}{\mathcal{H}}
+\newcommand{\s}{\mathcal{S}_2}
+\newcommand{\A}{\mathcal{A}}
+\newcommand\h{\mathcal{H}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\W}{\mathcal{W}}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\BOP}{\mathbf{B}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\BH}{\mathbf{B}(\mathcal{H})}
+\newcommand{\KH}{\mathcal{K}(\mathcal{H})}
+\newcommand{\pick}{\mathcal{P}_2}
+\newcommand{\schur}{\mathcal{S}_2}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Complex}{\mathbb{C}}
+\newcommand{\Field}{\mathbb{F}}
+\newcommand{\RPlus}{\Real^{+}}
+\newcommand{\Polar}{\mathcal{P}_{\s}}
+\newcommand{\Poly}{\mathcal{P}(E)}
+\newcommand{\EssD}{\mathcal{D}}
+\newcommand{\Lop}{\mathcal{L}}
+\newcommand{\cc}[1]{\overline{#1}}
+\newcommand{\abs}[1]{\left\vert#1\right\vert}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\seq}[1]{\left\lt#1\right&gt;}
+\newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+\newcommand{\essnorm}[1]{\norm{#1}_{\ess}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\ran}[1]{\operatorname{ran}#1}
+\newcommand{\nt}{\stackrel{\mathrm {nt}}{\to}}
+\newcommand{\pnt}{\xrightarrow{pnt}}
+\newcommand{\ip}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\ad}{^\ast}
+\newcommand{\inv}{^{-1}}
+\newcommand{\adinv}{^{\ast -1}}
+\newcommand{\invad}{^{-1 \ast}}
+\newcommand\Pick{\mathcal P}
+\newcommand\Ha{\mathbb{H}}
+\newcommand{\HH}{\Ha\times\Ha}
+\newcommand\Htau{\mathbb{H}(\tau)}
+\newcommand{\vp}{\varphi}
+\newcommand{\ph}{\varphi}
+\newcommand\al{\alpha}
+\newcommand\ga{\gamma}
+\newcommand\de{\delta}
+\newcommand\ep{\varepsilon}
+\newcommand\la{\lambda}
+\newcommand\up{\upsilon}
+\newcommand\si{\sigma}
+\newcommand\beq{\begin{equation}}
+\newcommand\ds{\displaystyle}
+\newcommand\eeq{\end{equation}}
+\newcommand\df{\stackrel{\rm def}{=}}
+\newcommand\ii{\mathrm i}
+\newcommand{\vectwo}[2]
+{
+   \begin{pmatrix} #1 \\ #2 \end{pmatrix}
+}
+\newcommand{\vecthree}[3]
+{
+   \begin{pmatrix} #1 \\ #2 \\ #3 \end{pmatrix}
+}
+\newcommand\blue{\color{blue}}
+\newcommand\black{\color{black}}
+\newcommand\red{\color{red}}
+\newcommand\nn{\nonumber}
+\newcommand\bbm{\begin{bmatrix}}
+\newcommand\ebm{\end{bmatrix}}
+\newcommand\bpm{\begin{pmatrix}}
+\newcommand\epm{\end{pmatrix}}
+\numberwithin{equation}{section}
+\newcommand\nin{\noindent}
+\newcommand{\nCr}[2]{\,_{#1}C_{#2}} 
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="minimal.html"><span class="title">Numerical Analysis</span></a></h1>
+<p class="byline">Ryan Tully-Doyle</p>
+</div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3"><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="section-review.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="minimal.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="sec-root.html" title="Next">Next</a></span></div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="section-review.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="minimal.html" title="Up">Up</a><a class="next-button button toolbar-item" href="sec-root.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link"><a href="frontmatter-1.html" data-scroll="frontmatter-1"><span class="title">Front Matter</span></a></li>
+<li class="link"><a href="section-needs.html" data-scroll="section-needs"><span class="codenumber">1</span> <span class="title">What you need - Octave/Matlab</span></a></li>
+<li class="link"><a href="section-review.html" data-scroll="section-review"><span class="codenumber">2</span> <span class="title">Motivation</span></a></li>
+<li class="link active">
+<a href="sec-taylor.html" data-scroll="sec-taylor"><span class="codenumber">3</span> <span class="title">Taylor polynomials</span></a><ul>
+<li><a href="sec-taylor.html#subsection-1" data-scroll="subsection-1">Taylor's theorem</a></li>
+<li><a href="sec-taylor.html#subsection-2" data-scroll="subsection-2">What is a Taylor approximation good for?</a></li>
+<li><a href="sec-taylor.html#subsection-3" data-scroll="subsection-3">Coding functions in Octave</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="sec-root.html" data-scroll="sec-root"><span class="codenumber">4</span> <span class="title">Root finding</span></a><ul>
+<li><a href="sec-root.html#sub-bisection" data-scroll="sub-bisection">Bisection method</a></li>
+<li><a href="sec-root.html#subsection-5" data-scroll="subsection-5">Error</a></li>
+<li><a href="sec-root.html#subsection-6" data-scroll="subsection-6">Bisection algorithm</a></li>
+<li><a href="sec-root.html#subsection-7" data-scroll="subsection-7">False position (Regula Falsi)</a></li>
+<li><a href="sec-root.html#subsection-8" data-scroll="subsection-8">Classes of differentiability</a></li>
+<li><a href="sec-root.html#subsection-9" data-scroll="subsection-9">Newton-Raphson method</a></li>
+<li><a href="sec-root.html#subsection-10" data-scroll="subsection-10">Newton's method requirements and problems</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="section-5.html" data-scroll="section-5"><span class="codenumber">5</span> <span class="title">Interpolation</span></a><ul>
+<li><a href="section-5.html#subsection-11" data-scroll="subsection-11">Naive polynomial interpolation</a></li>
+<li><a href="section-5.html#subsection-12" data-scroll="subsection-12">Lagrange interpolation</a></li>
+<li><a href="section-5.html#subsection-13" data-scroll="subsection-13">Newton interpolation</a></li>
+<li><a href="section-5.html#subsection-14" data-scroll="subsection-14">Problems with polynomials</a></li>
+<li><a href="section-5.html#subsection-15" data-scroll="subsection-15">Spline interpolation</a></li>
+<li><a href="section-5.html#subsection-16" data-scroll="subsection-16">Many-point spline interpolation example</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="section-6.html" data-scroll="section-6"><span class="codenumber">6</span> <span class="title">Numerical Integration</span></a><ul>
+<li><a href="section-6.html#subsection-17" data-scroll="subsection-17">Integration review</a></li>
+<li><a href="section-6.html#subsection-18" data-scroll="subsection-18">The trapezoid rule</a></li>
+<li><a href="section-6.html#subsection-19" data-scroll="subsection-19">A special case of Richardson's extrapolation (optional)</a></li>
+<li><a href="section-6.html#subsection-20" data-scroll="subsection-20">Simpson's 1/3 rule</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="section-7.html" data-scroll="section-7"><span class="codenumber">7</span> <span class="title">Introduction to Fourier Series (a linear algebra perspective)</span></a><ul>
+<li><a href="section-7.html#subsection-21" data-scroll="subsection-21">Review of linear algebra</a></li>
+<li><a href="section-7.html#subsection-22" data-scroll="subsection-22">The space \(L^2[-\pi,\pi]\)</a></li>
+<li><a href="section-7.html#subsection-23" data-scroll="subsection-23">Example computation</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="section-8.html" data-scroll="section-8"><span class="codenumber">8</span> <span class="title">Code examples</span></a><ul><li><a href="section-8.html#subsection-24" data-scroll="subsection-24">Lab 1 - Introduction</a></li></ul>
+</li>
+<li class="link">
+<a href="section-9.html" data-scroll="section-9"><span class="codenumber">9</span> <span class="title">Assignments</span></a><ul>
+<li><a href="section-9.html#subsection-25" data-scroll="subsection-25">Assignment Set 1</a></li>
+<li><a href="section-9.html#subsection-26" data-scroll="subsection-26">Assignment Set 2</a></li>
+<li><a href="section-9.html#subsection-27" data-scroll="subsection-27">Assignment set 3</a></li>
+<li><a href="section-9.html#subsection-28" data-scroll="subsection-28">Assignment set 4</a></li>
+<li><a href="section-9.html#subsection-29" data-scroll="subsection-29">Assignment set 5 (including challenge set)</a></li>
+<li><a href="section-9.html#subsection-30" data-scroll="subsection-30">Assignment set 6 - Newton polynomials</a></li>
+<li><a href="section-9.html#subsection-31" data-scroll="subsection-31">Assignment set 7 - Cubic splines</a></li>
+<li><a href="section-9.html#subsection-32" data-scroll="subsection-32">Assignment 8 - Numerical integration</a></li>
+</ul>
+</li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="sec-taylor"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">3</span> <span class="title">Taylor polynomials</span>
+</h2>
+<a href="sec-taylor.html" class="permalink">¶</a><section class="subsection" id="subsection-1"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">3.1</span> <span class="title">Taylor's theorem</span>
+</h3>
+<p id="p-15">In calculus, you should have learned that an infinitely differentiable function possesses a representation in the form of an infinite power series. You are probably familiar with</p>
+<div class="displaymath">
+\begin{align*}
+e^x \amp = 1 + x + \frac{1}{2}x^2 + \frac{1}{3!}x^3 + \ldots \\
+\cos x \amp = 1 - \frac{x^2}{2} + \frac{x^4}{4!} - \ldots \\
+\sin x \amp = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \ldots 
+\end{align*}
+</div>
+<p id="p-16">Power series are an incredibly powerful tool for approximating functions, and they occur all over numerical mathematics. Typically, instead of using an infinite series, we truncate at a particular term, getting a polynomial that <em class="emphasis">approximates</em> the function rather than a series that is the function (where it converges). The general theorem that describes how to get a polynomial approximation for a function is called Taylor's theorem.</p>
+<article class="theorem-like" id="theorem-1"><h6 class="heading">
+<span class="type">Theorem</span> <span class="codenumber">3.1</span>.</h6>
+<p id="p-17">Let \(f\) be a function so that \(n + 1\) derivatives of \(f\) exist on an interval \((a, b)\) and let \(x_0 \in (a,b)\text{.}\) Then for each \(x \in (a,b)\text{,}\) there exists a constant \(c\) strictly between \(x\) and \(x_0\) such that</p>
+<div class="displaymath">
+\begin{equation*}
+f(x) = f(x_0) + \sum_{j=1}^n \left( \frac{f^{(j)}(x_0)}{j!}(x - x_0)^j\right) + \frac{f^{n+1}(c)}{(n+1)!}(x - x_0)^{n+1}.
+\end{equation*}
+</div></article><p id="p-18">The first part of the equation above is the <dfn class="terminology">\(n\)th order Taylor polynomial for \(f\) at \(x_0\)</dfn>, and we use the notation</p>
+<div class="displaymath">
+\begin{equation*}
+T_n(x) = f(x_0) + \sum_{j=1}^n \left( \frac{f^{(j)}(x_0)}{j!}(x - x_0)^j\right).
+\end{equation*}
+</div>
+<p>The second part is called the remainder term for \(T_n\) at \(x_0\text{,}\) and we use the notation</p>
+<div class="displaymath">
+\begin{equation*}
+R_n(x) = \frac{f^{n+1}(c)}{(n+1)!}(x - x_0)^{n+1}.
+\end{equation*}
+</div>
+<p>You can think of the remainder term as containing the difference between \(f\) and \(T_n\text{.}\) We don't usually know the value of \(c\) for a given \(x_0\text{,}\) but we can the remainder term to put an upper bound on the worst possible error for a given Taylor approximation of \(f\) on \((a, b)\text{.}\)</p>
+<p id="p-19">So what's the upshot? Unwrapped from sigma notation, essentially any well-enough behaved function can be approximated at a point \(x_0\) with a polynomial that is easy to calculate. That is, for values of \(x\) near \(x_0\text{,}\)</p>
+<div class="displaymath">
+\begin{equation*}
+f(x) \approx f(x_0) + f'(x_0)(x - x_0) + \frac{f''(x_0)}{2!} (x - x_0)^2 + \ldots,
+\end{equation*}
+</div>
+<p>and the worst that the approximation will be is the maximum value of \(R_n(x)\) near \(x_0\text{.}\)</p></section><section class="subsection" id="subsection-2"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">3.2</span> <span class="title">What is a Taylor approximation good for?</span>
+</h3>
+<p id="p-20">An obvious question should occur to you: why do we care about Taylor series and polynomials? The short answer is that Taylor polynomials behave much like their parent functions “near” the point of expansion.  By including more terms, we typically expect to get a better approximation of the original function and a larger interval on which the approximation is well-behaved. A classical example of this phenomenon can be seen in the Taylor polynomials for \(\sin x\) near \(x_0 = 0\text{.}\)</p>
+<div class="sagecell-octave" id="sage-4"><script type="text/x-sage">X = -7:.01:7;
+Y1 = sin(X);
+Y2 = X - X.^3/factorial(3) + X.^5/factorial(5) - X.^7/factorial(7) + X.^9/factorial(9);
+
+plot(X, Y1, 'r', X, Y2, 'b')
+axis( [-7 7 -2 2])
+</script></div>
+<p id="p-21">The idea of replacing a function with a polynomial built from its derivatives is a powerful computational technique. Indeed, if we're working with approximations, we often need not even compute formulae for the derivatives but instead work with difference quotients. This will require that we have a firm understanding of how error accumulates, which will be discussed in a future lecture.</p></section><section class="subsection" id="subsection-3"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">3.3</span> <span class="title">Coding functions in Octave</span>
+</h3>
+<p id="p-22">Let's begin by talking a bit about how to use functions in Octave. Suppose that we are interested in the 3rd Taylor polynomial for the function \(f(x) = e^x\) at \(x_0 = 0\text{.}\) A bit of computation will tell you that</p>
+<div class="displaymath">
+\begin{equation*}
+T_3(x) = 1 + x + \frac{x^2}{2} + \frac{x^3}{6}.
+\end{equation*}
+</div>
+<p id="p-23">First, we'll need to define the function \(T_3\) so that we can use it like a function - we want to be able to plot and evaluate it at various points. To do so, we'll use the <code class="code-inline tex2jax_ignore">inline</code> command.</p>
+<div class="sagecell-octave" id="sage-5"><script type="text/x-sage">T3 = inline('1 + x + 1/2*x^2 + 1/6*x^3')
+</script></div>
+<p id="p-24">Once we have the function defined, we can evaluate it anywhere.</p>
+<div class="sagecell-octave" id="sage-6"><script type="text/x-sage">T3 = inline('1 + x + 1/2*x^2 + 1/6*x^3')
+T3(0)
+T3(1)
+T3(10)
+T3(-1)
+</script></div>
+<p id="p-25">A standard technique that we need to be comfortable with is evaluating functions on arrays (that is, lists of numbers). Here are some example arrays.</p>
+<div class="sagecell-octave" id="sage-7"><script type="text/x-sage">#the first array generates the integers
+#from 1 to 10 and stores the list
+#in a variable A
+A = 1:10
+
+#the second example generates the numbers between 0 and 2
+#incrementing by .02. it is long. we could suppress the
+#output by adding a ; to the end of the line.
+B = 0:.02:2
+</script></div>
+<p id="p-26">An incredible useful feature of Octave/Matlab is the ability to feed an array into a function. However, Octave assumes that we want matrix operations unless we tell it that we want to work entry by entry. The way we do that is to put a . before any operation that could be interpreted as a matrix operation to force Octave to work entrywise.</p>
+<div class="sagecell-octave" id="sage-8"><script type="text/x-sage">#the exponentiation needs a dot because it represents
+#repeated multiplication of objects that might be matrices.
+T3 = inline('1 + x + 1/2*x.^2 + 1/6*x.^3')
+A = 1:10;
+C = T3(A)
+</script></div>
+<p id="p-27">Plotting in Octave seems complicated, but really just exposes how mathematical software generates plots in general. Suppose that we want to compare the function \(f(x) = e^x\) with the Taylor polynomial \(T_3\text{.}\) Our goal is plot both functions on the same set of axes. A useful command for this is <code class="code-inline tex2jax_ignore">plot</code>.</p>
+<div class="sagecell-octave" id="sage-9"><script type="text/x-sage">#first, we make an array of numbers from -3 to 3, incrementing by .01
+X = -3:.01:3;
+
+#now, we define T3 (e^x already exists as a function called exp())
+T3 = inline('1 + x + 1/2*x.^2 + 1/6*x.^3');
+
+#we need some y-values to plot, so we feed T3 and e^x our X-value array
+Y1 = T3(X);
+Y2 = exp(X);
+
+#finally, we plot the graphs.
+plot(X, Y1, 'r', X, Y2, 'b')
+legend('T_3(x)', 'e^x')
+legend("boxoff")
+legend("left")
+</script></div></section></section></div></main>
+</div>
+<div class="login-link"><span id="loginlogout" class="login">login</span></div>
+<script src="https://pretextbook.org/js/0.12/login.js"></script>
+</body>
+</html>

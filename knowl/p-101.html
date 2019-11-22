@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2019-11-22T12:46:28-05:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script><script>$(function () {
+    // Make *any* div with class 'sagecell-octave' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-octave',
+                           linked: true,
+                           languages: ['octave'],
+                           evalButtonText: 'Evaluate (Octave)'});
+});
+</script>
+</head>
+<body>
+<h6 class="heading"><span class="type">Paragraph</span></h6>
+<p>Polynomial interpolation has a serious drawback in many cases: high degree polynomials can behave wildly between points in a way that doesn't reflect the expected behavior of the underlying function. To see this, consider the function</p>
+<div class="displaymath">
+\begin{equation*}
+f(x) = \frac{1}{x^2 + 25}
+\end{equation*}
+</div>
+<p>which is a typical example of a rational function with no vertical asymptotes. <div class="sagecell-octave" id="sage-31"><script type="text/x-sage">X = -1:.01:1;
+f = @(x) 1./(1 + 25*x.^2);
+plot(X, f(X))
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+</script></div></p>
+<span class="incontext"><a href="section-5.html#p-101">in-context</a></span>
+</body>
+</html>

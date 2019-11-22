@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2019-11-22T12:46:28-05:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<h6 class="heading"><span class="type">Paragraph</span></h6>
+<p>It turns out that this process can be repeated for additional points, though one can imagine the formula for the next step is quite complicated to express in \(x_i, y_i\text{.}\) So we introduce a notation that will make this process easy to write in recursive form. The \(m\)th divided difference is given by the recursive formula</p>
+<div class="displaymath">
+\begin{align*}
+f[x_i] \amp= y_i;\\
+f[x_m, \ldots, x_0] \amp= \frac{f[x_m, \ldots, x_1] - f[x_{m-1}, \ldots, x_0]}{x_m - x_0}.
+\end{align*}
+</div>
+<p>For example, in this notation,</p>
+<div class="displaymath">
+\begin{equation*}
+f[x_1, x_0] = \frac{f[x_1] - f[x_0]}{x_1 - x_0} = \frac{y_2 - y_1}{x_2 - x_1},
+\end{equation*}
+</div>
+<p>and you should convince yourself that the expression for \(f[x_2, x_1, x_0]\) agrees with our previous computation.</p>
+<span class="incontext"><a href="section-5.html#p-98">in-context</a></span>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2019-11-18T22:03:32-05:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script><script>$(function () {
+    // Make *any* div with class 'sagecell-octave' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-octave',
+                           linked: true,
+                           languages: ['octave'],
+                           evalButtonText: 'Evaluate (Octave)'});
+});
+</script>
+</head>
+<body>
+<figure class="figure-like"><div class="sagecell-octave" id="sage-25"><script type="text/x-sage">f = @(x) 2.08333* x.^2 - 10.25 *x + 9.16667;
+X = 0:.01:6;
+Y = f(X);
+plot([1, 2, 5],[1, -3, 10], 'b*')
+hold on
+plot(X,Y, 'r')
+</script></div>
+<figcaption><span class="type">Figure</span> <span class="codenumber">5.2.</span> Data and interpolating function example</figcaption></figure><span class="incontext"><a href="section-5.html#figure-2">in-context</a></span>
+</body>
+</html>

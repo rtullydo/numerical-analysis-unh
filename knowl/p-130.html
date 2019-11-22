@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2019-11-22T12:46:28-05:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<h6 class="heading"><span class="type">Paragraph</span></h6>
+<p>We'll first recall the <dfn class="terminology">triangle inequality</dfn>, which says that \(\abs{a + b} \leq \abs{a} + \abs{b}\text{.}\) In fact, we can apply this to a sum of any finite length, by induction:</p>
+<div class="displaymath">
+\begin{equation*}
+\abs{\sum_i a_i} \leq \sum_i \abs{a_i}.
+\end{equation*}
+</div>
+<p>Now, Riemann sums are finite sums, and so the triangle inequality applies.</p>
+<div class="displaymath">
+\begin{equation*}
+\abs{\sum_{i = 0}^{n-1} f(x_i^*) \Delta x} \leq \sum_{i = 0}^{n-1} \abs{f(x_i^*)} \Delta x,
+\end{equation*}
+</div>
+<p>and when the limit of the Riemann sum exists as the number of rectangles tends to infinity (that is, whenever \(f\) is Riemann integrable), we get the integral version of the triangle inequality:</p>
+<div class="displaymath">
+\begin{equation*}
+\abs{\int_a^b f(x) \, dx} \leq \int_a^b \abs{f(x)} \, dx.
+\end{equation*}
+</div>
+<p>This is a theorem in real analysis and will be used here without a formal proof beyond the sketch above.</p>
+<span class="incontext"><a href="section-6.html#p-130">in-context</a></span>
+</body>
+</html>

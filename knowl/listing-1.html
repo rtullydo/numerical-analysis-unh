@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2019-11-22T12:46:28-05:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<figure class="figure-like"><pre class="plainprint">#Symbolic math in Octave/Matlab --
+#September 4, 2019
+#Numerical Analysis
+
+#to use symbolic math, we first need to load the symbolic package
+#using the command pkg load symbolic
+#once the package is installed and loaded, we can use the symbolic capabilities
+#installed in Octave
+
+syms x; #defines x as a symbolic variable
+fun = sin(x); #defines the variable fun as a symbolic object sin(x)
+
+#one useful command that works on symbolic objects is diff
+#which is Octave's built in command for differentiation.
+
+#diff(fun) takes the symbolic derivative of the symbolic function
+#sin(x).
+diff(fun);
+
+#this can be stored as another variable
+dfun = diff(fun);
+
+#note that this object cannot be evaluted. If we want to turn it
+#into a function, we can use the command function_handle.
+
+dfun = function_handle(dfun);
+
+dfun(pi/3) #evaluates the derivative at pi/3
+
+#dfun is now a function that can be evaluated on scalars or arrays.
+#it can also be plotted. the simplest possible plotting command is
+#ezplot, which takes care of a lot of the mechanics for you. ezplot
+#doesn't care if an expression is symbolic or a function
+ezplot(dfun)
+
+#if you want to plot multiple graphs on the same figure, you can use the
+# hold command to keep the figure in place before the next plot
+ezplot(fun)
+hold on;
+ezplot(dfun)
+hold off;
+
+#another useful mathematical command is factorial
+factorial(3)
+
+#putting this together, we might plot sin x against a Taylor
+#polynomial
+fun = sin(x);
+T = x - x.^3/factorial(3) + x.^5/factorial(5) - x.^7/factorial(7);
+ezplot(fun)
+hold on;
+ezplot(T)
+hold off;
+
+#we will look at more powerful visualizations in the next set of
+#notes. ezplot is fast, but very limited in what can be controlled.
+#we want to work numerically in general.
+</pre>
+<figcaption><span class="type">Listing</span> <span class="codenumber">8.1.</span> A first set of Octave/Matlab commands and examples</figcaption></figure><span class="incontext"><a href="section-8.html#listing-1">in-context</a></span>
+</body>
+</html>

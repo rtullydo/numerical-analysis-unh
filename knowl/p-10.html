@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2019-11-22T12:46:28-05:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script><script>$(function () {
+    // Make *any* div with class 'sagecell-octave' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-octave',
+                           linked: true,
+                           languages: ['octave'],
+                           evalButtonText: 'Evaluate (Octave)'});
+});
+</script>
+</head>
+<body>
+<h6 class="heading"><span class="type">Paragraph</span></h6>
+<p>That is one smooth looking plot. What if we replace \(x\) with \(x^2\text{?}\) (Functions of this form are very common in practice. The Gaussian or normal distribution from statistics is a very important example.) <div class="sagecell-octave" id="sage-2"><script type="text/x-sage">xlim = [0,2];
+ylim = [0,e^4];
+
+[x,y] = fplot('e^(x^2)', [xlim ylim]);
+
+plot(x, y, 'linewidth',2);
+
+set(gca,'xlim',xlim);
+set(gca,'ylim',ylim);
+
+grid on;
+box on;
+axis('nolabel','square');
+title("Graph of $g(x) = exp(x^2)")
+</script></div> It looks just as smooth, and in fact it is: all derivatives exist everywhere to all orders, and they are pleasing mixtures of polynomials and exponentials, just like Calculus I. Now, suppose I want to find the area under the graphs for \(0\leq x \leq 1\text{.}\) From Calculus II, we know that we can evaluate the integral</p>
+<div class="displaymath">
+\begin{equation*}
+\int_0^1 e^x \, dx = e - 1,
+\end{equation*}
+</div>
+<p>which is elementary. What about \(g(x)\text{?}\) Certainly we can still write</p>
+<div class="displaymath">
+\begin{equation*}
+\int_0^1 e^{x^2} \, dx,
+\end{equation*}
+</div>
+<p>but now what?</p>
+<span class="incontext"><a href="section-review.html#p-10">in-context</a></span>
+</body>
+</html>

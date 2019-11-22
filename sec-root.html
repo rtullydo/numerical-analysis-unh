@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2019-11-22T12:46:28-05:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Root finding</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    asciimath2jax: {
+        ignoreClass: ".*",
+        processClass: "has_am"
+    },
+    jax: ["input/AsciiMath"],
+    extensions: ["asciimath2jax.js"],
+    TeX: {
+        extensions: ["extpfeil.js", "autobold.js", "https://pretextbook.org/js/lib/mathjaxknowl.js", ],
+        // scrolling to fragment identifiers is controlled by other Javascript
+        positionToHash: false,
+        equationNumbers: { autoNumber: "none", useLabelIds: true, },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    // HTML-CSS output Jax to be dropped for MathJax 3.0
+    "HTML-CSS": {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+    CommonHTML: {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+});
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML-full"></script><script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script><script>$(function () {
+    // Make *any* div with class 'sagecell-octave' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-octave',
+                           linked: true,
+                           languages: ['octave'],
+                           evalButtonText: 'Evaluate (Octave)'});
+});
+</script><script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.12/pretext.js"></script><script src="https://pretextbook.org/js/0.12/pretext_add_on.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/toc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/setcolors.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/features.css" rel="stylesheet" type="text/css">
+<script>var logged_in = false;
+var role = 'student';
+var guest_access = true;
+var login_required = false;
+var js_version = 0.12;
+</script>
+</head>
+<body class="mathbook-article has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div class="hidden-content" style="display:none">\(\DeclareMathOperator{\RE}{Re}
+\DeclareMathOperator{\IM}{Im}
+\DeclareMathOperator{\ess}{ess}
+\DeclareMathOperator{\intr}{int}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator\re{\mathrm {Re~}}
+\DeclareMathOperator\im{\mathrm {Im~}}
+\newcommand\dd{\mathrm d}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\To}{\longrightarrow}
+\newcommand{\hilbert}{\mathcal{H}}
+\newcommand{\s}{\mathcal{S}_2}
+\newcommand{\A}{\mathcal{A}}
+\newcommand\h{\mathcal{H}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\W}{\mathcal{W}}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\BOP}{\mathbf{B}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\BH}{\mathbf{B}(\mathcal{H})}
+\newcommand{\KH}{\mathcal{K}(\mathcal{H})}
+\newcommand{\pick}{\mathcal{P}_2}
+\newcommand{\schur}{\mathcal{S}_2}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Complex}{\mathbb{C}}
+\newcommand{\Field}{\mathbb{F}}
+\newcommand{\RPlus}{\Real^{+}}
+\newcommand{\Polar}{\mathcal{P}_{\s}}
+\newcommand{\Poly}{\mathcal{P}(E)}
+\newcommand{\EssD}{\mathcal{D}}
+\newcommand{\Lop}{\mathcal{L}}
+\newcommand{\cc}[1]{\overline{#1}}
+\newcommand{\abs}[1]{\left\vert#1\right\vert}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\seq}[1]{\left\lt#1\right&gt;}
+\newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+\newcommand{\essnorm}[1]{\norm{#1}_{\ess}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\ran}[1]{\operatorname{ran}#1}
+\newcommand{\nt}{\stackrel{\mathrm {nt}}{\to}}
+\newcommand{\pnt}{\xrightarrow{pnt}}
+\newcommand{\ip}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\ad}{^\ast}
+\newcommand{\inv}{^{-1}}
+\newcommand{\adinv}{^{\ast -1}}
+\newcommand{\invad}{^{-1 \ast}}
+\newcommand\Pick{\mathcal P}
+\newcommand\Ha{\mathbb{H}}
+\newcommand{\HH}{\Ha\times\Ha}
+\newcommand\Htau{\mathbb{H}(\tau)}
+\newcommand{\vp}{\varphi}
+\newcommand{\ph}{\varphi}
+\newcommand\al{\alpha}
+\newcommand\ga{\gamma}
+\newcommand\de{\delta}
+\newcommand\ep{\varepsilon}
+\newcommand\la{\lambda}
+\newcommand\up{\upsilon}
+\newcommand\si{\sigma}
+\newcommand\beq{\begin{equation}}
+\newcommand\ds{\displaystyle}
+\newcommand\eeq{\end{equation}}
+\newcommand\df{\stackrel{\rm def}{=}}
+\newcommand\ii{\mathrm i}
+\newcommand{\vectwo}[2]
+{
+   \begin{pmatrix} #1 \\ #2 \end{pmatrix}
+}
+\newcommand{\vecthree}[3]
+{
+   \begin{pmatrix} #1 \\ #2 \\ #3 \end{pmatrix}
+}
+\newcommand\blue{\color{blue}}
+\newcommand\black{\color{black}}
+\newcommand\red{\color{red}}
+\newcommand\nn{\nonumber}
+\newcommand\bbm{\begin{bmatrix}}
+\newcommand\ebm{\end{bmatrix}}
+\newcommand\bpm{\begin{pmatrix}}
+\newcommand\epm{\end{pmatrix}}
+\numberwithin{equation}{section}
+\newcommand\nin{\noindent}
+\newcommand{\nCr}[2]{\,_{#1}C_{#2}} 
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="minimal.html"><span class="title">Numerical Analysis</span></a></h1>
+<p class="byline">Ryan Tully-Doyle</p>
+</div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3"><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="sec-taylor.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="minimal.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="section-5.html" title="Next">Next</a></span></div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="sec-taylor.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="minimal.html" title="Up">Up</a><a class="next-button button toolbar-item" href="section-5.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link"><a href="frontmatter-1.html" data-scroll="frontmatter-1"><span class="title">Front Matter</span></a></li>
+<li class="link"><a href="section-needs.html" data-scroll="section-needs"><span class="codenumber">1</span> <span class="title">What you need - Octave/Matlab</span></a></li>
+<li class="link"><a href="section-review.html" data-scroll="section-review"><span class="codenumber">2</span> <span class="title">Motivation</span></a></li>
+<li class="link">
+<a href="sec-taylor.html" data-scroll="sec-taylor"><span class="codenumber">3</span> <span class="title">Taylor polynomials</span></a><ul>
+<li><a href="sec-taylor.html#subsection-1" data-scroll="subsection-1">Taylor's theorem</a></li>
+<li><a href="sec-taylor.html#subsection-2" data-scroll="subsection-2">What is a Taylor approximation good for?</a></li>
+<li><a href="sec-taylor.html#subsection-3" data-scroll="subsection-3">Coding functions in Octave</a></li>
+</ul>
+</li>
+<li class="link active">
+<a href="sec-root.html" data-scroll="sec-root"><span class="codenumber">4</span> <span class="title">Root finding</span></a><ul>
+<li><a href="sec-root.html#sub-bisection" data-scroll="sub-bisection">Bisection method</a></li>
+<li><a href="sec-root.html#subsection-5" data-scroll="subsection-5">Error</a></li>
+<li><a href="sec-root.html#subsection-6" data-scroll="subsection-6">Bisection algorithm</a></li>
+<li><a href="sec-root.html#subsection-7" data-scroll="subsection-7">False position (Regula Falsi)</a></li>
+<li><a href="sec-root.html#subsection-8" data-scroll="subsection-8">Classes of differentiability</a></li>
+<li><a href="sec-root.html#subsection-9" data-scroll="subsection-9">Newton-Raphson method</a></li>
+<li><a href="sec-root.html#subsection-10" data-scroll="subsection-10">Newton's method requirements and problems</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="section-5.html" data-scroll="section-5"><span class="codenumber">5</span> <span class="title">Interpolation</span></a><ul>
+<li><a href="section-5.html#subsection-11" data-scroll="subsection-11">Naive polynomial interpolation</a></li>
+<li><a href="section-5.html#subsection-12" data-scroll="subsection-12">Lagrange interpolation</a></li>
+<li><a href="section-5.html#subsection-13" data-scroll="subsection-13">Newton interpolation</a></li>
+<li><a href="section-5.html#subsection-14" data-scroll="subsection-14">Problems with polynomials</a></li>
+<li><a href="section-5.html#subsection-15" data-scroll="subsection-15">Spline interpolation</a></li>
+<li><a href="section-5.html#subsection-16" data-scroll="subsection-16">Many-point spline interpolation example</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="section-6.html" data-scroll="section-6"><span class="codenumber">6</span> <span class="title">Numerical Integration</span></a><ul>
+<li><a href="section-6.html#subsection-17" data-scroll="subsection-17">Integration review</a></li>
+<li><a href="section-6.html#subsection-18" data-scroll="subsection-18">The trapezoid rule</a></li>
+<li><a href="section-6.html#subsection-19" data-scroll="subsection-19">A special case of Richardson's extrapolation (optional)</a></li>
+<li><a href="section-6.html#subsection-20" data-scroll="subsection-20">Simpson's 1/3 rule</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="section-7.html" data-scroll="section-7"><span class="codenumber">7</span> <span class="title">Introduction to Fourier Series (a linear algebra perspective)</span></a><ul>
+<li><a href="section-7.html#subsection-21" data-scroll="subsection-21">Review of linear algebra</a></li>
+<li><a href="section-7.html#subsection-22" data-scroll="subsection-22">The space \(L^2[-\pi,\pi]\)</a></li>
+<li><a href="section-7.html#subsection-23" data-scroll="subsection-23">Example computation</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="section-8.html" data-scroll="section-8"><span class="codenumber">8</span> <span class="title">Code examples</span></a><ul><li><a href="section-8.html#subsection-24" data-scroll="subsection-24">Lab 1 - Introduction</a></li></ul>
+</li>
+<li class="link">
+<a href="section-9.html" data-scroll="section-9"><span class="codenumber">9</span> <span class="title">Assignments</span></a><ul>
+<li><a href="section-9.html#subsection-25" data-scroll="subsection-25">Assignment Set 1</a></li>
+<li><a href="section-9.html#subsection-26" data-scroll="subsection-26">Assignment Set 2</a></li>
+<li><a href="section-9.html#subsection-27" data-scroll="subsection-27">Assignment set 3</a></li>
+<li><a href="section-9.html#subsection-28" data-scroll="subsection-28">Assignment set 4</a></li>
+<li><a href="section-9.html#subsection-29" data-scroll="subsection-29">Assignment set 5 (including challenge set)</a></li>
+<li><a href="section-9.html#subsection-30" data-scroll="subsection-30">Assignment set 6 - Newton polynomials</a></li>
+<li><a href="section-9.html#subsection-31" data-scroll="subsection-31">Assignment set 7 - Cubic splines</a></li>
+<li><a href="section-9.html#subsection-32" data-scroll="subsection-32">Assignment 8 - Numerical integration</a></li>
+</ul>
+</li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="sec-root"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">4</span> <span class="title">Root finding</span>
+</h2>
+<a href="sec-root.html" class="permalink">¶</a><p id="p-28">In elementary or middle school, we learn how to solve algebraic equations. Equations that are algebraic can be solved with familiar operations: addition, multiplication, exponentiation. However, there are very simple equations that cannot be solved with algebra. Consider</p>
+<div class="displaymath">
+\begin{equation*}
+\cos x = x.
+\end{equation*}
+</div>
+<p>There is no way to extract the \(x\) from inside the cosine to isolate it on one side of the equation. Even algebraic equations may be impossible to solve. Consider</p>
+<div class="displaymath">
+\begin{equation*}
+x^6 - x - 1 = 0.
+\end{equation*}
+</div>
+<p>There is no formula that can be used to factor this equation (like the quadractic formula). If we're not fortunate enough to get a polynomial that has obvious “nice” factors, the only way to proceed is to approximate the solutions. Questions like this fall under the general category of <dfn class="terminology">root finding</dfn> problems. A root is a solution to the equation \(f(x) = 0\text{.}\)</p>
+<section class="subsection" id="sub-bisection"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">4.1</span> <span class="title">Bisection method</span>
+</h3>
+<a href="sec-root.html#sub-bisection" class="permalink">¶</a><p id="p-29">We're going to start with a straightforward equation to illustrate our first method. Let's find solutions to the equation</p>
+<div class="displaymath">
+\begin{equation*}
+x^2 - 2 = 0.
+\end{equation*}
+</div>
+<p>Now obviously, the answers are \(\pm \sqrt{2}\text{,}\) but how much good is that for computation or application? Where do the values for \(\sqrt{2}\) even come from? (Hint: \(\sqrt{2}\) is defined to be the solution to this equation). <div class="sagecell-octave" id="sage-10"><script type="text/x-sage">X = -3:.1:3;
+Y = X.^2 - 2;
+plot(X, Y)
+set(gca, "xaxislocation","origin")
+set(gca, "yaxislocation", "origin")
+</script></div> It's clear from the plot generated by the code above that the solutions to \(x^2 - 2 = 0\) are the \(x\)-intercepts of the function \(f(x) = x^2 - 2\text{.}\) If you were asked to guess what the roots were you might say “between -2 and -1 and also between 1 and 2”. That observation is the first step in a set of methods called <dfn class="terminology">bracketing</dfn>. At this point, we can take advantage of one of the core theorems of calculus: the Intermediate Value Theorem.</p>
+<article class="theorem-like" id="thm-ivt"><h6 class="heading">
+<span class="type">Theorem</span> <span class="codenumber">4.1</span>.</h6>
+<p id="p-30">Let \(f\) be a continuous function on the interval \([a,b]\text{.}\) Then for every \(y\) falling strictly between \(f(a)\) and \(f(b)\text{,}\) there exists a number \(c\) strictly between \(a\) and \(b\) so that \(f(x) = y\text{.}\)</p></article><p id="p-31">A more familiar formulation might state “if a continuous \(f\) is positive at a point \(a\) and negative at a point \(b\) then it must have gone through 0 somewhere”. This can be restated into a condition easy to check in an algorithm.</p>
+<article class="theorem-like" id="theorem-3"><h6 class="heading">
+<span class="type">Theorem</span> <span class="codenumber">4.2</span>.</h6>
+<p id="p-32">Suppose that \(f\) is continuous on \([a,b]\text{.}\) Then \([a,b]\) contains a root of \(f\) if \(f(a)f(b) \lt 0\text{.}\)</p></article><p id="p-33">So we arrive at the main idea of the bisection method, which you can think of as a narrowing process. In short, we'll bracket the root with an interval, cut it in half, then use the condition to figure out which half contains the root. Repeating this process will produce an arbitrarily small interval containing the root, which we'll denote \(\alpha\text{.}\) We can treat the midpoint of this tiny interval as an approximation for the root \(\alpha\text{.}\)</p>
+<p id="p-34">Consider our example, which is to find a root of the function \(f(x) = x^2 - 2\text{.}\)</p>
+<ol class="decimal">
+<li id="li-1">From the graph, we can bracket one of the roots with \(a = 1, b = 2\text{.}\)</li>
+<li id="li-2">We can check to see that we've chosen good values by looking at \(f(a)f(b) = (-1)(2) = -2 \lt 0\text{,}\) and so the IVT guarantees a root lies in \([1,2]\text{.}\)</li>
+<li id="li-3">Now bisect the interval. Compute the midpoint \(m = \frac{a+b}{2} = 1.5\text{.}\)</li>
+<li id="li-4">We'll check the interval \([1, 1.5]\) for the root. Since \(f(1)f(1.5) = -.25\text{,}\) this interval contains the root.</li>
+<li id="li-5">We can repeat the process with our new guess, \(m = 1.25\text{,}\) and so on until we're satisfied with the accuracy of our calculation.</li>
+</ol></section><section class="subsection" id="subsection-5"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">4.2</span> <span class="title">Error</span>
+</h3>
+<p id="p-35">So how do we decide when to stop the process listed above? Since we don't know what the answer is, we can't use “distance from the correct answer” as a measure of error. Instead, we'll have to measure something about the process of iteration itself. We need to make the measurements of error relative to the process, not just absolute, to be useful. This will be discussed in more detail when we introduce Newton's method.</p>
+<article class="definition-like" id="def-relerr"><h6 class="heading">
+<span class="type">Definition</span> <span class="codenumber">4.3</span>.</h6>
+<p id="p-36">Given an iterative process that produces an approximation \(m_k\) at each step \(k\text{,}\) the <dfn class="terminology">absolute relative approximate error</dfn> at step \(k\) is</p>
+<div class="displaymath">
+\begin{equation*}
+\abs{\epsilon_k} = \abs{\frac{m_k - m_{k-1}}{m_k}}.
+\end{equation*}
+</div></article><p id="p-37">If an iterative approximation converges, then the error will decrease from step to step. Thus, we can use error to determine when to stop. Before we begin the process of approximation, we choose a <dfn class="terminology">tolerance</dfn> - that is, a small number that is the maximum possible error we're willing to allow. Then, we can impose a stopping condition whenever \(\abs{\epsilon_k} \lt tol\text{.}\)</p></section><section class="subsection" id="subsection-6"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">4.3</span> <span class="title">Bisection algorithm</span>
+</h3>
+<article class="theorem-like" id="algorithm-1"><h6 class="heading">
+<span class="type">Algorithm</span> <span class="codenumber">4.4</span>.</h6>
+<p id="p-38">Suppose that \(f\) is continuous on \([a,b]\) and that \(f(a)f(b) \lt 0\text{.}\) Let \(tol\) be a given tolerance. Let \(maxiter\) be the maximum number of iterations. Set \(m = \frac{a+b}{2}\) and \(iter = 0\text{.}\)</p>
+<ol class="decimal">
+<li id="li-6">Set \(iter = iter + 1\text{.}\) If \(iter \gt maxiter\text{,}\) exit and return failed to converge.</li>
+<li id="li-7">If \(f(a)f(m) \lt 0\text{,}\) set \(b = m\text{.}\) Otherwise set \(a = m\text{.}\)</li>
+<li id="li-8">Set \(m' = \frac{a + b}{2}\text{.}\)</li>
+<li id="li-9">Set \(\abs{\epsilon} = \frac{m' - m}{m'}\text{.}\)</li>
+<li id="li-10">If \(\abs{\epsilon} \lt tol\text{,}\) return \(m'\text{.}\)</li>
+<li id="li-11">Otherwise, let \(m = m'\) and go to step 1.</li>
+</ol></article><p id="p-39">The bisection method always converges, so we do not need to include a maximum iteration counter, though we do anyway as later methods may not converge and can potentially loop forever.</p>
+<p id="p-40">We'll now present an example of the bisection method used to compute the value of \(\sqrt{2}\text{.}\) <div class="sagecell-octave" id="sage-11"><script type="text/x-sage">f = @(x) x.^2 - 2;
+a = 1;
+b = 2;
+tol = .5*10^-4;
+M = (a+b)/2;
+max_iter = 1000;
+iter = 0;
+err = 1;
+
+
+while err > tol
+    iter = iter + 1;
+    if iter > max_iter
+        break
+    endif
+
+    if f(a)*f(M) < 0
+        b = M;
+    else
+        a = M;
+    endif
+
+    m = (a+b)/2;
+    err = abs((m - M)/m);
+    M = m;
+endwhile
+
+printf('The approximation is %d', m)
+</script></div></p></section><section class="subsection" id="subsection-7"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">4.4</span> <span class="title">False position (Regula Falsi)</span>
+</h3>
+<p id="p-41">The method of false position is one of the oldest methods for guessing the solution to an equation. We're going to use a version of it that is specifically built for root finding. This method can have significantly faster convergence than the bisection method, as it takes functional behavior into consideraton.</p>
+<p id="p-42">Consider the equation \(x^2 - 2 = 0\text{,}\) the solutions of which are the roots of the function \(f(x) = x^2 - 2\text{.}\) <div class="sagecell-octave" id="sage-12"><script type="text/x-sage">f = @(x) x.^2 - 2
+ezplot(f)
+</script></div></p>
+<p id="p-43">As in the bisection method, we notice that the interval $[1,2]$ must contain a root, as the function passes through the axis between them. (That is, \(f(1)f(2) \lt 0\text{.}\)) To find an approximation of the zero, we construct the line between \((a, f(a))\) and \((b, f(b))\text{.}\) We can approximate the root of \(f(x)\) by the \(x\)-intercept of the line that we've drawn.</p>
+<div class="sagecell-octave" id="sage-13"><script type="text/x-sage">f = @(x) x.^2 - 2;
+a = 1;
+b = 2;
+g = @(x) f(a) + (f(b) - f(a))/(b-a) * (x - a);
+X = -3:.1:3;
+XX = a:.1:b;
+plot(X, f(X), 'r', XX, g(XX), 'b')
+hold on;
+plot(sqrt(2),0, 'r*')
+plot((a*f(b) - b*f(a))/(f(b) - f(a)), 0, 'b*')
+axis([.5 2.5 -1.5 2.5])
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+</script></div>
+<p id="p-44">Already from the picture above we can see that we've got a reasonable approximation of the zero.The slope the line is going to be given by \(m = \frac{f(b) - f(a)}{b - a}\text{,}\) and some quick algebra with the point slope form of the line will give you that the \(x\)-intercept of the line segment is</p>
+<div class="displaymath">
+\begin{equation*}
+m = \frac{a f(b) - b f(a)}{f(b) - f(a)}.
+\end{equation*}
+</div>
+<p id="p-45">If we iterate this method, we should see the intercepts of the line segments “march” towards the actual zero. At this point, the method is identical to the bisection method: we identify which of the two subintervals created by the new approximation is the bracking subinterval, we replace the relevant endpoint, and we repeat the line trick.</p>
+<article class="theorem-like" id="algorithm-2"><h6 class="heading">
+<span class="type">Algorithm</span> <span class="codenumber">4.5</span>.</h6>
+<p id="p-46">Suppose that \(f\) is continuous on \([a,b]\) and that \(f(a)f(b) \lt 0\text{.}\) Let \(tol\) be a given tolerance. Let \(maxiter\) be the maximum number of iterations. Set \(m = \frac{a f(b) - b f(a)}{f(b) - f(a)}\) and \(iter = 0\text{.}\)</p>
+<ol class="decimal">
+<li id="li-12">Set \(iter = iter + 1\text{.}\) If \(iter \gt maxiter\text{,}\) exit and return failed to converge.</li>
+<li id="li-13">If \(f(a)f(m) \lt 0\text{,}\) set \(b = m\text{.}\) Otherwise set \(a = m\text{.}\)</li>
+<li id="li-14">Set \(m' = m = \frac{a f(b) - b f(a)}{f(b) - f(a)}\text{.}\)</li>
+<li id="li-15">Set \(\abs{\epsilon} = \frac{m' - m}{m'}\text{.}\)</li>
+<li id="li-16">If \(\abs{\epsilon} \lt tol\text{,}\) return \(m'\text{.}\)</li>
+<li id="li-17">Otherwise, let \(m = m'\) and go to step 1.</li>
+</ol></article></section><section class="subsection" id="subsection-8"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">4.5</span> <span class="title">Classes of differentiability</span>
+</h3>
+<p id="p-47">Our next set of techniques do not involve bracketing. In exchange for losing a bracket that is guaranteed to contain a root of a function, we get methods that converge significantly faster when certain hypotheses are met. Speed of convergence will be discussed in detail in a later section.</p>
+<p id="p-48">The main hypotheses of derivative based methods is that the functions being worked with are “nice enough”. Nice as a mathematical terms is an amusing catchall for “whatever is needed to make this theorem run”, but it usually refers to smoothness of some kind. That is, the slope of the function is well behaved as we move around the \(x\)-values.</p>
+<p id="p-49">In Calculus 1, we learn that</p>
+<div class="displaymath">
+\begin{equation*}
+f'(x) = \lim_{h\to 0} \frac{f(x + h) - f(x)}{(x + h) -h}
+\end{equation*}
+</div>
+<p>where we're using a form that emphasizes the fact that the derivative is the limit of secant lines. A function for which \(f'\) exists for every \(x \in (a,b)\) is called differentiable on \((a,b)\text{.}\) Be careful. It's easy to be lulled into a false sense of security about differentiable functions.</p>
+<p id="p-50">Let's consider a family of functions called the <dfn class="terminology">topologist's sine curves</dfn>. Here is the first member of the family.</p>
+<div class="displaymath">
+\begin{align*}
+f(x) \amp= \sin \frac{1}{x} \amp\text{ if } x \amp\neq 0 \\
+\amp = 0 \amp\text{ if } x \amp= 0
+\end{align*}
+</div>
+<p>Notably, this function does not have a limit as \(x \to 0\) from the left or the right. We can try to fill the singularity in the function with the point \((0,0)\text{,}\) but that doesn't make the function continuous. The reason why should be clear from the graph below: as the function approaches \(x = 0\) it oscillates increasingly quickly, essentially filling the area on the \(y\)-axis between -1 and 1. Since the function has a value of 0 at 0, but no limit, \(f\) is discontinuous there.</p>
+<div class="sagecell-octave" id="sage-14"><script type="text/x-sage">f = @(x) sin(1./x)
+X = -2:.0001:2;
+plot(X, f(X))
+hold on;
+plot(0,0,'r*')
+axis([-1 1 -1 1])
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+</script></div>
+<p id="p-51">Let's look at the next member of the family:</p>
+<div class="displaymath">
+\begin{align*}
+f(x) \amp= x \sin \frac{1}{x} \amp\text{ if } x \amp\neq 0 \\
+\amp = 0 \amp\text{ if } x \amp= 0
+\end{align*}
+</div>
+<p>The \(x\) in front forces the function to go to 0, capturing it between the lines \(y = x\) and \(y = -x\text{.}\)</p>
+<div class="sagecell-octave" id="sage-15"><script type="text/x-sage">f = @(x) x.*sin(1./x)
+X = -2:.0001:2;
+plot(X, f(X))
+hold on;
+plot(0,0,'r*')
+axis([-1 1 -1 1])
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+</script></div>
+<p id="p-52">The graph above should make it obvious that now, the point \((0,0)\) fills the hole in the function and makes \(f\) continuous at \(0\text{.}\) What about the derivative?</p>
+<div class="sagecell-octave" id="sage-16"><script type="text/x-sage">f = @(x) x.*sin(1./x)
+g = @(x) sin(1./x) - 1./x.*cos(1./x)
+X = -2:.0001:2;
+plot(X, f(X), 'b', X, g(X), 'g')
+hold on;
+plot(0,0,'r*')
+axis([-1 1 -1 1])
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+</script></div>
+<p id="p-53">The green function above is the derivative. The formula for the derivative makes sense everywhere but at 0. So we'll use the defintion to see if the derivative is defined there.</p>
+<div class="displaymath">
+\begin{align*}
+f'(0) \amp= \lim_{h \to 0} \frac{f(0+h) - f(0)}{h}\\
+\amp= \lim_{h \to 0} \frac{f(h)}{h}\\
+\amp= \lim \frac{h \sin(1/h)}{h} \\
+\amp= \lim_{h \to 0} \sin \frac{1}{h}
+\end{align*}
+</div>
+<p>which does not exist. So \(f\) is continuous, but not differentiable. Another member of the family:</p>
+<div class="displaymath">
+\begin{align*}
+f(x) \amp= x^2 \sin \frac{1}{x} \amp\text{ if } x \amp\neq 0 \\
+\amp = 0 \amp\text{ if } x \amp= 0
+\end{align*}
+</div>
+<div class="sagecell-octave" id="sage-17"><script type="text/x-sage">f = @(x) x.^2.*sin(1./x)
+g = @(x) 2*x.*sin(1./x) - cos(1./x)
+X = -2:.0001:2;
+plot(X, f(X), 'b', X, g(X), 'g')
+hold on;
+plot(0,0,'r*')
+axis([-1 1 -1 1])
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+</script></div>
+<p id="p-54">Again, the derivative formula makes sense everywhere but 0. At 0, we can use the definition:</p>
+<div class="displaymath">
+\begin{align*}
+f'(0) \amp= \lim_{h \to 0} \frac{f(0+h) - f(0)}{h}\\
+\amp= \lim_{h \to 0} \frac{f(h)}{h}\\
+\amp= \lim \frac{h^2 \sin(1/h)}{h} \\
+\amp= \lim_{h \to 0} h \sin \frac{1}{h} = 0.
+\end{align*}
+</div>
+<p id="p-55">Here's the complete graph of the derivative, given that \(f'(0) = 1\text{.}\) It should be obvious that even though the derivative exists everywhere, it is not continuous.</p>
+<div class="sagecell-octave" id="sage-18"><script type="text/x-sage">g = @(x) 2*x.*sin(1./x) - cos(1./x)
+X = -2:.0001:2;
+plot(X, g(X), 'g')
+hold on;
+plot(0,0,'r*')
+axis([-1 1 -1.5 1.5])
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+</script></div>
+<p id="p-56">As we keep increasing the power of \(x\text{,}\) we get functions with better properties. What happens if we increase the power one more time?</p>
+<div class="displaymath">
+\begin{align*}
+f(x) \amp= x^3 \sin \frac{1}{x} \amp\text{ if } x \amp\neq 0 \\
+\amp = 0 \amp\text{ if } x \amp= 0
+\end{align*}
+</div>
+<div class="sagecell-octave" id="sage-19"><script type="text/x-sage">f = @(x) x.^3.*sin(1./x)
+g = @(x) 3*x.^2.*sin(1./x) - x.*cos(1./x)
+X = -2:.0001:2;
+plot(X, f(X), 'r', X, g(X), 'g')
+hold on;
+plot(0,0,'r*')
+axis([-1 1 -1.5 1.5])
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+</script></div>
+<p id="p-57">As before, the green function is the derivative. Notice that now the derivative is also converging to 0 as \(x \to 0\text{.}\) That is, \(f\) is continuous, differentiable everywhere, AND the derivative is continuous.</p>
+<p id="p-58">This is what we mean by “nice” in the sense of approximation. In order for derivative methods to be well-behaved, the derivatives should exist AND be continuous</p>
+<article class="definition-like" id="definition-2"><h6 class="heading">
+<span class="type">Definition</span> <span class="codenumber">4.6</span>.</h6>Let \(f\) be a function on an interval \((a,b)\text{.}\) The function \(f\) is said to be <dfn class="terminology">of class \(C^k\)</dfn> if \(f\) can be differentiated \(k\) times and \(f^{(k)}\) is continuous on \((a,b)\text{.}\)</article><p id="p-59">\(C^1\) functions are also called <dfn class="terminology">continuously differentiable</dfn>. Thus, by filling in the point at \((0,0)\text{,}\) we can say</p>
+<ul class="disc">
+<li id="li-18">\(\sin(1/x)\) is discontinuous on \((-a,a)\text{;}\)</li>
+<li id="li-19">\(x \sin(1/x)\) is continuous on \((-a,a)\text{;}\)</li>
+<li id="li-20">\(x^2 \sin(1/x)\) is differentiable on \((-a,a)\text{;}\)</li>
+<li id="li-21">\(x^3 \sin(1/x)\) is \(C^1\) on \((-a,a)\text{.}\)</li>
+</ul>
+<p>This can be continued. Generally, \(C^1\) functions are the bare minimum we require to call a function “nice”. You should also note that this is a hierarchy of regularity: every subsequent level has all the properties of the level that came prior.</p></section><section class="subsection" id="subsection-9"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">4.6</span> <span class="title">Newton-Raphson method</span>
+</h3>
+<p id="p-60">We come to a very powerful method that illustrates perhaps the central idea of numerical analysis (and indeed most of continuous mathematics):</p>
+<p id="p-61"><em class="emphasis">Every function is a line.</em></p>
+<p id="p-62">This might seem like an absurd statement, but with some slight adjustments, maybe we can be convinced.</p>
+<p id="p-63"><em class="emphasis">Every (nice enough) function is a line (if you look closely enough).</em></p>
+<p id="p-64">In fact, this is the essential point of working with tangent lines. Indeed, the same thinking applies in more variables as well (where lines get replaced by planes).</p>
+<p id="p-65">Functions are difficult to find \(x\)-intercepts for, <em class="emphasis">unless those functions are lines</em>. So what we'll do is just pretend the function is a line, and find its intercept. In more familiar terms, we'll replace the function with its tangent line approximation.</p>
+<p id="p-66">As an easy example, consider \(f(x) = x^2 - 2\text{,}\) our old friend that lets us find the value of \(\sqrt{2}\text{.}\) Suppose that we guess that the root is close to \(x = 2\text{.}\)</p>
+<div class="sagecell-octave" id="sage-20"><script type="text/x-sage">f = @(x) x.^2 - 2;
+T = @(x) 4*(x - 2) + 2;
+X = 0:.01:3;
+plot(X, f(X), 'r', X, T(X), 'b')
+hold on;
+plot(sqrt(2), 0, 'b*')
+plot(1.5, 0, 'b*')
+axis([1 3 -2 7])
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+</script></div>
+<p id="p-67">Indeed, the tangent line (in blue) lands very close to the root in question (on the red curve). We'd like to be able to iterate this procedure. Suppose that we're given a point \((x_0, f(x_0))\text{.}\) The tangent line to \(f\) at that point is</p>
+<div class="displaymath">
+\begin{equation*}
+y - f(x_0) = f'(x_0)(x - x_0).
+\end{equation*}
+</div>
+<p>Solving for \(x\) when \(y = 0\) gives the equation</p>
+<div class="displaymath">
+\begin{equation*}
+x = x_0 - \frac{f(x_0)}{f'(x_0)}.
+\end{equation*}
+</div>
+<p>This simple equation is the heart of Newton's method. To iterate the approximation, let \(x_1 = x\) and solve the equation again:</p>
+<div class="displaymath">
+\begin{equation*}
+x_2 = x_1 - \frac{f(x_1)}{f'(x_1)}.
+\end{equation*}
+</div>
+<p id="p-68">The hope is that given a good enough guess, that this sequence of approximations will approach the root. Let's see how it bahaves in this case. <div class="sagecell-octave" id="sage-21"><script type="text/x-sage">format long
+f = @(x) x.^2 - 2;
+fprime = @(x) 2*x;
+g = @(x) x - f(x)./fprime(x);
+guess = 2;
+for i = 1:4
+    new = g(guess);
+    disp("Approximation is:"), disp(new)
+    guess = new;
+endfor
+
+err = (sqrt(2) - guess)/sqrt(2);
+disp("Relative error:")
+disp(err)
+</script></div> What the output above shows is that starting from \(x = 2\text{,}\) Newton's method converges to within .0000000001% of the true value of \(\sqrt{2}\) in just four steps.</p>
+<p id="p-69">At this point, excited, we decide to test another case.</p>
+<div class="sagecell-octave" id="sage-22"><script type="text/x-sage">f = @(x) x.^20 - 2;
+X = -1.1:.01:1.1;
+plot(X, f(X))
+axis([-1.5 1.5 -3 5])
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+</script></div>
+<p id="p-70">That is one flat function. But that means the tangent line is going to have a slope very close to 0 if we guess to the left of the root...</p>
+<div class="sagecell-octave" id="sage-23"><script type="text/x-sage">f = @(x) x.^20 - 2;
+fprime = @(x) 20*x.^19;
+guess = .7;
+new = guess - f(guess)./fprime(guess);
+disp(new)
+disp(f(new))
+</script></div>
+<p id="p-71">That is, a guess of \(x_0 = .7\text{,}\) which is pretty close to the root displayed on the graph, gives a second approximation of 88.3929, which means computing the second tangent line at the point \((88.3928, 8.47884 \times 10^{38})\text{.}\) Not good.</p></section><section class="subsection" id="subsection-10"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">4.7</span> <span class="title">Newton's method requirements and problems</span>
+</h3>
+<p id="p-72">So we've discovered the first problem in the last example. Newton's method does not work well near places where functions are very flat. In particular, this means that we'll want to avoid local extrema -- hitting near one with an approximation could send the tangent line way beyond the approximation area.</p>
+<p id="p-73">What other problems might arise?</p>
+<p id="p-74"></p></section></section></div></main>
+</div>
+<div class="login-link"><span id="loginlogout" class="login">login</span></div>
+<script src="https://pretextbook.org/js/0.12/login.js"></script>
+</body>
+</html>

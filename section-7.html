@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2019-11-22T12:46:28-05:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Introduction to Fourier Series (a linear algebra perspective)</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    asciimath2jax: {
+        ignoreClass: ".*",
+        processClass: "has_am"
+    },
+    jax: ["input/AsciiMath"],
+    extensions: ["asciimath2jax.js"],
+    TeX: {
+        extensions: ["extpfeil.js", "autobold.js", "https://pretextbook.org/js/lib/mathjaxknowl.js", ],
+        // scrolling to fragment identifiers is controlled by other Javascript
+        positionToHash: false,
+        equationNumbers: { autoNumber: "none", useLabelIds: true, },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    // HTML-CSS output Jax to be dropped for MathJax 3.0
+    "HTML-CSS": {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+    CommonHTML: {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+});
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML-full"></script><script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script><script>$(function () {
+    // Make *any* div with class 'sagecell-octave' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-octave',
+                           linked: true,
+                           languages: ['octave'],
+                           evalButtonText: 'Evaluate (Octave)'});
+});
+</script><script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.12/pretext.js"></script><script src="https://pretextbook.org/js/0.12/pretext_add_on.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/toc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/setcolors.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/features.css" rel="stylesheet" type="text/css">
+<script>var logged_in = false;
+var role = 'student';
+var guest_access = true;
+var login_required = false;
+var js_version = 0.12;
+</script>
+</head>
+<body class="mathbook-article has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div class="hidden-content" style="display:none">\(\DeclareMathOperator{\RE}{Re}
+\DeclareMathOperator{\IM}{Im}
+\DeclareMathOperator{\ess}{ess}
+\DeclareMathOperator{\intr}{int}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator\re{\mathrm {Re~}}
+\DeclareMathOperator\im{\mathrm {Im~}}
+\newcommand\dd{\mathrm d}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\To}{\longrightarrow}
+\newcommand{\hilbert}{\mathcal{H}}
+\newcommand{\s}{\mathcal{S}_2}
+\newcommand{\A}{\mathcal{A}}
+\newcommand\h{\mathcal{H}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\W}{\mathcal{W}}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\BOP}{\mathbf{B}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\BH}{\mathbf{B}(\mathcal{H})}
+\newcommand{\KH}{\mathcal{K}(\mathcal{H})}
+\newcommand{\pick}{\mathcal{P}_2}
+\newcommand{\schur}{\mathcal{S}_2}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Complex}{\mathbb{C}}
+\newcommand{\Field}{\mathbb{F}}
+\newcommand{\RPlus}{\Real^{+}}
+\newcommand{\Polar}{\mathcal{P}_{\s}}
+\newcommand{\Poly}{\mathcal{P}(E)}
+\newcommand{\EssD}{\mathcal{D}}
+\newcommand{\Lop}{\mathcal{L}}
+\newcommand{\cc}[1]{\overline{#1}}
+\newcommand{\abs}[1]{\left\vert#1\right\vert}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\seq}[1]{\left\lt#1\right&gt;}
+\newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+\newcommand{\essnorm}[1]{\norm{#1}_{\ess}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\ran}[1]{\operatorname{ran}#1}
+\newcommand{\nt}{\stackrel{\mathrm {nt}}{\to}}
+\newcommand{\pnt}{\xrightarrow{pnt}}
+\newcommand{\ip}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\ad}{^\ast}
+\newcommand{\inv}{^{-1}}
+\newcommand{\adinv}{^{\ast -1}}
+\newcommand{\invad}{^{-1 \ast}}
+\newcommand\Pick{\mathcal P}
+\newcommand\Ha{\mathbb{H}}
+\newcommand{\HH}{\Ha\times\Ha}
+\newcommand\Htau{\mathbb{H}(\tau)}
+\newcommand{\vp}{\varphi}
+\newcommand{\ph}{\varphi}
+\newcommand\al{\alpha}
+\newcommand\ga{\gamma}
+\newcommand\de{\delta}
+\newcommand\ep{\varepsilon}
+\newcommand\la{\lambda}
+\newcommand\up{\upsilon}
+\newcommand\si{\sigma}
+\newcommand\beq{\begin{equation}}
+\newcommand\ds{\displaystyle}
+\newcommand\eeq{\end{equation}}
+\newcommand\df{\stackrel{\rm def}{=}}
+\newcommand\ii{\mathrm i}
+\newcommand{\vectwo}[2]
+{
+   \begin{pmatrix} #1 \\ #2 \end{pmatrix}
+}
+\newcommand{\vecthree}[3]
+{
+   \begin{pmatrix} #1 \\ #2 \\ #3 \end{pmatrix}
+}
+\newcommand\blue{\color{blue}}
+\newcommand\black{\color{black}}
+\newcommand\red{\color{red}}
+\newcommand\nn{\nonumber}
+\newcommand\bbm{\begin{bmatrix}}
+\newcommand\ebm{\end{bmatrix}}
+\newcommand\bpm{\begin{pmatrix}}
+\newcommand\epm{\end{pmatrix}}
+\numberwithin{equation}{section}
+\newcommand\nin{\noindent}
+\newcommand{\nCr}[2]{\,_{#1}C_{#2}} 
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="minimal.html"><span class="title">Numerical Analysis</span></a></h1>
+<p class="byline">Ryan Tully-Doyle</p>
+</div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3"><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="section-6.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="minimal.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="section-8.html" title="Next">Next</a></span></div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="section-6.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="minimal.html" title="Up">Up</a><a class="next-button button toolbar-item" href="section-8.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link"><a href="frontmatter-1.html" data-scroll="frontmatter-1"><span class="title">Front Matter</span></a></li>
+<li class="link"><a href="section-needs.html" data-scroll="section-needs"><span class="codenumber">1</span> <span class="title">What you need - Octave/Matlab</span></a></li>
+<li class="link"><a href="section-review.html" data-scroll="section-review"><span class="codenumber">2</span> <span class="title">Motivation</span></a></li>
+<li class="link">
+<a href="sec-taylor.html" data-scroll="sec-taylor"><span class="codenumber">3</span> <span class="title">Taylor polynomials</span></a><ul>
+<li><a href="sec-taylor.html#subsection-1" data-scroll="subsection-1">Taylor's theorem</a></li>
+<li><a href="sec-taylor.html#subsection-2" data-scroll="subsection-2">What is a Taylor approximation good for?</a></li>
+<li><a href="sec-taylor.html#subsection-3" data-scroll="subsection-3">Coding functions in Octave</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="sec-root.html" data-scroll="sec-root"><span class="codenumber">4</span> <span class="title">Root finding</span></a><ul>
+<li><a href="sec-root.html#sub-bisection" data-scroll="sub-bisection">Bisection method</a></li>
+<li><a href="sec-root.html#subsection-5" data-scroll="subsection-5">Error</a></li>
+<li><a href="sec-root.html#subsection-6" data-scroll="subsection-6">Bisection algorithm</a></li>
+<li><a href="sec-root.html#subsection-7" data-scroll="subsection-7">False position (Regula Falsi)</a></li>
+<li><a href="sec-root.html#subsection-8" data-scroll="subsection-8">Classes of differentiability</a></li>
+<li><a href="sec-root.html#subsection-9" data-scroll="subsection-9">Newton-Raphson method</a></li>
+<li><a href="sec-root.html#subsection-10" data-scroll="subsection-10">Newton's method requirements and problems</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="section-5.html" data-scroll="section-5"><span class="codenumber">5</span> <span class="title">Interpolation</span></a><ul>
+<li><a href="section-5.html#subsection-11" data-scroll="subsection-11">Naive polynomial interpolation</a></li>
+<li><a href="section-5.html#subsection-12" data-scroll="subsection-12">Lagrange interpolation</a></li>
+<li><a href="section-5.html#subsection-13" data-scroll="subsection-13">Newton interpolation</a></li>
+<li><a href="section-5.html#subsection-14" data-scroll="subsection-14">Problems with polynomials</a></li>
+<li><a href="section-5.html#subsection-15" data-scroll="subsection-15">Spline interpolation</a></li>
+<li><a href="section-5.html#subsection-16" data-scroll="subsection-16">Many-point spline interpolation example</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="section-6.html" data-scroll="section-6"><span class="codenumber">6</span> <span class="title">Numerical Integration</span></a><ul>
+<li><a href="section-6.html#subsection-17" data-scroll="subsection-17">Integration review</a></li>
+<li><a href="section-6.html#subsection-18" data-scroll="subsection-18">The trapezoid rule</a></li>
+<li><a href="section-6.html#subsection-19" data-scroll="subsection-19">A special case of Richardson's extrapolation (optional)</a></li>
+<li><a href="section-6.html#subsection-20" data-scroll="subsection-20">Simpson's 1/3 rule</a></li>
+</ul>
+</li>
+<li class="link active">
+<a href="section-7.html" data-scroll="section-7"><span class="codenumber">7</span> <span class="title">Introduction to Fourier Series (a linear algebra perspective)</span></a><ul>
+<li><a href="section-7.html#subsection-21" data-scroll="subsection-21">Review of linear algebra</a></li>
+<li><a href="section-7.html#subsection-22" data-scroll="subsection-22">The space \(L^2[-\pi,\pi]\)</a></li>
+<li><a href="section-7.html#subsection-23" data-scroll="subsection-23">Example computation</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="section-8.html" data-scroll="section-8"><span class="codenumber">8</span> <span class="title">Code examples</span></a><ul><li><a href="section-8.html#subsection-24" data-scroll="subsection-24">Lab 1 - Introduction</a></li></ul>
+</li>
+<li class="link">
+<a href="section-9.html" data-scroll="section-9"><span class="codenumber">9</span> <span class="title">Assignments</span></a><ul>
+<li><a href="section-9.html#subsection-25" data-scroll="subsection-25">Assignment Set 1</a></li>
+<li><a href="section-9.html#subsection-26" data-scroll="subsection-26">Assignment Set 2</a></li>
+<li><a href="section-9.html#subsection-27" data-scroll="subsection-27">Assignment set 3</a></li>
+<li><a href="section-9.html#subsection-28" data-scroll="subsection-28">Assignment set 4</a></li>
+<li><a href="section-9.html#subsection-29" data-scroll="subsection-29">Assignment set 5 (including challenge set)</a></li>
+<li><a href="section-9.html#subsection-30" data-scroll="subsection-30">Assignment set 6 - Newton polynomials</a></li>
+<li><a href="section-9.html#subsection-31" data-scroll="subsection-31">Assignment set 7 - Cubic splines</a></li>
+<li><a href="section-9.html#subsection-32" data-scroll="subsection-32">Assignment 8 - Numerical integration</a></li>
+</ul>
+</li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="section-7"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">7</span> <span class="title">Introduction to Fourier Series (a linear algebra perspective)</span>
+</h2>
+<section class="subsection" id="subsection-21"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">7.1</span> <span class="title">Review of linear algebra</span>
+</h3>
+<p id="p-145">A <dfn class="terminology">vector space</dfn> over a scalar field \(F\) is a collection of vectors together with operations that make it possible to do algebra on that collection. In particular, a set of vectors \(V\) is a vector space under the operations of addition and scalar multiplication if the following axioms are satisfied:</p>
+<ol class="decimal">
+<li id="li-25">associativity of addition: \(u, v, w \in V \Rightarrow u+(v+w) = (u+v)+w\)</li>
+<li id="li-26">commutativity of addition: \(u, v \in V \Rightarrow u + v = v + u\)</li>
+<li id="li-27">additive identity: there is an element \(0\text{,}\) the zero vector, so that \(v \in V \Rightarrow v + 0 = 0 + v = 0\)</li>
+<li id="li-28">additive inverses: every vector \(v\) has an inverse \(-v\) \(\Rightarrow v + (-v) = 0\)</li>
+<li id="li-29">compatibility: \(\alpha , \beta \in F, u \in V \Rightarrow (\alpha\beta)u = \alpha(\beta u)\)</li>
+<li id="li-30">multiplicative identity: \(1 \in F, u \in V \Rightarrow 1u = u\)</li>
+<li id="li-31">distribution over vector addition: \(\alpha \in F, u,v \in V \Rightarrow \alpha(u+v) = \alpha u + \alpha v\)</li>
+<li id="li-32">distribution over field addition: \(\alpha, \beta \in F, u \in V \Rightarrow (\alpha + \beta) u = \alpha u + \beta u\)</li>
+</ol>
+<p>The prototypical example of a vector space is \(n\)-dimensional <dfn class="terminology">Euclidean space</dfn>, \(\R^n\text{,}\) our usual notion of vectors. However, many other sets of objects constitute vector spaces with the appropriate operations - for example, \(C([0,1])\text{,}\) the space of continuous functions on the interval \([0,1]\) is a vector space over \(\R\) under addition of functions. We are building to understanding spaces of functions.</p>
+<p id="p-146">Notice that the defintion of vector spaces doesn't include any way to multiply vectors. One notion of vector multiplication that you've likely seen before on \(\R^n\) is the <dfn class="terminology">dot product</dfn> of vectors. Let \(v = (v_1, \ldots, v_n), u = (u_1, \ldots, u_n) \in \R^n\text{.}\) Then</p>
+<div class="displaymath">
+\begin{equation*}
+u \cdot v = \sum_{i=1}^n v_i u_i.
+\end{equation*}
+</div>
+<p>One of the most useful characteristics of the dot product on \(\R^n\) is that it allows a the definition of the angle between two vectors:</p>
+<div class="displaymath">
+\begin{equation*}
+u \cdot v = \norm{u}\norm{v} \cos \theta
+\end{equation*}
+</div>
+<p>where \(\theta\) is the angle between \(u\) and \(v\) and \(\norm{u} = \sqrt{u\cdot u}\text{.}\) Notice that when the vectors are perpendicular, this implies that the dot product is 0. We can generalize this geometry to the setting of general vector spaces.</p>
+<p id="p-147">The dot product is an example of a more general kind of product called an <dfn class="terminology">inner product</dfn> on a vector space. Let \(V\) be a vector space over a field \(F\text{.}\) An operation \(\ip{}{}\) is called an inner product on \(V\) if</p>
+<ol class="decimal">
+<li id="li-33">positive definite: \(\ip{u}{u} &gt; 0\) whenever \(u \neq 0\)</li>
+<li id="li-34">conjugate symmetric: \(\ip{u}{v} = \cc{\ip{v}{u}}\)</li>
+<li id="li-35">linear in the first entry: \(\ip{\alpha u + \beta v}{w} = \alpha \ip{u}{w} + \beta \ip{v}{w}\)</li>
+</ol>
+<p>where \(\cc z\) denotes the complex conjugate. Note that in the case that the field \(F = \R\text{,}\) an inner product is symmetric.</p>
+<p id="p-148">A vector space \(V\) with an inner product that satisfies the axioms above is called an <dfn class="terminology">inner product space</dfn>. One immediate feature of an inner product space is that the inner product defines a notion of length (or <dfn class="terminology">norm</dfn>) of a vector:</p>
+<div class="displaymath">
+\begin{equation*}
+\norm{v} = \sqrt{\ip{v}{v}}.
+\end{equation*}
+</div>
+<p>The prototypical example is \(\R^n\) with the standard vector dot product. However, there are many others. For example, one extremely useful inner product space of functions is the vector space of functions \(f\) satisfying</p>
+<div class="displaymath">
+\begin{equation*}
+\int \abs{f(x)}^2 \, dx \lt \infty
+\end{equation*}
+</div>
+<p>- these are sometimes called functions of bounded energy and are referred to as the space \(L^2\) in mathematics. The inner product on \(L^2\) is given by</p>
+<div class="displaymath">
+\begin{equation*}
+\ip{f}{g} = \int f(x)g(x) \, dx.
+\end{equation*}
+</div>
+<p id="p-149">In \(\R^n\text{,}\) two vectors are perpendicular when their dot product is 0 - that is, the angle between them is \(\pi/2\text{.}\) We will make the same definition more generally in inner product spaces, where we don't have a notion of angle, but we do have a notion related to the dot product - in an inner product space \(V\text{,}\) two vectors \(u\) and \(v\) are said to be <dfn class="terminology">orthogonal</dfn> if \(\ip{u}{v} = 0\text{,}\) in which case we write \(u\perp v\text{.}\)</p>
+<p id="p-150">Every vector space \(V\) has a structural set of vectors called a <dfn class="terminology">basis</dfn>, which can be used to build every other vector in the space - for example, the so-called standard basis of \(\R^3\) is the set \(\bbm 1\\0\\0 \ebm, \bbm 0\\1\\0 \ebm, \bbm 0\\0\\1\ebm\text{.}\) There are other bases for \(\R^3\text{,}\) in fact infinitely many.</p>
+<p id="p-151">Formally, a set of vectors \(\{b_i\}_I\) is a basis for \(V\) if</p>
+<ol class="decimal">
+<li id="li-36">linear independence: \(c_1 b_1 + \ldots + c_n b_n = 0\) has only the solution \(c_1 = c_2 = \ldots = c_n = 0\text{.}\)</li>
+<li id="li-37">spanning set: every vector \(v \in V\) can be written as a linear combination of the \(b_i\text{.}\)</li>
+</ol>
+<p>In fact, the linear combination of the \(b_i\) used to build \(v\) is unique when the \(b_i\) are a basis for \(V\) - in this case there exist unique constants \(c_1, \ldots, c_n\) so that</p>
+<div class="displaymath">
+\begin{equation*}
+c_1 b_1 + \ldots + c_n b_n = v.
+\end{equation*}
+</div>
+<p>The constants \(c_i\) are called the <dfn class="terminology">coordinates of v</dfn> with respect to the basis \(\{b_i\}\text{.}\)</p>
+<p id="p-152">Now we'll blend orthogonality with basis and coordinates. If the vectors in a basis are pairwise orthogonal, then \(\{b_i\}\) is called an <dfn class="terminology">orthogonal basis</dfn>. Furthermore, if the norm of each vector is 1, the basis is called <dfn class="terminology">orthonormal</dfn>. It is exceptionally easy to compute coordinates of vectors when the basis is orthonormal.</p>
+<article class="theorem-like" id="orthocoord"><h6 class="heading">
+<span class="type">Theorem</span> <span class="codenumber">7.1</span>.</h6>
+<p id="p-153">Let \(V\) be an inner product space with an orthonormal basis \(\{b_i\}\text{.}\) Then for any vector \(v \in V\text{,}\) we have the expansion</p>
+<div class="displaymath">
+\begin{equation*}
+v = \ip{v}{b_1}b_1 + \ip{v}{b_2}b_2 + \ldots + \ip{v}{b_n}b_n.
+\end{equation*}
+</div></article><article class="hiddenproof" id="proof-2"><a data-knowl="" class="id-ref" data-refid="hk-proof-2"><h6 class="heading"><span class="type">Proof.</span></h6></a></article><div id="hk-proof-2" class="hidden-content tex2jax_ignore"><article class="hiddenproof">This is standard in introductory linear algebra textbooks. I've elided a significant amount of geometric reasoning about projections here, to be filled in for completeness at some points.</article></div>
+<p id="p-154">The giant leap that we need to make is this - not every vector space is finite dimensional. An infinite dimensional inner product space is called a <dfn class="terminology">Hilbert space</dfn> (whereas a finite dimensional inner product space is called a <dfn class="terminology">Euclidean space</dfn>). For a Hilbert space, a basis will also be infinite dimensional. (If you're curious, the analogue of a matrix in the Hilbert space setting is called a <dfn class="terminology">linear operator</dfn>, and the general study of these objects is called operator theory.) One of single most important ideas in engineering and modern science is that the set of \(L^2\) functions that are \(2\pi\)-periodic is a Hilbert space. In the next sections, we'll find a truly excellent orthonormal basis for that space of functions, and we'll begin to interpret the coefficients that we compute for a given function in terms of that basis. (This is the launching point of a field called signal analysis, typically found in electrical engineering.)</p></section><section class="subsection" id="subsection-22"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">7.2</span> <span class="title">The space \(L^2[-\pi,\pi]\)</span>
+</h3>
+<p id="p-155">(Note: the current draft of these notes is going to skip a lot of the theoretical development of \(L^2\) in favor of computing with it. As such, this draft should be considered a flavorful introduction rather than a rigorous treatment. Better a little taste than none at all.)</p>
+<p id="p-156">We're going to narrow our focus to one particular infinite dimensional Hilbert space. Consider the set of integrable functions \(f: [\pi,\pi] \to F\) that satisfy the condition</p>
+<div class="displaymath">
+\begin{equation*}
+\int_{-\pi}^\pi \abs{f(x)}^2 \, dx \lt \infty.
+\end{equation*}
+</div>
+<p>This set is a vector space under pointwise addition of functions and standard scalar multiplication. In addition, the product</p>
+<div class="displaymath">
+\begin{equation*}
+\ip{f}{g} = \int_{-\pi}^\pi f(x)\cc{g(x)} \, dx
+\end{equation*}
+</div>
+<p>is an inner product on \(V\text{.}\) The resulting inner product space (or Hilbert space) is called \(L^2([-\pi, \pi])\text{.}\) (We may shorten this to \(L^2\) in this section, with the understood restriction of domain.) The <dfn class="terminology">\(L^2\)-norm</dfn> is given by</p>
+<div class="displaymath">
+\begin{equation*}
+\norm{f}_{L^2} = \sqrt{\ip{f}{f}}.
+\end{equation*}
+</div>
+<p id="p-157">The following theorem, stated in this version in the spirit of Fourier, is one of the most important theorems in applied mathematics.</p>
+<article class="theorem-like" id="fourierseries"><h6 class="heading">
+<span class="type">Theorem</span> <span class="codenumber">7.2</span>. <span class="title">Existence of Fourier Series in \(L^2\).</span>
+</h6>
+<p id="p-158">Every function \(f \in L^2[-\pi, \pi]\) has a Fourier series representation</p>
+<div class="displaymath">
+\begin{equation*}
+f(x) = \frac{a_0}{2} + \sum_{i=1}^\infty a_n \cos nx + b_n \sin nx.
+\end{equation*}
+</div></article><p id="p-159">\(\cos nx\) and \(\sin nx\) are called <dfn class="terminology">harmonics</dfn>, in analogy with the musical term.</p>
+<p id="p-160">The theorem is quite a bit more powerful than stated here. The proof requires some sophisticated machinery from the area of functional analysis, and will be sketched in sometime in the future. The main issue is one of convergence - why should an infinite series for an \(L^2\) function converge? What conditions need to be present on the coefficients of such a series to make this happen? For now, we suppress this discussion as outside the scope of the current objective, which is to treat the Fourier series as a black box and discover a method for computing the coefficients.</p>
+<p id="p-161">The form of the series in <a data-knowl="./knowl/fourierseries.html" title="Theorem 7.2: Existence of Fourier Series in \(L^2\)">Theorem 7.2</a> is suggestive. If the \(\cos nx\) and \(\sin nx\) terms form an orthogonal basis for \(L^2\text{,}\) then we can use <a data-knowl="./knowl/orthocoord.html" title="Theorem 7.1">Theorem 7.1</a> to compute the mysterious coefficients \(a_n, b_n\text{.}\)</p>
+<p id="p-162">Leaving questions of convergence aside for the moment, let's check orthogonality. It should be clear that \(\ip{\sin(mx)}{\cos(nx)} = 0\text{.}\) (Hint: the integral of an odd function on a symmetric interval is 0). It remains to check that \(\sin mx \perp \sin nx\) and that \(\cos mx \perp \cos nx\) for \(m \neq n\text{.}\) The integrals are left as an exercise to the reader, with the hint that the appropriate starting place for the integrals is to use the identities</p>
+<div class="displaymath">
+\begin{gather*}
+\cos(a)\cos(b) = \frac{1}{2} (\cos(a+b) + \cos(a - b))\\
+\sin(a)\sin(b) = \frac{1}{2} (\cos(a-b) - \cos(a + b))
+\end{gather*}
+</div>
+<p>The double angle formulas can be used to establish that \(\norm{\cos nx}_{L^2} = \norm{\sin nx} = \sqrt{\pi}\text{,}\) and so we can create an orthonormal basis for \(L^2([-\pi,\pi])\) of the form</p>
+<div class="displaymath">
+\begin{equation*}
+\{\frac{1}{\sqrt{2\pi}}, \frac{1}{\sqrt{\pi}}\cos x, \frac{1}{\sqrt{\pi}} \sin x, \frac{1}{\sqrt{\pi}} \cos 2x, \frac{1}{\sqrt{\pi}} \sin 2x, \ldots\}.
+\end{equation*}
+</div>
+<p><article class="remark-like" id="note-1"><h6 class="heading">
+<span class="type">Note</span> <span class="codenumber">7.3</span>.</h6>You might wonder about this basis. After all, there are infinitely many different bases for \(\R^n\text{.}\) The same is true in \(L^2([-\pi,\pi]).\) The Fourier basis is chosen for work with periodic functions. There are other bases in the form of orthogonal polynomials of various flavors. Another basis is the complex exponential functions, which we can get from the Fourier basis using the identity \(e^{i\theta} = \cos \theta + i \sin \theta\text{.}\)</article></p>
+<p id="p-163">If we accept that convergence won't be an issue, we can now apply the Hilbert space analogue of <a data-knowl="./knowl/orthocoord.html" title="Theorem 7.1">Theorem 7.1</a>: for \(f \in L^2([-\pi, \pi])\text{,}\) we have</p>
+<div class="displaymath">
+\begin{align*}
+f \amp= \ip{f}{\frac{1}{\sqrt{2\pi}}} \frac{1}{\sqrt{2\pi}} + \ip{f}{\frac{1}{\sqrt{\pi}} \cos x}\cos x + \ip{f}{\frac{1}{\sqrt{\pi}}\sin x}\sin x + \ldots\\
+\amp= \ip{f}{1} \frac{1}{2\pi}  + \sum_{n=1}^\infty \frac{1}{\pi} \ip{f}{\cos nx} \cos nx + \frac{1}{\pi}\ip{f}{\sin nx} \sin nx.
+\end{align*}
+</div>
+<p>We arrive at the computational formula for the Fourier coefficients \(a_n, b_n\) in <a data-knowl="./knowl/fourierseries.html" title="Theorem 7.2: Existence of Fourier Series in \(L^2\)">Theorem 7.2</a>.</p>
+<div class="displaymath">
+\begin{align*}
+a_n \amp= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cos nx \, dx\\
+b_n \amp= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \sin nx \, dx
+\end{align*}
+</div></section><section class="subsection" id="subsection-23"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">7.3</span> <span class="title">Example computation</span>
+</h3>
+<p id="p-164">In this section, we'll build a Fourier series for a function that seems at first glance to be impossible to approximate with continuous period functions - the square wave. Square waves are not differentiable because they are full of jump discontinuities. Can we really hope to approximate such a function with sines and cosines?</p>
+<div class="sagecell-octave" id="sage-47"><script type="text/x-sage">## s = square(t,duty)
+## 
+## Generate a square wave of period 2 pi with limits +1/-1.
+##
+
+function v = square (t,duty)
+
+  if nargin == 1,
+    duty = .5;
+  elseif nargin != 2,
+    usage('v = square(t [, duty])');
+  endif
+
+  t /= 2*pi;
+  v = ones(size(t));
+  v(t-floor(t) >= duty) = -1;
+
+endfunction
+
+t = linspace(-2*pi,2*pi,10000);
+f = square(t);
+plot(t,f)
+axis([-2*pi 2*pi -1.5 1.5])
+</script></div>
+<p id="p-165">We'll be using the function <code class="code-inline tex2jax_ignore">trapz(x,y)</code> to compute numerical integrals from sample points. (In Octave, one can install the <code class="code-inline tex2jax_ignore">control</code> and <code class="code-inline tex2jax_ignore">signal</code> packages to have the function <code class="code-inline tex2jax_ignore">square</code> already defined, but in this notes the function will have to be defined inline.)</p>
+<div class="sagecell-octave" id="sage-48"><script type="text/x-sage">#define the square wave function
+function v = square (t,duty)
+
+  if nargin == 1,
+    duty = .5;
+  elseif nargin != 2,
+    usage('v = square(t [, duty])');
+  endif
+
+  t /= 2*pi;
+  v = ones(size(t));
+  v(t-floor(t) >= duty) = -1;
+
+endfunction
+
+#sample the square wave on the interval [-pi, pi]
+tt = linspace(-pi,pi,10000);
+ff = square(tt);
+
+#set the number of fourier terms
+n = 20
+
+#set up the basis for L2
+g = @(m,x) cos(m*x);
+h = @(m,x) sin(m*x);
+
+#compute the intial term
+a0 = trapz(tt, ff)/(2*pi);
+
+#set up the array that will store the coefficients
+a = [a0];
+b = [0];
+
+#compute the Fourier coefficients
+for i = 1:n
+    a = [a, 1/pi*trapz(tt, ff.*g(i, tt))];
+    b = [b, 1/pi*trapz(tt, ff.*h(i, tt))];
+endfor
+
+#plot one period of the square wave and the approximation
+s = 0;
+for i=0:n-1
+    s = s+ a(i+1)*g(i,tt) + b(i+1)*h(i,tt);
+endfor
+plot(tt, s, tt, ff)
+</script></div>
+<p id="p-166">The following code chunk, written in Sagemath, is an interactive illustration of the effect of increasing the number of terms.</p>
+<div class="sagecell-sage" id="sage-49"><script type="text/x-sage">def ftermSquare(n):
+ return(1/n*sin(n*x*pi/3))
+
+def ftermSawtooth(n):
+ return(1/n*sin(n*x*pi/3))
+
+def ftermParabola(n):
+ return((-1)^n/n^2 * cos(n*x))
+
+def fseriesSquare(n):
+ return(4/pi*sum(ftermSquare(i) for i in range (1,2*n,2)))
+
+def fseriesSawtooth(n):
+ return(1/2-1/pi*sum(ftermSawtooth(i) for i in range (1,n)))
+
+def fseriesParabola(n):
+ return(pi^2/3 + 4*sum(ftermParabola(i) for i in range(1,n)))
+
+@interact
+def plotFourier(n=slider(1, 30,1,3,'Number of terms')
+,Function=['Square Wave','Saw Tooth','Periodic Parabola']):
+    if Function=='Saw Tooth':
+     show(plot(fseriesSawtooth(n),x,-6,6,figsize=(7,3)))
+    if Function=='Square Wave':
+     show(plot(fseriesSquare(n),x,-6,6,figsize=(7,3)))
+    if Function=='Periodic Parabola':
+     show(plot(fseriesParabola(n),x,-6,6,figsize=(7,3)))
+</script></div></section></section></div></main>
+</div>
+<div class="login-link"><span id="loginlogout" class="login">login</span></div>
+<script src="https://pretextbook.org/js/0.12/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2019-11-22T12:46:28-05:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script><script>$(function () {
+    // Make *any* div with class 'sagecell-octave' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-octave',
+                           linked: true,
+                           languages: ['octave'],
+                           evalButtonText: 'Evaluate (Octave)'});
+});
+</script>
+</head>
+<body>
+<h6 class="heading"><span class="type">Paragraph</span></h6>
+<p>You might reasonable ask why we need to learn numerical methods. After all, we've spent years learning explicit techniques for solving equations culminating in calculus. We know dozens of formulae for derivatives and integrals, powerfl techniques for evaluating them. We know how to use elimination and substitution to solve systems of linear equations. So why numerical methods? It's probably best to consider some examples. For instance, the function \(f(x) = e^x\) is about as nice as functions come - it has a very smooth graph, since derivatives exist to all orders. Even better, its derivative is itself! <div class="sagecell-octave" id="sage-1"><script type="text/x-sage">xlim = [0,2];
+ylim = [0,e^2];
+
+[x,y] = fplot('e^x', [xlim ylim]);
+
+plot(x, y, 'linewidth',2);
+
+set(gca,'xlim',xlim);
+set(gca,'ylim',ylim);
+
+grid on;
+box on;
+axis('nolabel','square');
+title("Graph of f(x) = e^x")
+</script></div></p>
+<span class="incontext"><a href="section-review.html#p-9">in-context</a></span>
+</body>
+</html>

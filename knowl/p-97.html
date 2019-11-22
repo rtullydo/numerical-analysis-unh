@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2019-11-22T12:46:28-05:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<h6 class="heading"><span class="type">Paragraph</span></h6>
+<p>To find the values of the coefficients, we'll plug in our data points.</p>
+<div class="displaymath">
+\begin{equation*}
+f(x_0) = b_0 + 0 + 0
+\end{equation*}
+</div>
+<p>and so \(b_0 = f(x_0) = y_0\text{.}\) Moving to \(x_1\text{,}\)</p>
+<div class="displaymath">
+\begin{align*}
+f(x_1) \amp= b_0 + b_1(x_1 - x_0) + 0\\
+y_1 \amp= y_0 + b_1(x_1 - x_0)\\
+b_1 \amp= \frac{y_1 - y_0}{x_1 - x_0}
+\end{align*}
+</div>
+<p>Notice that so far, we've exactly reproduced the line connecting the first two points. Now let's look at \(b_2\text{.}\)</p>
+<div class="displaymath">
+\begin{align*}
+f(x_2) \amp= y_0 + \frac{y_1 - y_0}{x_1 - x_0}(x_2 - x_0) + b_2 (x_2 - x_0)(x_2 - x_1)\\
+y_2 \amp- y_0 - \frac{y_1 - y_0}{x_1 - x_0}(x_2 - x_0) = b_2 (x_2 - x_0)(x_2 - x_1)\\
+b_2 \amp= \frac{\frac{y_2 - y_1}{x_2 - x_1} - \frac{y_1 - y_0}{y_1 - y_0}}{x_2 - x_0},
+\end{align*}
+</div>
+<p>where the last step requires a bit of non-obvious algebra, but provides a more useful form.</p>
+<span class="incontext"><a href="section-5.html#p-97">in-context</a></span>
+</body>
+</html>

@@ -1,0 +1,26 @@
+#############################################################
+#Exercise 1
+################################################################
+#Write a function that implements the n segment trapezoid rule
+#for inputs consisting of an interval (a,b), a number of segments n,
+#and an anonymous function f. Then wrap that function into a driver
+#that takes the above inputs plus a tolerance and increases the
+#number of segments until a given tolerance is met (in absolute
+#relative error). Compute the area under the function e^(-x^2) from
+# x=0 to x=2.
+
+###############################################################
+#Exercise 2
+#################################################################
+#Write a function that implements Richardson's first order
+#extrapolation of the trapezoid rule. Compare the speed of
+#convergence with the trapezoid rule for the function x^2 sin(2x)
+#on the interval [0,10].
+
+################################################################
+#Exercise 3
+##################################################################
+#Write a function that implements Simpson's 1/3 rule. Then create a
+#driver function that takes the same inputs plus a tolerance and
+#increases the number of segments until the tolerance is met (in
+#absolute relative error).

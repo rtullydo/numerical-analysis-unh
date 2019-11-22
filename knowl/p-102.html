@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2019-11-22T12:46:28-05:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script><script>$(function () {
+    // Make *any* div with class 'sagecell-octave' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-octave',
+                           linked: true,
+                           languages: ['octave'],
+                           evalButtonText: 'Evaluate (Octave)'});
+});
+</script>
+</head>
+<body>
+<h6 class="heading"><span class="type">Paragraph</span></h6>
+<p>We will sample this function and then attempt to reconstruct it using polynomial interpolation. Suppose that we choose six equally spaced points from \(f\text{.}\) <div class="sagecell-octave" id="sage-32"><script type="text/x-sage">X = -1:.01:1;
+f = @(x) 1./(1 + 25*x.^2);
+
+P = [-1, -.6, -.2, .2, .6, 1];
+
+
+plot(X, f(X))
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+hold on
+scatter(P, f(P), 400)
+</script></div> Now suppose we find the unique polynomial that goes through these six points. (The code here uses the command polyfit.) <div class="sagecell-octave" id="sage-33"><script type="text/x-sage">X = -1:.01:1;
+f = @(x) 1./(1 + 25*x.^2);
+
+P = [-1, -.6, -.2, .2, .6, 1];
+
+
+scatter(P, f(P), 400)
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+hold on
+
+plot(X, f(X))
+p = polyfit(P, f(P), 5)
+plot(X, polyval(p,X))
+</script></div> Notice that the interpolating polynomial doesn't appear to behave like the original function at all, oscillating through the end points. Perhaps we can fix the problem by choosing more points.</p>
+<span class="incontext"><a href="section-5.html#p-102">in-context</a></span>
+</body>
+</html>

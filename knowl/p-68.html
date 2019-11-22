@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2019-11-22T12:46:28-05:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script><script>$(function () {
+    // Make *any* div with class 'sagecell-octave' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-octave',
+                           linked: true,
+                           languages: ['octave'],
+                           evalButtonText: 'Evaluate (Octave)'});
+});
+</script>
+</head>
+<body>
+<h6 class="heading"><span class="type">Paragraph</span></h6>
+<p>The hope is that given a good enough guess, that this sequence of approximations will approach the root. Let's see how it bahaves in this case. <div class="sagecell-octave" id="sage-21"><script type="text/x-sage">format long
+f = @(x) x.^2 - 2;
+fprime = @(x) 2*x;
+g = @(x) x - f(x)./fprime(x);
+guess = 2;
+for i = 1:4
+    new = g(guess);
+    disp("Approximation is:"), disp(new)
+    guess = new;
+endfor
+
+err = (sqrt(2) - guess)/sqrt(2);
+disp("Relative error:")
+disp(err)
+</script></div> What the output above shows is that starting from \(x = 2\text{,}\) Newton's method converges to within .0000000001% of the true value of \(\sqrt{2}\) in just four steps.</p>
+<span class="incontext"><a href="sec-root.html#p-68">in-context</a></span>
+</body>
+</html>

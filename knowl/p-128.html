@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2019-11-22T12:46:28-05:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script><script>$(function () {
+    // Make *any* div with class 'sagecell-octave' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-octave',
+                           linked: true,
+                           languages: ['octave'],
+                           evalButtonText: 'Evaluate (Octave)'});
+});
+</script>
+</head>
+<body>
+<h6 class="heading"><span class="type">Paragraph</span></h6>
+<p>Let's use the trapezoid rule to approximate the integral indicated above - \(\int_0^6 x^2 \, dx\text{.}\) We'll use three trapezoids as in the example picture. <div class="sagecell-octave" id="sage-45"><script type="text/x-sage">a = 0;
+b = 6;
+n = 3;
+X = linspace(a,b,n+1);
+f = @(x) x.^2;
+Y = f(X);
+approxArea = ((b-a)/(2*n))*(Y(1) + 2*Y(2) + 2*Y(3) + Y(4))
+F = @(x) 1/3*x.^3;
+trueArea = F(b) - F(a)
+error = (approxArea - trueArea) / trueArea
+</script></div> We have included the true result, since we can use the fundamental theorem in this case. The result of the approximation with just 3 trapezoids is a relative error of just 5 percent.</p>
+<span class="incontext"><a href="section-6.html#p-128">in-context</a></span>
+</body>
+</html>

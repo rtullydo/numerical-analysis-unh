@@ -1,0 +1,2564 @@
+%**************************************%
+%*    Generated from PreTeXt source   *%
+%*    on 2019-11-18T21:57:49-05:00    *%
+%*                                    *%
+%*      https://pretextbook.org       *%
+%*                                    *%
+%**************************************%
+\documentclass[oneside,10pt,]{article}
+%% Custom Preamble Entries, early (use latex.preamble.early)
+%% Default LaTeX packages
+%%   1.  always employed (or nearly so) for some purpose, or
+%%   2.  a stylewriter may assume their presence
+\usepackage{geometry}
+%% Some aspects of the preamble are conditional,
+%% the LaTeX engine is one such determinant
+\usepackage{ifthen}
+%% etoolbox has a variety of modern conveniences
+\usepackage{etoolbox}
+\usepackage{ifxetex,ifluatex}
+%% Raster graphics inclusion
+\usepackage{graphicx}
+%% Color support, xcolor package
+%% Always loaded, for: add/delete text, author tools
+%% Here, since tcolorbox loads tikz, and tikz loads xcolor
+\PassOptionsToPackage{usenames,dvipsnames,svgnames,table}{xcolor}
+\usepackage{xcolor}
+%% Colored boxes, and much more, though mostly styling
+%% skins library provides "enhanced" skin, employing tikzpicture
+%% boxes may be configured as "breakable" or "unbreakable"
+%% "raster" controls grids of boxes, aka side-by-side
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+\tcbuselibrary{breakable}
+\tcbuselibrary{raster}
+%% We load some "stock" tcolorbox styles that we use a lot
+%% Placement here is provisional, there will be some color work also
+%% First, black on white, no border, transparent, but no assumption about titles
+\tcbset{ bwminimalstyle/.style={size=minimal, boxrule=-0.3pt, frame empty,
+colback=white, colbacktitle=white, coltitle=black, opacityfill=0.0} }
+%% Second, bold title, run-in to text/paragraph/heading
+%% Space afterwards will be controlled by environment,
+%% dependent of constructions of the tcb title
+\tcbset{ runintitlestyle/.style={fonttitle=\normalfont\bfseries, attach title to upper} }
+%% Spacing prior to each exercise, anywhere
+\tcbset{ exercisespacingstyle/.style={before skip={1.5ex plus 0.5ex}} }
+%% Spacing prior to each block
+\tcbset{ blockspacingstyle/.style={before skip={2.0ex plus 0.5ex}} }
+%% xparse allows the construction of more robust commands,
+%% this is a necessity for isolating styling and behavior
+%% The tcolorbox library of the same name loads the base library
+\tcbuselibrary{xparse}
+%% Hyperref should be here, but likes to be loaded late
+%%
+%% Inline math delimiters, \(, \), need to be robust
+%% 2016-01-31:  latexrelease.sty  supersedes  fixltx2e.sty
+%% If  latexrelease.sty  exists, bugfix is in kernel
+%% If not, bugfix is in  fixltx2e.sty
+%% See:  https://tug.org/TUGboat/tb36-3/tb114ltnews22.pdf
+%% and read "Fewer fragile commands" in distribution's  latexchanges.pdf
+\IfFileExists{latexrelease.sty}{}{\usepackage{fixltx2e}}
+%% Text height identically 9 inches, text width varies on point size
+%% See Bringhurst 2.1.1 on measure for recommendations
+%% 75 characters per line (count spaces, punctuation) is target
+%% which is the upper limit of Bringhurst's recommendations
+\geometry{letterpaper,total={340pt,9.0in}}
+%% Custom Page Layout Adjustments (use latex.geometry)
+%% This LaTeX file may be compiled with pdflatex, xelatex, or lualatex executables
+%% LuaTeX is not explicitly supported, but we do accept additions from knowledgeable users
+%% The conditional below provides  pdflatex  specific configuration last
+%% The following provides engine-specific capabilities
+%% Generally, xelatex is necessary non-Western fonts
+\ifthenelse{\boolean{xetex} \or \boolean{luatex}}{%
+%% begin: xelatex and lualatex-specific configuration
+\ifxetex\usepackage{xltxtra}\fi
+%% realscripts is the only part of xltxtra relevant to lualatex 
+\ifluatex\usepackage{realscripts}\fi
+%% fontspec package provides extensive control of system fonts,
+%% meaning *.otf (OpenType), and apparently *.ttf (TrueType)
+%% that live *outside* your TeX/MF tree, and are controlled by your *system*
+%% fontspec will make Latin Modern (lmodern) the default font
+\usepackage{fontspec}
+%% 
+%% Extensive support for other languages
+\usepackage{polyglossia}
+%% Set main/default language based on pretext/@xml:lang value
+%% document language code is "en-US", US English
+%% usmax variant has extra hypenation
+\setmainlanguage[variant=usmax]{english}
+%% Enable secondary languages based on discovery of @xml:lang values
+%% Enable fonts/scripts based on discovery of @xml:lang values
+%% Western languages should be ably covered by Latin Modern Roman
+%% end: xelatex and lualatex-specific configuration
+}{%
+%% begin: pdflatex-specific configuration
+\usepackage[utf8]{inputenc}
+%% PreTeXt will create a UTF-8 encoded file
+%% begin: font setup and configuration for use with pdflatex
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+%% end: font setup and configuration for use with pdflatex
+%% end: pdflatex-specific configuration
+}
+%% Monospace font: Inconsolata (zi4)
+%% Sponsored by TUG: http://levien.com/type/myfonts/inconsolata.html
+%% Loaded for documents with intentional objects requiring monospace
+%% See package documentation for excellent instructions
+%% One caveat, seem to need full file name to locate OTF files
+%% Loads the "upquote" package as needed, so we don't have to
+%% Upright quotes might come from the  textcomp  package, which we also use
+%% We employ the shapely \ell to match Google Font version
+%% pdflatex: "varqu" option produces best upright quotes
+%% xelatex,lualatex: add StylisticSet 1 for shapely \ell
+%% xelatex,lualatex: add StylisticSet 2 for plain zero
+%% xelatex,lualatex: we add StylisticSet 3 for upright quotes
+%% 
+\ifthenelse{\boolean{xetex} \or \boolean{luatex}}{%
+%% begin: xelatex and lualatex-specific monospace font
+\usepackage{zi4}
+\setmonofont[BoldFont=Inconsolatazi4-Bold.otf,StylisticSet={1,3}]{Inconsolatazi4-Regular.otf}
+%% end: xelatex and lualatex-specific monospace font
+}{%
+%% begin: pdflatex-specific monospace font
+%% "varqu" option provides textcomp \textquotedbl glyph
+%% "varl"  option provides shapely "ell"
+\usepackage[varqu,varl]{zi4}
+%% end: pdflatex-specific monospace font
+}
+%% Symbols, align environment, bracket-matrix
+\usepackage{amsmath}
+\usepackage{amssymb}
+%% allow page breaks within display mathematics anywhere
+%% level 4 is maximally permissive
+%% this is exactly the opposite of AMSmath package philosophy
+%% there are per-display, and per-equation options to control this
+%% split, aligned, gathered, and alignedat are not affected
+\allowdisplaybreaks[4]
+%% allow more columns to a matrix
+%% can make this even bigger by overriding with  latex.preamble.late  processing option
+\setcounter{MaxMatrixCols}{30}
+%%
+%%
+%% Division Titles, and Page Headers/Footers
+%% titlesec package, loading "titleps" package cooperatively
+%% See code comments about the necessity and purpose of "explicit" option
+\usepackage[explicit, pagestyles]{titlesec}
+%% Set global/default page style for document due
+%% to potential re-definitions after documentclass
+\pagestyle{plain}
+%%
+%% Create globally-available macros to be provided for style writers
+%% These are redefined for each occurence of each division
+\newcommand{\divisionnameptx}{\relax}%
+\newcommand{\titleptx}{\relax}%
+\newcommand{\subtitleptx}{\relax}%
+\newcommand{\shortitleptx}{\relax}%
+\newcommand{\authorsptx}{\relax}%
+\newcommand{\epigraphptx}{\relax}%
+%% Create environments for possible occurences of each division
+%% Environment for a PTX "section" at the level of a LaTeX "section"
+\NewDocumentEnvironment{sectionptx}{mmmmmm}
+{%
+\renewcommand{\divisionnameptx}{Section}%
+\renewcommand{\titleptx}{#1}%
+\renewcommand{\subtitleptx}{#2}%
+\renewcommand{\shortitleptx}{#3}%
+\renewcommand{\authorsptx}{#4}%
+\renewcommand{\epigraphptx}{#5}%
+\section[{#3}]{#1}%
+\label{#6}%
+}{}%
+%% Environment for a PTX "subsection" at the level of a LaTeX "subsection"
+\NewDocumentEnvironment{subsectionptx}{mmmmmm}
+{%
+\renewcommand{\divisionnameptx}{Subsection}%
+\renewcommand{\titleptx}{#1}%
+\renewcommand{\subtitleptx}{#2}%
+\renewcommand{\shortitleptx}{#3}%
+\renewcommand{\authorsptx}{#4}%
+\renewcommand{\epigraphptx}{#5}%
+\subsection[{#3}]{#1}%
+\label{#6}%
+}{}%
+%%
+%% Styles for six traditional LaTeX divisions
+\titleformat{\chapter}[display]
+{\normalfont\huge\bfseries}{\divisionnameptx\space\thechapter}{20pt}{\Huge#1}
+[{\Large\authorsptx}]
+\titleformat{name=\chapter,numberless}[display]
+{\normalfont\huge\bfseries}{}{0pt}{#1}
+[{\Large\authorsptx}]
+\titlespacing*{\chapter}{0pt}{50pt}{40pt}
+\titleformat{\section}[hang]
+{\normalfont\Large\bfseries}{\thesection}{1ex}{#1}
+[{\large\authorsptx}]
+\titleformat{name=\section,numberless}[block]
+{\normalfont\Large\bfseries}{}{0pt}{#1}
+[{\large\authorsptx}]
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+\titleformat{\subsection}[hang]
+{\normalfont\large\bfseries}{\thesubsection}{1ex}{#1}
+[{\normalsize\authorsptx}]
+\titleformat{name=\subsection,numberless}[block]
+{\normalfont\large\bfseries}{}{0pt}{#1}
+[{\normalsize\authorsptx}]
+\titlespacing*{\subsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titleformat{\subsubsection}[hang]
+{\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{#1}
+[{\small\authorsptx}]
+\titleformat{name=\subsubsection,numberless}[block]
+{\normalfont\normalsize\bfseries}{}{0pt}{#1}
+[{\normalsize\authorsptx}]
+\titlespacing*{\subsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titleformat{\paragraph}[hang]
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{#1}
+[{\small\authorsptx}]
+\titleformat{name=\paragraph,numberless}[block]
+{\normalfont\normalsize\bfseries}{}{0pt}{#1}
+[{\normalsize\authorsptx}]
+\titlespacing*{\paragraph}{0pt}{3.25ex plus 1ex minus .2ex}{1.5em}
+%%
+%% Semantic Macros
+%% To preserve meaning in a LaTeX file
+%%
+%% \mono macro for content of "c", "cd", "tag", etc elements
+%% Also used automatically in other constructions
+%% Simply an alias for \texttt
+%% Always defined, even if there is no need, or if a specific tt font is not loaded
+\newcommand{\mono}[1]{\texttt{#1}}
+%%
+%% Following semantic macros are only defined here if their
+%% use is required only in this specific document
+%%
+%% Used for inline definitions of terms
+\newcommand{\terminology}[1]{\textbf{#1}}
+%% Division Numbering: Chapters, Sections, Subsections, etc
+%% Division numbers may be turned off at some level ("depth")
+%% A section *always* has depth 1, contrary to us counting from the document root
+%% The latex default is 3.  If a larger number is present here, then
+%% removing this command may make some cross-references ambiguous
+%% The precursor variable $numbering-maxlevel is checked for consistency in the common XSL file
+\setcounter{secnumdepth}{3}
+%%
+%% AMS "proof" environment is no longer used, but we leave previously
+%% implemented \qedhere in place, should the LaTeX be recycled
+\newcommand{\qedhere}{\relax}
+%%
+%% A faux tcolorbox whose only purpose is to provide common numbering
+%% facilities for most blocks (possibly not projects, 2D displays)
+%% Controlled by  numbering.theorems.level  processing parameter
+\newtcolorbox[auto counter, number within=section]{block}{}
+%%
+%% This document is set to number PROJECT-LIKE on a separate numbering scheme
+%% So, a faux tcolorbox whose only purpose is to provide this numbering
+%% Controlled by  numbering.projects.level  processing parameter
+\newtcolorbox[auto counter, number within=section]{project-distinct}{}
+%% A faux tcolorbox whose only purpose is to provide common numbering
+%% facilities for 2D displays which are subnumbered as part of a "sidebyside"
+\newtcolorbox[auto counter, number within=tcb@cnt@block, number freestyle={\noexpand\thetcb@cnt@block(\noexpand\alph{\tcbcounter})}]{subdisplay}{}
+%%
+%% tcolorbox, with styles, for THEOREM-LIKE
+%%
+%% theorem: fairly simple numbered block/structure
+\tcbset{ theoremstyle/.style={bwminimalstyle, runintitlestyle, blockspacingstyle, after title={\space}, } }
+\newtcolorbox[use counter from=block]{theorem}[3]{title={{Theorem~\thetcbcounter\notblank{#1#2}{\space}{}\notblank{#1}{\space#1}{}\notblank{#2}{\space(#2)}{}}}, phantomlabel={#3}, breakable, parbox=false, after={\par}, fontupper=\itshape, theoremstyle, }
+%% algorithm: fairly simple numbered block/structure
+\tcbset{ algorithmstyle/.style={bwminimalstyle, runintitlestyle, blockspacingstyle, after title={\space}, } }
+\newtcolorbox[use counter from=block]{algorithm}[3]{title={{Algorithm~\thetcbcounter\notblank{#1#2}{\space}{}\notblank{#1}{\space#1}{}\notblank{#2}{\space(#2)}{}}}, phantomlabel={#3}, breakable, parbox=false, after={\par}, fontupper=\itshape, algorithmstyle, }
+%%
+%% tcolorbox, with styles, for DEFINITION-LIKE
+%%
+%% definition: fairly simple numbered block/structure
+\tcbset{ definitionstyle/.style={bwminimalstyle, runintitlestyle, blockspacingstyle, after title={\space}, after upper={\space\space\hspace*{\stretch{1}}\(\lozenge\)}, } }
+\newtcolorbox[use counter from=block]{definition}[2]{title={{Definition~\thetcbcounter\notblank{#1}{\space\space#1}{}}}, phantomlabel={#2}, breakable, parbox=false, after={\par}, definitionstyle, }
+%%
+%% tcolorbox, with styles, for EXAMPLE-LIKE
+%%
+%% question: fairly simple numbered block/structure
+\tcbset{ questionstyle/.style={bwminimalstyle, runintitlestyle, blockspacingstyle, after title={\space}, after upper={\space\space\hspace*{\stretch{1}}\(\square\)}, } }
+\newtcolorbox[use counter from=block]{question}[2]{title={{Question~\thetcbcounter\notblank{#1}{\space\space#1}{}}}, phantomlabel={#2}, breakable, parbox=false, after={\par}, questionstyle, }
+%%
+%% tcolorbox, with styles, for FIGURE-LIKE
+%%
+%% figureptx: 2-D display structure
+\tcbset{ figureptxstyle/.style={bwminimalstyle, middle=1ex, blockspacingstyle, } }
+\newtcolorbox[use counter from=block]{figureptx}[3]{lower separated=false, before lower={{\textbf{Figure~\thetcbcounter}\space#1}}, phantomlabel={#2}, unbreakable, parbox=false, figureptxstyle, }
+%% tableptx: 2-D display structure
+\tcbset{ tableptxstyle/.style={bwminimalstyle, middle=1ex, blockspacingstyle, coltitle=black, bottomtitle=2ex, titlerule=-0.3pt} }
+\newtcolorbox[use counter from=block]{tableptx}[3]{title={{\textbf{Table~\thetcbcounter}\space#1}}, phantomlabel={#2}, unbreakable, parbox=false, tableptxstyle, }
+%% listingptx: 2-D display structure
+\tcbset{ listingptxstyle/.style={bwminimalstyle, middle=1ex, blockspacingstyle, } }
+\newtcolorbox[use counter from=block]{listingptx}[3]{lower separated=false, before lower={{\textbf{Listing~\thetcbcounter}\space#1}}, phantomlabel={#2}, unbreakable, parbox=false, listingptxstyle, }
+%%
+%% xparse environments for introductions and conclusions of divisions
+%%
+%% introduction: in a structured division
+\NewDocumentEnvironment{introduction}{m}
+{\notblank{#1}{\noindent\textbf{#1}\space}{}}{\par\medskip}
+%%
+%% tcolorbox, with styles, for miscellaneous environments
+%%
+%% proof: title is a replacement
+\tcbset{ proofstyle/.style={bwminimalstyle, fonttitle=\normalfont\itshape, attach title to upper, after title={\space}, after upper={\space\space\hspace*{\stretch{1}}\(\blacksquare\)},
+} }
+\newtcolorbox{proofptx}[2]{title={\notblank{#1}{#1}{Proof.}}, phantom={\hypertarget{#2}{}}, breakable, parbox=false, after={\par}, proofstyle }
+%% Localize LaTeX supplied names (possibly none)
+\renewcommand*{\abstractname}{Abstract}
+%% Equation Numbering
+%% Controlled by  numbering.equations.level  processing parameter
+%% No adjustment here implies document-wide numbering
+\numberwithin{equation}{section}
+%% "tcolorbox" environment for a single image, occupying entire \linewidth
+%% arguments are left-margin, width, right-margin, as multiples of
+%% \linewidth, and are guaranteed to be positive and sum to 1.0
+\tcbset{ imagestyle/.style={bwminimalstyle} }
+\NewTColorBox{image}{mmm}{imagestyle,left skip=#1\linewidth,width=#2\linewidth}
+%% For improved tables
+\usepackage{array}
+%% Some extra height on each row is desirable, especially with horizontal rules
+%% Increment determined experimentally
+\setlength{\extrarowheight}{0.2ex}
+%% Define variable thickness horizontal rules, full and partial
+%% Thicknesses are 0.03, 0.05, 0.08 in the  booktabs  package
+\newcommand{\hrulethin}  {\noalign{\hrule height 0.04em}}
+\newcommand{\hrulemedium}{\noalign{\hrule height 0.07em}}
+\newcommand{\hrulethick} {\noalign{\hrule height 0.11em}}
+%% We preserve a copy of the \setlength package before other
+%% packages (extpfeil) get a chance to load packages that redefine it
+\let\oldsetlength\setlength
+\newlength{\Oldarrayrulewidth}
+\newcommand{\crulethin}[1]%
+{\noalign{\global\oldsetlength{\Oldarrayrulewidth}{\arrayrulewidth}}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{0.04em}}\cline{#1}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{\Oldarrayrulewidth}}}%
+\newcommand{\crulemedium}[1]%
+{\noalign{\global\oldsetlength{\Oldarrayrulewidth}{\arrayrulewidth}}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{0.07em}}\cline{#1}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{\Oldarrayrulewidth}}}
+\newcommand{\crulethick}[1]%
+{\noalign{\global\oldsetlength{\Oldarrayrulewidth}{\arrayrulewidth}}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{0.11em}}\cline{#1}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{\Oldarrayrulewidth}}}
+%% Single letter column specifiers defined via array package
+\newcolumntype{A}{!{\vrule width 0.04em}}
+\newcolumntype{B}{!{\vrule width 0.07em}}
+\newcolumntype{C}{!{\vrule width 0.11em}}
+%% Program listing support: for listings, programs, consoles, and Sage code
+\ifthenelse{\boolean{xetex} \or \boolean{luatex}}%
+  {\tcbuselibrary{listings}}%
+  {\tcbuselibrary{listingsutf8}}%
+%% We define the listings font style to be the default "ttfamily"
+%% To fix hyphens/dashes rendered in PDF as fancy minus signs by listing
+%% http://tex.stackexchange.com/questions/33185/listings-package-changes-hyphens-to-minus-signs
+\makeatletter
+\lst@CCPutMacro\lst@ProcessOther {"2D}{\lst@ttfamily{-{}}{-{}}}
+\@empty\z@\@empty
+\makeatother
+%% We define a null language, free of any formatting or style
+%% for use when a language is not supported, or pseudo-code, or consoles
+%% Not necessary for Sage code, so in limited cases included unnecessarily
+\lstdefinelanguage{none}{identifierstyle=,commentstyle=,stringstyle=,keywordstyle=}
+\ifthenelse{\boolean{xetex}}{}{%
+%% begin: pdflatex-specific listings configuration
+%% translate U+0080 - U+00F0 to their textmode LaTeX equivalents
+%% Data originally from https://www.w3.org/Math/characters/unicode.xml, 2016-07-23
+%% Lines marked in XSL with "$" were converted from mathmode to textmode
+\lstset{extendedchars=true}
+\lstset{literate={ }{{~}}{1}{¡}{{\textexclamdown }}{1}{¢}{{\textcent }}{1}{£}{{\textsterling }}{1}{¤}{{\textcurrency }}{1}{¥}{{\textyen }}{1}{¦}{{\textbrokenbar }}{1}{§}{{\textsection }}{1}{¨}{{\textasciidieresis }}{1}{©}{{\textcopyright }}{1}{ª}{{\textordfeminine }}{1}{«}{{\guillemotleft }}{1}{¬}{{\textlnot }}{1}{­}{{\-}}{1}{®}{{\textregistered }}{1}{¯}{{\textasciimacron }}{1}{°}{{\textdegree }}{1}{±}{{\textpm }}{1}{²}{{\texttwosuperior }}{1}{³}{{\textthreesuperior }}{1}{´}{{\textasciiacute }}{1}{µ}{{\textmu }}{1}{¶}{{\textparagraph }}{1}{·}{{\textperiodcentered }}{1}{¸}{{\c{}}}{1}{¹}{{\textonesuperior }}{1}{º}{{\textordmasculine }}{1}{»}{{\guillemotright }}{1}{¼}{{\textonequarter }}{1}{½}{{\textonehalf }}{1}{¾}{{\textthreequarters }}{1}{¿}{{\textquestiondown }}{1}{À}{{\`{A}}}{1}{Á}{{\'{A}}}{1}{Â}{{\^{A}}}{1}{Ã}{{\~{A}}}{1}{Ä}{{\"{A}}}{1}{Å}{{\AA }}{1}{Æ}{{\AE }}{1}{Ç}{{\c{C}}}{1}{È}{{\`{E}}}{1}{É}{{\'{E}}}{1}{Ê}{{\^{E}}}{1}{Ë}{{\"{E}}}{1}{Ì}{{\`{I}}}{1}{Í}{{\'{I}}}{1}{Î}{{\^{I}}}{1}{Ï}{{\"{I}}}{1}{Ð}{{\DH }}{1}{Ñ}{{\~{N}}}{1}{Ò}{{\`{O}}}{1}{Ó}{{\'{O}}}{1}{Ô}{{\^{O}}}{1}{Õ}{{\~{O}}}{1}{Ö}{{\"{O}}}{1}{×}{{\texttimes }}{1}{Ø}{{\O }}{1}{Ù}{{\`{U}}}{1}{Ú}{{\'{U}}}{1}{Û}{{\^{U}}}{1}{Ü}{{\"{U}}}{1}{Ý}{{\'{Y}}}{1}{Þ}{{\TH }}{1}{ß}{{\ss }}{1}{à}{{\`{a}}}{1}{á}{{\'{a}}}{1}{â}{{\^{a}}}{1}{ã}{{\~{a}}}{1}{ä}{{\"{a}}}{1}{å}{{\aa }}{1}{æ}{{\ae }}{1}{ç}{{\c{c}}}{1}{è}{{\`{e}}}{1}{é}{{\'{e}}}{1}{ê}{{\^{e}}}{1}{ë}{{\"{e}}}{1}{ì}{{\`{\i}}}{1}{í}{{\'{\i}}}{1}{î}{{\^{\i}}}{1}{ï}{{\"{\i}}}{1}{ð}{{\dh }}{1}{ñ}{{\~{n}}}{1}{ò}{{\`{o}}}{1}{ó}{{\'{o}}}{1}{ô}{{\^{o}}}{1}{õ}{{\~{o}}}{1}{ö}{{\"{o}}}{1}{÷}{{\textdiv }}{1}{ø}{{\o }}{1}{ù}{{\`{u}}}{1}{ú}{{\'{u}}}{1}{û}{{\^{u}}}{1}{ü}{{\"{u}}}{1}{ý}{{\'{y}}}{1}{þ}{{\th }}{1}{ÿ}{{\"{y}}}{1}}
+%% end: pdflatex-specific listings configuration
+}
+%% End of generic listing adjustments
+%% Program listings via new tcblisting environment
+%% First a universal color scheme for parts of any language
+%% Colors match a subset of Google prettify "Default" style
+%% Set latex.print='yes' to get all black
+%% http://code.google.com/p/google-code-prettify/source/browse/trunk/src/prettify.css
+\definecolor{identifiers}{rgb}{0.375,0,0.375}
+\definecolor{comments}{rgb}{0.5,0,0}
+\definecolor{strings}{rgb}{0,0.5,0}
+\definecolor{keywords}{rgb}{0,0,0.5}
+%% Options passed to the listings package via tcolorbox
+\lstdefinestyle{programcodestyle}{identifierstyle=\color{identifiers},commentstyle=\color{comments},stringstyle=\color{strings},keywordstyle=\color{keywords}, breaklines=true, breakatwhitespace=true, columns=fixed, extendedchars=true, aboveskip=0pt, belowskip=0pt}
+\tcbset{ programboxstyle/.style={left=3ex, right=0pt, top=0ex, bottom=0ex, middle=0pt, toptitle=0pt, bottomtitle=0pt, boxsep=0pt, 
+listing only, fontupper=\small\ttfamily,
+colback=white, sharp corners, boxrule=-0.3pt, leftrule=0.5pt, toprule at break=-0.3pt, bottomrule at break=-0.3pt,
+breakable, parbox=false,
+} }
+\newtcblisting{program}[1]{programboxstyle, listing options={language=#1, style=programcodestyle}}
+%% The listings package as tcolorbox for Sage code
+%% We do as much styling as possible with tcolorbox, not listings
+%% Sage's blue is 50%, we go way lighter (blue!05 would also work)
+%% Note that we defuse listings' default "aboveskip" and "belowskip"
+\definecolor{sageblue}{rgb}{0.95,0.95,1}
+\tcbset{ sagestyle/.style={left=0pt, right=0pt, top=0ex, bottom=0ex, middle=0pt, toptitle=0pt, bottomtitle=0pt,
+boxsep=4pt, listing only, fontupper=\small\ttfamily,
+breakable, parbox=false, 
+listing options={language=Python,breaklines=true,breakatwhitespace=true, extendedchars=true, aboveskip=0pt, belowskip=0pt}} }
+\newtcblisting{sageinput}{sagestyle, colback=sageblue, sharp corners, boxrule=0.5pt, toprule at break=-0.3pt, bottomrule at break=-0.3pt, }
+\newtcblisting{sageoutput}{sagestyle, colback=white, colframe=white, frame empty, before skip=0pt, after skip=0pt, }
+%% More flexible list management, esp. for references
+%% But also for specifying labels (i.e. custom order) on nested lists
+\usepackage{enumitem}
+%% hyperref driver does not need to be specified, it will be detected
+%% Footnote marks in tcolorbox have broken linking under
+%% hyperref, so it is necessary to turn off all linking
+%% It *must* be given as a package option, not with \hypersetup
+\usepackage[hyperfootnotes=false]{hyperref}
+%% configure hyperref's  \url  to match listings' inline verbatim
+\renewcommand\UrlFont{\small\ttfamily}
+%% Hyperlinking active in electronic PDFs, all links solid and blue
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,filecolor=blue,urlcolor=blue}
+\hypersetup{pdftitle={Numerical Analysis}}
+%% If you manually remove hyperref, leave in this next command
+\providecommand\phantomsection{}
+%% If tikz has been loaded, replace ampersand with \amp macro
+%% extpfeil package for certain extensible arrows,
+%% as also provided by MathJax extension of the same name
+%% NB: this package loads mtools, which loads calc, which redefines
+%%     \setlength, so it can be removed if it seems to be in the 
+%%     way and your math does not use:
+%%     
+%%     \xtwoheadrightarrow, \xtwoheadleftarrow, \xmapsto, \xlongequal, \xtofrom
+%%     
+%%     we have had to be extra careful with variable thickness
+%%     lines in tables, and so also load this package late
+\usepackage{extpfeil}
+%% Custom Preamble Entries, late (use latex.preamble.late)
+%% Begin: Author-provided packages
+%% (From  docinfo/latex-preamble/package  elements)
+%% End: Author-provided packages
+%% Begin: Author-provided macros
+%% (From  docinfo/macros  element)
+%% Plus three from MBX for XML characters
+\DeclareMathOperator{\RE}{Re}
+\DeclareMathOperator{\IM}{Im}
+\DeclareMathOperator{\ess}{ess}
+\DeclareMathOperator{\intr}{int}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator\re{\mathrm {Re~}}
+\DeclareMathOperator\im{\mathrm {Im~}}
+\newcommand\dd{\mathrm d}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\To}{\longrightarrow}
+\newcommand{\hilbert}{\mathcal{H}}
+\newcommand{\s}{\mathcal{S}_2}
+\newcommand{\A}{\mathcal{A}}
+\newcommand\h{\mathcal{H}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\W}{\mathcal{W}}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\BOP}{\mathbf{B}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\BH}{\mathbf{B}(\mathcal{H})}
+\newcommand{\KH}{\mathcal{K}(\mathcal{H})}
+\newcommand{\pick}{\mathcal{P}_2}
+\newcommand{\schur}{\mathcal{S}_2}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Complex}{\mathbb{C}}
+\newcommand{\Field}{\mathbb{F}}
+\newcommand{\RPlus}{\Real^{+}}
+\newcommand{\Polar}{\mathcal{P}_{\s}}
+\newcommand{\Poly}{\mathcal{P}(E)}
+\newcommand{\EssD}{\mathcal{D}}
+\newcommand{\Lop}{\mathcal{L}}
+\newcommand{\cc}[1]{\overline{#1}}
+\newcommand{\abs}[1]{\left\vert#1\right\vert}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\seq}[1]{\left\lt#1\right>}
+\newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+\newcommand{\essnorm}[1]{\norm{#1}_{\ess}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\ran}[1]{\operatorname{ran}#1}
+\newcommand{\nt}{\stackrel{\mathrm {nt}}{\to}}
+\newcommand{\pnt}{\xrightarrow{pnt}}
+\newcommand{\ip}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\ad}{^\ast}
+\newcommand{\inv}{^{-1}}
+\newcommand{\adinv}{^{\ast -1}}
+\newcommand{\invad}{^{-1 \ast}}
+\newcommand\Pick{\mathcal P}
+\newcommand\Ha{\mathbb{H}}
+\newcommand{\HH}{\Ha\times\Ha}
+\newcommand\Htau{\mathbb{H}(\tau)}
+\newcommand{\vp}{\varphi}
+\newcommand{\ph}{\varphi}
+\newcommand\al{\alpha}
+\newcommand\ga{\gamma}
+\newcommand\de{\delta}
+\newcommand\ep{\varepsilon}
+\newcommand\la{\lambda}
+\newcommand\up{\upsilon}
+\newcommand\si{\sigma}
+\newcommand\beq{\begin{equation}}
+\newcommand\ds{\displaystyle}
+\newcommand\eeq{\end{equation}}
+\newcommand\df{\stackrel{\rm def}{=}}
+\newcommand\ii{\mathrm i}
+\newcommand{\vectwo}[2]
+{
+   \begin{pmatrix} #1 \\ #2 \end{pmatrix}
+}
+\newcommand{\vecthree}[3]
+{
+   \begin{pmatrix} #1 \\ #2 \\ #3 \end{pmatrix}
+}
+\newcommand\blue{\color{blue}}
+\newcommand\black{\color{black}}
+\newcommand\red{\color{red}}
+\newcommand\nn{\nonumber}
+\newcommand\bbm{\begin{bmatrix}}
+\newcommand\ebm{\end{bmatrix}}
+\newcommand\bpm{\begin{pmatrix}}
+\newcommand\epm{\end{pmatrix}}
+\numberwithin{equation}{section}
+\newcommand\nin{\noindent}
+\newcommand{\nCr}[2]{\,_{#1}C_{#2}} 
+\newcommand{\lt}{<}
+\newcommand{\gt}{>}
+\newcommand{\amp}{&}
+%% End: Author-provided macros
+%% Title page information for article
+\title{Numerical Analysis}
+\author{Ryan Tully-Doyle\\
+University of New Haven
+}
+\date{November 18, 2019}
+\begin{document}
+%% Target for xref to top-level element is document start
+\hypertarget{x:article:minimal}{}
+\maketitle
+\thispagestyle{empty}
+\begin{abstract}
+The notes herein comprise a first course in numerical analysis, with a focus on implementation.%
+\end{abstract}
+\begin{introduction}{}%
+Numerical analysis is the area of mathematics concerned with computational solutions to \emph{continuous} problems. That is, numerical analysis provides methods for approximation solutions to the problems encountered, for example, in calculus, differential equations, and linear algebra. We will be concerned with both methods and implemenation.%
+\end{introduction}%
+%
+%
+\typeout{************************************************}
+\typeout{Section 1 What you need - Octave\slash{}Matlab}
+\typeout{************************************************}
+%
+\begin{sectionptx}{What you need - Octave\slash{}Matlab}{}{What you need - Octave\slash{}Matlab}{}{}{x:section:section-needs}
+This course is going to heavily emphasize programming - making mathematics useful by application. The only way to learn the techniques we are going to study is by actually using them. While standard techniques are prebuilt into various mathematical languages, we are going to be constructing our own implementations to solve problems.%
+\par
+The language that we are going to use is called Octave. Octave is an open-source (that is, free) language designed to be compatible with Matlab (which is an industry standard tool, but alas, not free. Matlab is installed on lab computers all over campus and on classroom computers. All code should work in both languages). Octave is available on Mac, PC, and Linux based computers. You should download and install it (or pay for a student license for Matlab, which is \textdollar{}50) as soon as possible.%
+\par
+You can find a link to Octave here: \href{}{https:\slash{}\slash{}www.gnu.org\slash{}software\slash{}octave\slash{}}.%
+\par
+Alternatively, if you'd like to work in Matlab, you can find the student version here: \href{}{https:\slash{}\slash{}www.mathworks.com\slash{}store\slash{}link\slash{}products\slash{}student\slash{}new?s\textunderscore{}tid=ac\textunderscore{}buy\textunderscore{}sv\textunderscore{}cta}, with the relevant version being \textdollar{}49.99.%
+\par
+I will provide detailed help getting everything installed if you have trouble.%
+\par
+Addendum: You will need a current installation \href{}{https:\slash{}\slash{}www.python.org\slash{}downloads\slash{}}. Once it is installed, you can run the command \mono{pip install sympy}, which will install all the symbolic support.%
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 2 Motivation}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Motivation}{}{Motivation}{}{}{x:section:section-review}
+You might reasonable ask why we need to learn numerical methods. After all, we've spent years learning explicit techniques for solving equations culminating in calculus. We know dozens of formulae for derivatives and integrals, powerfl techniques for evaluating them. We know how to use elimination and substitution to solve systems of linear equations. So why numerical methods? It's probably best to consider some examples. For instance, the function \(f(x) = e^x\) is about as nice as functions come - it has a very smooth graph, since derivatives exist to all orders. Even better, its derivative is itself! \begin{sageinput}
+xlim = [0,2];
+ylim = [0,e^2];
+
+[x,y] = fplot('e^x', [xlim ylim]);
+
+plot(x, y, 'linewidth',2);
+
+set(gca,'xlim',xlim);
+set(gca,'ylim',ylim);
+
+grid on;
+box on;
+axis('nolabel','square');
+title("Graph of f(x) = e^x")
+\end{sageinput}
+\begin{sageoutput}
+
+\end{sageoutput}
+%
+\par
+That is one smooth looking plot. What if we replace \(x\) with \(x^2\)? (Functions of this form are very common in practice. The Gaussian or normal distribution from statistics is a very important example.) \begin{sageinput}
+xlim = [0,2];
+ylim = [0,e^4];
+
+[x,y] = fplot('e^(x^2)', [xlim ylim]);
+
+plot(x, y, 'linewidth',2);
+
+set(gca,'xlim',xlim);
+set(gca,'ylim',ylim);
+
+grid on;
+box on;
+axis('nolabel','square');
+title("Graph of $g(x) = exp(x^2)")
+\end{sageinput}
+ It looks just as smooth, and in fact it is: all derivatives exist everywhere to all orders, and they are pleasing mixtures of polynomials and exponentials, just like Calculus I. Now, suppose I want to find the area under the graphs for \(0\leq x \leq 1\). From Calculus II, we know that we can evaluate the integral%
+\begin{equation*}
+\int_0^1 e^x \, dx = e - 1,
+\end{equation*}
+which is elementary. What about \(g(x)\)? Certainly we can still write%
+\begin{equation*}
+\int_0^1 e^{x^2} \, dx,
+\end{equation*}
+but now what?%
+\par
+There doesn't seem to be anywhere to go - the function \(e^{x^2}\) \emph{does not have} a closed antiderivative. There is no way to use the techniques of basic calculus to deal with it. This should be alarming. After all, the function is about as nice as we could ask for. So what do we do? We'll need to look at \terminology{numerical calculus} for the answer.%
+\par
+What about other examples? From very early, we learn how to use algebra to solve equations. Are there equations that can't be solved with algebra? Consider the following question: \begin{question}{}{g:question:idm45326203321808}%
+Where do the graphs of \(f(x) = 2x\) and \(g(x) = \cos x\) intersect?\end{question}
+%
+\begin{sageinput}
+x = 0:.01:2;
+y1 = 2*x;
+y2 = cos(x);
+
+plot(x, y1, 'r', x, y2, 'b')
+\end{sageinput}
+A plot shows that they cross. But where? You learned a long time ago to find intersections between two graphs by setting the functions equal:%
+\begin{equation*}
+2x = \cos x
+\end{equation*}
+which really can be thought of as a root finding problem:%
+\begin{equation*}
+2x - \cos x = 0.
+\end{equation*}
+Can algebra solve this? The equation above is sometimes called a transcedental equation - that is, it involves functions that cannot be undone with the operations of algebra. Except in very special cases, there is no way to solve for \(x\). And yet, we can see the intersection. To find it, we'll study a pile of techniques in an area called \terminology{root finding}.%
+\par
+Another area of interest is to construct a function from given data. That is, given some points, how can we find a function that passes through those points? This is a question known as \terminology{interpolation}. There are many approaches that we will discuss.%
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 3 Taylor polynomials}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Taylor polynomials}{}{Taylor polynomials}{}{}{x:section:sec-taylor}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 3.1 Taylor's theorem}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Taylor's theorem}{}{Taylor's theorem}{}{}{g:subsection:idm45326203381072}
+In calculus, you should have learned that an infinitely differentiable function possesses a representation in the form of an infinite power series. You are probably familiar with%
+\begin{align*}
+e^x \amp = 1 + x + \frac{1}{2}x^2 + \frac{1}{3!}x^3 + \ldots \\
+\cos x \amp = 1 - \frac{x^2}{2} + \frac{x^4}{4!} - \ldots \\
+\sin x \amp = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \ldots 
+\end{align*}
+%
+\par
+Power series are an incredibly powerful tool for approximating functions, and they occur all over numerical mathematics. Typically, instead of using an infinite series, we truncate at a particular term, getting a polynomial that \emph{approximates} the function rather than a series that is the function (where it converges). The general theorem that describes how to get a polynomial approximation for a function is called Taylor's theorem.%
+\begin{theorem}{}{}{g:theorem:idm45326203412192}%
+Let \(f\) be a function so that \(n + 1\) derivatives of \(f\) exist on an interval \((a, b)\) and let \(x_0 \in (a,b)\). Then for each \(x \in (a,b)\), there exists a constant \(c\) strictly between \(x\) and \(x_0\) such that%
+\begin{equation*}
+f(x) = f(x_0) + \sum_{j=1}^n \left( \frac{f^{(j)}(x_0)}{j!}(x - x_0)^j\right) + \frac{f^{n+1}(c)}{(n+1)!}(x - x_0)^{n+1}.
+\end{equation*}
+%
+\end{theorem}
+The first part of the equation above is the \terminology{\(n\)th order Taylor polynomial for \(f\) at \(x_0\)}, and we use the notation%
+\begin{equation*}
+T_n(x) = f(x_0) + \sum_{j=1}^n \left( \frac{f^{(j)}(x_0)}{j!}(x - x_0)^j\right).
+\end{equation*}
+The second part is called the remainder term for \(T_n\) at \(x_0\), and we use the notation%
+\begin{equation*}
+R_n(x) = \frac{f^{n+1}(c)}{(n+1)!}(x - x_0)^{n+1}.
+\end{equation*}
+You can think of the remainder term as containing the difference between \(f\) and \(T_n\). We don't usually know the value of \(c\) for a given \(x_0\), but we can the remainder term to put an upper bound on the worst possible error for a given Taylor approximation of \(f\) on \((a, b)\).%
+\par
+So what's the upshot? Unwrapped from sigma notation, essentially any well-enough behaved function can be approximated at a point \(x_0\) with a polynomial that is easy to calculate. That is, for values of \(x\) near \(x_0\),%
+\begin{equation*}
+f(x) \approx f(x_0) + f'(x_0)(x - x_0) + \frac{f''(x_0)}{2!} (x - x_0)^2 + \ldots,
+\end{equation*}
+and the worst that the approximation will be is the maximum value of \(R_n(x)\) near \(x_0\).%
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 3.2 What is a Taylor approximation good for?}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{What is a Taylor approximation good for?}{}{What is a Taylor approximation good for?}{}{}{g:subsection:idm45326202900336}
+An obvious question should occur to you: why do we care about Taylor series and polynomials? The short answer is that Taylor polynomials behave much like their parent functions ``near'' the point of expansion.  By including more terms, we typically expect to get a better approximation of the original function and a larger interval on which the approximation is well-behaved. A classical example of this phenomenon can be seen in the Taylor polynomials for \(\sin x\) near \(x_0 = 0\).%
+\begin{sageinput}
+X = -7:.01:7;
+Y1 = sin(X);
+Y2 = X - X.^3/factorial(3) + X.^5/factorial(5) - X.^7/factorial(7) + X.^9/factorial(9);
+
+plot(X, Y1, 'r', X, Y2, 'b')
+axis( [-7 7 -2 2])
+\end{sageinput}
+The idea of replacing a function with a polynomial built from its derivatives is a powerful computational technique. Indeed, if we're working with approximations, we often need not even compute formulae for the derivatives but instead work with difference quotients. This will require that we have a firm understanding of how error accumulates, which will be discussed in a future lecture.%
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 3.3 Coding functions in Octave}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Coding functions in Octave}{}{Coding functions in Octave}{}{}{g:subsection:idm45326202941120}
+Let's begin by talking a bit about how to use functions in Octave. Suppose that we are interested in the 3rd Taylor polynomial for the function \(f(x) = e^x\) at \(x_0 = 0\). A bit of computation will tell you that%
+\begin{equation*}
+T_3(x) = 1 + x + \frac{x^2}{2} + \frac{x^3}{6}.
+\end{equation*}
+%
+\par
+First, we'll need to define the function \(T_3\) so that we can use it like a function - we want to be able to plot and evaluate it at various points. To do so, we'll use the \mono{inline} command.%
+\begin{sageinput}
+T3 = inline('1 + x + 1/2*x^2 + 1/6*x^3')
+\end{sageinput}
+Once we have the function defined, we can evaluate it anywhere.%
+\begin{sageinput}
+T3 = inline('1 + x + 1/2*x^2 + 1/6*x^3')
+T3(0)
+T3(1)
+T3(10)
+T3(-1)
+\end{sageinput}
+A standard technique that we need to be comfortable with is evaluating functions on arrays (that is, lists of numbers). Here are some example arrays.%
+\begin{sageinput}
+#the first array generates the integers
+#from 1 to 10 and stores the list
+#in a variable A
+A = 1:10
+
+#the second example generates the numbers between 0 and 2
+#incrementing by .02. it is long. we could suppress the
+#output by adding a ; to the end of the line.
+B = 0:.02:2
+\end{sageinput}
+An incredible useful feature of Octave\slash{}Matlab is the ability to feed an array into a function. However, Octave assumes that we want matrix operations unless we tell it that we want to work entry by entry. The way we do that is to put a . before any operation that could be interpreted as a matrix operation to force Octave to work entrywise.%
+\begin{sageinput}
+#the exponentiation needs a dot because it represents
+#repeated multiplication of objects that might be matrices.
+T3 = inline('1 + x + 1/2*x.^2 + 1/6*x.^3')
+A = 1:10;
+C = T3(A)
+\end{sageinput}
+Plotting in Octave seems complicated, but really just exposes how mathematical software generates plots in general. Suppose that we want to compare the function \(f(x) = e^x\) with the Taylor polynomial \(T_3\). Our goal is plot both functions on the same set of axes. A useful command for this is \mono{plot}.%
+\begin{sageinput}
+#first, we make an array of numbers from -3 to 3, incrementing by .01
+X = -3:.01:3;
+
+#now, we define T3 (e^x already exists as a function called exp())
+T3 = inline('1 + x + 1/2*x.^2 + 1/6*x.^3');
+
+#we need some y-values to plot, so we feed T3 and e^x our X-value array
+Y1 = T3(X);
+Y2 = exp(X);
+
+#finally, we plot the graphs.
+plot(X, Y1, 'r', X, Y2, 'b')
+legend('T_3(x)', 'e^x')
+legend("boxoff")
+legend("left")
+\end{sageinput}
+\end{subsectionptx}
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 4 Root finding}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Root finding}{}{Root finding}{}{}{x:section:sec-root}
+In elementary or middle school, we learn how to solve algebraic equations. Equations that are algebraic can be solved with familiar operations: addition, multiplication, exponentiation. However, there are very simple equations that cannot be solved with algebra. Consider%
+\begin{equation*}
+\cos x = x.
+\end{equation*}
+There is no way to extract the \(x\) from inside the cosine to isolate it on one side of the equation. Even algebraic equations may be impossible to solve. Consider%
+\begin{equation*}
+x^6 - x - 1 = 0.
+\end{equation*}
+There is no formula that can be used to factor this equation (like the quadractic formula). If we're not fortunate enough to get a polynomial that has obvious ``nice'' factors, the only way to proceed is to approximate the solutions. Questions like this fall under the general category of \terminology{root finding} problems. A root is a solution to the equation \(f(x) = 0\).%
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 4.1 Bisection method}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Bisection method}{}{Bisection method}{}{}{x:subsection:sub-bisection}
+We're going to start with a straightforward equation to illustrate our first method. Let's find solutions to the equation%
+\begin{equation*}
+x^2 - 2 = 0.
+\end{equation*}
+Now obviously, the answers are \(\pm \sqrt{2}\), but how much good is that for computation or application? Where do the values for \(\sqrt{2}\) even come from? (Hint: \(\sqrt{2}\) is defined to be the solution to this equation). \begin{sageinput}
+X = -3:.1:3;
+Y = X.^2 - 2;
+plot(X, Y)
+set(gca, "xaxislocation","origin")
+set(gca, "yaxislocation", "origin")
+\end{sageinput}
+ It's clear from the plot generated by the code above that the solutions to \(x^2 - 2 = 0\) are the \(x\)-intercepts of the function \(f(x) = x^2 - 2\). If you were asked to guess what the roots were you might say ``between -2 and -1 and also between 1 and 2''. That observation is the first step in a set of methods called \terminology{bracketing}. At this point, we can take advantage of one of the core theorems of calculus: the Intermediate Value Theorem.%
+\begin{theorem}{}{}{x:theorem:thm-ivt}%
+Let \(f\) be a continuous function on the interval \([a,b]\). Then for every \(y\) falling strictly between \(f(a)\) and \(f(b)\), there exists a number \(c\) strictly between \(a\) and \(b\) so that \(f(x) = y\).%
+\end{theorem}
+A more familiar formulation might state ``if a continuous \(f\) is positive at a point \(a\) and negative at a point \(b\) then it must have gone through 0 somewhere''. This can be restated into a condition easy to check in an algorithm.%
+\begin{theorem}{}{}{g:theorem:idm45326202577712}%
+Suppose that \(f\) is continuous on \([a,b]\). Then \([a,b]\) contains a root of \(f\) if \(f(a)f(b) \lt 0\).%
+\end{theorem}
+So we arrive at the main idea of the bisection method, which you can think of as a narrowing process. In short, we'll bracket the root with an interval, cut it in half, then use the condition to figure out which half contains the root. Repeating this process will produce an arbitrarily small interval containing the root, which we'll denote \(\alpha\). We can treat the midpoint of this tiny interval as an approximation for the root \(\alpha\).%
+\par
+Consider our example, which is to find a root of the function \(f(x) = x^2 - 2\).%
+\begin{enumerate}
+\item{}From the graph, we can bracket one of the roots with \(a = 1, b = 2\).%
+\item{}We can check to see that we've chosen good values by looking at \(f(a)f(b) = (-1)(2) = -2 \lt 0\), and so the IVT guarantees a root lies in \([1,2]\).%
+\item{}Now bisect the interval. Compute the midpoint \(m = \frac{a+b}{2} = 1.5\).%
+\item{}We'll check the interval \([1, 1.5]\) for the root. Since \(f(1)f(1.5) = -.25\), this interval contains the root.%
+\item{}We can repeat the process with our new guess, \(m = 1.25\), and so on until we're satisfied with the accuracy of our calculation.%
+\end{enumerate}
+%
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 4.2 Error}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Error}{}{Error}{}{}{g:subsection:idm45326202247184}
+So how do we decide when to stop the process listed above? Since we don't know what the answer is, we can't use ``distance from the correct answer'' as a measure of error. Instead, we'll have to measure something about the process of iteration itself. We need to make the measurements of error relative to the process, not just absolute, to be useful. This will be discussed in more detail when we introduce Newton's method.%
+\begin{definition}{}{x:definition:def-relerr}%
+Given an iterative process that produces an approximation \(m_k\) at each step \(k\), the \terminology{absolute relative approximate error} at step \(k\) is%
+\begin{equation*}
+\abs{\epsilon_k} = \abs{\frac{m_k - m_{k-1}}{m_k}}.
+\end{equation*}
+%
+\end{definition}
+If an iterative approximation converges, then the error will decrease from step to step. Thus, we can use error to determine when to stop. Before we begin the process of approximation, we choose a \terminology{tolerance} - that is, a small number that is the maximum possible error we're willing to allow. Then, we can impose a stopping condition whenever \(\abs{\epsilon_k} \lt tol\).%
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 4.3 Bisection algorithm}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Bisection algorithm}{}{Bisection algorithm}{}{}{g:subsection:idm45326203933984}
+\begin{algorithm}{}{}{g:algorithm:idm45326203940208}%
+Suppose that \(f\) is continuous on \([a,b]\) and that \(f(a)f(b) \lt 0\). Let \(tol\) be a given tolerance. Let \(maxiter\) be the maximum number of iterations. Set \(m = \frac{a+b}{2}\) and \(iter = 0\).%
+\begin{enumerate}
+\item{}Set \(iter = iter + 1\). If \(iter \gt maxiter\), exit and return failed to converge.%
+\item{}If \(f(a)f(m) \lt 0\), set \(b = m\). Otherwise set \(a = m\).%
+\item{}Set \(m' = \frac{a + b}{2}\).%
+\item{}Set \(\abs{\epsilon} = \frac{m' - m}{m'}\).%
+\item{}If \(\abs{\epsilon} \lt tol\), return \(m'\).%
+\item{}Otherwise, let \(m = m'\) and go to step 1.%
+\end{enumerate}
+%
+\end{algorithm}
+The bisection method always converges, so we do not need to include a maximum iteration counter, though we do anyway as later methods may not converge and can potentially loop forever.%
+\par
+We'll now present an example of the bisection method used to compute the value of \(\sqrt{2}\). \begin{sageinput}
+f = @(x) x.^2 - 2;
+a = 1;
+b = 2;
+tol = .5*10^-4;
+M = (a+b)/2;
+max_iter = 1000;
+iter = 0;
+err = 1;
+
+
+while err > tol
+    iter = iter + 1;
+    if iter > max_iter
+        break
+    endif
+
+    if f(a)*f(M) < 0
+        b = M;
+    else
+        a = M;
+    endif
+
+    m = (a+b)/2;
+    err = abs((m - M)/m);
+    M = m;
+endwhile
+
+printf('The approximation is %d', m)
+\end{sageinput}
+%
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 4.4 False position (Regula Falsi)}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{False position (Regula Falsi)}{}{False position (Regula Falsi)}{}{}{g:subsection:idm45326204001392}
+The method of false position is one of the oldest methods for guessing the solution to an equation. We're going to use a version of it that is specifically built for root finding. This method can have significantly faster convergence than the bisection method, as it takes functional behavior into consideraton.%
+\par
+Consider the equation \(x^2 - 2 = 0\), the solutions of which are the roots of the function \(f(x) = x^2 - 2\). \begin{sageinput}
+f = @(x) x.^2 - 2
+ezplot(f)
+\end{sageinput}
+%
+\par
+As in the bisection method, we notice that the interval \textdollar{}[1,2]\textdollar{} must contain a root, as the function passes through the axis between them. (That is, \(f(1)f(2) \lt 0\).) To find an approximation of the zero, we construct the line between \((a, f(a))\) and \((b, f(b))\). We can approximate the root of \(f(x)\) by the \(x\)-intercept of the line that we've drawn.%
+\begin{sageinput}
+f = @(x) x.^2 - 2;
+a = 1;
+b = 2;
+g = @(x) f(a) + (f(b) - f(a))/(b-a) * (x - a);
+X = -3:.1:3;
+XX = a:.1:b;
+plot(X, f(X), 'r', XX, g(XX), 'b')
+hold on;
+plot(sqrt(2),0, 'r*')
+plot((a*f(b) - b*f(a))/(f(b) - f(a)), 0, 'b*')
+axis([.5 2.5 -1.5 2.5])
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+\end{sageinput}
+\begin{sageoutput}
+
+\end{sageoutput}
+Already from the picture above we can see that we've got a reasonable approximation of the zero.The slope the line is going to be given by \(m = \frac{f(b) - f(a)}{b - a}\), and some quick algebra with the point slope form of the line will give you that the \(x\)-intercept of the line segment is%
+\begin{equation*}
+m = \frac{a f(b) - b f(a)}{f(b) - f(a)}.
+\end{equation*}
+%
+\par
+If we iterate this method, we should see the intercepts of the line segments ``march'' towards the actual zero. At this point, the method is identical to the bisection method: we identify which of the two subintervals created by the new approximation is the bracking subinterval, we replace the relevant endpoint, and we repeat the line trick.%
+\begin{algorithm}{}{}{g:algorithm:idm45326201590576}%
+Suppose that \(f\) is continuous on \([a,b]\) and that \(f(a)f(b) \lt 0\). Let \(tol\) be a given tolerance. Let \(maxiter\) be the maximum number of iterations. Set \(m = \frac{a f(b) - b f(a)}{f(b) - f(a)}\) and \(iter = 0\).%
+\begin{enumerate}
+\item{}Set \(iter = iter + 1\). If \(iter \gt maxiter\), exit and return failed to converge.%
+\item{}If \(f(a)f(m) \lt 0\), set \(b = m\). Otherwise set \(a = m\).%
+\item{}Set \(m' = m = \frac{a f(b) - b f(a)}{f(b) - f(a)}\).%
+\item{}Set \(\abs{\epsilon} = \frac{m' - m}{m'}\).%
+\item{}If \(\abs{\epsilon} \lt tol\), return \(m'\).%
+\item{}Otherwise, let \(m = m'\) and go to step 1.%
+\end{enumerate}
+%
+\end{algorithm}
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 4.5 Classes of differentiability}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Classes of differentiability}{}{Classes of differentiability}{}{}{g:subsection:idm45326201570208}
+Our next set of techniques do not involve bracketing. In exchange for losing a bracket that is guaranteed to contain a root of a function, we get methods that converge significantly faster when certain hypotheses are met. Speed of convergence will be discussed in detail in a later section.%
+\par
+The main hypotheses of derivative based methods is that the functions being worked with are ``nice enough''. Nice as a mathematical terms is an amusing catchall for ``whatever is needed to make this theorem run'', but it usually refers to smoothness of some kind. That is, the slope of the function is well behaved as we move around the \(x\)-values.%
+\par
+In Calculus 1, we learn that%
+\begin{equation*}
+f'(x) = \lim_{h\to 0} \frac{f(x + h) - f(x)}{(x + h) -h}
+\end{equation*}
+where we're using a form that emphasizes the fact that the derivative is the limit of secant lines. A function for which \(f'\) exists for every \(x \in (a,b)\) is called differentiable on \((a,b)\). Be careful. It's easy to be lulled into a false sense of security about differentiable functions.%
+\par
+Let's consider a family of functions called the \terminology{topologist's sine curves}. Here is the first member of the family.%
+\begin{align*}
+f(x) \amp= \sin \frac{1}{x} \amp\text{ if } x \amp\neq 0 \\
+\amp = 0 \amp\text{ if } x \amp= 0
+\end{align*}
+Notably, this function does not have a limit as \(x \to 0\) from the left or the right. We can try to fill the singularity in the function with the point \((0,0)\), but that doesn't make the function continuous. The reason why should be clear from the graph below: as the function approaches \(x = 0\) it oscillates increasingly quickly, essentially filling the area on the \(y\)-axis between -1 and 1. Since the function has a value of 0 at 0, but no limit, \(f\) is discontinuous there.%
+\begin{sageinput}
+f = @(x) sin(1./x)
+X = -2:.0001:2;
+plot(X, f(X))
+hold on;
+plot(0,0,'r*')
+axis([-1 1 -1 1])
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+\end{sageinput}
+Let's look at the next member of the family:%
+\begin{align*}
+f(x) \amp= x \sin \frac{1}{x} \amp\text{ if } x \amp\neq 0 \\
+\amp = 0 \amp\text{ if } x \amp= 0
+\end{align*}
+The \(x\) in front forces the function to go to 0, capturing it between the lines \(y = x\) and \(y = -x\).%
+\begin{sageinput}
+f = @(x) x.*sin(1./x)
+X = -2:.0001:2;
+plot(X, f(X))
+hold on;
+plot(0,0,'r*')
+axis([-1 1 -1 1])
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+\end{sageinput}
+The graph above should make it obvious that now, the point \((0,0)\) fills the hole in the function and makes \(f\) continuous at \(0\). What about the derivative?%
+\begin{sageinput}
+f = @(x) x.*sin(1./x)
+g = @(x) sin(1./x) - 1./x.*cos(1./x)
+X = -2:.0001:2;
+plot(X, f(X), 'b', X, g(X), 'g')
+hold on;
+plot(0,0,'r*')
+axis([-1 1 -1 1])
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+\end{sageinput}
+The green function above is the derivative. The formula for the derivative makes sense everywhere but at 0. So we'll use the defintion to see if the derivative is defined there.%
+\begin{align*}
+f'(0) \amp= \lim_{h \to 0} \frac{f(0+h) - f(0)}{h}\\
+\amp= \lim_{h \to 0} \frac{f(h)}{h}\\
+\amp= \lim \frac{h \sin(1/h)}{h} \\
+\amp= \lim_{h \to 0} \sin \frac{1}{h}
+\end{align*}
+which does not exist. So \(f\) is continuous, but not differentiable. Another member of the family:%
+%
+\begin{align*}
+f(x) \amp= x^2 \sin \frac{1}{x} \amp\text{ if } x \amp\neq 0 \\
+\amp = 0 \amp\text{ if } x \amp= 0
+\end{align*}
+\begin{sageinput}
+f = @(x) x.^2.*sin(1./x)
+g = @(x) 2*x.*sin(1./x) - cos(1./x)
+X = -2:.0001:2;
+plot(X, f(X), 'b', X, g(X), 'g')
+hold on;
+plot(0,0,'r*')
+axis([-1 1 -1 1])
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+\end{sageinput}
+Again, the derivative formula makes sense everywhere but 0. At 0, we can use the definition:%
+%
+\begin{align*}
+f'(0) \amp= \lim_{h \to 0} \frac{f(0+h) - f(0)}{h}\\
+\amp= \lim_{h \to 0} \frac{f(h)}{h}\\
+\amp= \lim \frac{h^2 \sin(1/h)}{h} \\
+\amp= \lim_{h \to 0} h \sin \frac{1}{h} = 0.
+\end{align*}
+Here's the complete graph of the derivative, given that \(f'(0) = 1\). It should be obvious that even though the derivative exists everywhere, it is not continuous.%
+\begin{sageinput}
+g = @(x) 2*x.*sin(1./x) - cos(1./x)
+X = -2:.0001:2;
+plot(X, g(X), 'g')
+hold on;
+plot(0,0,'r*')
+axis([-1 1 -1.5 1.5])
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+\end{sageinput}
+As we keep increasing the power of \(x\), we get functions with better properties. What happens if we increase the power one more time?%
+%
+\begin{align*}
+f(x) \amp= x^3 \sin \frac{1}{x} \amp\text{ if } x \amp\neq 0 \\
+\amp = 0 \amp\text{ if } x \amp= 0
+\end{align*}
+\begin{sageinput}
+f = @(x) x.^3.*sin(1./x)
+g = @(x) 3*x.^2.*sin(1./x) - x.*cos(1./x)
+X = -2:.0001:2;
+plot(X, f(X), 'r', X, g(X), 'g')
+hold on;
+plot(0,0,'r*')
+axis([-1 1 -1.5 1.5])
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+\end{sageinput}
+As before, the green function is the derivative. Notice that now the derivative is also converging to 0 as \(x \to 0\). That is, \(f\) is continuous, differentiable everywhere, AND the derivative is continuous.%
+\par
+This is what we mean by ``nice'' in the sense of approximation. In order for derivative methods to be well-behaved, the derivatives should exist AND be continuous%
+\begin{definition}{}{g:definition:idm45326200792832}%
+Let \(f\) be a function on an interval \((a,b)\). The function \(f\) is said to be \terminology{of class \(C^k\)} if \(f\) can be differentiated \(k\) times and \(f^{(k)}\) is continuous on \((a,b)\).\end{definition}
+\(C^1\) functions are also called \terminology{continuously differentiable}. Thus, by filling in the point at \((0,0)\), we can say%
+\begin{itemize}[label=\textbullet]
+\item{}\(\sin(1/x)\) is discontinuous on \((-a,a)\);%
+\item{}\(x \sin(1/x)\) is continuous on \((-a,a)\);%
+\item{}\(x^2 \sin(1/x)\) is differentiable on \((-a,a)\);%
+\item{}\(x^3 \sin(1/x)\) is \(C^1\) on \((-a,a)\).%
+\end{itemize}
+This can be continued. Generally, \(C^1\) functions are the bare minimum we require to call a function ``nice''. You should also note that this is a hierarchy of regularity: every subsequent level has all the properties of the level that came prior.%
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 4.6 Newton-Raphson method}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Newton-Raphson method}{}{Newton-Raphson method}{}{}{g:subsection:idm45326204450272}
+We come to a very powerful method that illustrates perhaps the central idea of numerical analysis (and indeed most of continuous mathematics):%
+\par
+\emph{Every function is a line.}%
+\par
+This might seem like an absurd statement, but with some slight adjustments, maybe we can be convinced.%
+\par
+\emph{Every (nice enough) function is a line (if you look closely enough).}%
+\par
+In fact, this is the essential point of working with tangent lines. Indeed, the same thinking applies in more variables as well (where lines get replaced by planes).%
+\par
+Functions are difficult to find \(x\)-intercepts for, \emph{unless those functions are lines}. So what we'll do is just pretend the function is a line, and find its intercept. In more familiar terms, we'll replace the function with its tangent line approximation.%
+\par
+As an easy example, consider \(f(x) = x^2 - 2\), our old friend that lets us find the value of \(\sqrt{2}\). Suppose that we guess that the root is close to \(x = 2\).%
+\begin{sageinput}
+f = @(x) x.^2 - 2;
+T = @(x) 4*(x - 2) + 2;
+X = 0:.01:3;
+plot(X, f(X), 'r', X, T(X), 'b')
+hold on;
+plot(sqrt(2), 0, 'b*')
+plot(1.5, 0, 'b*')
+axis([1 3 -2 7])
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+\end{sageinput}
+Indeed, the tangent line (in blue) lands very close to the root in question (on the red curve). We'd like to be able to iterate this procedure. Suppose that we're given a point \((x_0, f(x_0))\). The tangent line to \(f\) at that point is%
+\begin{equation*}
+y - f(x_0) = f'(x_0)(x - x_0).
+\end{equation*}
+Solving for \(x\) when \(y = 0\) gives the equation%
+\begin{equation*}
+x = x_0 - \frac{f(x_0)}{f'(x_0)}.
+\end{equation*}
+This simple equation is the heart of Newton's method. To iterate the approximation, let \(x_1 = x\) and solve the equation again:%
+\begin{equation*}
+x_2 = x_1 - \frac{f(x_1)}{f'(x_1)}.
+\end{equation*}
+%
+\par
+The hope is that given a good enough guess, that this sequence of approximations will approach the root. Let's see how it bahaves in this case. \leavevmode%
+\begin{sageinput}
+format long
+f = @(x) x.^2 - 2;
+fprime = @(x) 2*x;
+g = @(x) x - f(x)./fprime(x);
+guess = 2;
+for i = 1:4
+    new = g(guess);
+    disp("Approximation is:"), disp(new)
+    guess = new;
+endfor
+
+err = (sqrt(2) - guess)/sqrt(2);
+disp("Relative error:")
+disp(err)
+\end{sageinput}
+ What the output above shows is that starting from \(x = 2\), Newton's method converges to within .0000000001\% of the true value of \(\sqrt{2}\) in just four steps.%
+\par
+At this point, excited, we decide to test another case.%
+\begin{sageinput}
+f = @(x) x.^20 - 2;
+X = -1.1:.01:1.1;
+plot(X, f(X))
+axis([-1.5 1.5 -3 5])
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+\end{sageinput}
+That is one flat function. But that means the tangent line is going to have a slope very close to 0 if we guess to the left of the root...%
+\begin{sageinput}
+f = @(x) x.^20 - 2;
+fprime = @(x) 20*x.^19;
+guess = .7;
+new = guess - f(guess)./fprime(guess);
+disp(new)
+disp(f(new))
+\end{sageinput}
+That is, a guess of \(x_0 = .7\), which is pretty close to the root displayed on the graph, gives a second approximation of 88.3929, which means computing the second tangent line at the point \((88.3928, 8.47884 \times 10^{38})\). Not good.%
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 4.7 Newton's method requirements and problems}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Newton's method requirements and problems}{}{Newton's method requirements and problems}{}{}{g:subsection:idm45326190291344}
+So we've discovered the first problem in the last example. Newton's method does not work well near places where functions are very flat. In particular, this means that we'll want to avoid local extrema -{}-{} hitting near one with an approximation could send the tangent line way beyond the approximation area.%
+\par
+What other problems might arise?%
+\par
+%
+\end{subsectionptx}
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 5 Interpolation}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Interpolation}{}{Interpolation}{}{}{g:section:idm45326190288992}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 5.1 Naive polynomial interpolation}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Naive polynomial interpolation}{}{Naive polynomial interpolation}{}{}{g:subsection:idm45326190288320}
+Given a set of points, say \(P(x_1, y_1), Q(x_2, y_2), R(x_3, y_3)\), we say that a function \(f\) \terminology{interpolates} \(P, Q, R\) if the graph of \(f\) passes through each prescribed point - that is, \(f(x_i) = y_i\) for each \(i = 1, \ldots 3\) in this case. The function \(f\) can be used to predict the values of \(y\) for values of \(x\) that fall in between these points. (Predicting points outside of the data is called \terminology{extrapolation}.)%
+\par
+A first approach to this problem might take advantage of the following fact. \begin{theorem}{}{}{g:theorem:idm45326190282000}%
+\(p_1, \ldots, p_n\)\(n -1\)\end{theorem}
+ One possible proof of this fact is the construction of the Lagrange polynomials, to be discussed in the next section.%
+\par
+So suppose that we are given the points \((1,1), (2,-3), (5,10)\). A quick plot shows that they are clearly non-collinear. Thus, there should exist a degree two polynomial that interpolates the points, which will have the general form%
+\begin{equation*}
+y = ax^2 + bx + c.
+\end{equation*}
+%
+\par
+The unknowns we need to find are the coefficients \(a, b, c\). So we'll plug in the known data and get a system of equations.%
+\begin{align*}
+1 \amp= a + b + c\\
+-3 \amp = 4a + 2b + c\\
+10 \amp= 25a + 5b + c
+\end{align*}
+%
+\par
+We can solve the system using matrices.%
+\begin{sageinput}
+A = [1, 1, 1, 1;  4, 2, 1, -3; 25, 5, 1, 10]
+B = rref(A)
+\end{sageinput}
+Doing this by hand would be potentially very time consuming, particularly if we had to work with many points, not just three. Our result says that the approximate polynomial that interpolates the data is%
+\begin{equation*}
+f(x) = 2.08333 x^2 - 10.25 x + 9.16667.
+\end{equation*}
+Note that this polynomial is unique (up to approximation error). That is, any other technique that finds a degree two polynomial through these three points will find the same result.%
+\par
+In the next few sections, we will discuss two more interpolation techniques, one that is very easy for humans to understand (and evaluate with a little modification in certain cases) and one that is easy to program into a computer technique.%
+\begin{figureptx}{Data and interpolating function example}{g:figure:idm45326190272832}{}%
+\centering
+\begin{sageinput}
+f = @(x) 2.08333* x.^2 - 10.25 *x + 9.16667;
+X = 0:.01:6;
+Y = f(X);
+plot([1, 2, 5],[1, -3, 10], 'b*')
+hold on
+plot(X,Y, 'r')
+\end{sageinput}
+\tcblower
+\end{figureptx}%
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 5.2 Lagrange interpolation}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Lagrange interpolation}{}{Lagrange interpolation}{}{}{g:subsection:idm45326190270512}
+We'll begin with a method due to Lagrange that makes it very easy to write down by hand what the interpolating polynomal is (but doesn't give it in a computationally efficient form). Still, Lagrange interpolation is based on fundamental observations about the graphs of functions.%
+\par
+Suppose that we are given the points \((1,0), (2,0), (5,0)\) and we are asked to provide an interpolating polynomial of degree two (these points are collinear, but they very soon won't be). One obvious choice is to form the polynomial%
+\begin{equation*}
+p(x) = (x - 1)(x - 2)(x - 5).
+\end{equation*}
+This polynomial is not a unique polynomial of degree two, but it certainly interpolates them. We are going to use the idea of interpolating roots, as we've done here, to build interpolating functions for data off of the \(x\)-axis.%
+\par
+This exercise can be made slightly harder by allowing one of the points to move off of the \(x\)-axis. Now consider the points \((1,0),(2,0), (5,10)\). Ignoring the third point for the moment, we can still interpolate \((1,0), (2,0)\) in the same way as before: with \(p(x) = (x -1)(x-2)\). Maybe we're lucky and \(p\) also passes through \((5,10)\). We can check -{}-{} \(p(5) = (5-1)(4-1) = 12\). That is, \(p\) misses \((5,10)\).%
+\begin{sageinput}
+f = @(x) (x - 1).*(x-2);
+X = 0:.01:6;
+Y = f(X);
+plot([1, 2, 5],[0, 0, 10], 'b*')
+hold on
+plot(X,Y, 'r')
+\end{sageinput}
+What we need is a way to adjust \(p\) that keeps the function passing through \((1,0)\) and \((2,0)\). We might notice that every function of the form \(f(x) = c(x-1)(x-2) = c\cdot p(x)\) has this property, so let's choose a value of \(c\) that makes \(f\) pass through \((5,10)\).%
+\begin{align*}
+10 \amp= f(5) = c\cdot p(5) = c(5-1)(5-4) = 12c\\
+\frac{10}{12} \amp= c.
+\end{align*}
+So \(f(x) = \frac{10}{12} p(x) = \frac{10}{12} (x-1)(x-2)\) interpolates the data.%
+\begin{sageinput}
+f = @(x) 10/12*(x - 1).*(x-2);
+X = 0:.01:6;
+Y = f(X);
+plot([1, 2, 5],[0, 0, 10], 'b*')
+hold on
+plot(X,Y, 'r')
+\end{sageinput}
+Now, notice that 10 was the value we wanted to be output with input 5, and that \(p(5) = 12\). In fact, if \((5,10)\) had been given the name \((x_3, y_3)\), then the value of \(c\) would have been \(c = \frac{y_3}{p(x_3)},\) and the interpolating function for \((1,0), (2,0)\) and \((x_3, y_3)\) would have been%
+\begin{equation*}
+f(x) = \frac{y_3}{p(x_3)} p(x) = \frac{y_3}{p(x_3)} (x - 1)(x-2).
+\end{equation*}
+We can modify this further: given initial data \((x_1, 0), (x_2, 0), (x_3, y_3)\), define%
+\begin{equation*}
+p(x) = (x - x_1)(x - x_2)
+\end{equation*}
+and%
+\begin{equation*}
+f(x) = \frac{y_3}{p(x_3)} p(x) = \frac{y_3}{p(x_3)}(x - x_1)(x-x_2).
+\end{equation*}
+\(f\) is the interpolating function for the data.%
+\par
+We're finally ready to tackle the full problem: using this approach to find the interpolating polynomial for \((1,1), (2, -3), (5,10)\). We'll approach the problem in three pieces: First, construct \(f_3(x)\) for the points \((1,0), (2,0), (5,10)\) using the ideas from the last section.%
+\begin{equation*}
+f_3(x) = \frac{10}{12} (x-1)(x-2).
+\end{equation*}
+%
+\par
+Second, construct \(f_2(x)\) for the points \((1,0), (2, -3), (5,0).\) Since \(p_2(x) = (x-1)(x-5)\), we get \(c = \frac{-3}{p_2(2)} = \frac{-3}{-3} = 1\). So%
+\begin{equation*}
+f_2(x) = 1(x - 1)(x-5)
+\end{equation*}
+interpolates this data.%
+\par
+For a third step, construct \(f_1(x)\) for the points \((1,1), (2,0), (5,0)\). In this problem, \(p_1(x) = (x-2)(x-5)\), and so \(c = \frac{1}{p(1)} = \frac{1}{4}\). Thus,%
+\begin{equation*}
+f_1(x) = \frac{1}{4} (x - 2)(x -5).
+\end{equation*}
+%
+\par
+What follows is a plot of the three solutions to the subproblems.%
+\begin{sageinput}
+f3 = @(x) 10/12*(x - 1).*(x - 2);
+f2 = @(x) (x - 1).*(x-5);
+f1 = @(x) 1/4*(x-2).*(x-5);
+X = 0:.01:6;
+plot(X, f1(X), X, f2(X), X, f3(X))
+hold on
+plot([1, 2, 5],[1, -3, 10], 'b*')
+plot([1, 2, 5],[0,0,0], 'r*')
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+\end{sageinput}
+You should notice that each parabola passes through one of the real points and two of the substituted roots. We are at the magic step. Let%
+\begin{equation*}
+f = f_1 + f_2 + f_3.
+\end{equation*}
+%
+\begin{sageinput}
+f3 = @(x) 10/12*(x - 1).*(x - 2);
+f2 = @(x) (x - 1).*(x-5);
+f1 = @(x) 1/4*(x-2).*(x-5);
+f = @(x) f1(x) + f2(x) + f3(x)
+X = 0:.01:6;
+plot(X, f(X))
+hold on
+plot([1, 2, 5],[1, -3, 10], 'b*')
+plot([1, 2, 5],[0,0,0], 'r*')
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+\end{sageinput}
+What happened? Let's look at \(f\) more closely.%
+\begin{equation*}
+f(x) = \frac{1}{4}(x - 2)(x - 5) + (x-1)(x-5) + \frac{10}{12}(x-1)(x-2).
+\end{equation*}
+Notice that for a given input for one of the data points, only one term is non-zero, and that term has been built to evaluate to the correct \(y\)-value. That is,%
+\begin{align*}
+f(1) \amp= \frac{1}{4}(-1)(-4) + 0 + 0 = 1\\
+f(2) \amp= 0 + (1)(-3) + 0 = -3\\
+f(5) \amp= 0 + 0 + \frac{10}{12}(3)(4) = 10
+\end{align*}
+Furthermore, \(f\) must be unique, because \(f\) is a degree two polynomial. (In fact, \(f\) is the same function from the previous section if you multiply it out.)%
+\par
+So what is the general procedure? Start with a list of interpolants, \((x_1, y_1), \ldots, (x_n, y_n)\). For each \(i\), let%
+\begin{equation*}
+p_i(x) = \prod_{j\neq i} (x - x_j) = (x - x_1)\ldots(x - x_{i-1})(x-x_{i+1})\ldots(x - x_n).
+\end{equation*}
+Then define \(f_i\) to be%
+\begin{equation*}
+f_i(x) = \frac{y_i}{p_i(x_i)} p_i(x),
+\end{equation*}
+and finally the \terminology{Lagrange interpolating polynomial} to be%
+\begin{equation*}
+f(x) = \sum_i f_i(x) = f_1(x) + \ldots + f_n(x).
+\end{equation*}
+%
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 5.3 Newton interpolation}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Newton interpolation}{}{Newton interpolation}{}{}{g:subsection:idm45326190226512}
+Lagrange interpolation is easy to describe and relatively easy to write out by hand, even for many point, with some practice. However, the computation of the Lagrange interpolating polynomial doesn't easily lend itself to the structure of computer programs. We would like a method for writing down an interpolating polynomial that can be performed in a straightforward way in a recursive fashion. The approach that we present here is called \terminology{Newton interpolation}. Of course, the result will be the same, as interpolating polynomials of degree \(n-1\) are unique for a given set of \(m\) points.%
+\par
+Suppose that we're given two points, \((x_0, y_0), (x_1, y_1)\). The lowest degree polynomial \(f\) through the first point is the horizontal line \(f(x) = y_0 = f(x_0)\). The lowest degree polynomial \(f\) through the two points is%
+\begin{equation*}
+y = y_0 + \frac{y_1 - y_0}{x_1 - x_0}(x - x_0).
+\end{equation*}
+We call the quantities \(y_0\) and \(\frac{y_1 - y_0}{x_1 - x_0}\) \terminology{divided differences.} So now lets see what happens with three points.%
+\par
+Suppose that we're given three points to interpolate, \((x_0,y_0), (x_1, y_1), (x_2, y_2)\). We claim that we can construct a unique quadratic polynomial that interpolates the data of the form%
+\begin{equation*}
+f(x) = b_0 + b_1 (x - x_0) + b_2 (x - x_0)(x - x_1),
+\end{equation*}
+for some as yet unknown constants \(b_0, b_1, b_2\) that depend on the points. (You can easily show that for noncollinear points, you get a nonsingular coefficient matrix for the resulting system, which implies a unique solution.)%
+\par
+To find the values of the coefficients, we'll plug in our data points.%
+\begin{equation*}
+f(x_0) = b_0 + 0 + 0
+\end{equation*}
+and so \(b_0 = f(x_0) = y_0\). Moving to \(x_1\),%
+\begin{align*}
+f(x_1) \amp= b_0 + b_1(x_1 - x_0) + 0\\
+y_1 \amp= y_0 + b_1(x_1 - x_0)\\
+b_1 \amp= \frac{y_1 - y_0}{x_1 - x_0}
+\end{align*}
+Notice that so far, we've exactly reproduced the line connecting the first two points. Now let's look at \(b_2\).%
+\begin{align*}
+f(x_2) \amp= y_0 + \frac{y_1 - y_0}{x_1 - x_0}(x_2 - x_0) + b_2 (x_2 - x_0)(x_2 - x_1)\\
+y_2 \amp- y_0 - \frac{y_1 - y_0}{x_1 - x_0}(x_2 - x_0) = b_2 (x_2 - x_0)(x_2 - x_1)\\
+b_2 \amp= \frac{\frac{y_2 - y_1}{x_2 - x_1} - \frac{y_1 - y_0}{y_1 - y_0}}{x_2 - x_0},
+\end{align*}
+where the last step requires a bit of non-obvious algebra, but provides a more useful form.%
+\par
+It turns out that this process can be repeated for additional points, though one can imagine the formula for the next step is quite complicated to express in \(x_i, y_i\). So we introduce a notation that will make this process easy to write in recursive form. The \(m\)th divided difference is given by the recursive formula%
+\begin{align*}
+f[x_i] \amp= y_i;\\
+f[x_m, \ldots, x_0] \amp= \frac{f[x_m, \ldots, x_1] - f[x_{m-1}, \ldots, x_0]}{x_m - x_0}.
+\end{align*}
+For example, in this notation,%
+\begin{equation*}
+f[x_1, x_0] = \frac{f[x_1] - f[x_0]}{x_1 - x_0} = \frac{y_2 - y_1}{x_2 - x_1},
+\end{equation*}
+and you should convince yourself that the expression for \(f[x_2, x_1, x_0]\) agrees with our previous computation.%
+\par
+We want to use this approach because we'd prefer our computations to be purely in terms of array entries, not the application of general formulas. As an example, we will trace through the example of computing the coefficients of the Newton polynomial for the points \((1,1), (2, 3), (5,10)\) in code.%
+\begin{sageinput}
+nodeX = [1, 2, 5];
+nodeY = [1, 3, 10];
+#this section calculates the coefficients
+data = zeros(3); #3x3 matrix of 0s
+for i = 1:3
+    data(1,i) = nodeY(i)
+endfor
+for i = 1:2
+    data(2,i) = (data(1,i+1) - data(1,i))/(nodeX(i+1)-nodeX(i));
+endfor
+for i = 1:1
+    data(3,i) = (data(2,i+1)- data(2,i))/(nodeX(i+2) - nodeX(i));
+endfor
+b = data(:,1)'
+#this section creates the Newton polynomial. It is unenlightening at the moment, because I am trying to avoid using symbolic variables. To be rewritten.
+structure = @(x, b) b(1) + b(2)*(x - nodeX(1)) + b(3)*(x - nodeX(1)).*(x - nodeX(2));
+poly = @(x) structure(x, b);
+scatter(nodeX, nodeY, 400)
+hold on
+plot(0:.01:6, poly(0:.01:6))
+\end{sageinput}
+The code above should provide an example of how to implement the recursion without having to rely on increasingly complex formulas to compute the coefficients. As a goal, one could try to produce all of the data in the matrix ``data'' in one loop, instead of the many loops that I have (suggestively) used. One could also write a much more revealing computation of the final polynomial.%
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 5.4 Problems with polynomials}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Problems with polynomials}{}{Problems with polynomials}{}{}{g:subsection:idm45326190202304}
+Polynomial interpolation has a serious drawback in many cases: high degree polynomials can behave wildly between points in a way that doesn't reflect the expected behavior of the underlying function. To see this, consider the function%
+\begin{equation*}
+f(x) = \frac{1}{x^2 + 25}
+\end{equation*}
+which is a typical example of a rational function with no vertical asymptotes. \begin{sageinput}
+X = -1:.01:1;
+f = @(x) 1./(1 + 25*x.^2);
+plot(X, f(X))
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+\end{sageinput}
+%
+\par
+We will sample this function and then attempt to reconstruct it using polynomial interpolation. Suppose that we choose six equally spaced points from \(f\). \begin{sageinput}
+X = -1:.01:1;
+f = @(x) 1./(1 + 25*x.^2);
+
+P = [-1, -.6, -.2, .2, .6, 1];
+
+
+plot(X, f(X))
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+hold on
+scatter(P, f(P), 400)
+\end{sageinput}
+ Now suppose we find the unique polynomial that goes through these six points. (The code here uses the command polyfit.) \begin{sageinput}
+X = -1:.01:1;
+f = @(x) 1./(1 + 25*x.^2);
+
+P = [-1, -.6, -.2, .2, .6, 1];
+
+
+scatter(P, f(P), 400)
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+hold on
+
+plot(X, f(X))
+p = polyfit(P, f(P), 5)
+plot(X, polyval(p,X))
+\end{sageinput}
+ Notice that the interpolating polynomial doesn't appear to behave like the original function at all, oscillating through the end points. Perhaps we can fix the problem by choosing more points.%
+\begin{sageinput}
+X = -1:.01:1;
+f = @(x) 1./(1 + 25*x.^2);
+
+Q = -1:.2:1;
+
+scatter(Q, f(Q), 400)
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+hold on
+
+plot(X, f(X))
+q = polyfit(Q, f(Q), 11)
+plot(X, polyval(q,X))
+\end{sageinput}
+Unfortunately, this seems to have exacerbated the problem. The polynomial starts to oscillate wildly and to grow sharply between nodes near the outside of the domain.  It turns out that this behavior is common in high degree polynomial interpolation of equally-spaced points. Replacing a complicated function with a polynomial interpolant isn't going to be as easy as sampling equidistant points, and we should expect that similar bad behavior is going to crop up in data sets with many points if we use a unique polynomial fit.%
+\par
+There are many approaches to dealing with this undesirable behavior. In the next section, we'll talk about building smooth curves that pass through all of the points by considering them three at a time. In this section, we should at least be aware of better sampling methods that underlie much of modern approximation theory. Note that this is only a flavor - approximation theory is a huge field with myriad applications and techniques.%
+\par
+One way that we can try to make a better approximating polynomial for a function is to sample more points near the edge - this should allow us to control the bad behavior that seems to occur there. But how should we pick the points? For various reasons, it turns out that a natural choice for sampling nodes (that is, the \(x\)-values that we'll use to sample the function we're trying to approximate) is the so-called \terminology{Chebyshev nodes}, which correspond to the \(x\) coordinates of equally spaced points on a unit circle.%
+\begin{sageinput}
+n = 11;
+nodes = cos(pi/n*((1:n)-.5));
+X = -1:.01:1;
+f = @(x) sqrt(1 - x.^2)
+scatter(nodes, zeros(length(nodes),1), 400)
+hold on
+scatter(nodes, f(nodes), 400)
+plot(X, f(X))
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+\end{sageinput}
+The following code will compare high degree approximations of \(f\) using equally spaced and Chebyshev nodes%
+\begin{sageinput}
+X = -1:.01:1;
+f = @(x) 1./(1 + 25*x.^2);
+
+n = 11;
+nodes = cos(pi/n*((1:n)-.5));
+m = 21;
+nodes2 = cos(pi/m*((1:m)-.5));
+
+
+Q = -1:.2:1;
+QQ = -1:.1:1;
+
+l = polyfit(Q, f(Q), length(Q)-1);
+p = polyfit(nodes, f(nodes), n-1);
+
+ll = polyfit(QQ, f(QQ), length(QQ)-1);
+pp = polyfit(nodes2, f(nodes2), m-1);
+
+subplot(2, 2, 1)
+scatter(Q, f(Q), 400)
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+axis([-1 1 -1 1])
+title("Poly. intepolation on equidistant nodes, n = 11")
+hold on
+plot(X, f(X))
+plot(X, polyval(l,X))
+hold off
+subplot(2, 2, 2)
+scatter(nodes, f(nodes), 400)
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+axis([-1 1 -1 1])
+hold on
+plot(X, f(X))
+plot(X, polyval(p,X))
+title("Poly. interpolation on Chebyshev nodes, n = 11")
+subplot(2, 2, 3)
+scatter(QQ, f(QQ), 400)
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+title("Poly. intepolation on equidistant nodes, n = 21")
+axis([-1 1 -1 1])
+hold on
+plot(X, f(X))
+plot(X, polyval(ll,X))
+hold off
+subplot(2, 2, 4)
+scatter(nodes2, f(nodes2), 400)
+set(gca,'xaxislocation','origin')
+set(gca, 'yaxislocation','origin')
+axis([-1 1 -1 1])
+hold on
+plot(X, f(X))
+plot(X, polyval(pp,X))
+title("Poly. interpolation on Chebyshev nodes, n = 21")
+hold off
+\end{sageinput}
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 5.5 Spline interpolation}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Spline interpolation}{}{Spline interpolation}{}{}{g:subsection:idm45326190179232}
+Instead of trying to force a high degree polynomial to fit through many points, if we want an interpolating function that has smooth properties, we could consider a piecewise approach instead. That is, instead of a single formula that interpolates all of the points, we'll construct small segments that join together into a smooth(ish) function that changes definition as we move down the set of data points. Piecewise interpolation is usually done in early math classes with a ruler connecting points with lines - a more sophisticated name for this is linear interpolation. Because a given line only has two parameters (slope and intercept), the best we can expect is to meet two conditions - that is, the line passes through each of two points.%
+\par
+This is reflective of a general principle in mathematics that gets used but not often mentioned throughout college level courses - to meet one condition, an equation or set of equations needs one free parameter. In this case, since we're working with simultaneous equations, essentially we're using the invertible matrix theorem from linear algebra to guarantee a unique solutions.%
+\par
+What we're going to present is a method that breaks a set of data points into consecutive groups of two points. We'll need an interpolating function piece with at least two free parameters that can be chosen. Since we want the curve to be differentiable, we'll need each segment to meet the next with the same slope - that is, we need the first derivatives to match every time we change segments. With \(n+1\) points, that means we have \(n-1\) points that are connections (that is, not the endpoints of the data set). Since we're dictating a condition on derivatives, we know that we'll need at least three parameters. In order to make the changes between the segments curve naturally (which is important in many physical applications), we also want the second derivatives to match. (This is essentially dictating that the curvatures of the segments match, or more geometrically that there is an osculating circle where two pieces meet.) So each segment is actually dealing with four restrictions, and thus we need a function with four free parameters - a cubic polynomial fits the bill!%
+\par
+Where are we at? Suppose that we have \(n + 1\) points to interpolate. Then there are \(n\) segments, which requires \(n\) functions. Each segment has an associated cubic polynomial with 4 parameters, so there are \(4n\) parameters available. How many restrictions are there?%
+\begin{itemize}[label=\textbullet]
+\item{}Two points to interpolate for each segment, so \(2n\) conditions.%
+\item{}\(n-1\) points at which derivatives match.%
+\item{}\(n - 1\) points at which second derivatives match.%
+\end{itemize}
+%
+\par
+So far, we have \(4n\) parameters and \(2n + n - 1 + n - 1 = 4n -2\) conditions. Where are the last two conditions going to come from? The endpoints! Since we have two available conditions to impose, we'll get a nice square system if we impose them on the endpoints. There are a couple of common choices for how to do this. The first is called a \terminology{natural spline}, which is the case where the function has no curvature at the endpoints - that is, it's locally linear:%
+\begin{equation*}
+f''(x_1) = f''(x_{n+1}) = 0.
+\end{equation*}
+In some physical applications, the designer of the spline might want to have prescribed slopes at the endpoints instead. That is,%
+\begin{equation*}
+f'(x_1) = c_1, \hspace{.5in} f'(x_{n+1}) = c_2.
+\end{equation*}
+%
+\par
+Let's take a look at a small example to see how spline fitting works in practice. Suppose we're given three points, \((1,2), (2,4), (3,1)\). Note that these are arranged in order of ascending \(x\) values. For each pair of points, we need a cubic spline - that is functions%
+\begin{align*}
+f_1(x) \amp= a_1 x^3 + b_1 x^2 + c_1 x + d_1,\\
+f_2(x) \amp= a_2 x^3 + b_2 x^2 + c_2 x + d_2.
+\end{align*}
+We'll organize the equations as above. First, we have the interpolating conditions (that is, the functions need to pass through the points.)%
+\begin{align*}
+a_1  + b_1 + c_1 + d_1 \amp= 2\\
+8 a_1  + 4 b_1 + 2 c_1 + d_1 \amp= 4\\
+8 a_2  + 4 b_2 + 2 c_2 + d_2 \amp= 4\\
+27 a_2  + 9 b_2 + 3 c_2 + d_2 \amp= 1
+\end{align*}
+Second, we want first derivatives to match at the transition point at \((2,4)\).%
+\begin{equation*}
+12 a_1 + 4 b_1 + c_1 = 12 a_2 + 4 b_2 + c_2
+\end{equation*}
+Third, we want second derivatives to match at \((2,4)\).%
+\begin{equation*}
+12 a_1 + 2 b_1 = 12 a_2 + 2 b_2
+\end{equation*}
+Finally, we impose the endpoint condition for a free spline:%
+\begin{gather*}
+6 a_1 + b_1 = 0\\
+18 a_2 + 2 b_2 = 0
+\end{gather*}
+%
+\par
+There are various algebraic approaches to solving splines that we will not consider here. Instead, we will try to organize these equations into a matrix form.%
+\begin{equation*}
+\bbm 1 \amp 1 \amp 1 \amp 1 \amp 0 \amp 0 \amp 0 \amp 0  \\
+8 \amp 4 \amp 2 \amp 1 \amp 0 \amp 0\amp 0\amp 0 \\
+0 \amp 0\amp 0\amp 0\amp 8 \amp 4\amp 2\amp 1 \\
+0 \amp 0 \amp 0 \amp 0 \amp 27 \amp 9 \amp 3 \amp 1 \\
+12 \amp 4 \amp 1 \amp 0 \amp -12 \amp -4 \amp -1 \amp 0 \\
+12 \amp 2 \amp 0 \amp 0 \amp -12 \amp -2 \amp 0 \amp 0 \\
+6 \amp 2 \amp 0 \amp 0 \amp 0 \amp 0 \amp 0 \amp 0 \\
+0 \amp 0 \amp 0 \amp 0 \amp 18 \amp 2 \amp 0 \amp 0
+\ebm \bbm a_1 \\ b_1 \\ c_1 \\ d_1 \\ a_2 \\ b_2 \\ c_2 \\ d_2 \ebm = \bbm 2 \\ 4 \\ 4 \\ 1 \\ 0 \\ 0 \\ 0 \\ 0 \ebm
+\end{equation*}
+%
+\par
+At this point, we can solve the system using octave and row reduction. As long as there are no three consecutive points that are collinear, this system will have a unique solution (that is, the coefficient matrix is invertible). \leavevmode%
+\begin{sageinput}
+system = [1,1,1,1,0,0,0,0,2;8,4,2,1,0,0,0,0,4;0,0,0,0,8,4,2,1,4;0,0,0,0,27,9,3,1,1;12,4,1,0,-12,-4,-1,0,0;12,2,0,0,-12,-2,0,0,0;6,2,0,0,0,0,0,0,0;0,0,0,0,6,2,0,0,0];
+coeefs = rref(system)(:,9) #this row reduces the system and takes the answer column, which is column 9
+f1 = coeefs(1:4)'; #these take the coefficients associated with the first and second spline
+f2 = coeefs(5:8)'; #and put the polynomials in vector form
+X1 = 1:.01:2;
+X2 = 2:.01:3;
+Y1 = polyval(f1, X1);#evaluates each spline segment on the correct domain
+Y2 = polyval(f2, X2);
+plot(X1, Y1, 'r', X2, Y2, 'b')
+hold on
+scatter([1,2,3],[2,4,1],400) #plots the original points.
+\end{sageinput}
+%
+\par
+Next is a quick code demonstration of the addition of one more points, say at \((4,10)\). You should look for the pattern in the equation sets, as this should give a clue about how to implement a general routine. By way of comparison, we will also plot the unique cubic that passes through the four points. You should note that the purple graph makes wider oscillations between the points than the multi-colored spline fit. \begin{sageinput}
+system = [1,1,1,1,0,0,0,0,0,0,0,0,2;
+           8,4,2,1,0,0,0,0,0,0,0,0,4;
+           0,0,0,0,8,4,2,1,0,0,0,0,4;
+           0,0,0,0,27,9,3,1,0,0,0,0,1;
+           0,0,0,0,0,0,0,0,27,9,3,1,1;
+           0,0,0,0,0,0,0,0,64, 16, 4, 1, 10;
+           12,4,1,0,-12,-4,-1,0,0,0,0,0,0;
+           0,0,0,0,27,6,1,0,-27,-6,-1,0,0;
+           12,2,0,0,-12,-2,0,0,0,0,0,0,0;
+           0,0,0,0,18, 2, 0,0, -18, -2, 0,0,0;
+           6,2,0,0,0,0,0,0,0,0,0,0,0;
+           0,0,0,0,0,0,0,0,24,2,0,0,0];
+coeefs = rref(system)(:,13) #this row reduces the system and takes the answer column, which is column 9
+f1 = coeefs(1:4)'; #these take the coefficients associated with the first and second spline
+f2 = coeefs(5:8)'; #and put the polynomials in vector form
+f3 = coeefs(9:12)';
+X1 = 1:.01:2;
+X2 = 2:.01:3;
+X3 = 3:.01:4;
+Y1 = polyval(f1, X1);#evaluates each spline segment on the correct domain
+Y2 = polyval(f2, X2);
+Y3 = polyval(f3,X3);
+
+X = 1:.01:4;
+f = polyfit([1,2,3,4],[2,4,1,10],3);
+Y = polyval(f,X);
+
+plot(X1, Y1, X2, Y2, X3, Y3, X, Y)
+hold on
+scatter([1,2,3,4],[2,4,1,10],400) #plots the original points.
+\end{sageinput}
+%
+\end{subsectionptx}
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 6 Numerical Integration}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Numerical Integration}{}{Numerical Integration}{}{}{g:section:idm45326190148096}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 6.1 Integration review}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Integration review}{}{Integration review}{}{}{g:subsection:idm45326190147424}
+Before we begin looking at numerical calculus, it is useful to recall some of the basic notions. In particular, we'll be reexamining the introduction to calculus most students see in the second semester of the course.%
+\par
+Here is a question - what is \(\int_0^1 x^2 \, dx\)? Most people that have some experience with calculus will perform the following operation:%
+\begin{equation*}
+\int_0^1 x^2 \, dx = \frac{1}{3} x^3 |_0^1 = \frac{1}{3}.
+\end{equation*}
+However, this computation both misses the point of what the integral represents and uses a technique that will largely be unavailable in practice.%
+\par
+As to the first point, the \terminology{definite integral} represents a measurement of the \terminology{signed area} between a graph and the \(x\)-axis. We say signed area because area above the axis and area below the axis are considered to have opposite signs. Again, a definite integral is an area. Below, we plot the region corresponding to \(\int_0^1 x^2 \, dx\).%
+\begin{sageinput}
+X = 0:.01:1;
+X1 = -1:.01:2;
+Y = X.^2;
+Y1 = X1.^2;
+area(X, Y, 'FaceColor', "red")
+hold on
+plot(X1, Y1)
+\end{sageinput}
+Now, the area of this region is certainly \(\frac{1}{3}\). To arrive at that conclusion, we used one of the most important theorems of continuous mathematics, the \terminology{fundamental theorem of calculus}, which gives a connection between definite integrals, that is the signed area under a curve, with indefinite integrals, that is antiderivatives.%
+\begin{theorem}{Fundamental theorem of calculus, part II.}{}{g:theorem:idm45326190137920}%
+Suppose that \(f\) is a function on an interval \([a,b]\) with an antiderivative \(F\) such that \(F'(x) = f(x)\) for all \(x \in [a,b]\). If \(f\) is Riemann integrable, then%
+\begin{equation*}
+\int_a^b f(x)\,dx = F(b) - F(a).
+\end{equation*}
+%
+\end{theorem}
+One salient assumption present in the fundamental theorem of calculus is the existence of an antiderivative. Unfortunately, there are many functions that do not possess a (closed form) antiderivative, including some of the most useful functions in practice. For example, the \terminology{normal distribution} from statistics is essentially defined by the function \(f(x) = e^{-x^2}\). A typical problem might wish to compute an integral like \(\int_{-1}^{2} e^{-x^2} \, dx\), which is a simple area contained under a very nice curve, as shown below.%
+\begin{sageinput}
+X = -4:.01:4;
+XX = -1:.01:2;
+plot(X, exp(-X.^2))
+hold on
+area(XX, exp(-XX.^2))
+\end{sageinput}
+However, the fundamental theorem cannot be used to compute the area indicated by the definite integral because the function \(e^{-x^2}\) has no closed form antiderivative. So we need to approach the area finding problem with techniques related to the definition of definite integrals, which consist of breaking the area under functions up into approximating rectangles and then making the rectangles uniformly smaller in width.%
+\begin{sageinput}
+X = 0:.01:1;
+Y = X.^2;
+rectangle("Position", [0,0, .5, .25], "facecolor","red", "facealpha",.1)
+hold on
+rectangle("Position", [.5,0, .5, 1], "facecolor","red", "facealpha",.1)
+plot(X,Y)
+area(X, Y, "facecolor", [0 0.6 .9])
+plot(.5*ones(11,1), 0:.1:1, "k")
+\end{sageinput}
+The \terminology{Riemann sum} that approximates the signed area under \(f\) on \([a,b]\) is given by the following formula. Let \(n\) be the number of approximating rectangles, and the width of each rectangle be \(\Delta x = \frac{b - a}{n}.\) Then we can define a partition of \([a,b]\) by \(x_0 = a\), \(x_i = x_0 + i \Delta x\), and \(x_n = b\). On each subinterval \([x_i, x_{i+1}]\), we choose a point \(x_i^*\). Then the area under \(f\) can be approximated by the expression%
+\begin{equation*}
+\int_a^b f(x) \, dx \approx \sum_{i = 0}^{n-1} f(x_i^*) \Delta x.
+\end{equation*}
+Those functions for which \(\lim_{n \to \infty} \sum_{i = 0}^{n-1} f(x_i^*) \Delta x\) converges are called \terminology{Riemann integrable}.%
+\par
+Note, it need not be the case that the rectangles have equal width, which is an assumption made here to simplify the presentation.%
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 6.2 The trapezoid rule}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{The trapezoid rule}{}{The trapezoid rule}{}{}{g:subsection:idm45326190119008}
+An immediate observation of a Riemann sum approximation for a definite integral might lead you to conclude that other shapes might provide more accurate approximations than rectangles. An easy shape to work with in this context is the trapezoid - it has a simple formula for area and allows us to avoid having to choose random points inside the subintervals. Compare the following pictures.%
+\begin{sageinput}
+f = @(x) x.^2;
+X = 0:.01:6;
+Xi = linspace(0,6,4);
+Y = X.^2;
+for i = 1:(length(Xi)-1)
+    rectangle("Position", [Xi(i),0, Xi(i+1) - Xi(i), f(Xi(i+1))], "facecolor",[0, .8, .8])
+endfor
+hold on
+area(X,Y, "facecolor", [0, .6, .9])
+for i = 1:length(Xi)
+    plot([Xi(i), Xi(i)], [0, f(Xi(i))], 'k')
+endfor
+\end{sageinput}
+\begin{sageinput}
+f = @(x) x.^2
+X = 0:.01:6;
+Xi = linspace(0,6,4);
+Y = f(X);
+Yi = interp1(X, Y, Xi);
+plot(X,Y)
+hold on
+area(Xi, Yi, "facecolor", [0 .8 .8])
+area(X,Y, "facecolor", [0, .6, .9])
+for i = 1:length(Xi)
+    plot([Xi(i), Xi(i)], [0, f(Xi(i))], 'k')
+endfor
+\end{sageinput}
+While the example might seem to be artificially chosen to make the trapezoids significantly more accurate than the rectangles, in fact, the vast majority of graphs of interest will look like the pictures above for small enough subintervals. This motivates the development of the \terminology{trapezoid rule} for approximating a definite integral.%
+\par
+Recall that the area of a trapezoid with height \(h\) and base widths \(b_1, b_2\) is given by the formula%
+\begin{equation*}
+A = \frac{b_1 + b_2}{2} h.
+\end{equation*}
+Suppose that \(f\) is a function defined on the interval \(I = [a,b]\) and let \(x_0, \ldots, x_n\) be a uniform partition of \(I\) with subinterval width \(\Delta x = \frac{b -a}{n}\). Consider the subinterval \([x_i, x_{i+1}]\).  Then%
+\begin{equation*}
+\int_{x_i}^{x_{i+1}} f(x) \, dx \approx \frac{f(x_i) + f(x_{i+1})}{2} \Delta x.
+\end{equation*}
+Thus,%
+\begin{align*}
+\int_a^b f(x)\, dx \amp = \sum_i \int_{x_i}^{x_{i+1}} f(x) \, dx \\
+\amp\approx \sum_i \frac{f(x_i) + f(x_{i+1})}{2} \Delta x \\
+\amp = \frac{\Delta x}{2} \left( f(x_0) + 2\sum_{i = 2}^{n-1} f(x_i) + f(x_n)\right)\\
+\amp = \frac{b - a}{2n}\left( f(x_0) + 2\sum_{i = 2}^{n-1} f(x_i) + f(x_n)\right)
+\end{align*}
+and we define the \(n\) segement trapezoid approximation to the area under \(f\) by%
+\begin{equation*}
+T_n(f, [a,b]) = \frac{b - a}{2n}\left( f(x_0) + 2\sum_{i = 2}^{n-1} f(x_i) + f(x_n)\right).
+\end{equation*}
+%
+\par
+Let's use the trapezoid rule to approximate the integral indicated above - \(\int_0^6 x^2 \, dx\). We'll use three trapezoids as in the example picture. \begin{sageinput}
+a = 0;
+b = 6;
+n = 3;
+X = linspace(a,b,n+1);
+f = @(x) x.^2;
+Y = f(X);
+approxArea = ((b-a)/(2*n))*(Y(1) + 2*Y(2) + 2*Y(3) + Y(4))
+F = @(x) 1/3*x.^3;
+trueArea = F(b) - F(a)
+error = (approxArea - trueArea) / trueArea
+\end{sageinput}
+ We have included the true result, since we can use the fundamental theorem in this case. The result of the approximation with just 3 trapezoids is a relative error of just 5 percent.%
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 6.3 A special case of Richardson's extrapolation (optional)}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{A special case of Richardson's extrapolation (optional)}{}{A special case of Richardson's extrapolation (optional)}{}{}{g:subsection:idm45326190101520}
+This section will have a different flavor than most of the rest of the notes. Here, we'll see the ``analysis'' part of numerical analysis - that is, we're going to use theoretical ideas and estimates to improve the approximation given in the trapezoid formula. The idea is that the application of mathematical reasoning can lead to significant improvements in our naive formulations (a theme common in approximation theory).%
+\par
+We'll first recall the \terminology{triangle inequality}, which says that \(\abs{a + b} \leq \abs{a} + \abs{b}\). In fact, we can apply this to a sum of any finite length, by induction:%
+\begin{equation*}
+\abs{\sum_i a_i} \leq \sum_i \abs{a_i}.
+\end{equation*}
+Now, Riemann sums are finite sums, and so the triangle inequality applies.%
+\begin{equation*}
+\abs{\sum_{i = 0}^{n-1} f(x_i^*) \Delta x} \leq \sum_{i = 0}^{n-1} \abs{f(x_i^*)} \Delta x,
+\end{equation*}
+and when the limit of the Riemann sum exists as the number of rectangles tends to infinity (that is, whenever \(f\) is Riemann integrable), we get the integral version of the triangle inequality:%
+\begin{equation*}
+\abs{\int_a^b f(x) \, dx} \leq \int_a^b \abs{f(x)} \, dx.
+\end{equation*}
+This is a theorem in real analysis and will be used here without a formal proof beyond the sketch above.%
+\par
+Let \(I = \int_a^b f(x) \, dx\). Let \(T_n\) represent the \(n\) segment trapezoid approximation of \(I\). Let \(E_T\) be the error in the approximation - that is%
+\begin{equation*}
+E_T = I - T_n.
+\end{equation*}
+Our first goal is to measure how large the error \(E_T\) is expected to be in terms of the number of trapezoids \(n\).%
+\begin{theorem}{}{}{g:theorem:idm45326190091728}%
+Let \(f\) be Riemann integrable on \([a,b]\). Then%
+\begin{equation*}
+\abs{E_T} \sim \frac{1}{n^2}.
+\end{equation*}
+%
+\end{theorem}
+\begin{proofptx}{}{g:proof:idm45326190089680}
+Let \(\Delta x = x_{i+1} - x_i = \frac{b -a}{n}\). We first analyze the error in the trapezoid approximation on a single interval. A \(u\)-substitution gives%
+\begin{equation*}
+\int_{x_i}^{x_{i+1}} f(x) \, dx = \int_0^{\Delta x} f(t + x_i) \, dt.
+\end{equation*}
+Using integration by parts twice, we get \begin{tableptx}{\textbf{}}{g:table:idm45326190087536}{}%
+\centering
+\begin{tabular}{ll}
+\multicolumn{1}{lB}{\(u\)}&\(v\)\tabularnewline\hrulemedium
+\multicolumn{1}{lB}{\(f(t + x_i)\)}&\(1\)\tabularnewline[0pt]
+\multicolumn{1}{lB}{\(f'(t + x_i)\)}&\(t + A\)\tabularnewline[0pt]
+\multicolumn{1}{lB}{\(f''(t + x_i)\)}&\(\frac{(t + A)^2}{2} + B\)
+\end{tabular}
+\end{tableptx}%
+ where we forgo the usual choice of 0 as the integration constant (hence the \(A, B\) in the table), which gives the formula%
+\begin{align*}
+\amp\int_0^{\Delta x} f(t + x_i)\, dx \\
+\amp = \left[(t+A)f(t+x_i)\right]_0^{\Delta x} \\
+\amp - \left[\left(\frac{(t + A)^2}{2} + B\right)f'(t + x_i)\right]_0^{\Delta x}\\
+\amp+ \int_0^{\Delta x} \left(\frac{(t + A)^2}{2} + B\right) f''(t + x_i)\, dx.
+\end{align*}
+%
+\par
+From this point, the idea is to choose values of \(A, B\) that force each term to play a certain role, with the goal of concentrating the error of the approximation in the integral term. First, we choose \(A\) so that the first term above is equal to the trapezoid area - that is, we want%
+\begin{equation*}
+(\Delta x + A) f(\Delta x + x_i) - Af(x_i) = \frac{f(x_{i+1}) + f(x_i)}{2} \Delta x.
+\end{equation*}
+Algebra shows that \(A = \frac{-\Delta x}{2}\) solves the equation.%
+\par
+Now, we want to choose \(B\) so that the second term is zero. That is, we want%
+\begin{align*}
+\amp \left[\left(\frac{(t + A)^2}{2} + B\right)f'(t + x_i)\right]_0^{\Delta x} \\
+\amp = \left(\frac{(\Delta x)^2}{8} + B\right)\left[f'(x_{i+1}) - f'(x_i)\right]= 0.
+\end{align*}
+This obviously holds when \(B = \frac{-(\Delta x)^2}{8}\).%
+\par
+We conclude that the error on the \(i\)th segment, denoted \(E_T(i)\) is given by%
+\begin{equation*}
+E_T(i) = \int_0^{\Delta x} \left(\frac{(t - \frac{\Delta x}{2})^2}{2} - \frac{(\Delta x)^2}{8}\right) f''(t + x_i) \, dt
+\end{equation*}
+%
+\par
+Now, we can get the total error in the trapezoid approximation by adding each of the individual errors.%
+\begin{align*}
+E_T \amp= \sum E_T(i)\\
+\amp = \sum_{i=0}^{n-1} \int_0^{\Delta x} \left(\frac{(t - \frac{\Delta x}{2})^2}{2} - \frac{(\Delta x)^2}{8}\right) f''(t + x_i) \, dt \\
+\amp =\int_0^{\Delta x} \left(\frac{(t - \frac{\Delta x}{2})^2}{2} - \frac{(\Delta x)^2}{8}\right) \left(\sum_{i = 0}^{n-1} f''(t + x_i)\right) \, dt
+\end{align*}
+%
+\par
+For a well-behaved function \(f\) (the precise assumption is that \(f\) is \(C^2\) on \([a,b]\)),the second derivative is bounded on \([a,b]\) - that is, we assume that there exists a constant \(K\) so that \(\abs{f''(x)} \leq K\) for all \(x \in [a,b]\). Then, using the triangle inequality, we derive the approximation%
+\begin{align*}
+\abs{E_T} \amp= \abs{\int_0^{\Delta x} \left(\frac{(t - \frac{\Delta x}{2})^2}{2} - \frac{(\Delta x)^2}{8}\right) \left(\sum_{i = 0}^{n-1} f''(t + x_i)\right)\, dt}\\
+\amp \leq \int_0^{\Delta x} \abs{\left(\frac{(t - \frac{\Delta x}{2})^2}{2} - \frac{(\Delta x)^2}{8}\right)} \abs{\left(\sum_{i = 0}^{n-1} f''(t + x_i)\right)}\, dt\\
+\amp\leq \int_0^{\Delta x} \abs{\left(\frac{(t - \frac{\Delta x}{2})^2}{2} - \frac{(\Delta x)^2}{8}\right)} \abs{\left(\sum_{i = 0}^{n-1} K \right)}\, dt\\
+\amp \leq nK \int_0^{\Delta x} \abs{\left(\frac{(t - \frac{\Delta x}{2})^2}{2} - \frac{(\Delta x)^2}{8}\right)} \, dt 
+\end{align*}
+%
+\par
+The function \(g(t) =\left(\frac{(t - \frac{\Delta x}{2})^2}{2} - \frac{(\Delta x)^2}{8}\right)\) is a parabola that opens upwards with zeros at \(t = 0\) and \(t = h\), and so%
+\begin{align*}
+\amp \int_0^{\Delta x} \abs{\left(\frac{(t - \frac{\Delta x}{2})^2}{2} - \frac{(\Delta x)^2}{8}\right)} \, dt\\
+\amp \int_0^{\Delta x} \frac{(\Delta x)^2}{8} - \left(\frac{(t - \frac{\Delta x}{2})^2}{2} \right) \, dt\\
+\amp = \left[\frac{(\Delta x)^2}{8}t - \frac{(t - \frac{\Delta x}{2})^3}{6}\right]_0^{\Delta x} \\
+\amp= \frac{(\Delta x)^3}{12}
+\end{align*}
+%
+\par
+Putting this together with the previous computation, we get%
+\begin{equation*}
+\abs{E_T} \leq nK\frac{(\Delta x)^3}{12} = nK \frac{(b-a)^3}{12 n^3} = \frac{K(b-a)^3}{12 n^2},
+\end{equation*}
+where \(K\) was an absolute bound for \(f''\) on \([a,b]\), and in the worst case, we get \(\abs{E_T} \leq \frac{K(b-a)^3}{12} \frac{1}{n^2} = \frac{C}{n^2}\) - that is, the error is proportional to \(\frac{1}{n^2}\), which establishes the claim.%
+\end{proofptx}
+Under the assumption of worst case error and a reasonable function \(f\), we conclude that the total trapezoidal error \(E_T\) is proportional to \(\frac{1}{n^2}\), or in other words that%
+\begin{equation*}
+E_T = \frac{C}{n^2}.
+\end{equation*}
+So how can we use this to build a better process? Note that for \(n\) segments, we can write%
+\begin{equation*}
+I = T_n + \frac{C}{n^2}
+\end{equation*}
+and likewise for \(2n\) segments, we have%
+\begin{equation*}
+I = T_{2n} + \frac{C}{(2n)^2},
+\end{equation*}
+which is a system of simultaneous equations. We'll prepare to eliminate \(C\).%
+\begin{align*}
+I \amp = T_{n} + \frac{C}{n^2}\\
+I \amp = T_{2n} + \frac{C}{4n^2}\\
+\amp\\
+n^2 I \amp = n^2 T_n + C \\
+4n^2 I \amp= 4n^2 T_{2n} + C \\
+\amp \\
+3n^2 I \amp = 4n^2 T_{2n} - n^2 T_n\\
+\amp \\
+I \amp = T_{2n} + \frac{T_{2n} - T_n}{3}
+\end{align*}
+%
+\par
+Thus, we have what is known as a first order Richardson's extrapolation -%
+\begin{equation*}
+\int_a^b f(x) \, dx \approx T_{2n} + \frac{T_{2n} - T_n}{3}.
+\end{equation*}
+Let's see how it performs with our existing example.%
+\begin{sageinput}
+a = 0;
+b = 6;
+n = 3;
+X = linspace(a,b,n+1);
+f = @(x) x.^2;
+Y = f(X);
+T3 = ((b-a)/(2*n))*(Y(1) + 2*Y(2) + 2*Y(3) + Y(4))
+m = 6;
+XX = linspace(a, b, m+1);
+YY = f(XX);
+T6 = ((b-a)/(2*m))*(YY(1) + 2*(YY(2)+ YY(3) + YY(4) + YY(5) + YY(6)) + YY(7));
+R6 = T6 + (T6 - T3)/(3)
+F = @(x) 1/3*x.^3;
+trueArea = F(b) - F(a)
+errorT = (T6 - trueArea) / trueArea
+errorR = (R6 - trueArea) / trueArea
+\end{sageinput}
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 6.4 Simpson's 1\slash{}3 rule}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Simpson's 1\slash{}3 rule}{}{Simpson's 1\slash{}3 rule}{}{}{g:subsection:idm45326190034176}
+An alternative to using trapezoids is to use polynomials to interpolate sample points. It turns out that using quadratic polynomials on equally spaced interpolation points gives a very nice formula. We'll begin with a single segment and approximate \(\int_a^b f(x)\, dx\).%
+\par
+Recall that there is a unique parabola through any three points - we'll use the points \((a, f(a)), ((a+b)/2, f((a+b)/2), (b, f(b))\). We have several techniques available for finding such an interpolation - we'll derive ours using Newton polynomials. The Newton polynomial through our points is%
+\begin{equation*}
+f(x) = b_0 + b_1 (x - a) + b_2 (x -a) (x - (\frac{a+b}{2})),
+\end{equation*}
+where%
+\begin{equation*}
+b_0 = a, b_1 = \frac{f((a+b)/2) - f(a)}{(a + b)/2 - a}, b_2 = \frac{\frac{f(b) - f((a+b)/2)}{b - (a+b)/2} - \frac{f((a+b)/2) - f(a)}{(a+b)/2 - a}}{b - a}
+\end{equation*}
+%
+\end{subsectionptx}
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 7 Introduction to Fourier Analysis}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Introduction to Fourier Analysis}{}{Introduction to Fourier Analysis}{}{}{g:section:idm45326190030032}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 7.1 Review of linear algebra}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Review of linear algebra}{}{Review of linear algebra}{}{}{g:subsection:idm45326190029344}
+A \terminology{vector space} over a scalar field \(F\) is a collection of vectors together with operations that make it possible to do algebra on that collection. In particular, a set of vectors \(V\) is a vector space under the operations of addition and scalar multiplication if the following axioms are satisfied:%
+\begin{enumerate}
+\item{}associativity of addition: \(u, v, w \in V \Rightarrow u+(v+w) = (u+v)+w\)%
+\item{}commutativity of addition: \(u, v \in V \Rightarrow u + v = v + u\)%
+\item{}additive identity: there is an element \(0\), the zero vector, so that \(v \in V \Rightarrow v + 0 = 0 + v = 0\)%
+\item{}additive inverses: every vector \(v\) has an inverse \(-v\) \(\Rightarrow v + (-v) = 0\)%
+\item{}compatibility: \(\alpha , \beta \in F, u \in V \Rightarrow (\alpha\beta)u = \alpha(\beta u)\)%
+\item{}multiplicative identity: \(1 \in F, u \in V \Rightarrow 1u = u\)%
+\item{}distribution over vector addition: \(\alpha \in F, u,v \in V \Rightarrow \alpha(u+v) = \alpha u + \alpha v\)%
+\item{}distribution over field addition: \(\alpha, \beta \in F, u \in V \Rightarrow (\alpha + \beta) u = \alpha u + \beta u\)%
+\end{enumerate}
+The prototypical example of a vector space is \(n\)-dimensional \terminology{Euclidean space}, \(\R^n\), our usual notion of vectors. However, many other sets of objects constitute vector spaces with the appropriate operations - for example, \(C([0,1])\), the space of continuous functions on the interval \([0,1]\) is a vector space over \(\R\) under addition of functions. We are building to understanding spaces of functions.%
+\par
+Notice that the defintion of vector spaces doesn't include any way to multiply vectors. One notion of vector multiplication that you've likely seen before on \(\R^n\) is the \terminology{dot product} of vectors. Let \(v = (v_1, \ldots, v_n), u = (u_1, \ldots, u_n) \in \R^n\). Then%
+\begin{equation*}
+u \cdot v = \sum_{i=1}^n v_i u_i.
+\end{equation*}
+One of the most useful characteristics of the dot product on \(\R^n\) is that it allows a the definition of the angle between two vectors:%
+\begin{equation*}
+u \cdot v = \norm{u}\norm{v} \cos \theta
+\end{equation*}
+where \(\theta\) is the angle between \(u\) and \(v\). Notice that when the vectors are perpendicular, this implies that the dot product is 0. We can generalize this geometry to the setting of general vector spaces.%
+\par
+The dot product is an example of a more general kind of product called an \terminology{inner product} on a vector space. Let \(V\) be a vector space.%
+\end{subsectionptx}
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 8 Code examples}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Code examples}{}{Code examples}{}{}{g:section:idm45326190009616}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 8.1 Lab 1 - Introduction}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Lab 1 - Introduction}{}{Lab 1 - Introduction}{}{}{g:subsection:idm45326190008944}
+\begin{listingptx}{A first set of Octave\slash{}Matlab commands and examples}{g:listing:idm45326190008272}{}%
+\begin{program}{none}
+#Symbolic math in Octave/Matlab --
+#September 4, 2019
+#Numerical Analysis
+
+#to use symbolic math, we first need to load the symbolic package
+#using the command pkg load symbolic
+#once the package is installed and loaded, we can use the symbolic capabilities
+#installed in Octave
+
+syms x; #defines x as a symbolic variable
+fun = sin(x); #defines the variable fun as a symbolic object sin(x)
+
+#one useful command that works on symbolic objects is diff
+#which is Octave's built in command for differentiation.
+
+#diff(fun) takes the symbolic derivative of the symbolic function
+#sin(x).
+diff(fun);
+
+#this can be stored as another variable
+dfun = diff(fun);
+
+#note that this object cannot be evaluted. If we want to turn it
+#into a function, we can use the command function_handle.
+
+dfun = function_handle(dfun);
+
+dfun(pi/3) #evaluates the derivative at pi/3
+
+#dfun is now a function that can be evaluated on scalars or arrays.
+#it can also be plotted. the simplest possible plotting command is
+#ezplot, which takes care of a lot of the mechanics for you. ezplot
+#doesn't care if an expression is symbolic or a function
+ezplot(dfun)
+
+#if you want to plot multiple graphs on the same figure, you can use the
+# hold command to keep the figure in place before the next plot
+ezplot(fun)
+hold on;
+ezplot(dfun)
+hold off;
+
+#another useful mathematical command is factorial
+factorial(3)
+
+#putting this together, we might plot sin x against a Taylor
+#polynomial
+fun = sin(x);
+T = x - x.^3/factorial(3) + x.^5/factorial(5) - x.^7/factorial(7);
+ezplot(fun)
+hold on;
+ezplot(T)
+hold off;
+
+#we will look at more powerful visualizations in the next set of
+#notes. ezplot is fast, but very limited in what can be controlled.
+#we want to work numerically in general.
+\end{program}
+\tcblower
+\end{listingptx}%
+\begin{listingptx}{Loops and arrays}{g:listing:idm45326190000656}{}%
+\begin{program}{none}
+#Loops and arrays
+#Numerical Analysis
+#9/5/2019
+#Ryan Tully-Doyle
+
+#This set of examples will focus on loops and arrays, which are structures
+#that we will be using constantly.
+#A for loop runs over an index that goes through a prescribed set of numbers.
+#The formatting is slightly different than other languages, but powerful
+#in a mathematics context.
+
+#the following loop will run for values of i starting at 1 and ending at 10.
+#Each iteration will perform the same command.
+
+for i = 1:10
+  disp(i) #display the current value of i
+end
+
+#unlike other langauges, non-integer indicies can be used in octave/matlab.
+
+for i = 1:.1:10 #starts at 1, counts by .1 until reaching 10
+  disp(i) #display the current value of i
+end
+
+#it is useful to be able to exit a loop on a condition. in octave, this
+#command is called break
+
+for i=1:10
+  disp(i)
+  if i == 5
+    printf("You have to stop now!\n") #\n tells printf to break the line
+    break
+  end
+end
+
+#Next, we'll look at how octave deals with arrays, or lists of numbers.
+#Functions in octave by default can act on arrays or scalars without using loops
+
+X = 12:17;
+disp(X)
+
+#you might wish to know how long an array is
+
+length(X)
+
+#you might like to know the largest element in an array
+
+max(X)
+
+#If you want to refer to a specific element in an array, you can extract it
+#by invoking its index.
+
+X(3) #calls the third entry of X
+
+#You can take slices of arrays by using index ranges
+
+X(3:5) #calls the third through fifth entry of X
+
+#As octave is natively an array based language, vector operations are natural.
+#arrays of the appropriate sizes can be added, subtracted and multiplied by scalars.
+
+X=1:10;
+Y = 2:11;
+X + Y
+Y - Y
+2*X
+
+#since mathematical functions are natively array functions, you can apply a function
+#to an array.
+
+sin(X)
+
+#Every time you use an operation that might be ambiguous (things involving
+#multiplication and subtraction, add a . to the operation to specify that you
+#want the operation to be applied to each entry.
+
+X.^2
+\end{program}
+\tcblower
+\end{listingptx}%
+\end{subsectionptx}
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 9 Assignments}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Assignments}{}{Assignments}{}{}{g:section:idm45326189995280}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 9.1 Assignment Set 1}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Assignment Set 1}{}{Assignment Set 1}{}{}{g:subsection:idm45326189994608}
+\begin{program}{none}
+#Assignment set 1
+#Numerical Analysis
+#September 5, 2019
+
+##############################################
+#Exercise 1
+##############################################
+#Useful commands:
+#inline(), plot(), abs(), max()
+##############################################
+#A) Plot the functions
+#f(x) = sin(x)
+#T7(x) = x - x^3/3! + x^5/5! - x^7/7!
+#on the same set of axes.
+#
+#B) Then, given the domain you've chosen, calculate the maximum error.
+#
+#C)Finally, find the largest interval you can so that the maximum absolute true
+#error is less than 0.1.
+
+
+
+
+
+
+##############################################
+#Exercise 2
+##############################################
+#Useful commands:
+#sym, syms, diff, factorial, function_handle, plot
+##############################################
+#A) Write a loop that constructs the degree 7 Taylor expansion of
+#f(x) = sin(x)
+#about the point a = 0.
+#
+#B) Rewrite your loop so that it can find the Taylor series of degree n about
+#any center a for f(x) = sin(x).
+#
+#C) Rewrite your loop so that it can take an arbitrary function, produce the
+#degree n Taylor polynomial, and plot the function and the Taylor polynomial
+#near a.
+
+
+
+
+################################################
+#Exercise 3 (optional)
+################################################
+#Modify your answer to Exercise 2 so that given an error tolerance,
+#the program produces the largest domain near a for which the maximum error is
+#less than that tolerance. The output should be both the Taylor polynomial
+#and a domain where the approximation is good.
+\end{program}
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 9.2 Assignment Set 2}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Assignment Set 2}{}{Assignment Set 2}{}{}{g:subsection:idm45326189990464}
+\begin{program}{none}
+#Assignment set 2
+#Numerical Analysis
+#September 13, 2019
+
+##############################################
+#Exercise 1
+##############################################
+##############################################
+#useful commands:
+#for/endfor, while/endwhile, break, @, if/elseif/else/endif
+##############################################
+#A) Plot the function f(x) = x^6 - x - 1. Use your plot
+#to construct reasonable brackets for the roots of f.
+#
+#B) Use the bisection method to compute the roots of f. Set
+#your tolerance so that the approximation is good to six
+#significant figures.
+
+
+
+
+
+
+##############################################
+#Exercise 2
+##############################################
+#Useful commands:
+#function, return, for, while, break
+##############################################
+#Write a function that takes as input a function,
+#a bracket [a,b], a tolerance, and a maximum number
+#of iterations and produces an approximation to the
+#root in the interval [a,b]. You should consider
+#adding a logic check to make sure that a root really
+#is inside the bracket before executing.
+
+
+
+
+################################################
+#Exercise 3 (optional)
+################################################
+#Rewrite the function in Exercise 2 so that the user specifies
+#a desired number of significant figures instead of a tolerance.
+\end{program}
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 9.3 Assignment set 3}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Assignment set 3}{}{Assignment set 3}{}{}{g:subsection:idm45326189984544}
+\begin{program}{none}
+################################################
+#Exercise 1
+################################################
+#Find an approximation for the square root of 2 using
+#the method of false position.
+
+
+################################################
+#Exercise 2
+################################################
+#Find an approximation for the square root of 2 using
+#the Newton-Raphson method. Compare the number of steps and
+#the running time with Exercise 1.
+
+################################################
+#Exercise 3
+################################################
+#Find a function for which your bisection solver runs faster than
+#your false position solver. Explain what you think is happening.
+
+################################################
+#Exercise 4
+################################################
+#Find a function that gives you extremely slow convergence
+#in Newton's method. Explain what you think is happening.
+\end{program}
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 9.4 Assignment set 4}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Assignment set 4}{}{Assignment set 4}{}{}{g:subsection:idm45326189981504}
+\begin{program}{none}
+################################################
+#Exercise 1
+################################################
+#Use Newtons' method to find the roots of
+#f(x) = x^6 - 9x^3 + 2x - 10
+
+
+################################################
+#Exercise 2
+################################################
+#Repeat exercise 1 but using the secant method.
+
+################################################
+#Exercise 3
+################################################
+#Turn your secant and Newton's method routines into funtions.
+#You should build in failure checks (that is, the x's get huge
+#or the answers don't converge).
+
+
+################################################
+#Exercise 4
+################################################
+#Write a hybrid method that first tries the secant method to find a root
+#and then uses the bisection method if the secant method fails.
+\end{program}
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 9.5 Assignment set 5 (including challenge set)}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Assignment set 5 (including challenge set)}{}{Assignment set 5 (including challenge set)}{}{}{g:subsection:idm45326189977200}
+\begin{program}{none}
+################################################
+#Exercise 1 (challenge)
+################################################
+#Implement synthetic division. Input should be an array of
+#numbers representing the coefficients and one number representing
+#the point to be evaluated. Output should be the quotient and
+#the function value.
+
+
+################################################
+#Exercise 2 (challenge)
+################################################
+#Use the synthetic division method and Newton's method to factor the polynomial
+#f(x) = x^3 - 2x^2 - 5x + 6 completely.
+
+################################################
+#Exercise 3
+################################################
+#Find the Lagrange interpolating polynomial for the points
+#(2,8), (4,2), (8,0.125).
+#Plot the polynomial and the function f(x) = 2^(5-x),
+#which generates the points, on the same graph.
+#Is the Lagrange polynomial a good interpolant?
+#Is it a good extrapolant?
+
+
+################################################
+#Exercise 4
+################################################
+#Find the Lagrange interpolating function for the points
+#(-3, 4/10), (-2, 4/5), (-1, 2), (0,4), (1, 2), (2, 4/5), (3, 4/10)
+#These points come from the function f(x) = 1/(x^2 + 1).
+#What happens? Is the Lagrange polynomial a good approximation
+#for f? Why or why not?
+\end{program}
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 9.6 Assignment set 6 - Newton polynomials}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Assignment set 6 - Newton polynomials}{}{Assignment set 6 - Newton polynomials}{}{}{g:subsection:idm45326189973536}
+\begin{program}{none}
+################################################
+#Exercise 1
+################################################
+#Write a script that produces the coefficients to the Newton
+#polynomial corresponding to the points (1,1), (2,3), (5,10), (6, -2)
+#and then produces the polynomial. Verify that the polynomial is
+#correct by plotting the points and the polynomial on the same axes.
+
+
+################################################
+#Exercise 2
+################################################
+#Write a function that takes a matrix containing n
+#interpolation points and produces the corresponding Newton
+#polynomial.
+\end{program}
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 9.7 Assignment set 7 - Cubic splines}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Assignment set 7 - Cubic splines}{}{Assignment set 7 - Cubic splines}{}{}{g:subsection:idm45326189970992}
+\begin{program}{none}
+################################################3
+#Exercise 1
+################################################
+#Compute the cubic spline function that interpolates the points
+#(-1, 3), (0,1), (1, 3). Plot your function and the points.
+
+
+####################################################
+#Exercise 2
+###################################################
+#Extend your previous result by appending the point (2,0). Pay attention to the organization
+#of the matrix that you use to find the spline coefficients.
+
+
+#########################################################
+#Exercise 3
+##########################################################
+#Use array appending to build a script that will compute and plot the spline interpolation for
+#an arbitrary number of points.
+
+############################################################
+#Exercise 4
+###########################################################
+#Sample the function f(x) = 1/(x^2 + 16) with an odd number of equally spaced points.
+#Compare the graph of the original function, the graph of the unique polynomial interpolating function through
+#the sample points, and the spline interpolating function through the sample points.
+\end{program}
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 9.8 Assignment 8 - Numerical integration}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Assignment 8 - Numerical integration}{}{Assignment 8 - Numerical integration}{}{}{g:subsection:idm45326189967680}
+\begin{program}{none}
+#############################################################
+#Exercise 1
+################################################################
+#Write a function that implements the n segment trapezoid rule
+#for inputs consisting of an interval (a,b), a number of segments n, 
+#and an anonymous function f. Then wrap that function into a driver 
+#that takes the above inputs plus a tolerance and increases the 
+#number of segments until a given tolerance is met (in absolute 
+#relative error). Compute the area under the function e^(-x^2) from
+# x=0 to x=2.
+
+###############################################################
+#Exercise 2
+#################################################################
+#Write a function that implements Richardson's first order 
+#extrapolation of the trapezoid rule. Compare the speed of 
+#convergence with the trapezoid rule for the function x^2 sin(2x) 
+#on the interval [0,10].
+
+################################################################
+#Exercise 3
+##################################################################
+#Write a function that implements Simpson's 1/3 rule. Then create a
+#driver function that takes the same inputs plus a tolerance and 
+#increases the number of segments until the tolerance is met (in 
+#absolute relative error).
+\end{program}
+\end{subsectionptx}
+\end{sectionptx}
+\end{document}
