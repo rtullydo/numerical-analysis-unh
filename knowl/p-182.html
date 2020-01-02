@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-11-21T15:45:43-05:00    *-->
+<!--*    on 2019-12-13T10:04:42-05:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -13,7 +13,13 @@
 </head>
 <body>
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>Certain subgroups have an extraordinarily rigid structure, in that they are <em class="emphasis">generated</em> by a single element. We have seen this concept already in the form of the primitive roots of \(\F_p\text{.}\) In these <dfn class="terminology">cyclic subgroups</dfn>, each element can be expressed as a power (or multiple in the additive setting) of the generator.</p>
-<span class="incontext"><a href="section-subgroups.html#p-182">in-context</a></span>
+<p>Of course in practice, signals are thousands or millions of entries long. We don't want to have to compute millions of entries for the frequency domain function by hand. Instead, we use an implementation of the DFT called the <dfn class="terminology">fast Fourier transform</dfn>, an algorithm that is outside the scope of these notes. What you need to know about the command <code class="code-inline tex2jax_ignore">fft</code> is that it produces most of \(X\) for a signal \(x\) in the time domain. The part that it leaves out is the normalization \(1/N\) that accounts for the total energy contained in a signal (longer signals mean more energy).</p>
+<div class="displaymath">
+\begin{equation*}
+\mathrm{fft}(x) = \left[\sum_{n=0}^{N-1} x_k e^{-i2\pi\frac{k}{N}n}\right]_{k=0, \ldots, N-1}.
+\end{equation*}
+</div>
+<p>That is, the entries of <code class="code-inline tex2jax_ignore">fft(x)</code> are the unnormalized discrete Fourier coefficients \(N X_k\text{.}\)</p>
+<span class="incontext"><a href="section-7.html#p-182">in-context</a></span>
 </body>
 </html>

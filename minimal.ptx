@@ -1,0 +1,2726 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--********************************************************************
+    Notes from Numerical Analysis as taught at University of New Haven
+    Fall 2019.
+
+    There is work to be done - the interactive octave pieces aren't suitable
+    for rendering into pdf - the output is largely plots, and I haven't yet
+    figured out how to have plot type objects in output that renders only if the book
+    is processed into latex.
+
+    Ryan Tully-Doyle, Nov 2019
+                                            -->
+
+ <mathbook xmlns:xi="http://www.w3.org/2001/XInclude">
+
+<docinfo>
+    <macros>
+    \DeclareMathOperator{\RE}{Re}
+    \DeclareMathOperator{\IM}{Im}
+    \DeclareMathOperator{\ess}{ess}
+    \DeclareMathOperator{\intr}{int}
+    \DeclareMathOperator{\dist}{dist}
+    \DeclareMathOperator{\dom}{dom}
+    \DeclareMathOperator{\diag}{diag}
+    \DeclareMathOperator\re{\mathrm {Re~}}
+    \DeclareMathOperator\im{\mathrm {Im~}}
+    %\newcommand\half{\tfrac 12}
+    \newcommand\dd{\mathrm d}
+    \newcommand{\eps}{\varepsilon}
+    \newcommand{\To}{\longrightarrow}
+    \newcommand{\hilbert}{\mathcal{H}}
+    \newcommand{\s}{\mathcal{S}_2}
+    \newcommand{\A}{\mathcal{A}}
+    \newcommand\h{\mathcal{H}}
+    \newcommand{\J}{\mathcal{J}}
+    \newcommand{\M}{\mathcal{M}}
+    \newcommand{\F}{\mathbb{F}}
+    \newcommand{\N}{\mathcal{N}}
+    \newcommand{\T}{\mathbb{T}}
+    \newcommand{\W}{\mathcal{W}}
+    \newcommand{\X}{\mathcal{X}}
+    \newcommand{\D}{\mathbb{D}}
+    \newcommand{\C}{\mathbb{C}}
+    \newcommand{\BOP}{\mathbf{B}}
+    \newcommand{\Z}{\mathbb{Z}}
+    \newcommand{\BH}{\mathbf{B}(\mathcal{H})}
+    \newcommand{\KH}{\mathcal{K}(\mathcal{H})}
+    \newcommand{\pick}{\mathcal{P}_2}
+    \newcommand{\schur}{\mathcal{S}_2}
+    \newcommand{\R}{\mathbb{R}}
+    \newcommand{\Complex}{\mathbb{C}}
+    \newcommand{\Field}{\mathbb{F}}
+    \newcommand{\RPlus}{\Real^{+}}
+    \newcommand{\Polar}{\mathcal{P}_{\s}}
+    \newcommand{\Poly}{\mathcal{P}(E)}
+    \newcommand{\EssD}{\mathcal{D}}
+    \newcommand{\Lop}{\mathcal{L}}
+    \newcommand{\cc}[1]{\overline{#1}}
+    \newcommand{\abs}[1]{\left\vert#1\right\vert}
+    \newcommand{\set}[1]{\left\{#1\right\}}
+    \newcommand{\seq}[1]{\left\lt#1\right>}
+    \newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+    \newcommand{\essnorm}[1]{\norm{#1}_{\ess}}
+    \newcommand{\tr}{\operatorname{tr}}
+    \newcommand{\ran}[1]{\operatorname{ran}#1}
+    \newcommand{\nt}{\stackrel{\mathrm {nt}}{\to}}
+    \newcommand{\pnt}{\xrightarrow{pnt}}
+    \newcommand{\ip}[2]{\left\langle #1, #2 \right\rangle}
+    \newcommand{\ad}{^\ast}
+    \newcommand{\inv}{^{-1}}
+    \newcommand{\adinv}{^{\ast -1}}
+    \newcommand{\invad}{^{-1 \ast}}
+    \newcommand\Pick{\mathcal P}
+    \newcommand\Ha{\mathbb{H}}
+    \newcommand{\HH}{\Ha\times\Ha}
+    \newcommand\Htau{\mathbb{H}(\tau)}
+    \newcommand{\vp}{\varphi}
+    \newcommand{\ph}{\varphi}
+    \newcommand\al{\alpha}
+    \newcommand\ga{\gamma}
+    \newcommand\de{\delta}
+    \newcommand\ep{\varepsilon}
+    \newcommand\la{\lambda}
+    \newcommand\up{\upsilon}
+    \newcommand\si{\sigma}
+    \newcommand\beq{\begin{equation}}
+    \newcommand\ds{\displaystyle}
+    \newcommand\eeq{\end{equation}}
+    \newcommand\df{\stackrel{\rm def}{=}}
+    \newcommand\ii{\mathrm i}
+    \newcommand{\vectwo}[2]
+    {
+       \begin{pmatrix} #1 \\ #2 \end{pmatrix}
+    }
+    \newcommand{\vecthree}[3]
+    {
+       \begin{pmatrix} #1 \\ #2 \\ #3 \end{pmatrix}
+    }
+    \newcommand\blue{\color{blue}}
+    \newcommand\black{\color{black}}
+    \newcommand\red{\color{red}}
+    %\newcommand\red{\color{black}}
+    \newcommand\nn{\nonumber}
+    \newcommand\bbm{\begin{bmatrix}}
+    \newcommand\ebm{\end{bmatrix}}
+    \newcommand\bpm{\begin{pmatrix}}
+    \newcommand\epm{\end{pmatrix}}
+    \numberwithin{equation}{section}
+    \newcommand\nin{\noindent}
+    \newcommand{\nCr}[2]{\,_{#1}C_{#2}} % nCr
+    </macros>
+  </docinfo>
+
+    <article xml:id="minimal">
+        <title>Numerical Analysis</title>
+
+        <frontmatter>
+
+            <titlepage>
+                <author>
+                    <personname>Ryan Tully-Doyle</personname>
+                    <institution>University of New Haven</institution>
+                </author>
+                <date><today /></date>
+            </titlepage>
+
+            <abstract>
+                <p>The notes herein comprise a first course in numerical analysis, with a focus on implementation.</p>
+            </abstract>
+
+        </frontmatter>
+
+        <introduction>
+            <p>Numerical analysis is the area of mathematics concerned with computational solutions to <em>continuous</em> problems. That is, numerical analysis provides methods for approximation solutions to the problems encountered, for example, in calculus, differential equations, and linear algebra. We will be concerned with both methods and implemenation.</p>
+        </introduction>
+
+        <section xml:id="section-needs">
+            <title>What you need - Octave/Matlab</title>
+
+            <p>This course is going to heavily emphasize programming - making mathematics useful by application. The only way to learn the techniques we are going to study is by actually using them. While standard techniques are prebuilt into various mathematical languages, we are going to be constructing our own implementations to solve problems. </p>
+
+            <p>The language that we are going to use is called Octave. Octave is an open-source (that is, free) language designed to be compatible with Matlab (which is an industry standard tool, but alas, not free. Matlab is installed on lab computers all over campus and on classroom computers. All code should work in both languages). Octave is available on Mac, PC, and Linux based computers. You should download and install it (or pay for a student license for Matlab, which is $50) as soon as possible.</p>
+
+            <p>You can find a link to Octave here: <url>https://www.gnu.org/software/octave/</url>.</p>
+
+            <p>Alternatively, if you'd like to work in Matlab, you can find the student version here: <url>https://www.mathworks.com/store/link/products/student/new?s_tid=ac_buy_sv_cta</url>, with the relevant version being $49.99.</p>
+
+            <p>I will provide detailed help getting everything installed if you have trouble.</p>
+
+            <p>Addendum: You will need a current installation <url>https://www.python.org/downloads/</url>. Once it is installed, you can run the command <c>pip install sympy</c>, which will install all the symbolic support.</p>
+
+        </section>
+
+        <section xml:id="section-review">
+            <title>Motivation</title>
+            <p>You might reasonable ask why we need to learn numerical methods. After all, we've spent years learning explicit techniques for solving equations culminating in calculus. We know dozens of formulae for derivatives and integrals, powerfl techniques for evaluating them. We know how to use elimination and substitution to solve systems of linear equations. So why numerical methods? It's probably best to consider some examples. For instance, the function <m>f(x) = e^x</m> is about as nice as functions come - it has a very smooth graph, since derivatives exist to all orders. Even better, its derivative is itself!
+
+            <sage language="octave">
+                <input>
+                    xlim = [0,2];
+                    ylim = [0,e^2];
+
+                    [x,y] = fplot('e^x', [xlim ylim]);
+
+                    plot(x, y, 'linewidth',2);
+
+                    set(gca,'xlim',xlim);
+                    set(gca,'ylim',ylim);
+
+                    grid on;
+                    box on;
+                    axis('nolabel','square');
+                    title("Graph of f(x) = e^x")
+                </input>
+            </sage></p>
+
+
+                    <image source="./images/untitled.png" />
+
+
+
+            <p>That is one smooth looking plot. What if we replace <m>x</m> with <m>x^2</m>? (Functions of this form are very common in practice. The Gaussian or normal distribution from statistics is a very important example.)
+            <sage language="octave">
+                <input>
+                    xlim = [0,2];
+                    ylim = [0,e^4];
+
+                    [x,y] = fplot('e^(x^2)', [xlim ylim]);
+
+                    plot(x, y, 'linewidth',2);
+
+                    set(gca,'xlim',xlim);
+                    set(gca,'ylim',ylim);
+
+                    grid on;
+                    box on;
+                    axis('nolabel','square');
+                    title("Graph of $g(x) = exp(x^2)")
+                </input>
+            </sage>
+            It looks just as smooth, and in fact it is: all derivatives exist everywhere to all orders, and they are pleasing mixtures of polynomials and exponentials, just like Calculus I. Now, suppose I want to find the area under the graphs for <m>0\leq x \leq 1</m>. From Calculus II, we know that we can evaluate the integral
+                <me> \int_0^1 e^x \, dx = e - 1,</me>
+            which is elementary. What about <m>g(x)</m>? Certainly we can still write
+                <me>\int_0^1 e^{x^2} \, dx,</me>
+                but now what?
+            </p>
+
+            <p>There doesn't seem to be anywhere to go - the function <m>e^{x^2}</m> <em>does not have</em> a closed antiderivative. There is no way to use the techniques of basic calculus to deal with it. This should be alarming. After all, the function is about as nice as we could ask for. So what do we do? We'll need to look at <term>numerical calculus</term> for the answer.</p>
+
+            <p>What about other examples? From very early, we learn how to use algebra to solve equations. Are there equations that can't be solved with algebra? Consider the following question:
+                <question>
+                    Where do the graphs of <m>f(x) = 2x</m> and <m>g(x) = \cos x</m> intersect?
+                </question>
+            </p>
+
+            <sage language="octave">
+                <input>
+                    x = 0:.01:2;
+                    y1 = 2*x;
+                    y2 = cos(x);
+
+                    plot(x, y1, 'r', x, y2, 'b')
+                </input>
+            </sage>
+
+            <p>A plot shows that they cross. But where? You learned a long time ago to find intersections between two graphs by setting the functions equal:
+                <me> 2x = \cos x</me>
+            which really can be thought of as a root finding problem:
+                <me> 2x - \cos x = 0.</me>
+            Can algebra solve this? The equation above is sometimes called a transcedental equation - that is, it involves functions that cannot be undone with the operations of algebra. Except in very special cases, there is no way to solve for <m>x</m>. And yet, we can see the intersection. To find it, we'll study a pile of techniques in an area called <term>root finding</term>.</p>
+
+            <p>Another area of interest is to construct a function from given data. That is, given some points, how can we find a function that passes through those points? This is a question known as <term>interpolation</term>. There are many approaches that we will discuss.</p>
+        </section>
+
+        <section xml:id="sec-taylor">
+            <title>Taylor polynomials</title>
+            <subsection>
+                <title>Taylor's theorem</title>
+            <p>In calculus, you should have learned that an infinitely differentiable function possesses a representation in the form of an infinite power series. You are probably familiar with
+                <md>
+                    <mrow> e^x \amp = 1 + x + \frac{1}{2}x^2 + \frac{1}{3!}x^3 + \ldots </mrow>
+                    <mrow> \cos x \amp = 1 - \frac{x^2}{2} + \frac{x^4}{4!} - \ldots </mrow>
+                    <mrow> \sin x \amp = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \ldots </mrow>
+                </md>
+            </p>
+
+            <p>Power series are an incredibly powerful tool for approximating functions, and they occur all over numerical mathematics. Typically, instead of using an infinite series, we truncate at a particular term, getting a polynomial that <em>approximates</em> the function rather than a series that is the function (where it converges). The general theorem that describes how to get a polynomial approximation for a function is called Taylor's theorem.</p>
+
+            <theorem>
+                <p>Let <m>f</m> be a function so that <m>n + 1</m> derivatives of <m>f</m> exist on an interval <m>(a, b)</m> and let <m>x_0 \in (a,b)</m>. Then for each <m>x \in (a,b)</m>, there exists a constant <m>c</m> strictly between <m>x</m> and <m>x_0</m> such that
+                <me>
+                    f(x) = f(x_0) + \sum_{j=1}^n \left( \frac{f^{(j)}(x_0)}{j!}(x - x_0)^j\right) + \frac{f^{n+1}(c)}{(n+1)!}(x - x_0)^{n+1}.
+                </me></p>
+            </theorem>
+
+            <p>The first part of the equation above is the <term><m>n</m>th order Taylor polynomial for <m>f</m> at <m>x_0</m></term>, and we use the notation
+            <me>
+                T_n(x) = f(x_0) + \sum_{j=1}^n \left( \frac{f^{(j)}(x_0)}{j!}(x - x_0)^j\right).
+            </me>
+            The second part is called the remainder term for <m>T_n</m> at <m>x_0</m>, and we use the notation
+            <me>
+                R_n(x) = \frac{f^{n+1}(c)}{(n+1)!}(x - x_0)^{n+1}.
+            </me>
+            You can think of the remainder term as containing the difference between <m>f</m> and <m>T_n</m>. We don't usually know the value of <m>c</m> for a given <m>x_0</m>, but we can the remainder term to put an upper bound on the worst possible error for a given Taylor approximation of <m>f</m> on <m>(a, b)</m>.</p>
+
+            <p>So what's the upshot? Unwrapped from sigma notation, essentially any well-enough behaved function can be approximated at a point <m>x_0</m> with a polynomial that is easy to calculate. That is, for values of <m>x</m> near <m>x_0</m>,
+            <me>
+                f(x) \approx f(x_0) + f'(x_0)(x - x_0) + \frac{f''(x_0)}{2!} (x - x_0)^2 + \ldots,
+            </me>
+            and the worst that the approximation will be is the maximum value of <m>R_n(x)</m> near <m>x_0</m>.</p>
+        </subsection>
+
+            <subsection>
+                <title>What is a Taylor approximation good for?</title>
+                <p>An obvious question should occur to you: why do we care about Taylor series and polynomials? The short answer is that Taylor polynomials behave much like their parent functions <q>near</q> the point of expansion.  By including more terms, we typically expect to get a better approximation of the original function and a larger interval on which the approximation is well-behaved. A classical example of this phenomenon can be seen in the Taylor polynomials for <m>\sin x</m> near <m>x_0 = 0</m>.</p>
+
+                <sage language = "octave">
+                    <input>
+                        X = -7:.01:7;
+                        Y1 = sin(X);
+                        Y2 = X - X.^3/factorial(3) + X.^5/factorial(5) - X.^7/factorial(7) + X.^9/factorial(9);
+
+                        plot(X, Y1, 'r', X, Y2, 'b')
+                        axis( [-7 7 -2 2])
+                    </input>
+                </sage>
+
+                <p>The idea of replacing a function with a polynomial built from its derivatives is a powerful computational technique. Indeed, if we're working with approximations, we often need not even compute formulae for the derivatives but instead work with difference quotients. This will require that we have a firm understanding of how error accumulates, which will be discussed in a future lecture.</p>
+            </subsection>
+
+            <subsection>
+                <title>Coding functions in Octave</title>
+                <p>Let's begin by talking a bit about how to use functions in Octave. Suppose that we are interested in the 3rd Taylor polynomial for the function <m>f(x) = e^x</m> at <m>x_0 = 0</m>. A bit of computation will tell you that
+                <me>
+                    T_3(x) = 1 + x + \frac{x^2}{2} + \frac{x^3}{6}.
+                </me></p>
+
+                <p> First, we'll need to define the function <m>T_3</m> so that we can use it like a function - we want to be able to plot and evaluate it at various points. To do so, we'll use the <c>inline</c> command.</p>
+
+                <sage language="octave">
+                    <input>
+                        T3 = inline('1 + x + 1/2*x^2 + 1/6*x^3')
+                    </input>
+                </sage>
+
+                <p>Once we have the function defined, we can evaluate it anywhere.
+                </p>
+
+                <sage language="octave">
+                    <input>
+                        T3 = inline('1 + x + 1/2*x^2 + 1/6*x^3')
+                        T3(0)
+                        T3(1)
+                        T3(10)
+                        T3(-1)
+                    </input>
+                </sage>
+
+                <p>A standard technique that we need to be comfortable with is evaluating functions on arrays (that is, lists of numbers). Here are some example arrays.</p>
+
+                <sage language="octave">
+                    <input>
+                        #the first array generates the integers
+                        #from 1 to 10 and stores the list
+                        #in a variable A
+                        A = 1:10
+
+                        #the second example generates the numbers between 0 and 2
+                        #incrementing by .02. it is long. we could suppress the
+                        #output by adding a ; to the end of the line.
+                        B = 0:.02:2
+                    </input>
+                </sage>
+
+                <p>An incredible useful feature of Octave/Matlab is the ability to feed an array into a function. However, Octave assumes that we want matrix operations unless we tell it that we want to work entry by entry. The way we do that is to put a . before any operation that could be interpreted as a matrix operation to force Octave to work entrywise.
+                </p>
+
+                <sage language = "octave">
+                    <input>
+                        #the exponentiation needs a dot because it represents
+                        #repeated multiplication of objects that might be matrices.
+                        T3 = inline('1 + x + 1/2*x.^2 + 1/6*x.^3')
+                        A = 1:10;
+                        C = T3(A)
+                    </input>
+                </sage>
+
+                <p>Plotting in Octave seems complicated, but really just exposes how mathematical software generates plots in general. Suppose that we want to compare the function <m>f(x) = e^x</m> with the Taylor polynomial <m>T_3</m>. Our goal is plot both functions on the same set of axes. A useful command for this is <c>plot</c>. </p>
+
+                <sage language="octave">
+                    <input>
+                        #first, we make an array of numbers from -3 to 3, incrementing by .01
+                        X = -3:.01:3;
+
+                        #now, we define T3 (e^x already exists as a function called exp())
+                        T3 = inline('1 + x + 1/2*x.^2 + 1/6*x.^3');
+
+                        #we need some y-values to plot, so we feed T3 and e^x our X-value array
+                        Y1 = T3(X);
+                        Y2 = exp(X);
+
+                        #finally, we plot the graphs.
+                        plot(X, Y1, 'r', X, Y2, 'b')
+                        legend('T_3(x)', 'e^x')
+                        legend("boxoff")
+                        legend("left")
+                    </input>
+                </sage>
+            </subsection>
+        </section>
+
+        <section xml:id="sec-root">
+            <title> Root finding </title>
+            <p>In elementary or middle school, we learn how to solve <emph>algebraic equations</emph>. Equations that are algebraic can be solved with familiar operations: addition, multiplication, exponentiation. However, there are very simple equations that cannot be solved with algebra. Consider
+            <me>
+                \cos x = x.
+            </me>
+            There is no way to extract the <m>x</m> from inside the cosine to isolate it on one side of the equation. Even algebraic equations may be impossible to solve. Consider
+            <me>
+                x^6 - x - 1 = 0.
+            </me>
+            There is no formula that can be used to factor this equation (like the quadractic formula). If we're not fortunate enough to get a polynomial that has obvious <q>nice</q> factors, the only way to proceed is to approximate the solutions. Questions like this fall under the general category of <term>root finding</term> problems. A root is a solution to the equation <m>f(x) = 0</m>.</p>
+            <subsection xml:id="sub-bisection">
+                <title>Bisection method</title>
+                <p>We're going to start with a straightforward equation to illustrate our first method. Let's find solutions to the equation
+                <me>
+                    x^2 - 2 = 0.
+                </me>
+                Now obviously, the answers are <m>\pm \sqrt{2}</m>, but how much good is that for computation or application? Where do the values for <m>\sqrt{2}</m> even come from? (Hint: <m>\sqrt{2}</m> is defined to be the solution to this equation).
+                <sage language="octave">
+                    <input>
+                        X = -3:.1:3;
+                        Y = X.^2 - 2;
+                        plot(X, Y)
+                        set(gca, "xaxislocation","origin")
+                        set(gca, "yaxislocation", "origin")
+                    </input>
+                </sage>
+                It's clear from the plot generated by the code above that the solutions to <m>x^2 - 2 = 0</m> are the <m>x</m>-intercepts of the function <m>f(x) = x^2 - 2</m>. If you were asked to guess what the roots were you might say <q>between -2 and -1 and also between 1 and 2</q>. That observation is the first step in a set of methods called <term>bracketing</term>. At this point, we can take advantage of one of the core theorems of calculus: the Intermediate Value Theorem.</p>
+                <theorem xml:id = "thm-ivt">
+                    <p>Let <m>f</m> be a continuous function on the interval <m>[a,b]</m>. Then for every <m>y</m> falling strictly between <m>f(a)</m> and <m>f(b)</m>, there exists a number <m>c</m> strictly between <m>a</m> and <m>b</m> so that <m>f(x) = y</m>. </p>
+                </theorem>
+                <p>A more familiar formulation might state <q>if a continuous <m>f</m> is positive at a point <m>a</m> and negative at a point <m>b</m> then it must have gone through 0 somewhere</q>. This can be restated into a condition easy to check in an algorithm.</p>
+                <theorem>
+                    <p>Suppose that <m>f</m> is continuous on <m>[a,b]</m>. Then <m>[a,b]</m> contains a root of <m>f</m> if <m>f(a)f(b) \lt 0</m>.</p>
+                </theorem>
+                <p>So we arrive at the main idea of the bisection method, which you can think of as a narrowing process. In short, we'll bracket the root with an interval, cut it in half, then use the condition to figure out which half contains the root. Repeating this process will produce an arbitrarily small interval containing the root, which we'll denote <m>\alpha</m>. We can treat the midpoint of this tiny interval as an approximation for the root <m>\alpha</m>.</p>
+
+                <p>Consider our example, which is to find a root of the function <m>f(x) = x^2 - 2</m>.
+                <ol>
+                <li> From the graph, we can bracket one of the roots with <m>a = 1, b = 2</m>. </li>
+                <li>We can check to see that we've chosen good values by looking at <m>f(a)f(b) = (-1)(2) = -2 \lt 0</m>, and so the IVT guarantees a root lies in <m>[1,2]</m>. </li>
+                <li>Now bisect the interval. Compute the midpoint <m>m = \frac{a+b}{2} = 1.5</m>. </li>
+                <li>We'll check the interval <m>[1, 1.5]</m> for the root. Since <m>f(1)f(1.5) = -.25</m>, this interval contains the root.</li>
+                <li> We can repeat the process with our new guess, <m>m = 1.25</m>, and so on until we're satisfied with the accuracy of our calculation.</li>
+                </ol></p>
+            </subsection>
+            <subsection>
+                <title>Error</title>
+                <p>So how do we decide when to stop the process listed above? Since we don't know what the answer is, we can't use <q>distance from the correct answer</q> as a measure of error. Instead, we'll have to measure something about the process of iteration itself. We need to make the measurements of error relative to the process, not just absolute, to be useful. This will be discussed in more detail when we introduce Newton's method.</p>
+                <definition xml:id = "def-relerr">
+                    <p>Given an iterative process that produces an approximation <m>m_k</m> at each step <m>k</m>, the <term>absolute relative approximate error</term> at step <m>k</m> is
+                    <me>
+                        \abs{\epsilon_k} = \abs{\frac{m_k - m_{k-1}}{m_k}}.
+                    </me></p>
+                </definition>
+                <!-- <p><note><em>think about where this goes... with convergence eventually?</em></note></p> -->
+                <p>If an iterative approximation converges, then the error will decrease from step to step. Thus, we can use error to determine when to stop. Before we begin the process of approximation, we choose a <term>tolerance</term> - that is, a small number that is the maximum possible error we're willing to allow. Then, we can impose a stopping condition whenever <m>\abs{\epsilon_k} \lt tol</m>.</p>
+            </subsection>
+
+            <subsection>
+                <title>Bisection algorithm</title>
+                <algorithm>
+                    <p>Suppose that <m>f</m> is continuous on <m>[a,b]</m> and that <m>f(a)f(b) \lt 0</m>. Let <m>tol</m> be a given tolerance. Let <m>maxiter</m> be the maximum number of iterations. Set <m>m = \frac{a+b}{2}</m> and <m>iter = 0</m>.
+                    <ol>
+                        <li>Set <m>iter = iter + 1</m>. If <m>iter \gt maxiter</m>, exit and return failed to converge.</li>
+                        <li>If <m>f(a)f(m) \lt 0</m>, set <m>b = m</m>. Otherwise set <m>a = m</m>.</li>
+                        <li>Set <m>m' = \frac{a + b}{2}</m>.</li>
+                        <li>Set <m>\abs{\epsilon} = \frac{m' - m}{m'}</m>.</li>
+                        <li>If <m>\abs{\epsilon} \lt tol</m>, return <m>m'</m>.</li>
+                        <li>Otherwise, let <m>m = m'</m> and go to step 1.</li>
+                    </ol></p></algorithm>
+                    <p>The bisection method always converges, so we do not need to include a maximum iteration counter, though we do anyway as later methods may not converge and can potentially loop forever.</p>
+
+                    <p>We'll now present an example of the bisection method used to compute the value of <m>\sqrt{2}</m>.
+                    <sage language="octave">
+                        <input>
+                            f = @(x) x.^2 - 2;
+                            a = 1;
+                            b = 2;
+                            tol = .5*10^-4;
+                            M = (a+b)/2;
+                            max_iter = 1000;
+                            iter = 0;
+                            err = 1;
+
+
+                            while err > tol
+                                iter = iter + 1;
+                                if iter > max_iter
+                                    break
+                                endif
+
+                                if f(a)*f(M) &lt; 0
+                                    b = M;
+                                else
+                                    a = M;
+                                endif
+
+                                m = (a+b)/2;
+                                err = abs((m - M)/m);
+                                M = m;
+                            endwhile
+
+                            printf('The approximation is %d', m)
+                        </input>
+                    </sage></p>
+            </subsection>
+            <subsection>
+                <title>False position (Regula Falsi)</title>
+                <p>The method of false position is one of the oldest methods for guessing the solution to an equation. We're going to use a version of it that is specifically built for root finding. This method can have significantly faster convergence than the bisection method, as it takes functional behavior into consideraton.</p>
+
+                <p>Consider the equation <m>x^2 - 2 = 0</m>, the solutions of which are the roots of the function <m>f(x) = x^2 - 2</m>.
+                <sage language = "octave">
+                    <input>
+                        f = @(x) x.^2 - 2
+                        ezplot(f)
+                    </input>
+                </sage></p>
+                <p>As in the bisection method, we notice that the interval $[1,2]$ must contain a root, as the function passes through the axis between them. (That is, <m>f(1)f(2) \lt 0</m>.) To find an approximation of the zero, we construct the line between <m>(a, f(a))</m> and <m>(b, f(b))</m>. We can approximate the root of <m>f(x)</m> by the <m>x</m>-intercept of the line that we've drawn.</p>
+                <sage language = "octave">
+                    <input>
+                        f = @(x) x.^2 - 2;
+                        a = 1;
+                        b = 2;
+                        g = @(x) f(a) + (f(b) - f(a))/(b-a) * (x - a);
+                        X = -3:.1:3;
+                        XX = a:.1:b;
+                        plot(X, f(X), 'r', XX, g(XX), 'b')
+                        hold on;
+                        plot(sqrt(2),0, 'r*')
+                        plot((a*f(b) - b*f(a))/(f(b) - f(a)), 0, 'b*')
+                        axis([.5 2.5 -1.5 2.5])
+                        set(gca,'xaxislocation','origin')
+                        set(gca, 'yaxislocation','origin')
+                    </input>
+                </sage>
+                <p>Already from the picture above we can see that we've got a reasonable approximation of the zero.The slope the line is going to be given by <m>m = \frac{f(b) - f(a)}{b - a}</m>, and some quick algebra with the point slope form of the line will give you that the <m>x</m>-intercept of the line segment is
+                <me>
+                    m = \frac{a f(b) - b f(a)}{f(b) - f(a)}.
+                </me></p>
+
+                <p>If we iterate this method, we should see the intercepts of the line segments <q>march</q> towards the actual zero. At this point, the method is identical to the bisection method: we identify which of the two subintervals created by the new approximation is the bracking subinterval, we replace the relevant endpoint, and we repeat the line trick.</p>
+                <algorithm>
+                    <p>Suppose that <m>f</m> is continuous on <m>[a,b]</m> and that <m>f(a)f(b) \lt 0</m>. Let <m>tol</m> be a given tolerance. Let <m>maxiter</m> be the maximum number of iterations. Set <m>m = \frac{a f(b) - b f(a)}{f(b) - f(a)}</m> and <m>iter = 0</m>.
+                    <ol>
+                        <li>Set <m>iter = iter + 1</m>. If <m>iter \gt maxiter</m>, exit and return failed to converge.</li>
+                        <li>If <m>f(a)f(m) \lt 0</m>, set <m>b = m</m>. Otherwise set <m>a = m</m>.</li>
+                        <li>Set <m>m' = m = \frac{a f(b) - b f(a)}{f(b) - f(a)}</m>.</li>
+                        <li>Set <m>\abs{\epsilon} = \frac{m' - m}{m'}</m>.</li>
+                        <li>If <m>\abs{\epsilon} \lt tol</m>, return <m>m'</m>.</li>
+                        <li>Otherwise, let <m>m = m'</m> and go to step 1.</li>
+                    </ol></p></algorithm>
+            </subsection>
+            <subsection>
+                <title>Classes of differentiability</title>
+                <p>Our next set of techniques do not involve bracketing. In exchange for losing a bracket that is guaranteed to contain a root of a function, we get methods that converge significantly faster when certain hypotheses are met. Speed of convergence will be discussed in detail in a later section.</p>
+
+                <p>The main hypotheses of derivative based methods is that the functions being worked with are <q>nice enough</q>. Nice as a mathematical terms is an amusing catchall for <q>whatever is needed to make this theorem run</q>, but it usually refers to smoothness of some kind. That is, the slope of the function is well behaved as we move around the <m>x</m>-values.</p>
+
+                <p>In Calculus 1, we learn that
+                    <me>
+                        f'(x) = \lim_{h\to 0} \frac{f(x + h) - f(x)}{(x + h) -h}
+                    </me>
+                where we're using a form that emphasizes the fact that the derivative is the limit of secant lines. A function for which <m>f'</m> exists for every <m>x \in (a,b)</m> is called <emph>differentiable</emph> on <m>(a,b)</m>. Be careful. It's easy to be lulled into a false sense of security about differentiable functions.</p>
+
+                <p>Let's consider a family of functions called the <term>topologist's sine curves</term>. Here is the first member of the family.
+                <md>
+                    <mrow> f(x) \amp= \sin \frac{1}{x} \amp\text{ if } x \amp\neq 0 </mrow>
+                    <mrow> \amp = 0 \amp\text{ if } x \amp= 0</mrow>
+                </md>
+                Notably, this function does not have a limit as <m>x \to 0</m> from the left or the right. We can try to fill the singularity in the function with the point <m>(0,0)</m>, but that doesn't make the function continuous. The reason why should be clear from the graph below: as the function approaches <m>x = 0</m> it oscillates increasingly quickly, essentially filling the area on the <m>y</m>-axis between -1 and 1. Since the function has a value of 0 at 0, but no limit, <m>f</m> is discontinuous there.</p>
+                <sage language="octave">
+                    <input>
+                        f = @(x) sin(1./x)
+                        X = -2:.0001:2;
+                        plot(X, f(X))
+                        hold on;
+                        plot(0,0,'r*')
+                        axis([-1 1 -1 1])
+                        set(gca,'xaxislocation','origin')
+                        set(gca, 'yaxislocation','origin')
+                    </input>
+                </sage>
+                <p>Let's look at the next member of the family:
+                <md>
+                    <mrow> f(x) \amp= x \sin \frac{1}{x} \amp\text{ if } x \amp\neq 0 </mrow>
+                    <mrow> \amp = 0 \amp\text{ if } x \amp= 0</mrow>
+                </md>
+                The <m>x</m> in front forces the function to go to 0, capturing it between the lines <m>y = x</m> and <m>y = -x</m>.</p>
+                <sage language="octave">
+                    <input>
+                        f = @(x) x.*sin(1./x)
+                        X = -2:.0001:2;
+                        plot(X, f(X))
+                        hold on;
+                        plot(0,0,'r*')
+                        axis([-1 1 -1 1])
+                        set(gca,'xaxislocation','origin')
+                        set(gca, 'yaxislocation','origin')
+                    </input>
+                </sage>
+                <p>The graph above should make it obvious that now, the point <m>(0,0)</m> fills the hole in the function and makes <m>f</m> continuous at <m>0</m>. What about the derivative?</p>
+                <sage language="octave">
+                    <input>
+                        f = @(x) x.*sin(1./x)
+                        g = @(x) sin(1./x) - 1./x.*cos(1./x)
+                        X = -2:.0001:2;
+                        plot(X, f(X), 'b', X, g(X), 'g')
+                        hold on;
+                        plot(0,0,'r*')
+                        axis([-1 1 -1 1])
+                        set(gca,'xaxislocation','origin')
+                        set(gca, 'yaxislocation','origin')
+                    </input>
+                </sage>
+                <p>The green function above is the derivative. The formula for the derivative makes sense everywhere but at 0. So we'll use the defintion to see if the derivative is defined there.
+                <md>
+                    <mrow> f'(0) \amp= \lim_{h \to 0} \frac{f(0+h) - f(0)}{h}</mrow>
+                    <mrow> \amp= \lim_{h \to 0} \frac{f(h)}{h}</mrow>
+                    <mrow> \amp= \lim \frac{h \sin(1/h)}{h} </mrow>
+                    <mrow> \amp= \lim_{h \to 0} \sin \frac{1}{h}</mrow>
+                </md>
+                which does not exist. So <m>f</m> is continuous, but not differentiable. Another member of the family:</p>
+                <md>
+                    <mrow> f(x) \amp= x^2 \sin \frac{1}{x} \amp\text{ if } x \amp\neq 0 </mrow>
+                    <mrow> \amp = 0 \amp\text{ if } x \amp= 0</mrow>
+                </md>
+                                <sage language="octave">
+                    <input>
+                        f = @(x) x.^2.*sin(1./x)
+                        g = @(x) 2*x.*sin(1./x) - cos(1./x)
+                        X = -2:.0001:2;
+                        plot(X, f(X), 'b', X, g(X), 'g')
+                        hold on;
+                        plot(0,0,'r*')
+                        axis([-1 1 -1 1])
+                        set(gca,'xaxislocation','origin')
+                        set(gca, 'yaxislocation','origin')
+                    </input>
+                </sage>
+                <p>Again, the derivative formula makes sense everywhere but 0. At 0, we can use the definition:
+                </p>
+                <md>
+                    <mrow> f'(0) \amp= \lim_{h \to 0} \frac{f(0+h) - f(0)}{h}</mrow>
+                    <mrow> \amp= \lim_{h \to 0} \frac{f(h)}{h}</mrow>
+                    <mrow> \amp= \lim \frac{h^2 \sin(1/h)}{h} </mrow>
+                    <mrow> \amp= \lim_{h \to 0} h \sin \frac{1}{h} = 0.</mrow>
+                </md>
+                <p> Here's the complete graph of the derivative, given that <m>f'(0) = 1</m>. It should be obvious that even though the derivative exists everywhere, it is not continuous.</p>
+                <sage language = "octave">
+                    <input>
+                        g = @(x) 2*x.*sin(1./x) - cos(1./x)
+                        X = -2:.0001:2;
+                        plot(X, g(X), 'g')
+                        hold on;
+                        plot(0,0,'r*')
+                        axis([-1 1 -1.5 1.5])
+                        set(gca,'xaxislocation','origin')
+                        set(gca, 'yaxislocation','origin')
+                    </input>
+                </sage>
+                <p>As we keep increasing the power of <m>x</m>, we get functions with better properties. What happens if we increase the power one more time?</p>
+                <md>
+                    <mrow> f(x) \amp= x^3 \sin \frac{1}{x} \amp\text{ if } x \amp\neq 0 </mrow>
+                    <mrow> \amp = 0 \amp\text{ if } x \amp= 0</mrow>
+                </md>
+                                <sage language = "octave">
+                    <input>
+                        f = @(x) x.^3.*sin(1./x)
+                        g = @(x) 3*x.^2.*sin(1./x) - x.*cos(1./x)
+                        X = -2:.0001:2;
+                        plot(X, f(X), 'r', X, g(X), 'g')
+                        hold on;
+                        plot(0,0,'r*')
+                        axis([-1 1 -1.5 1.5])
+                        set(gca,'xaxislocation','origin')
+                        set(gca, 'yaxislocation','origin')
+                    </input>
+                </sage>
+                <p>As before, the green function is the derivative. Notice that now the derivative is also converging to 0 as <m>x \to 0</m>. That is, <m>f</m> is continuous, differentiable everywhere, AND the derivative is continuous.</p>
+
+                <p>This is what we mean by <q>nice</q> in the sense of approximation. In order for derivative methods to be well-behaved, the derivatives should exist AND be continuous</p>
+
+                <definition>
+                    Let <m>f</m> be a function on an interval <m>(a,b)</m>. The function <m>f</m> is said to be <term>of class <m>C^k</m></term> if <m>f</m> can be differentiated <m>k</m> times and <m>f^{(k)}</m> is continuous on <m>(a,b)</m>.
+                </definition>
+                <p><m>C^1</m> functions are also called <term>continuously differentiable</term>. Thus, by filling in the point at <m>(0,0)</m>, we can say
+                <ul>
+                    <li> <m>\sin(1/x)</m> is discontinuous on <m>(-a,a)</m>;</li>
+                    <li> <m>x \sin(1/x)</m> is continuous on <m>(-a,a)</m>;</li>
+                    <li> <m>x^2 \sin(1/x)</m> is differentiable on <m>(-a,a)</m>;</li>
+                    <li> <m>x^3 \sin(1/x)</m> is <m>C^1</m> on <m>(-a,a)</m>.</li>
+                </ul>
+                This can be continued. Generally, <m>C^1</m> functions are the bare minimum we require to call a function <q>nice</q>. You should also note that this is a hierarchy of regularity: every subsequent level has all the properties of the level that came prior.</p>
+            </subsection>
+            <subsection>
+                <title>Newton-Raphson method</title>
+                <p>We come to a very powerful method that illustrates perhaps the central idea of numerical analysis (and indeed most of continuous mathematics):</p>
+                <p> <em>Every function is a line.</em> </p>
+                <p>This might seem like an absurd statement, but with some slight adjustments, maybe we can be convinced.</p>
+                <p><em>Every (nice enough) function is a line (if you look closely enough).</em> </p>
+                <p>In fact, this is the essential point of working with tangent lines. Indeed, the same thinking applies in more variables as well (where lines get replaced by planes).</p>
+                <p>Functions are difficult to find <m>x</m>-intercepts for, <em>unless those functions are lines</em>. So what we'll do is just pretend the function is a line, and find its intercept. In more familiar terms, we'll replace the function with its tangent line approximation.</p>
+                <p> As an easy example, consider <m>f(x) = x^2 - 2</m>, our old friend that lets us find the value of <m>\sqrt{2}</m>. Suppose that we guess that the root is close to <m>x = 2</m>.</p>
+                <sage language="octave">
+                    <input>
+                        f = @(x) x.^2 - 2;
+                        T = @(x) 4*(x - 2) + 2;
+                        X = 0:.01:3;
+                        plot(X, f(X), 'r', X, T(X), 'b')
+                        hold on;
+                        plot(sqrt(2), 0, 'b*')
+                        plot(1.5, 0, 'b*')
+                        axis([1 3 -2 7])
+                        set(gca,'xaxislocation','origin')
+                        set(gca, 'yaxislocation','origin')
+                    </input>
+                </sage>
+                <p>Indeed, the tangent line (in blue) lands very close to the root in question (on the red curve). We'd like to be able to iterate this procedure. Suppose that we're given a point <m>(x_0, f(x_0))</m>. The tangent line to <m>f</m> at that point is
+                <me>
+                    y - f(x_0) = f'(x_0)(x - x_0).
+                </me>
+                Solving for <m>x</m> when <m>y = 0</m> gives the equation
+                <me>
+                    x = x_0 - \frac{f(x_0)}{f'(x_0)}.
+                </me>
+                This simple equation is the heart of Newton's method. To iterate the approximation, let <m>x_1 = x</m> and solve the equation again:
+                <me>
+                    x_2 = x_1 - \frac{f(x_1)}{f'(x_1)}.
+                </me></p>
+
+                <p>The hope is that given a good enough guess, that this sequence of approximations will approach the root. Let's see how it bahaves in this case.
+                <sage language = "octave">
+                    <input>
+                        format long
+                        f = @(x) x.^2 - 2;
+                        fprime = @(x) 2*x;
+                        g = @(x) x - f(x)./fprime(x);
+                        guess = 2;
+                        for i = 1:4
+                            new = g(guess);
+                            disp("Approximation is:"), disp(new)
+                            guess = new;
+                        endfor
+
+                        err = (sqrt(2) - guess)/sqrt(2);
+                        disp("Relative error:")
+                        disp(err)
+                    </input>
+                </sage>
+                What the output above shows is that starting from <m>x = 2</m>, Newton's method converges to within .0000000001% of the true value of <m>\sqrt{2}</m> in just four steps.</p>
+
+                <p>At this point, excited, we decide to test another case. </p>
+                <sage language = "octave">
+                    <input>
+                        f = @(x) x.^20 - 2;
+                        X = -1.1:.01:1.1;
+                        plot(X, f(X))
+                        axis([-1.5 1.5 -3 5])
+                        set(gca,'xaxislocation','origin')
+                        set(gca, 'yaxislocation','origin')
+                    </input>
+                </sage>
+                <p>That is one flat function. But that means the tangent line is going to have a slope very close to 0 if we guess to the left of the root... </p>
+                <sage language = "octave">
+                    <input>
+                        f = @(x) x.^20 - 2;
+                        fprime = @(x) 20*x.^19;
+                        guess = .7;
+                        new = guess - f(guess)./fprime(guess);
+                        disp(new)
+                        disp(f(new))
+                    </input>
+                </sage>
+                <p>That is, a guess of <m>x_0 = .7</m>, which is pretty close to the root displayed on the graph, gives a second approximation of 88.3929, which means computing the second tangent line at the point <m>(88.3928, 8.47884 \times 10^{38})</m>. Not good.</p>
+
+
+
+            </subsection>
+            <subsection>
+                <title>Newton's method requirements and problems</title>
+                <p>So we've discovered the first problem in the last example. Newton's method does not work well near places where functions are very flat. In particular, this means that we'll want to avoid local extrema -- hitting near one with an approximation could send the tangent line way beyond the approximation area.</p>
+
+                <p>What other problems might arise?</p>
+
+                <p></p>
+
+            </subsection>
+
+        </section>
+
+        <section>
+            <title>Interpolation</title>
+                <subsection>
+                    <title>Naive polynomial interpolation</title>
+                    <p>Given a set of points, say <m>P(x_1, y_1), Q(x_2, y_2), R(x_3, y_3)</m>, we say that a function <m>f</m> <term>interpolates</term> <m>P, Q, R</m> if the graph of <m>f</m> passes through each prescribed point - that is, <m>f(x_i) = y_i</m> for each <m>i = 1, \ldots 3</m> in this case. The function <m>f</m> can be used to predict the values of <m>y</m> for values of <m>x</m> that fall in between these points. (Predicting points outside of the data is called <term>extrapolation</term>.)</p>
+
+                    <p>A first approach to this problem might take advantage of the following fact.
+                    <theorem>
+                        Let <m>p_1, \ldots, p_n</m> be non-collinear. Then there is a unique polynomial of degree <m>n -1</m> that interpolates the data.
+                    </theorem>
+                    One possible proof of this fact is the construction of the Lagrange polynomials, to be discussed in the next section.</p>
+
+                    <p>So suppose that we are given the points <m>(1,1), (2,-3), (5,10)</m>. A quick plot shows that they are clearly non-collinear. Thus, there should exist a degree two polynomial that interpolates the points, which will have the general form
+                    <me>
+                        y = ax^2 + bx + c.
+                    </me></p>
+                    <p>The unknowns we need to find are the coefficients <m>a, b, c</m>. So we'll plug in the known data and get a system of equations.
+                    <md>
+                        <mrow> 1 \amp= a + b + c</mrow>
+                        <mrow> -3 \amp = 4a + 2b + c</mrow>
+                        <mrow> 10 \amp= 25a + 5b + c</mrow>
+                    </md></p>
+                    <p> We can solve the system using matrices.</p>
+                    <sage language = "octave">
+                        <input>
+                            A = [1, 1, 1, 1;  4, 2, 1, -3; 25, 5, 1, 10]
+                            B = rref(A)
+                        </input>
+                    </sage>
+                    <p>Doing this by hand would be potentially very time consuming, particularly if we had to work with many points, not just three. Our result says that the approximate polynomial that interpolates the data is <me>
+                        f(x) = 2.08333 x^2 - 10.25 x + 9.16667.
+                    </me>
+                    Note that this polynomial is unique (up to approximation error). That is, any other technique that finds a degree two polynomial through these three points will find the same result.</p>
+
+                    <p>In the next few sections, we will discuss two more interpolation techniques, one that is very easy for humans to understand (and evaluate with a little modification in certain cases) and one that is easy to program into a computer technique.</p>
+
+                    <figure>
+                        <caption>Data and interpolating function example</caption>
+                    <sage language = "octave">
+                        <input>
+                            f = @(x) 2.08333* x.^2 - 10.25 *x + 9.16667;
+                            X = 0:.01:6;
+                            Y = f(X);
+                            plot([1, 2, 5],[1, -3, 10], 'b*')
+                            hold on
+                            plot(X,Y, 'r')
+                        </input>
+                    </sage>
+                    </figure>
+
+
+                </subsection>
+                <subsection>
+                    <title>Lagrange interpolation</title>
+                    <p>We'll begin with a method due to Lagrange that makes it very easy to write down by hand what the interpolating polynomal is (but doesn't give it in a computationally efficient form). Still, Lagrange interpolation is based on fundamental observations about the graphs of functions.</p>
+
+                    <p>Suppose that we are given the points <m>(1,0), (2,0), (5,0)</m> and we are asked to provide an interpolating polynomial of degree two (these points are collinear, but they very soon won't be). One obvious choice is to form the polynomial
+                    <me>
+                        p(x) = (x - 1)(x - 2)(x - 5).
+                    </me>
+                    This polynomial is not a unique polynomial of degree two, but it certainly interpolates them. We are going to use the idea of interpolating roots, as we've done here, to build interpolating functions for data off of the <m>x</m>-axis.</p>
+
+                    <p>This exercise can be made slightly harder by allowing one of the points to move off of the <m>x</m>-axis. Now consider the points <m>(1,0),(2,0), (5,10)</m>. Ignoring the third point for the moment, we can still interpolate <m>(1,0), (2,0)</m> in the same way as before: with <m>p(x) = (x -1)(x-2)</m>. Maybe we're lucky and <m>p</m> also passes through <m>(5,10)</m>. We can check -- <m>p(5) = (5-1)(4-1) = 12</m>. That is, <m>p</m> misses <m>(5,10)</m>. </p>
+                    <sage language = "octave">
+                        <input>
+                            f = @(x) (x - 1).*(x-2);
+                            X = 0:.01:6;
+                            Y = f(X);
+                            plot([1, 2, 5],[0, 0, 10], 'b*')
+                            hold on
+                            plot(X,Y, 'r')
+                        </input>
+                    </sage>
+                    <p> What we need is a way to adjust <m>p</m> that keeps the function passing through <m>(1,0)</m> and <m>(2,0)</m>. We might notice that every function of the form <m>f(x) = c(x-1)(x-2) = c\cdot p(x)</m> has this property, so let's choose a value of <m>c</m> that makes <m>f</m> pass through <m>(5,10)</m>.
+                    <md>
+                        <mrow> 10 \amp= f(5) = c\cdot p(5) = c(5-1)(5-4) = 12c</mrow>
+                        <mrow> \frac{10}{12} \amp= c.</mrow>
+                    </md>
+                    So <m> f(x) = \frac{10}{12} p(x) = \frac{10}{12} (x-1)(x-2)</m> interpolates the data.</p>
+                    <sage language = "octave">
+                        <input>
+                            f = @(x) 10/12*(x - 1).*(x-2);
+                            X = 0:.01:6;
+                            Y = f(X);
+                            plot([1, 2, 5],[0, 0, 10], 'b*')
+                            hold on
+                            plot(X,Y, 'r')
+                        </input>
+                    </sage>
+                    <p>Now, notice that 10 was the value we wanted to be output with input 5, and that <m>p(5) = 12</m>. In fact, if <m>(5,10)</m> had been given the name <m>(x_3, y_3)</m>, then the value of <m>c</m> would have been <m>c = \frac{y_3}{p(x_3)},</m> and the interpolating function for <m>(1,0), (2,0)</m> and <m>(x_3, y_3)</m> would have been
+                    <me>
+                        f(x) = \frac{y_3}{p(x_3)} p(x) = \frac{y_3}{p(x_3)} (x - 1)(x-2).
+                    </me>
+                    We can modify this further: given initial data <m>(x_1, 0), (x_2, 0), (x_3, y_3)</m>, define
+                    <me>
+                        p(x) = (x - x_1)(x - x_2)
+                    </me>
+                    and
+                    <me>
+                        f(x) = \frac{y_3}{p(x_3)} p(x) = \frac{y_3}{p(x_3)}(x - x_1)(x-x_2).
+                    </me> <m>f</m> is the interpolating function for the data. </p>
+
+                    <p>We're finally ready to tackle the full problem: using this approach to find the interpolating polynomial for <m>(1,1), (2, -3), (5,10)</m>. We'll approach the problem in three pieces: First, construct <m>f_3(x)</m> for the points <m>(1,0), (2,0), (5,10)</m> using the ideas from the last section.
+                    <me>
+                        f_3(x) = \frac{10}{12} (x-1)(x-2).
+                    </me></p>
+                    <p>Second, construct <m>f_2(x)</m> for the points <m>(1,0), (2, -3), (5,0).</m> Since <m>p_2(x) = (x-1)(x-5)</m>, we get <m>c = \frac{-3}{p_2(2)} = \frac{-3}{-3} = 1</m>. So
+                    <me>
+                        f_2(x) = 1(x - 1)(x-5)
+                    </me>
+                    interpolates this data.</p>
+                    <p>For a third step, construct <m>f_1(x)</m> for the points <m>(1,1), (2,0), (5,0)</m>. In this problem, <m>p_1(x) = (x-2)(x-5)</m>, and so <m>c = \frac{1}{p(1)} = \frac{1}{4}</m>.
+                    Thus,
+                    <me>
+                        f_1(x) = \frac{1}{4} (x - 2)(x -5).
+                    </me></p>
+
+                    <p>What follows is a plot of the three solutions to the subproblems.</p>
+                    <sage language = "octave">
+                        <input>
+                            f3 = @(x) 10/12*(x - 1).*(x - 2);
+                            f2 = @(x) (x - 1).*(x-5);
+                            f1 = @(x) 1/4*(x-2).*(x-5);
+                            X = 0:.01:6;
+                            plot(X, f1(X), X, f2(X), X, f3(X))
+                            hold on
+                            plot([1, 2, 5],[1, -3, 10], 'b*')
+                            plot([1, 2, 5],[0,0,0], 'r*')
+                            set(gca,'xaxislocation','origin')
+                            set(gca, 'yaxislocation','origin')
+                        </input>
+                    </sage>
+                    <p>You should notice that each parabola passes through one of the real points and two of the substituted roots. We are at the magic step. Let
+                    <me>
+                        f = f_1 + f_2 + f_3.
+                    </me></p>
+                    <sage language = "octave">
+                        <input>
+                            f3 = @(x) 10/12*(x - 1).*(x - 2);
+                            f2 = @(x) (x - 1).*(x-5);
+                            f1 = @(x) 1/4*(x-2).*(x-5);
+                            f = @(x) f1(x) + f2(x) + f3(x)
+                            X = 0:.01:6;
+                            plot(X, f(X))
+                            hold on
+                            plot([1, 2, 5],[1, -3, 10], 'b*')
+                            plot([1, 2, 5],[0,0,0], 'r*')
+                            set(gca,'xaxislocation','origin')
+                            set(gca, 'yaxislocation','origin')
+                        </input>
+                    </sage>
+                    <p>What happened? Let's look at <m>f</m> more closely.
+                    <me>
+                        f(x) = \frac{1}{4}(x - 2)(x - 5) + (x-1)(x-5) + \frac{10}{12}(x-1)(x-2).
+                    </me>
+                    Notice that for a given input for one of the data points, only one term is non-zero, and that term has been built to evaluate to the correct <m>y</m>-value. That is,
+                    <md>
+                        <mrow>f(1) \amp= \frac{1}{4}(-1)(-4) + 0 + 0 = 1</mrow>
+                        <mrow>f(2) \amp= 0 + (1)(-3) + 0 = -3</mrow>
+                        <mrow>f(5) \amp= 0 + 0 + \frac{10}{12}(3)(4) = 10</mrow>
+                    </md>
+                    Furthermore, <m>f</m> must be unique, because <m>f</m> is a degree two polynomial. (In fact, <m>f</m> is the same function from the previous section if you multiply it out.)</p>
+
+                    <p>So what is the general procedure? Start with a list of interpolants, <m>(x_1, y_1), \ldots, (x_n, y_n)</m>. For each <m>i</m>, let
+                    <me>
+                        p_i(x) = \prod_{j\neq i} (x - x_j) = (x - x_1)\ldots(x - x_{i-1})(x-x_{i+1})\ldots(x - x_n).
+                    </me>
+                    Then define <m>f_i</m> to be
+                    <me>
+                        f_i(x) = \frac{y_i}{p_i(x_i)} p_i(x),
+                    </me>
+                    and finally the <term>Lagrange interpolating polynomial</term> to be
+                    <me>
+                        f(x) = \sum_i f_i(x) = f_1(x) + \ldots + f_n(x).
+                    </me></p>
+                </subsection>
+
+                <subsection>
+                    <title>Newton interpolation</title>
+                    <p>Lagrange interpolation is easy to describe and relatively easy to write out by hand, even for many point, with some practice. However, the computation of the Lagrange interpolating polynomial doesn't easily lend itself to the structure of computer programs. We would like a method for writing down an interpolating polynomial that can be performed in a straightforward way in a recursive fashion. The approach that we present here is called <term>Newton interpolation</term>. Of course, the result will be the same, as interpolating polynomials of degree <m>n-1</m> are unique for a given set of <m>m</m> points.</p>
+
+                    <p>Suppose that we're given two points, <m>(x_0, y_0), (x_1, y_1)</m>. The lowest degree polynomial <m>f</m> through the first point is the horizontal line <m>f(x) = y_0 = f(x_0)</m>. The lowest degree polynomial <m>f</m> through the two points is
+                    <me>
+                        y = y_0 + \frac{y_1 - y_0}{x_1 - x_0}(x - x_0).
+                    </me>
+                    We call the quantities <m>y_0</m> and <m>\frac{y_1 - y_0}{x_1 - x_0}</m> <term>divided differences.</term> So now lets see what happens with three points.</p>
+
+                    <p>Suppose that we're given three points to interpolate, <m>(x_0,y_0), (x_1, y_1), (x_2, y_2)</m>. We claim that we can construct a unique quadratic polynomial that interpolates the data of the form
+                    <me>
+                        f(x) = b_0 + b_1 (x - x_0) + b_2 (x - x_0)(x - x_1),
+                    </me>
+                    for some as yet unknown constants <m>b_0, b_1, b_2</m> that depend on the points. (You can easily show that for noncollinear points, you get a nonsingular coefficient matrix for the resulting system, which implies a unique solution.)</p>
+
+                    <p>To find the values of the coefficients, we'll plug in our data points.
+                    <me>
+                        f(x_0) = b_0 + 0 + 0
+                    </me>
+                    and so <m>b_0 = f(x_0) = y_0</m>. Moving to <m>x_1</m>,
+                    <md>
+                        <mrow>f(x_1) \amp= b_0 + b_1(x_1 - x_0) + 0</mrow>
+                        <mrow>y_1 \amp= y_0 + b_1(x_1 - x_0)</mrow>
+                        <mrow> b_1 \amp= \frac{y_1 - y_0}{x_1 - x_0}</mrow>
+                    </md>
+                    Notice that so far, we've exactly reproduced the line connecting the first two points. Now let's look at <m>b_2</m>.
+                    <md>
+                        <mrow>f(x_2) \amp= y_0 + \frac{y_1 - y_0}{x_1 - x_0}(x_2 - x_0) + b_2 (x_2 - x_0)(x_2 - x_1)</mrow>
+                        <mrow>y_2 \amp- y_0 - \frac{y_1 - y_0}{x_1 - x_0}(x_2 - x_0) = b_2 (x_2 - x_0)(x_2 - x_1)</mrow>
+                        <mrow>b_2 \amp= \frac{\frac{y_2 - y_1}{x_2 - x_1} - \frac{y_1 - y_0}{y_1 - y_0}}{x_2 - x_0},</mrow>
+                    </md>
+                    where the last step requires a bit of non-obvious algebra, but provides a more useful form.
+                    </p>
+
+                    <p>It turns out that this process can be repeated for additional points, though one can imagine the formula for the next step is quite complicated to express in <m>x_i, y_i</m>. So we introduce a notation that will make this process easy to write in recursive form. The <m>m</m>th divided difference is given by the recursive formula
+                    <md>
+                        <mrow> f[x_i] \amp= y_i;</mrow>
+                        <mrow> f[x_m, \ldots, x_0] \amp= \frac{f[x_m, \ldots, x_1] - f[x_{m-1}, \ldots, x_0]}{x_m - x_0}.</mrow>
+                    </md>
+                    For example, in this notation,
+                    <me>
+                        f[x_1, x_0] = \frac{f[x_1] - f[x_0]}{x_1 - x_0} = \frac{y_2 - y_1}{x_2 - x_1},
+                    </me>
+                    and you should convince yourself that the expression for <m>f[x_2, x_1, x_0]</m> agrees with our previous computation.
+                    </p>
+
+                    <p>We want to use this approach because we'd prefer our computations to be purely in terms of array entries, not the application of general formulas. As an example, we will trace through the example of computing the coefficients of the Newton polynomial for the points <m>(1,1), (2, 3), (5,10)</m> in code.</p>
+
+                    <sage language = "octave">
+                        <input>
+                            nodeX = [1, 2, 5];
+                            nodeY = [1, 3, 10];
+                            #this section calculates the coefficients
+                            data = zeros(3); #3x3 matrix of 0s
+                            for i = 1:3
+                                data(1,i) = nodeY(i)
+                            endfor
+                            for i = 1:2
+                                data(2,i) = (data(1,i+1) - data(1,i))/(nodeX(i+1)-nodeX(i));
+                            endfor
+                            for i = 1:1
+                                data(3,i) = (data(2,i+1)- data(2,i))/(nodeX(i+2) - nodeX(i));
+                            endfor
+                            b = data(:,1)'
+                            #this section creates the Newton polynomial. It is unenlightening at the moment, because I am trying to avoid using symbolic variables. To be rewritten.
+                            structure = @(x, b) b(1) + b(2)*(x - nodeX(1)) + b(3)*(x - nodeX(1)).*(x - nodeX(2));
+                            poly = @(x) structure(x, b);
+                            scatter(nodeX, nodeY, 400)
+                            hold on
+                            plot(0:.01:6, poly(0:.01:6))
+                        </input>
+                    </sage>
+                    <p>The code above should provide an example of how to implement the recursion without having to rely on increasingly complex formulas to compute the coefficients. As a goal, one could try to produce all of the data in the matrix <q>data</q> in one loop, instead of the many loops that I have (suggestively) used. One could also write a much more revealing computation of the final polynomial.</p>
+                </subsection>
+                <subsection>
+                    <title>Problems with polynomials</title>
+                    <p>Polynomial interpolation has a serious drawback in many cases: high degree polynomials can behave wildly between points in a way that doesn't reflect the expected behavior of the underlying function. To see this, consider the function
+                        <me>
+                            f(x) = \frac{1}{x^2 + 25}
+                        </me>
+                    which is a typical example of a rational function with no vertical asymptotes.
+                    <sage language="octave">
+                        <input>
+                            X = -1:.01:1;
+                            f = @(x) 1./(1 + 25*x.^2);
+                            plot(X, f(X))
+                            set(gca,'xaxislocation','origin')
+                            set(gca, 'yaxislocation','origin')
+                        </input>
+                    </sage></p>
+                    <p>We will sample this function and then attempt to reconstruct it using polynomial interpolation. Suppose that we choose six equally spaced points from <m>f</m>.
+                    <sage language="octave">
+                        <input>
+                            X = -1:.01:1;
+                            f = @(x) 1./(1 + 25*x.^2);
+
+                            P = [-1, -.6, -.2, .2, .6, 1];
+
+
+                            plot(X, f(X))
+                            set(gca,'xaxislocation','origin')
+                            set(gca, 'yaxislocation','origin')
+                            hold on
+                            scatter(P, f(P), 400)
+                        </input>
+                    </sage>
+                    Now suppose we find the unique polynomial that goes through these six points. (The code here uses the command <code>polyfit</code>.)
+                    <sage language="octave">
+                        <input>
+                            X = -1:.01:1;
+                            f = @(x) 1./(1 + 25*x.^2);
+
+                            P = [-1, -.6, -.2, .2, .6, 1];
+
+
+                            scatter(P, f(P), 400)
+                            set(gca,'xaxislocation','origin')
+                            set(gca, 'yaxislocation','origin')
+                            hold on
+
+                            plot(X, f(X))
+                            p = polyfit(P, f(P), 5)
+                            plot(X, polyval(p,X))
+                        </input>
+                    </sage>
+                    Notice that the interpolating polynomial doesn't appear to behave like the original function at all, oscillating through the end points. Perhaps we can fix the problem by choosing more points.</p>
+                    <sage language="octave">
+                        <input>
+                            X = -1:.01:1;
+                            f = @(x) 1./(1 + 25*x.^2);
+
+                            Q = -1:.2:1;
+
+                            scatter(Q, f(Q), 400)
+                            set(gca,'xaxislocation','origin')
+                            set(gca, 'yaxislocation','origin')
+                            hold on
+
+                            plot(X, f(X))
+                            q = polyfit(Q, f(Q), 11)
+                            plot(X, polyval(q,X))
+                        </input>
+                    </sage>
+                    <p>Unfortunately, this seems to have exacerbated the problem. The polynomial starts to oscillate wildly and to grow sharply between nodes near the outside of the domain.  It turns out that this behavior is common in high degree polynomial interpolation of equally-spaced points. Replacing a complicated function with a polynomial interpolant isn't going to be as easy as sampling equidistant points, and we should expect that similar bad behavior is going to crop up in data sets with many points if we use a unique polynomial fit.</p>
+
+                    <p>There are many approaches to dealing with this undesirable behavior. In the next section, we'll talk about building smooth curves that pass through all of the points by considering them three at a time. In this section, we should at least be aware of better sampling methods that underlie much of modern approximation theory. Note that this is only a flavor - approximation theory is a huge field with myriad applications and techniques. </p>
+
+                    <p>One way that we can try to make a better approximating polynomial for a function is to sample more points near the edge - this should allow us to control the bad behavior that seems to occur there. But how should we pick the points? For various reasons, it turns out that a natural choice for sampling nodes (that is, the <m>x</m>-values that we'll use to sample the function we're trying to approximate) is the so-called <term>Chebyshev nodes</term>, which correspond to the <m>x</m> coordinates of equally spaced points on a unit circle.</p>
+                    <sage language="octave">
+                        <input>
+                            n = 11;
+                            nodes = cos(pi/n*((1:n)-.5));
+                            X = -1:.01:1;
+                            f = @(x) sqrt(1 - x.^2)
+                            scatter(nodes, zeros(length(nodes),1), 400)
+                            hold on
+                            scatter(nodes, f(nodes), 400)
+                            plot(X, f(X))
+                            set(gca,'xaxislocation','origin')
+                            set(gca, 'yaxislocation','origin')
+                        </input>
+                    </sage>
+                    <p>The following code will compare high degree approximations of <m>f</m> using equally spaced and Chebyshev nodes</p>
+                    <sage language="octave">
+                        <input>
+                            X = -1:.01:1;
+                            f = @(x) 1./(1 + 25*x.^2);
+
+                            n = 11;
+                            nodes = cos(pi/n*((1:n)-.5));
+                            m = 21;
+                            nodes2 = cos(pi/m*((1:m)-.5));
+
+
+                            Q = -1:.2:1;
+                            QQ = -1:.1:1;
+
+                            l = polyfit(Q, f(Q), length(Q)-1);
+                            p = polyfit(nodes, f(nodes), n-1);
+
+                            ll = polyfit(QQ, f(QQ), length(QQ)-1);
+                            pp = polyfit(nodes2, f(nodes2), m-1);
+
+                            subplot(2, 2, 1)
+                            scatter(Q, f(Q), 400)
+                            set(gca,'xaxislocation','origin')
+                            set(gca, 'yaxislocation','origin')
+                            axis([-1 1 -1 1])
+                            title("Poly. intepolation on equidistant nodes, n = 11")
+                            hold on
+                            plot(X, f(X))
+                            plot(X, polyval(l,X))
+                            hold off
+                            subplot(2, 2, 2)
+                            scatter(nodes, f(nodes), 400)
+                            set(gca,'xaxislocation','origin')
+                            set(gca, 'yaxislocation','origin')
+                            axis([-1 1 -1 1])
+                            hold on
+                            plot(X, f(X))
+                            plot(X, polyval(p,X))
+                            title("Poly. interpolation on Chebyshev nodes, n = 11")
+                            subplot(2, 2, 3)
+                            scatter(QQ, f(QQ), 400)
+                            set(gca,'xaxislocation','origin')
+                            set(gca, 'yaxislocation','origin')
+                            title("Poly. intepolation on equidistant nodes, n = 21")
+                            axis([-1 1 -1 1])
+                            hold on
+                            plot(X, f(X))
+                            plot(X, polyval(ll,X))
+                            hold off
+                            subplot(2, 2, 4)
+                            scatter(nodes2, f(nodes2), 400)
+                            set(gca,'xaxislocation','origin')
+                            set(gca, 'yaxislocation','origin')
+                            axis([-1 1 -1 1])
+                            hold on
+                            plot(X, f(X))
+                            plot(X, polyval(pp,X))
+                            title("Poly. interpolation on Chebyshev nodes, n = 21")
+                            hold off
+                        </input>
+                    </sage>
+
+                </subsection>
+
+                <subsection>
+                    <title>Spline interpolation</title>
+                    <p>Instead of trying to force a high degree polynomial to fit through many points, if we want an interpolating function that has smooth properties, we could consider a piecewise approach instead. That is, instead of a single formula that interpolates all of the points, we'll construct small segments that join together into a smooth(ish) function that changes definition as we move down the set of data points. Piecewise interpolation is usually done in early math classes with a ruler connecting points with lines - a more sophisticated name for this is linear interpolation. Because a given line only has two parameters (slope and intercept), the best we can expect is to meet two conditions - that is, the line passes through each of two points.</p>
+
+                    <p>This is reflective of a general principle in mathematics that gets used but not often mentioned throughout college level courses - to meet one condition, an equation or set of equations needs one free parameter. In this case, since we're working with simultaneous equations, essentially we're using the invertible matrix theorem from linear algebra to guarantee a unique solutions.</p>
+                    <p>What we're going to present is a method that breaks a set of data points into consecutive groups of two points. We'll need an interpolating function piece with at least two free parameters that can be chosen. Since we want the curve to be differentiable, we'll need each segment to meet the next with the same slope - that is, we need the first derivatives to match every time we change segments. With <m>n+1</m> points, that means we have <m>n-1</m> points that are connections (that is, not the endpoints of the data set). Since we're dictating a condition on derivatives, we know that we'll need at least three parameters. In order to make the changes between the segments curve naturally (which is important in many physical applications), we also want the second derivatives to match. (This is essentially dictating that the curvatures of the segments match, or more geometrically that there is an osculating circle where two pieces meet.) So each segment is actually dealing with four restrictions, and thus we need a function with four free parameters - a cubic polynomial fits the bill!</p>
+                    <p>Where are we at? Suppose that we have <m>n + 1</m> points to interpolate. Then there are <m>n</m> segments, which requires <m>n</m> functions. Each segment has an associated cubic polynomial with 4 parameters, so there are <m>4n</m> parameters available. How many restrictions are there?
+                    <ul>
+                        <li> Two points to interpolate for each segment, so <m>2n</m> conditions.</li>
+                        <li> <m>n-1</m> points at which derivatives match.</li>
+                        <li> <m>n - 1</m> points at which second derivatives match.</li>
+                    </ul></p>
+                    <p>So far, we have <m>4n</m> parameters and <m>2n + n - 1 + n - 1 = 4n -2</m> conditions. Where are the last two conditions going to come from? The endpoints! Since we have two available conditions to impose, we'll get a nice square system if we impose them on the endpoints. There are a couple of common choices for how to do this. The first is called a <term>natural spline</term>, which is the case where the function has no curvature at the endpoints - that is, it's locally linear:
+                    <me>
+                        f''(x_1) = f''(x_{n+1}) = 0.
+                    </me>
+                    In some physical applications, the designer of the spline might want to have prescribed slopes at the endpoints instead. That is,
+                    <me>
+                        f'(x_1) = c_1, \hspace{.5in} f'(x_{n+1}) = c_2.
+                    </me></p>
+
+                    <p>Let's take a look at a small example to see how spline fitting works in practice. Suppose we're given three points, <m>(1,2), (2,4), (3,1)</m>. Note that these are arranged in order of ascending <m>x</m> values. For each pair of points, we need a cubic spline - that is functions
+                    <md>
+                        <mrow> f_1(x) \amp= a_1 x^3 + b_1 x^2 + c_1 x + d_1,</mrow>
+                        <mrow> f_2(x) \amp= a_2 x^3 + b_2 x^2 + c_2 x + d_2.</mrow>
+                    </md>
+                    We'll organize the equations as above. First, we have the interpolating conditions (that is, the functions need to pass through the points.)
+                    <md>
+                        <mrow>a_1  + b_1 + c_1 + d_1 \amp= 2</mrow>
+                        <mrow>8 a_1  + 4 b_1 + 2 c_1 + d_1 \amp= 4</mrow>
+                        <mrow>8 a_2  + 4 b_2 + 2 c_2 + d_2 \amp= 4</mrow>
+                        <mrow>27 a_2  + 9 b_2 + 3 c_2 + d_2 \amp= 1</mrow>
+                    </md>
+                    Second, we want first derivatives to match at the transition point at <m>(2,4)</m>.
+                    <me>
+                        12 a_1 + 4 b_1 + c_1 = 12 a_2 + 4 b_2 + c_2
+                    </me>
+                    Third, we want second derivatives to match at <m>(2,4)</m>.
+                    <me>
+                        12 a_1 + 2 b_1 = 12 a_2 + 2 b_2
+                    </me>
+                    Finally, we impose the endpoint condition for a natural spline, which is that <m>f''(x_1) = f''(x_n) = 0</m>:
+                    <md>
+                        <mrow> 6 a_1 + 2 b_1 = 0</mrow>
+                        <mrow> 18 a_2 + 2 b_2 = 0</mrow>
+                    </md></p>
+                    <p>There are various algebraic approaches to solving splines that we will not consider here. Instead, we will try to organize these equations into a matrix form.
+                    <me>
+                        \bbm 1 \amp 1 \amp 1 \amp 1 \amp 0 \amp 0 \amp 0 \amp 0  \\
+                        8 \amp 4 \amp 2 \amp 1 \amp 0 \amp 0\amp 0\amp 0 \\
+                        0 \amp 0\amp 0\amp 0\amp 8 \amp 4\amp 2\amp 1 \\
+                        0 \amp 0 \amp 0 \amp 0 \amp 27 \amp 9 \amp 3 \amp 1 \\
+                        12 \amp 4 \amp 1 \amp 0 \amp -12 \amp -4 \amp -1 \amp 0 \\
+                        12 \amp 2 \amp 0 \amp 0 \amp -12 \amp -2 \amp 0 \amp 0 \\
+                        6 \amp 2 \amp 0 \amp 0 \amp 0 \amp 0 \amp 0 \amp 0 \\
+                        0 \amp 0 \amp 0 \amp 0 \amp 18 \amp 2 \amp 0 \amp 0
+                        \ebm \bbm a_1 \\ b_1 \\ c_1 \\ d_1 \\ a_2 \\ b_2 \\ c_2 \\ d_2 \ebm = \bbm 2 \\ 4 \\ 4 \\ 1 \\ 0 \\ 0 \\ 0 \\ 0 \ebm
+                    </me></p>
+
+                    <p>At this point, we can solve the system using octave and row reduction. As long as there are no three consecutive points that are collinear, this system will have a unique solution (that is, the coefficient matrix is invertible).
+                    <sage language="octave">
+                        <input>
+                            system = [1,1,1,1,0,0,0,0,2;8,4,2,1,0,0,0,0,4;0,0,0,0,8,4,2,1,4;0,0,0,0,27,9,3,1,1;12,4,1,0,-12,-4,-1,0,0;12,2,0,0,-12,-2,0,0,0;6,2,0,0,0,0,0,0,0;0,0,0,0,6,2,0,0,0];
+                            coeefs = rref(system)(:,9) #this row reduces the system and takes the answer column, which is column 9
+                            f1 = coeefs(1:4)'; #these take the coefficients associated with the first and second spline
+                            f2 = coeefs(5:8)'; #and put the polynomials in vector form
+                            X1 = 1:.01:2;
+                            X2 = 2:.01:3;
+                            Y1 = polyval(f1, X1);#evaluates each spline segment on the correct domain
+                            Y2 = polyval(f2, X2);
+                            plot(X1, Y1, 'r', X2, Y2, 'b')
+                            hold on
+                            scatter([1,2,3],[2,4,1],400) #plots the original points.
+                        </input>
+                    </sage>
+                    </p>
+
+                    <p>Next is a quick code demonstration of the addition of one more points, say at <m>(4,10)</m>. You should look for the pattern in the equation sets, as this should give a clue about how to implement a general routine. By way of comparison, we will also plot the unique cubic that passes through the four points. You should note that the purple graph makes wider oscillations between the points than the multi-colored spline fit.
+                    <sage language="octave">
+                        <input>
+                            system = [1,1,1,1,0,0,0,0,0,0,0,0,2;
+                                       8,4,2,1,0,0,0,0,0,0,0,0,4;
+                                       0,0,0,0,8,4,2,1,0,0,0,0,4;
+                                       0,0,0,0,27,9,3,1,0,0,0,0,1;
+                                       0,0,0,0,0,0,0,0,27,9,3,1,1;
+                                       0,0,0,0,0,0,0,0,64, 16, 4, 1, 10;
+                                       12,4,1,0,-12,-4,-1,0,0,0,0,0,0;
+                                       0,0,0,0,27,6,1,0,-27,-6,-1,0,0;
+                                       12,2,0,0,-12,-2,0,0,0,0,0,0,0;
+                                       0,0,0,0,18, 2, 0,0, -18, -2, 0,0,0;
+                                       6,2,0,0,0,0,0,0,0,0,0,0,0;
+                                       0,0,0,0,0,0,0,0,24,2,0,0,0];
+                            coeefs = rref(system)(:,13) #this row reduces the system and takes the answer column, which is column 9
+                            f1 = coeefs(1:4)'; #these take the coefficients associated with the first and second spline
+                            f2 = coeefs(5:8)'; #and put the polynomials in vector form
+                            f3 = coeefs(9:12)';
+                            X1 = 1:.01:2;
+                            X2 = 2:.01:3;
+                            X3 = 3:.01:4;
+                            Y1 = polyval(f1, X1);#evaluates each spline segment on the correct domain
+                            Y2 = polyval(f2, X2);
+                            Y3 = polyval(f3,X3);
+
+                            X = 1:.01:4;
+                            f = polyfit([1,2,3,4],[2,4,1,10],3);
+                            Y = polyval(f,X);
+
+                            plot(X1, Y1, X2, Y2, X3, Y3, X, Y)
+                            hold on
+                            scatter([1,2,3,4],[2,4,1,10],400) #plots the original points.
+                        </input>
+                    </sage></p>
+                </subsection>
+                <subsection>
+                    <title>Many-point spline interpolation example</title>
+
+                    <sage language="octave">
+                        <input>
+                            #The first section samples the function g.
+
+                            g = @(x) sin(x)
+                            testX = -10:1:10;
+                            testY = g(testX);
+                            points = [testX; testY];
+                            %points = [1, 2, 3,4, 8; 10, 3, -2,-1,7];
+                            n = length(points(1,:))
+                            f = @(x) [x.^3, x.^2, x, 1];
+                            fprime = @(x) [3.*x.^2, 2.*x, 1, 0];
+                            fpprime = @(x) [6.* x, 2, 0, 0];
+
+                            #The second section constructs a matrix representing the system of linear equations needed to construct the interpolating polynomials
+
+                            coeff = [];
+                            b = [];
+                            zeroblock = [0,0,0,0];
+
+                            %interpolation rows
+                            for i = 1:(n-1)
+                                currentrow = [];
+                                j = i;
+                                while (j-1)>0
+                                    currentrow = [currentrow, zeroblock];
+                                    j = j -1;
+                                endwhile
+                                currentrow = [currentrow, f(points(1,i))];
+                                k = i;
+                                while (n - 2 - (k-1))>0
+                                    currentrow = [currentrow, zeroblock];
+                                    k = k+1;
+                                endwhile
+                                coeff = [coeff;currentrow];
+                                b = [b;points(2,i)];
+                            endfor
+
+                            for i = 1:(n-1)
+                                currentrow = [];
+                                j = i;
+                                while (j-1)>0
+                                    currentrow = [currentrow, zeroblock];
+                                    j = j -1;
+                                endwhile
+                                currentrow = [currentrow, f(points(1,i+1))];
+                                k = i;
+                                while (n - 2 - (k-1))>0
+                                    currentrow = [currentrow, zeroblock];
+                                    k = k+1;
+                                endwhile
+                                coeff = [coeff;currentrow];
+                                b = [b; points(2, i+1)];
+                            endfor
+
+                            %derivative rows
+                            for i = 1:(n-2)
+                                currentrow = [];
+                                j = i;
+                                while (j-1)>0
+                                    currentrow = [currentrow, zeroblock];
+                                    j = j -1;
+                                endwhile
+                                currentrow = [currentrow, fprime(points(1,i+1)), -1*fprime(points(1,i+1))];
+                                k = i;
+                                while (n - 3 - (k-1))>0
+                                    currentrow = [currentrow, zeroblock];
+                                    k = k+1;
+                                endwhile
+                                coeff = [coeff;currentrow];
+                                b = [b;0];
+                            endfor
+
+                            %second derivative rows
+                            for i = 1:(n-2)
+                                currentrow = [];
+                                j = i;
+                                while (j-1)>0
+                                    currentrow = [currentrow, zeroblock];
+                                    j = j -1;
+                                endwhile
+                                currentrow = [currentrow, fpprime(points(1,i+1)), -1*fpprime(points(1,i+1))];
+                                k = i;
+                                while (n - 3 - (k-1))>0
+                                    currentrow = [currentrow, zeroblock];
+                                    k = k+1;
+                                endwhile
+                                coeff = [coeff;currentrow];
+                                b = [b;0];
+                            endfor
+
+                            %endpoint conditions (natural spline)
+                            left = [fpprime(points(1,1)), zeros(1, 4*(n-2))];
+                            right = [zeros(1, 4*(n-2)), fpprime(points(1, end))];
+
+                            coeff = [coeff; left; right];
+                            b = [b;0;0];
+
+                            A = [coeff, b];
+                            soln = rref(A)(:,end);
+                            ############################################
+                            #The third section plots the interpolation.
+
+                            scatter(points(1,:), points(2,:), 400)
+                            hold on
+                            for i = 1:(n-1)
+                                X = points(1,i):.01:points(1,i+1);
+                                Y = polyval(soln(4*i-3:4*i)', X);
+                                plot(X,Y)
+                            endfor
+                        </input>
+                    </sage>
+                </subsection>
+
+
+
+
+        </section>
+
+        <section>
+            <title>Numerical Integration</title>
+            <subsection>
+                <title>Integration review</title>
+                <p>Before we begin looking at numerical calculus, it is useful to recall some of the basic notions. In particular, we'll be reexamining the introduction to calculus most students see in the second semester of the course.</p>
+
+                <p>Here is a question - what is <m>\int_0^1 x^2 \, dx</m>? Most people that have some experience with calculus will perform the following operation:
+                <me>
+                    \int_0^1 x^2 \, dx = \frac{1}{3} x^3 |_0^1 = \frac{1}{3}.
+                </me>
+                However, this computation both misses the point of what the integral represents and uses a technique that will largely be unavailable in practice.</p>
+
+                <p>As to the first point, the <term>definite integral</term> represents a measurement of the <term>signed area</term> between a graph and the <m>x</m>-axis. We say signed area because area above the axis and area below the axis are considered to have opposite signs. Again, a definite integral is an <emph>area</emph>. Below, we plot the region corresponding to <m>\int_0^1 x^2 \, dx</m>.</p>
+                <sage language = "octave">
+                    <input>
+                        X = 0:.01:1;
+                        X1 = -1:.01:2;
+                        Y = X.^2;
+                        Y1 = X1.^2;
+                        area(X, Y, 'FaceColor', "red")
+                        hold on
+                        plot(X1, Y1)
+                    </input>
+                </sage>
+                <p>Now, the area of this region is certainly <m>\frac{1}{3}</m>. To arrive at that conclusion, we used one of the most important theorems of continuous mathematics, the <term>fundamental theorem of calculus</term>, which gives a connection between <emph>definite integrals</emph>, that is the signed area under a curve, with <emph>indefinite integrals</emph>, that is antiderivatives.</p>
+
+                <theorem>
+                    <title>Fundamental theorem of calculus, part II</title>
+                    <p>Suppose that <m>f</m> is a function on an interval <m>[a,b]</m> with an antiderivative <m>F</m> such that <m>F'(x) = f(x)</m> for all <m>x \in [a,b]</m>. If <m>f</m> is Riemann integrable, then
+                    <me>
+                        \int_a^b f(x)\,dx = F(b) - F(a).
+                    </me></p>
+                </theorem>
+
+                <p>One salient assumption present in the fundamental theorem of calculus is the existence of an antiderivative. Unfortunately, there are many functions that do not possess a (closed form) antiderivative, including some of the most useful functions in practice. For example, the <term>normal distribution</term> from statistics is essentially defined by the function <m>f(x) = e^{-x^2}</m>. A typical problem might wish to compute an integral like
+                <m>\int_{-1}^{2} e^{-x^2} \, dx</m>, which is a simple area contained under a very nice curve, as shown below.</p>
+                <sage language="octave">
+                    <input>
+                        X = -4:.01:4;
+                        XX = -1:.01:2;
+                        plot(X, exp(-X.^2))
+                        hold on
+                        area(XX, exp(-XX.^2))
+                    </input>
+                </sage>
+                <p> However, the fundamental theorem <emph>cannot</emph> be used to compute the area indicated by the definite integral because the function <m>e^{-x^2}</m> has no closed form antiderivative. So we need to approach the area finding problem with techniques related to the definition of definite integrals, which consist of breaking the area under functions up into approximating rectangles and then making the rectangles uniformly smaller in width.</p>
+
+                <sage language = "octave">
+                    <input>
+                        X = 0:.01:1;
+                        Y = X.^2;
+                        rectangle("Position", [0,0, .5, .25], "facecolor","red", "facealpha",.1)
+                        hold on
+                        rectangle("Position", [.5,0, .5, 1], "facecolor","red", "facealpha",.1)
+                        plot(X,Y)
+                        area(X, Y, "facecolor", [0 0.6 .9])
+                        plot(.5*ones(11,1), 0:.1:1, "k")
+                    </input>
+                </sage>
+
+                <p> The <term>Riemann sum</term> that approximates the signed area under <m>f</m> on <m>[a,b]</m> is given by the following formula. Let <m>n</m> be the number of approximating rectangles, and the width of each rectangle be <m>\Delta x = \frac{b - a}{n}.</m> Then we can define a partition of <m>[a,b]</m> by <m>x_0 = a</m>, <m>x_i = x_0 + i \Delta x</m>, and <m> x_n = b</m>. On each subinterval <m>[x_i, x_{i+1}]</m>, we choose a point <m>x_i^*</m>. Then the area under <m>f</m> can be approximated by the expression
+                <me>
+                    \int_a^b f(x) \, dx \approx \sum_{i = 0}^{n-1} f(x_i^*) \Delta x.
+                </me>
+                Those functions for which <m>\lim_{n \to \infty} \sum_{i = 0}^{n-1} f(x_i^*) \Delta x</m> converges are called <term>Riemann integrable</term>. </p>
+
+                <p>Note, it need not be the case that the rectangles have equal width, which is an assumption made here to simplify the presentation.</p>
+
+
+            </subsection>
+            <subsection>
+                <title>The trapezoid rule</title>
+                <p>An immediate observation of a Riemann sum approximation for a definite integral might lead you to conclude that other shapes might provide more accurate approximations than rectangles. An easy shape to work with in this context is the trapezoid - it has a simple formula for area and allows us to avoid having to choose random points inside the subintervals. Compare the following pictures.</p>
+                <sage language = "octave">
+                    <input>
+                        f = @(x) x.^2;
+                        X = 0:.01:6;
+                        Xi = linspace(0,6,4);
+                        Y = X.^2;
+                        for i = 1:(length(Xi)-1)
+                            rectangle("Position", [Xi(i),0, Xi(i+1) - Xi(i), f(Xi(i+1))], "facecolor",[0, .8, .8])
+                        endfor
+                        hold on
+                        area(X,Y, "facecolor", [0, .6, .9])
+                        for i = 1:length(Xi)
+                            plot([Xi(i), Xi(i)], [0, f(Xi(i))], 'k')
+                        endfor
+                    </input>
+                </sage>
+
+                <sage language="octave">
+                    <input>
+                        f = @(x) x.^2
+                        X = 0:.01:6;
+                        Xi = linspace(0,6,4);
+                        Y = f(X);
+                        Yi = interp1(X, Y, Xi);
+                        plot(X,Y)
+                        hold on
+                        area(Xi, Yi, "facecolor", [0 .8 .8])
+                        area(X,Y, "facecolor", [0, .6, .9])
+                        for i = 1:length(Xi)
+                            plot([Xi(i), Xi(i)], [0, f(Xi(i))], 'k')
+                        endfor
+                    </input>
+                </sage>
+
+                <p>While the example might seem to be artificially chosen to make the trapezoids significantly more accurate than the rectangles, in fact, the vast majority of graphs of interest will look like the pictures above for small enough subintervals. This motivates the development of the <term>trapezoid rule</term> for approximating a definite integral.</p>
+
+                <p>Recall that the area of a trapezoid with height <m>h</m> and base widths <m>b_1, b_2</m> is given by the formula
+                <me>
+                    A = \frac{b_1 + b_2}{2} h.
+                </me>
+                Suppose that <m>f</m> is a function defined on the interval <m>I = [a,b]</m> and let <m>x_0, \ldots, x_n</m> be a uniform partition of <m>I</m> with subinterval width <m>\Delta x = \frac{b -a}{n}</m>. Consider the subinterval <m>[x_i, x_{i+1}]</m>.  Then
+                <me>
+                    \int_{x_i}^{x_{i+1}} f(x) \, dx \approx \frac{f(x_i) + f(x_{i+1})}{2} \Delta x.
+                </me>
+                Thus,
+                <md>
+                    <mrow> \int_a^b f(x)\, dx \amp = \sum_i \int_{x_i}^{x_{i+1}} f(x) \, dx </mrow>
+                    <mrow> \amp\approx \sum_i \frac{f(x_i) + f(x_{i+1})}{2} \Delta x </mrow>
+                    <mrow> \amp = \frac{\Delta x}{2} \left( f(x_0) + 2\sum_{i = 2}^{n-1} f(x_i) + f(x_n)\right)</mrow>
+                    <mrow> \amp = \frac{b - a}{2n}\left( f(x_0) + 2\sum_{i = 2}^{n-1} f(x_i) + f(x_n)\right)</mrow>
+                </md>
+                and we define the <m>n</m> segement trapezoid approximation to the area under <m>f</m> by
+                <me>
+                    T_n(f, [a,b]) = \frac{b - a}{2n}\left( f(x_0) + 2\sum_{i = 2}^{n-1} f(x_i) + f(x_n)\right).
+                </me></p>
+
+                <p>Let's use the trapezoid rule to approximate the integral indicated above - <m>\int_0^6 x^2 \, dx</m>. We'll use three trapezoids as in the example picture.
+                <sage language="octave">
+                    <input>
+                        a = 0;
+                        b = 6;
+                        n = 3;
+                        X = linspace(a,b,n+1);
+                        f = @(x) x.^2;
+                        Y = f(X);
+                        approxArea = ((b-a)/(2*n))*(Y(1) + 2*Y(2) + 2*Y(3) + Y(4))
+                        F = @(x) 1/3*x.^3;
+                        trueArea = F(b) - F(a)
+                        error = (approxArea - trueArea) / trueArea
+                    </input>
+                </sage>
+                We have included the true result, since we can use the fundamental theorem in this case. The result of the approximation with just 3 trapezoids is a relative error of just 5 percent.
+                </p>
+            </subsection>
+
+            <subsection>
+                <title>A special case of Richardson's extrapolation (optional)</title>
+                <p>This section will have a different flavor than most of the rest of the notes. Here, we'll see the <q>analysis</q> part of numerical analysis - that is, we're going to use theoretical ideas and estimates to improve the approximation given in the trapezoid formula. The idea is that the application of mathematical reasoning can lead to significant improvements in our naive formulations (a theme common in approximation theory). </p>
+
+                <p>We'll first recall the <term>triangle inequality</term>, which says that <m>\abs{a + b} \leq \abs{a} + \abs{b}</m>. In fact, we can apply this to a sum of any finite length, by induction:
+                <me>
+                    \abs{\sum_i a_i} \leq \sum_i \abs{a_i}.
+                </me>
+                Now, Riemann sums are finite sums, and so the triangle inequality applies.
+                <me>
+                    \abs{\sum_{i = 0}^{n-1} f(x_i^*) \Delta x} \leq \sum_{i = 0}^{n-1} \abs{f(x_i^*)} \Delta x,
+                </me>
+                and when the limit of the Riemann sum exists as the number of rectangles tends to infinity (that is, whenever <m>f</m> is Riemann integrable), we get the integral version of the triangle inequality:
+                <me>
+                    \abs{\int_a^b f(x) \, dx} \leq \int_a^b \abs{f(x)} \, dx.
+                </me>
+                This is a theorem in real analysis and will be used here without a formal proof beyond the sketch above.</p>
+
+                <p> Let <m>I = \int_a^b f(x) \, dx</m>. Let <m>T_n</m> represent the <m>n</m> segment trapezoid approximation of <m>I</m>. Let <m>E_T</m> be the error in the approximation - that is
+                <me>
+                    E_T = I - T_n.
+                </me>
+                Our first goal is to measure how large the error <m>E_T</m> is expected to be in terms of the number of trapezoids <m>n</m>.</p>
+                <theorem>
+                    <p> Let <m>f</m> be Riemann integrable on <m>[a,b]</m>. Then
+                    <me>
+                        \abs{E_T} \sim \frac{1}{n^2}.
+                    </me></p>
+                </theorem>
+
+                <proof>
+                    <p>Let <m>\Delta x = x_{i+1} - x_i = \frac{b -a}{n}</m>. We first analyze the error in the trapezoid approximation on a single interval. A <m>u</m>-substitution gives
+                    <me>
+                        \int_{x_i}^{x_{i+1}} f(x) \, dx = \int_0^{\Delta x} f(t + x_i) \, dt.
+                    </me>
+                    Using integration by parts twice, we get
+                    <table>
+                      <tabular>
+                        <row bottom="medium">
+                          <cell right="medium">
+                            <m>u</m>
+                          </cell>
+                          <cell>
+                            <m>v</m>
+                          </cell>
+                        </row>
+                        <row>
+                          <cell right="medium">
+                            <m>f(t + x_i)</m>
+                          </cell>
+                          <cell>
+                            <m>1</m>
+                          </cell>
+                        </row>
+                        <row>
+                          <cell right="medium">
+                            <m>f'(t + x_i)</m>
+                          </cell>
+                          <cell>
+                            <m>t + A</m>
+                          </cell>
+                        </row>
+                        <row>
+                          <cell right="medium">
+                            <m>f''(t + x_i)</m>
+                          </cell>
+                          <cell>
+                            <m> \frac{(t + A)^2}{2} + B</m>
+                          </cell>
+                        </row>
+                      </tabular>
+                    </table>
+                    where we forgo the usual choice of 0 as the integration constant (hence the <m>A, B</m> in the table),
+                    which gives the formula
+                    <md>
+                       <mrow> \amp\int_0^{\Delta x} f(t + x_i)\, dx </mrow>
+                       <mrow> \amp = \left[(t+A)f(t+x_i)\right]_0^{\Delta x} </mrow>
+                       <mrow>\amp - \left[\left(\frac{(t + A)^2}{2} + B\right)f'(t + x_i)\right]_0^{\Delta x}</mrow>
+                       <mrow> \amp+ \int_0^{\Delta x} \left(\frac{(t + A)^2}{2} + B\right) f''(t + x_i)\, dx.</mrow>
+                    </md></p>
+
+                    <p>From this point, the idea is to choose values of <m>A, B</m> that force each term to play a certain role, with the goal of concentrating the error of the approximation in the integral term. First, we choose <m>A</m> so that the first term above is equal to the trapezoid area - that is, we want
+                    <me>
+                        (\Delta x + A) f(\Delta x + x_i) - Af(x_i) = \frac{f(x_{i+1}) + f(x_i)}{2} \Delta x.
+                    </me>
+                    Algebra shows that <m>A = \frac{-\Delta x}{2}</m> solves the equation.</p>
+
+                    <p>Now, we want to choose <m>B</m> so that the second term is zero. That is, we want
+                    <md>
+                        <mrow>\amp \left[\left(\frac{(t + A)^2}{2} + B\right)f'(t + x_i)\right]_0^{\Delta x} </mrow>
+                        <mrow> \amp = \left(\frac{(\Delta x)^2}{8} + B\right)\left[f'(x_{i+1}) - f'(x_i)\right]= 0.</mrow>
+                    </md>
+                    This obviously holds when <m>B = \frac{-(\Delta x)^2}{8}</m>.</p>
+
+                    <p>We conclude that the error on the <m>i</m>th segment, denoted <m>E_T(i)</m> is given by
+                    <me>
+                        E_T(i) = \int_0^{\Delta x} \left(\frac{(t - \frac{\Delta x}{2})^2}{2} - \frac{(\Delta x)^2}{8}\right) f''(t + x_i) \, dt
+                    </me></p>
+
+                    <p>Now, we can get the total error in the trapezoid approximation by adding each of the individual errors.
+                    <md>
+                        <mrow> E_T \amp= \sum E_T(i)</mrow>
+                        <mrow>\amp = \sum_{i=0}^{n-1} \int_0^{\Delta x} \left(\frac{(t - \frac{\Delta x}{2})^2}{2} - \frac{(\Delta x)^2}{8}\right) f''(t + x_i) \, dt </mrow>
+                        <mrow> \amp =\int_0^{\Delta x} \left(\frac{(t - \frac{\Delta x}{2})^2}{2} - \frac{(\Delta x)^2}{8}\right) \left(\sum_{i = 0}^{n-1} f''(t + x_i)\right) \, dt</mrow>
+                    </md></p>
+
+                    <p>For a well-behaved function <m>f</m> (the precise assumption is that <m>f</m> is <m>C^2</m> on <m>[a,b]</m>),the second derivative is bounded on <m>[a,b]</m> - that is, we assume that there exists a constant <m>K</m> so that <m>\abs{f''(x)} \leq K</m> for all <m>x \in [a,b]</m>. Then, using the triangle inequality, we derive the approximation
+                    <md>
+                        <mrow>\abs{E_T} \amp= \abs{\int_0^{\Delta x} \left(\frac{(t - \frac{\Delta x}{2})^2}{2} - \frac{(\Delta x)^2}{8}\right) \left(\sum_{i = 0}^{n-1} f''(t + x_i)\right)\, dt}</mrow>
+                        <mrow>\amp \leq \int_0^{\Delta x} \abs{\left(\frac{(t - \frac{\Delta x}{2})^2}{2} - \frac{(\Delta x)^2}{8}\right)} \abs{\left(\sum_{i = 0}^{n-1} f''(t + x_i)\right)}\, dt</mrow>
+                        <mrow> \amp\leq \int_0^{\Delta x} \abs{\left(\frac{(t - \frac{\Delta x}{2})^2}{2} - \frac{(\Delta x)^2}{8}\right)} \abs{\left(\sum_{i = 0}^{n-1} K \right)}\, dt</mrow>
+                        <mrow> \amp \leq nK \int_0^{\Delta x} \abs{\left(\frac{(t - \frac{\Delta x}{2})^2}{2} - \frac{(\Delta x)^2}{8}\right)} \, dt </mrow>
+                    </md></p>
+
+                    <p>The function <m>g(t) =\left(\frac{(t - \frac{\Delta x}{2})^2}{2} - \frac{(\Delta x)^2}{8}\right)</m> is a parabola that opens upwards with zeros at <m>t = 0</m> and <m>t = h</m>, and so
+                    <md>
+                        <mrow> \amp \int_0^{\Delta x} \abs{\left(\frac{(t - \frac{\Delta x}{2})^2}{2} - \frac{(\Delta x)^2}{8}\right)} \, dt</mrow>
+                        <mrow> \amp \int_0^{\Delta x} \frac{(\Delta x)^2}{8} - \left(\frac{(t - \frac{\Delta x}{2})^2}{2} \right) \, dt</mrow>
+                        <mrow> \amp = \left[\frac{(\Delta x)^2}{8}t - \frac{(t - \frac{\Delta x}{2})^3}{6}\right]_0^{\Delta x} </mrow>
+                        <mrow> \amp= \frac{(\Delta x)^3}{12}</mrow>
+                    </md></p>
+                    <p>Putting this together with the previous computation, we get
+                        <me>
+                            \abs{E_T} \leq nK\frac{(\Delta x)^3}{12} = nK \frac{(b-a)^3}{12 n^3} = \frac{K(b-a)^3}{12 n^2},
+                        </me>
+                    where <m>K</m> was an absolute bound for <m>f''</m> on <m>[a,b]</m>, and in the worst case, we get
+                    <m> \abs{E_T} \leq \frac{K(b-a)^3}{12} \frac{1}{n^2} = \frac{C}{n^2}</m> - that is, the error is proportional to <m>\frac{1}{n^2}</m>, which establishes the claim.</p>
+                </proof>
+
+                <p>Under the assumption of worst case error and a reasonable function <m>f</m>, we conclude that the total trapezoidal error <m>E_T</m> is proportional to <m>\frac{1}{n^2}</m>, or in other words that
+                <me>
+                    E_T = \frac{C}{n^2}.
+                </me>
+                So how can we use this to build a better process? Note that for <m>n</m> segments, we can write
+                <me>
+                    I = T_n + \frac{C}{n^2}
+                </me>
+                and likewise for <m>2n</m> segments, we have
+                <me>
+                    I = T_{2n} + \frac{C}{(2n)^2},
+                </me>
+                which is a system of simultaneous equations. We'll prepare to eliminate <m>C</m>.
+                <md>
+                    <mrow> I \amp = T_{n} + \frac{C}{n^2}</mrow>
+                    <mrow> I \amp = T_{2n} + \frac{C}{4n^2}</mrow>
+                    <mrow> \amp</mrow>
+                    <mrow> n^2 I \amp = n^2 T_n + C </mrow>
+                    <mrow> 4n^2 I \amp= 4n^2 T_{2n} + C </mrow>
+                    <mrow> \amp </mrow>
+                    <mrow> 3n^2 I \amp = 4n^2 T_{2n} - n^2 T_n</mrow>
+                    <mrow> \amp </mrow>
+                    <mrow> I \amp = T_{2n} + \frac{T_{2n} - T_n}{3}</mrow>
+                </md></p>
+                <p> Thus, we have what is known as a first order Richardson's extrapolation -
+                    <me>
+                        \int_a^b f(x) \, dx \approx T_{2n} + \frac{T_{2n} - T_n}{3}.
+                    </me>
+                Let's see how it performs with our existing example.</p>
+
+                <sage language="octave">
+                    <input>
+                        a = 0;
+                        b = 6;
+                        n = 3;
+                        X = linspace(a,b,n+1);
+                        f = @(x) x.^2;
+                        Y = f(X);
+                        T3 = ((b-a)/(2*n))*(Y(1) + 2*Y(2) + 2*Y(3) + Y(4))
+                        m = 6;
+                        XX = linspace(a, b, m+1);
+                        YY = f(XX);
+                        T6 = ((b-a)/(2*m))*(YY(1) + 2*(YY(2)+ YY(3) + YY(4) + YY(5) + YY(6)) + YY(7));
+                        R6 = T6 + (T6 - T3)/(3)
+                        F = @(x) 1/3*x.^3;
+                        trueArea = F(b) - F(a)
+                        errorT = (T6 - trueArea) / trueArea
+                        errorR = (R6 - trueArea) / trueArea
+                    </input>
+                </sage>
+
+            </subsection>
+
+            <subsection>
+                <title>Simpson's 1/3 rule</title>
+                <p>An alternative to using trapezoids is to use polynomials to interpolate sample points. It turns out that using quadratic polynomials on equally spaced interpolation points gives a very nice formula. We'll begin with a single segment and approximate <m>\int_a^b f(x)\, dx</m>.</p>
+
+                <p>Recall that there is a unique parabola through any three points - we'll use the points <m>(a, f(a)), ((a+b)/2, f((a+b)/2), (b, f(b))</m>. We have several techniques available for finding such an interpolation - we'll derive ours using Newton polynomials. The Newton polynomial through our points is
+                <me>
+                    g(x) = b_0 + b_1 (x - a) + b_2 (x -a) (x - (\frac{a+b}{2})),
+                </me>
+                where
+                <me>
+                    b_0 = a, b_1 = \frac{f((a+b)/2) - f(a)}{(a + b)/2 - a}, b_2 = \frac{\frac{f(b) - f((a+b)/2)}{b - (a+b)/2} - \frac{f((a+b)/2) - f(a)}{(a+b)/2 - a}}{b - a}.
+                </me></p>
+
+                <p>So in effect, we're saying that
+                <md>
+                    <mrow>\int_a^b f(x)\, dx \amp \approx \int_a^b b_0 + b_1 (x - a) + b_2 (x -a) (x - (\frac{a+b}{2}))</mrow>
+                    <mrow>\amp = \ldots</mrow>
+                    <mrow>\amp= \frac{\Delta x}{3}\left( f(a) + 4f(\frac{a+b}{2}) + f(b)\right)</mrow>
+                </md>
+                where we have shoved integration and substitution under the rug (or into the ellipsis, as it were).</p>
+
+                <p>Now suppose that <m>[a,b]</m> is partitioned into <m>n</m> segments of equal length <m>\Delta x = \frac{b - a}{n}</m>, where <m>n</m> is even (which will allow overlapping sequences of three points). Then for three sequential points <m>x_i, x_{i+1}, x_{i+2}</m>, the previous computation gives
+                <me>
+                    \int_{x_i}^{x_{i+2}} f(x) \, dx \approx \frac{\Delta x}{3}\left(f(x_i) + 4f(x_{i+1}) + f(x_{i+2})\right).
+                </me>
+                Since we chose <m>n</m> to be even, we get
+                <md>
+                    <mrow>\int_a^b f(x)\, dx \amp\approx \frac{\Delta x}{3}\left(f(x_0) + 4f(x_{1}) + f(x_{2})\right) + \ldots + \frac{\Delta x}{3}\left(f(x_{n-2}) + 4f(x_{n-1}) + f(x_{n})\right)</mrow>
+                    <mrow> \amp\approx \frac{\Delta x}{3} \left(f(x_0) + 4 \sum_{i \text{ odd}} f(x_i)) + 2 \sum_{i \text{ even}} f(x_i) + f(x_n)\right)</mrow>
+                </md></p>
+
+
+                <sage language = "octave">
+                    <input>
+                        f = @(x) cos(x);
+                        a = 0;
+                        b = 2;
+                        n = 4;
+                        h = (b-a)/n;
+                        X = linspace(a,b,n+1);
+                        Y = f(X);
+                        S = (h/3)*(f(X(1)) + 4*f(X(2)) + 2*f(X(3)) + 4*f(X(4)) + f(X(5)))
+                        F = @(x) sin(x);
+                        trueArea = F(b) - F(a)
+                        error = abs((trueArea - S)/trueArea)
+                    </input>
+                </sage>
+            </subsection>
+
+        </section>
+
+        <section>
+            <title>Introduction to Fourier Series (a linear algebra perspective)</title>
+            <subsection>
+                <title>Review of linear algebra</title>
+                <p>A <term>vector space</term> over a scalar field <m>F</m> is a collection of vectors together with operations that make it possible to do algebra on that collection. In particular, a set of vectors <m>V</m> is a vector space under the operations of addition and scalar multiplication if the following axioms are satisfied:
+                <ol>
+                    <li> associativity of addition: <m>u, v, w \in V \Rightarrow u+(v+w) = (u+v)+w</m></li>
+                    <li>commutativity of addition: <m>u, v \in V \Rightarrow u + v = v + u</m></li>
+                    <li> additive identity: there is an element <m>0</m>, the zero vector, so that <m>v \in V \Rightarrow v + 0 = 0 + v = 0</m></li>
+                    <li>additive inverses: every vector <m>v</m> has an inverse <m>-v</m> <m>\Rightarrow v + (-v) = 0</m></li>
+                    <li> compatibility: <m>\alpha , \beta \in F, u \in V \Rightarrow (\alpha\beta)u = \alpha(\beta u)</m></li>
+                    <li>multiplicative identity: <m>1 \in F, u \in V \Rightarrow 1u = u</m></li>
+                    <li>distribution over vector addition: <m>\alpha \in F, u,v \in V \Rightarrow \alpha(u+v) = \alpha u + \alpha v</m></li>
+                    <li>distribution over field addition: <m>\alpha, \beta \in F, u \in V \Rightarrow (\alpha + \beta) u = \alpha u + \beta u</m></li>
+                </ol>
+                The prototypical example of a vector space is <m>n</m>-dimensional <term>Euclidean space</term>, <m>\R^n</m>, our usual notion of vectors. However, many other sets of objects constitute vector spaces with the appropriate operations - for example, <m>C([0,1])</m>, the space of continuous functions on the interval <m>[0,1]</m> is a vector space over <m>\R</m> under addition of functions. We are building to understanding spaces of functions.
+                </p>
+
+                <p>Notice that the defintion of vector spaces doesn't include any way to multiply vectors. One notion of vector multiplication that you've likely seen before on <m>\R^n</m> is the <term>dot product</term> of vectors. Let <m>v = (v_1, \ldots, v_n), u = (u_1, \ldots, u_n) \in \R^n</m>. Then
+                <me>
+                    u \cdot v = \sum_{i=1}^n v_i u_i.
+                </me>
+                One of the most useful characteristics of the dot product on <m>\R^n</m> is that it allows a the definition of the angle between two vectors:
+                <me>
+                    u \cdot v = \norm{u}\norm{v} \cos \theta
+                </me>
+                where <m>\theta</m> is the angle between <m>u</m> and <m>v</m> and <m>\norm{u} = \sqrt{u\cdot u}</m>. Notice that when the vectors are perpendicular, this implies that the dot product is 0. We can generalize this geometry to the setting of general vector spaces.</p>
+
+                <p>The dot product is an example of a more general kind of product called an <term>inner product</term> on a vector space. Let <m>V</m> be a vector space over a field <m>F</m>. An operation <m>\ip{}{}</m> is called an inner product on <m>V</m> if
+                <ol>
+                <li> positive definite: <m>\ip{u}{u} > 0</m> whenever <m>u \neq 0</m></li>
+                <li> conjugate symmetric: <m>\ip{u}{v} = \cc{\ip{v}{u}}</m></li>
+                <li> linear in the first entry: <m>\ip{\alpha u + \beta v}{w} = \alpha \ip{u}{w} + \beta \ip{v}{w}</m> </li></ol>
+                where <m>\cc z</m> denotes the complex conjugate. Note that in the case that the field <m>F = \R</m>, an inner product is symmetric.</p>
+
+                <p>A vector space <m>V</m> with an inner product that satisfies the axioms above is called an <term>inner product space</term>. One immediate feature of an inner product space is that the inner product defines a notion of length (or <term>norm</term>) of a vector:
+                <me>
+                    \norm{v} = \sqrt{\ip{v}{v}}.
+                </me>
+                The prototypical example is <m>\R^n</m> with the standard vector dot product. However, there are many others. For example, one extremely useful inner product space of functions is the vector space of functions <m>f</m> satisfying
+                <me>\int \abs{f(x)}^2 \, dx \lt \infty</me> - these are sometimes called functions of bounded energy and are referred to as the space <m>L^2</m> in mathematics. The inner product on <m>L^2</m> is given by
+                <me> \ip{f}{g} = \int f(x)g(x) \, dx.</me></p>
+
+                <p>In <m>\R^n</m>, two vectors are perpendicular when their dot product is 0 - that is, the angle between them is <m>\pi/2</m>. We will make the same definition more generally in inner product spaces, where we don't have a notion of angle, but we do have a notion related to the dot product - in an inner product space <m>V</m>, two vectors <m>u</m> and <m>v</m> are said to be <term>orthogonal</term> if <m>\ip{u}{v} = 0</m>, in which case we write <m>u\perp v</m>.</p>
+
+                <p>Every vector space <m>V</m> has a structural set of vectors called a <term>basis</term>, which can be used to build every other vector in the space - for example, the so-called standard basis of <m>\R^3</m> is the set <m>\bbm 1\\0\\0 \ebm, \bbm 0\\1\\0 \ebm, \bbm 0\\0\\1\ebm</m>. There are other bases for <m>\R^3</m>, in fact infinitely many.</p>
+
+                <p>Formally, a set of vectors <m>\{b_i\}_I</m> is a basis for <m>V</m> if
+                <ol>
+                    <li> linear independence: <m>c_1 b_1 + \ldots + c_n b_n = 0</m> has only the solution <m>c_1 = c_2 = \ldots = c_n = 0</m>.</li>
+                    <li> spanning set: every vector <m>v \in V</m> can be written as a linear combination of the <m>b_i</m>.</li>
+                </ol>
+                In fact, the linear combination of the <m>b_i</m> used to build <m>v</m> is unique when the <m>b_i</m> are a basis for <m>V</m> - in this case there exist unique constants <m>c_1, \ldots, c_n</m> so that
+                <me>
+                c_1 b_1 + \ldots + c_n b_n = v.
+                </me> The constants <m>c_i</m> are called the <term>coordinates of v</term> with respect to the basis <m>\{b_i\}</m>.</p>
+
+                <p>Now we'll blend orthogonality with basis and coordinates. If the vectors in a basis are pairwise orthogonal, then <m>\{b_i\}</m> is called an <term>orthogonal basis</term>. Furthermore, if the norm of each vector is 1, the basis is called <term>orthonormal</term>. It is exceptionally easy to compute coordinates of vectors when the basis is orthonormal.</p>
+
+                <theorem xml:id="orthocoord"> <p>Let <m>V</m> be an inner product space with an orthonormal basis <m>\{b_i\}</m>. Then for any vector <m>v \in V</m>, we have the expansion
+                <me>
+                v = \ip{v}{b_1}b_1 + \ip{v}{b_2}b_2 + \ldots + \ip{v}{b_n}b_n.
+                </me></p>
+                </theorem>
+                <proof>
+                    This is standard in introductory linear algebra textbooks. I've elided a significant amount of geometric reasoning about projections here, to be filled in for completeness at some points.
+                </proof>
+
+                <p>The giant leap that we need to make is this - not every vector space is finite dimensional. An infinite dimensional inner product space is called a <term>Hilbert space</term> (whereas a finite dimensional inner product space is called a <term>Euclidean space</term>). For a Hilbert space, a basis will also be infinite dimensional. (If you're curious, the analogue of a matrix in the Hilbert space setting is called a <term>linear operator</term>, and the general study of these objects is called operator theory.) One of single most important ideas in engineering and modern science is that the set of <m>L^2</m> functions that are <m>2\pi</m>-periodic is a Hilbert space. In the next sections, we'll find a truly excellent orthonormal basis for that space of functions, and we'll begin to interpret the coefficients that we compute for a given function in terms of that basis. (This is the launching point of a field called signal analysis, typically found in electrical engineering.) </p>
+            </subsection>
+
+            <subsection>
+                <title>The space <m>L^2([-\pi,\pi])</m></title>
+                <p> (Note: the current draft of these notes is going to skip a lot of the theoretical development of <m>L^2</m> in favor of computing with it. As such, this draft should be considered a flavorful introduction rather than a rigorous treatment. Better a little taste than none at all.)</p>
+
+                <p>We're going to narrow our focus to one particular infinite dimensional Hilbert space. Consider the set of integrable functions <m>f: [\pi,\pi] \to F</m> that satisfy the condition
+                <me>
+                    \int_{-\pi}^\pi \abs{f(x)}^2 \, dx \lt \infty.
+                </me>
+                This set is a vector space under pointwise addition of functions and standard scalar multiplication. In addition, the product
+                <me>
+                    \ip{f}{g} = \int_{-\pi}^\pi f(x)\cc{g(x)} \, dx
+                </me>
+                is an inner product on <m>V</m>. The resulting inner product space (or Hilbert space) is called <m>L^2([-\pi, \pi])</m>. (We may shorten this to <m>L^2</m> in this section, with the understood restriction of domain.) The <term><m>L^2</m>-norm</term> is given by
+                <me>
+                    \norm{f}_{L^2} = \sqrt{\ip{f}{f}}.
+                </me></p>
+                <p>The following theorem, stated in this version in the spirit of Fourier, is one of the most important theorems in applied mathematics.</p>
+                <theorem  xml:id="fourierseries">
+                    <title>Existence of Fourier Series in <m>L^2</m></title>
+                    <p>Every function <m>f \in L^2[-\pi, \pi]</m> has a Fourier series representation
+                    <me>
+                        f(x) = \frac{a_0}{2} + \sum_{i=1}^\infty a_n \cos nx + b_n \sin nx.
+                    </me></p>
+                </theorem>
+                <p><m>\cos nx</m> and <m>\sin nx</m> are called <term>harmonics</term>, in analogy with the musical term.</p>
+
+                <p>The theorem is quite a bit more powerful than stated here. The proof requires some sophisticated machinery from the area of functional analysis, and will be sketched in sometime in the future. The main issue is one of convergence - why should an infinite series for an <m>L^2</m> function converge? What conditions need to be present on the coefficients of such a series to make this happen? For now, we suppress this discussion as outside the scope of the current objective, which is to treat the Fourier series as a black box and discover a method for computing the coefficients.</p>
+
+                <p>The form of the series in <xref ref="fourierseries" /> is suggestive. If the <m>\cos nx</m> and <m>\sin nx</m> terms form an orthogonal basis for <m>L^2</m>, then we can use <xref ref="orthocoord" /> to compute the mysterious coefficients <m>a_n, b_n</m>. </p>
+
+                <p>Leaving questions of convergence aside for the moment, let's check orthogonality. It should be clear that <m>\ip{\sin(mx)}{\cos(nx)} = 0</m>. (Hint: the integral of an odd function on a symmetric interval is 0). It remains to check that <m>\sin mx \perp \sin nx</m> and that <m>\cos mx \perp \cos nx</m> for <m>m \neq n</m>. The integrals are left as an exercise to the reader, with the hint that the appropriate starting place for the integrals is to use the identities
+                <md>
+                    <mrow> \cos(a)\cos(b) = \frac{1}{2} (\cos(a+b) + \cos(a - b))</mrow>
+                    <mrow> \sin(a)\sin(b) = \frac{1}{2} (\cos(a-b) - \cos(a + b))</mrow>
+                </md>
+                The double angle formulas can be used to establish that <m>\norm{\cos nx}_{L^2} = \norm{\sin nx} = \sqrt{\pi}</m>, and so we can create an orthonormal basis for <m>L^2([-\pi,\pi])</m> of the form
+                <me>
+                    \{\frac{1}{\sqrt{2\pi}}, \frac{1}{\sqrt{\pi}}\cos x, \frac{1}{\sqrt{\pi}} \sin x, \frac{1}{\sqrt{\pi}} \cos 2x, \frac{1}{\sqrt{\pi}} \sin 2x, \ldots\}.
+                </me>
+                <note>
+                    You might wonder about this basis. After all, there are infinitely many different bases for <m>\R^n</m>. The same is true in <m>L^2([-\pi,\pi]).</m> The Fourier basis is chosen for work with periodic functions. There are other bases in the form of orthogonal polynomials of various flavors. Another basis is the complex exponential functions, which we can get from the Fourier basis using the identity <m>e^{i\theta} = \cos \theta + i \sin \theta</m>. </note></p>
+
+                <p>If we accept that convergence won't be an issue, we can now apply the Hilbert space analogue of <xref ref="orthocoord" />: for <m>f \in L^2([-\pi, \pi])</m>, we have
+                <md>
+                    <mrow> f \amp= \ip{f}{\frac{1}{\sqrt{2\pi}}} \frac{1}{\sqrt{2\pi}} + \ip{f}{\frac{1}{\sqrt{\pi}} \cos x}\cos x + \ip{f}{\frac{1}{\sqrt{\pi}}\sin x}\sin x + \ldots</mrow>
+                    <mrow>  \amp= \ip{f}{1} \frac{1}{2\pi}  + \sum_{n=1}^\infty \frac{1}{\pi} \ip{f}{\cos nx} \cos nx + \frac{1}{\pi}\ip{f}{\sin nx} \sin nx.</mrow>
+                </md>
+                We arrive at the computational formula for the Fourier coefficients <m>a_n, b_n</m> in <xref ref="fourierseries" />.
+                <md>
+                    <mrow>a_n \amp= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cos nx \, dx</mrow>
+                    <mrow>b_n \amp= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \sin nx \, dx</mrow>
+                </md></p>
+            </subsection>
+            <subsection>
+                <title>Example computation</title>
+                <p>In this section, we'll build a Fourier series for a function that seems at first glance to be impossible to approximate with continuous period functions - the square wave. Square waves are not differentiable because they are full of jump discontinuities. Can we really hope to approximate such a function with sines and cosines? </p>
+
+                <sage language="octave">
+                    <input>
+                        ## s = square(t,duty)
+                        ##
+                        ## Generate a square wave of period 2 pi with limits +1/-1.
+                        ##
+
+                        function v = square (t,duty)
+
+                          if nargin == 1,
+                            duty = .5;
+                          elseif nargin != 2,
+                            usage('v = square(t [, duty])');
+                          endif
+
+                          t /= 2*pi;
+                          v = ones(size(t));
+                          v(t-floor(t) >= duty) = -1;
+
+                        endfunction
+
+                        t = linspace(-2*pi,2*pi,10000);
+                        f = square(t);
+                        plot(t,f)
+                        axis([-2*pi 2*pi -1.5 1.5])
+                    </input>
+                </sage>
+                <p>We'll be using the function <c>trapz(x,y)</c> to compute numerical integrals from sample points. (In Octave, one can install the <c>control</c> and <c>signal</c> packages to have the function <c>square</c> already defined, but in this notes the function will have to be defined inline.) In the code example below, the accuracy of the approximation is set by the constant <m>n</m>. The default setting is <m>n = 20</m> (which is really only 10 terms, as the square wave we've defined is an odd function, and so the even harmonics integrate to zero).
+                </p>
+                <sage language="octave">
+                    <input>
+                        #define the square wave function
+                        function v = square (t,duty)
+
+                          if nargin == 1,
+                            duty = .5;
+                          elseif nargin != 2,
+                            usage('v = square(t [, duty])');
+                          endif
+
+                          t /= 2*pi;
+                          v = ones(size(t));
+                          v(t-floor(t) >= duty) = -1;
+
+                        endfunction
+
+                        #sample the square wave on the interval [-pi, pi]
+                        tt = linspace(-pi,pi,10000);
+                        ff = square(tt);
+
+                        #set the number of fourier terms
+                        n = 20
+
+                        #set up the basis for L2
+                        g = @(m,x) cos(m*x);
+                        h = @(m,x) sin(m*x);
+
+                        #compute the intial term
+                        a0 = trapz(tt, ff)/(2*pi);
+
+                        #set up the array that will store the coefficients
+                        a = [a0];
+                        b = [0];
+
+                        #compute the Fourier coefficients
+                        for i = 1:n
+                            a = [a, 1/pi*trapz(tt, ff.*g(i, tt))];
+                            b = [b, 1/pi*trapz(tt, ff.*h(i, tt))];
+                        endfor
+
+                        #plot one period of the square wave and the approximation
+                        s = 0;
+                        for i=0:n-1
+                            s = s+ a(i+1)*g(i,tt) + b(i+1)*h(i,tt);
+                        endfor
+                        plot(tt, s, tt, ff)
+                    </input>
+                </sage>
+
+                <p>The following code chunk, written in Sagemath, is an interactive illustration of the effect of increasing the number of terms.</p>
+                <sage>
+                    <input>
+                        def ftermSquare(n):
+                         return(1/n*sin(n*x*pi/3))
+
+                        def ftermSawtooth(n):
+                         return(1/n*sin(n*x*pi/3))
+
+                        def ftermParabola(n):
+                         return((-1)^n/n^2 * cos(n*x))
+
+                        def fseriesSquare(n):
+                         return(4/pi*sum(ftermSquare(i) for i in range (1,2*n,2)))
+
+                        def fseriesSawtooth(n):
+                         return(1/2-1/pi*sum(ftermSawtooth(i) for i in range (1,n)))
+
+                        def fseriesParabola(n):
+                         return(pi^2/3 + 4*sum(ftermParabola(i) for i in range(1,n)))
+
+                        @interact
+                        def plotFourier(n=slider(1, 30,1,3,'Number of terms')
+                        ,Function=['Square Wave','Saw Tooth','Periodic Parabola']):
+                            if Function=='Saw Tooth':
+                             show(plot(fseriesSawtooth(n),x,-6,6,figsize=(7,3)))
+                            if Function=='Square Wave':
+                             show(plot(fseriesSquare(n),x,-6,6,figsize=(7,3)))
+                            if Function=='Periodic Parabola':
+                             show(plot(fseriesParabola(n),x,-6,6,figsize=(7,3)))
+                         </input>
+                </sage>
+            </subsection>
+            <subsection>
+                <title>Complex numbers and Fourier series</title>
+                <p>Complex numbers are usually denoted in the form <m>a + ib</m> where <m>i</m> is the imaginary unit satisfying <m>i^2 = -1</m>. However, there is another useful form - if we think the complex numbers as giving <m>x</m> and <m>y</m> coordinates in the <term>complex plane</term> and <m>a</m> and <m>b</m> as the legs of a right triangle, then then hypoteneuse of the triangle will be <m>r = \sqrt{a^2 + b^2}</m>, and then angle at the origin will be <m>\tan \theta = \frac{b}{a}</m>. The quantity <m>r</m> is called the magnitude of a complex number and the angle <m>\theta</m> is called the <term>argument</term>.</p>
+                <p>Another important piece of working with complex numbers (a formula that physicist Richard Feynman called "the most remarkable theorem in mathematics") is <term>Euler's formula</term>, which allows the expression of movement around the unit circle in terms of a complex exponential function.
+                <me>
+                    \cos \theta + i \sin \theta = e^{i \theta}.
+                </me>
+                If you're interested in seeing why this might be true, consider the power series expansions for each of the functions in question to at least get a formal sense of the computation. (There isn't any prima facie reason to believe that complex numbers can just be plugged into infinite series, but it turns out to work very similarly to the real case.) </p>
+
+                <p>Combining Euler's formula with the right triangle picture of complex numbers gives the <term>polar representation</term>
+                <me>
+                    z = r e^{i \theta},
+                </me>
+                where <m>r</m> is the radius or magnitude of <m>z</m> and <m>e^{i \theta}</m> is a point on the unit circle corresponding to the angle or argument <m>\theta</m>.</p>
+
+                <p>Fourier series can be reformulated into the complex exponential form using Euler's formula.
+                    <md>
+                        <mrow> \cos nx \amp= \frac{e^{inx} + e^{-inx}}{2}</mrow>
+                        <mrow> \sin nx \amp= \frac{e^{inx} - e^{-inx}}{2i}</mrow>
+                    </md></p>
+
+                <p>Then we can manipulate the trigonometric Fourier series as follows.
+                    <md>
+                        <mrow> f(x) \amp= \frac{a_0}{2} + \sum_{n=1}^{\infty} a_n \cos nx + b_n \sin nx</mrow>
+                        <mrow> \amp= \frac{a_0}{2} + \sum_{n=1}^{\infty} a_n \frac{e^{inx} + e^{-inx}}{2} + b_n \frac{e^{inx} - e^{-inx}}{2i}</mrow>
+                        <mrow> \amp= \frac{a_0}{2} + \sum_{n=1}^\infty \frac{a_n - ib_n}{2}e^{inx} + \frac{a_n + ib_n}{2} e^{-inx}</mrow>
+                        <mrow> \amp= \sum_{\infty}^{\infty} c_n e^{inx}</mrow>
+                    </md>
+                    where
+                    <md>
+                        <mrow>c_0 \amp= \frac{a_0}{2}</mrow>
+                        <mrow>c_n \amp= \frac{a_n - ib_n}{2}</mrow>
+                        <mrow>c_{-n} \amp= \frac{a_n + ib_n}{2}.</mrow>
+                    </md>
+                </p>
+
+                <p>I want to stress the view that <m>e^{ni\theta}</m> corresponds to moving around the unit circle as <m>\theta</m> goes from <m>-\pi</m> to <m>\pi</m>. The larger <m>n</m> is, the faster the function travels around the circle, decreasing period and increasing frequency, just as in the cosine/sine case. To further push the analogy, we give the unit circle its own name, typically the fancy <m>\T</m>. </p>
+
+                <p>A little computation on <m>a_n</m> and <m>b_n</m> gives the following complex exponential form of Fourier series in <m>L^2</m>. (Alternatively, one can show that the set <m>\{e^{\pm inx}\}_{n=1, \ldots, \infty}</m> is an orthonormal basis for <m>L^2</m> and use the projection formula to generate the coordinate computation.)</p>
+                <theorem>
+                    <title>Fourier series on <m>L^2(\T)</m></title>
+                    <p>Let <m>f \in L^2(\T)</m>. Then <m>f</m> has a Fourier representation
+                    <me>
+                        f(x) = \sum_{n=-\infty}^\infty c_n e^{inx}
+                    </me>
+                    where
+                    <me>
+                        c_n = \frac{1}{2\pi} \int_{-\pi}^{\pi} f(x) e^{-inx} \, dx.
+                    </me>
+                </p></theorem>
+            </subsection>
+            <subsection>
+                <title>Introduction to the discrete Fourier transform</title>
+                <p>A sampled function results in a <term>signal</term>, that is a vector <m>x = [x_0, \ldots, x_{n}]</m>. This is a discrete object. We used integral approximations to estimate the Fourier coefficients of such an object in the previous sections by assuming that the signal represented a continuous function <m>f(t)</m>. However, given that signals are discrete, it seems useful to introduce a discrete method for recovering Fourier coefficients.</p>
+
+                <p>The method that we (very very briefly) introduce here is called the <term>discrete Fourier transform</term>. A signal <m>x = (x_n)_{n=0, \ldots, N-1}</m> lives in the <term>time domain</term> - that is, we think of the array indicies as corresponding to an independent variable in time. The entries of the array represent the magnitude of the signal at time <m>k</m>. The discrete Fourier series will produce a vector of the same length, but in the <term>frequency domain</term> - that is, the array indicies will correspond to frequencies. The entries of the array will be complex numbers representing the amplitude and phase shift of the corresponding frequency <m>k</m>. The discrete Fourier transform takes a signal in the time domain and produces an array (really a function) in the frequency domain.</p>
+
+                <definition>
+                    Let <m>x = (x_n)_{n = 0, \ldots, N-1}</m> be a signal in the time domain. Then the DFT of <m>x</m> is the vector <m>X</m> with complex entries given by
+                    <me>
+                    X_k = \frac{1}{N} \sum_{n=0}^{N - 1} x_n e^{-i2\pi \frac{k}{N}n}.
+                    </me>
+                </definition>
+                <p>Before we talk about how the DFT works, we can talk about what it produces. First, frequencies in this setting are with respect to <m>N</m>, the length of the signal. A frequency of <m>k</m> corresponds to a pattern that is repeated <m>k</m> times over <m>N</m> terms. In other words, the period of the pattern is <m>\frac{N}{k}</m>. Each <m>X_k</m> is a complex number that contains the amplitude and phase shift of the corresponding harmonic that describes the pattern. That is, if a harmonic of frequency <m>k</m> is hidden in a signal, the magnitude <m>\abs{X_k}</m> will be significantly larger than the magnitude of the <q>noise</q> present. Plotting the frequencies reveals which harmonics are present.</p>
+
+                <p>We can illustrate how the DFT works with an example composite signal. Let <m>v_1 = [1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1]</m> and <m>v_2 = [3, -4, -1, 3, -4, -1, 3, -4, -1, 3, -4, -1]</m>. Relative to the length of the signal, <m>v_1</m> has frequency 6 and <m>v_2</m> has frequency 4. If we add the signals, we get the composite vector
+                <me> v_1 + v_2 = x = [4, -5, 0, 2, -3, -2, 4, -5, 0, 2, -3, -2 ],</me>
+                which looks to have frequency 2. The DFT should recover that the signal <m>x</m> has harmonics at frequencies 6 and 4. The computation essentially converts the problem into a vector addition problem. We can illustrate by looking at the graphs corresponding to the computation of <m>X_1</m> and <m>X_4</m>. We should expect <m>\abs{X_1} = 0</m> and <m>\abs{X_4} >> 0</m>, as a component signal of frequency 1 is not present and a signal of frequence 4 is.
+                <me>
+                    X_1 = \frac{1}{12}\left(4 -5 e^{-i2\pi\frac{1}{12}} + 0 e^{-i2\pi\frac{2}{12}} + \ldots -2 e^{-i2\pi\frac{11}{12}}\right)
+                </me>
+                Essentially, this is a vector addition problem, as the following figure should make clear.
+                <image source="./images/x1.png" />
+                Visually, it should be apparent that the sum of these vectors is 0.</p>
+
+                <p>On the other hand, we can look at a frequency that is present in <m>x</m>, say <m>X_4</m>. We compute
+                <me>
+                    X_4 = \frac{1}{12}\left(4 -5 e^{-i2\pi\frac{4}{12}} + 0 e^{-i2\pi\frac{8}{12}} + \ldots -2 e^{-i2\pi\frac{44}{12}}\right)
+                </me>
+                which is an addition of this set of vectors, clearly a set with a non-zero sum.
+                <image source="./images/x4.png" />
+                That this vector has non-zero magnitude should not be surprising, given that a pattern of frequency 4 is one of the constituent signals in <m>x</m>.</p>
+            </subsection>
+
+            <subsection>
+                <title>Leakage and the DFT</title>
+                To be added.
+            </subsection>
+            <subsection>
+                <title>Octave and the DFT</title>
+                <p>Of course in practice, signals are thousands or millions of entries long. We don't want to have to compute millions of entries for the frequency domain function by hand. Instead, we use an implementation of the DFT called the <term>fast Fourier transform</term>, an algorithm that is outside the scope of these notes. What you need to know about the command <c>fft</c> is that it produces most of <m>X</m> for a signal <m>x</m> in the time domain. The part that it leaves out is the normalization <m>1/N</m> that accounts for the total energy contained in a signal (longer signals mean more energy).
+                <me>
+                    \mathrm{fft}(x) = \left[\sum_{n=0}^{N-1} x_k e^{-i2\pi\frac{k}{N}n}\right]_{k=0, \ldots, N-1}.
+                </me>
+                That is, the entries of <c>fft(x)</c> are the unnormalized discrete Fourier coefficients <m>N X_k</m>. </p>
+                <p>Let's take a look at our signal from the previous section.
+                <sage language="octave">
+                    <input>
+                        x = [4, -5, 0, 2, -3, -2, 4, -5, 0, 2, -3, -2 ];
+                        X = fft(x);
+                        X = 1/length(x)*abs(X); #normalizes X and finds magnitude of complex #
+                        k = 0:11;
+                        scatter(k, X, 400)
+                    </input>
+                </sage>
+                Several things should be immediately apparent. The first is that (with the exception of the term at <m>k=0</m>, which is special) the plot is symmetric about the line <m>k = 6</m>. The reason is that once you go beyond the midpoint of the vector, you are recovering the harmonic corresponding to the <em>backwards</em> frequency <m>k</m>, which will have the same magnitude as the forwards frequency <m>k</m> for real signals. This will be apparent if you look at how the points move around the unit circle. (For example, compare how multiples of <m>\frac{\pi}{6}</m> and <m>\frac{11 \pi}{6}</m> traverse the circle.) Thus, the frequency <m>k</m> for a real signal has two components of equal magnitude that contribute to that harmonic (much like the sine and cosine contribute to a single harmonic in the trigonometric setting). The special nodes are at <m>k = 0 </m>, which electrical engineers call the <term>DC component</term> (that is, the center of oscilliation for the signal), and at <m>k = N/2</m> which is called the <term>Nyquist frequency</term>, beyond which no frequency can be detected.
+                </p>
+
+                <p>Since we want all of the frequencies between the DC component and the Nyquist frequency to count twice, we'll construct the following <term>one-sided spectrum</term>.
+                <sage language="octave">
+                    <input>
+                        x = [4, -5, 0, 2, -3, -2, 4, -5, 0, 2, -3, -2 ];
+                        N = length(x);
+                        X = fft(x);
+                        X = 1/N*abs(X); #normalizes X and finds magnitude of complex #
+                        twosidespec = X;
+                        onesidespec = twosidespec(1:N/2+1);
+                        onesidespec(2:end-1) = 2*onesidespec(2:end-1);
+                        freq = 0:N/2;
+                        scatter(freq, onesidespec, 400)
+                    </input>
+                </sage>
+                This shows precisely what we expect - the 0 frequency reflects the fact that the signal isn't centered about the x-axis. The <m>k=4</m> and <m>k=6</m> values reflect the constituent patterns from <m>v_1</m> and <m>v_2</m>. </p>
+
+                <p>One of the extremely useful features of the DFT is how good it is at pulling signal out of noise. Consider the following example. We're going to construct a signal with units inherited from a known sample rate. Suppose we have a signal that we sample at a rate of <m>Fs</m> Hz. Then each increase in array position corresponds to a time step of <m>\Delta t = 1/Fs</m> seconds. Given a signal of length <m>L</m>, the total time of the signal will be <m>T = L\times\Delta t</m>. Knowing the sample rate will allow us to explicitly interpret the spectral analysis in terms of the input signal frequencies. (That is, we'll be able to attach units to our spectrum.)</p>
+
+                <p>The following example constructs a nice period function from a sum of sines and cosines, then corrupts the signal with random noies. The <c>fft</c> can be used to produce a one-sided spectrum that recovers the frequences of the original signal.</p>
+
+                <sage language="octave">
+                    <input>
+                        Fs = 10000; #sample rate
+                        T = 1/Fs; #delta t
+                        L = 30000; #signal length
+                        t = (0:L-1)*T; #time domain axis
+
+                        #function to be sampled
+                        S = 10*sin(2*pi*100*t) - 2*cos(2*pi*100*t) + 6*sin(2*pi*350*t);
+                        subplot(2,2,1)
+                        plot(1000*t(1:2000),S(1:2000)) #plots a part of the signal
+                        title('Signal')
+                        xlabel('t (milliseconds)')
+                        ylabel('X(t)')
+
+                        #original spectrum
+                        Y = fft(S);
+                        P2 = abs(Y/L);
+                        P1 = P2(1:L/2+1); #sets up two-sided spectrum
+                        P1(2:end-1) = 2*P1(2:end-1);  #adds backwards frequecies
+                        f = Fs*(0:(L/2))/L;
+                        subplot(2, 2, 2)
+                        plot(f,P1)
+                        title('Single-Sided Amplitude Spectrum of S(t)')
+                        xlabel('f (Hz)')
+                        ylabel('|P1(f)|')
+                        axis([0 1000 0 10])
+
+                        #corruption
+                        X = S + 20*randn(size(t)); #adds random noise
+                        subplot(2, 2, 3)
+                        plot(1000*t(1:2000),X(1:2000))
+                        title('Signal Corrupted with Zero-Mean Random Noise')
+                        xlabel('t (milliseconds)')
+                        ylabel('X(t)')
+
+                        #spectal analysis
+                        Y = fft(X);
+                        P2 = abs(Y/L);
+                        P1 = P2(1:L/2+1); #sets up two-sided spectrum
+                        P1(2:end-1) = 2*P1(2:end-1);  #adds backwards frequecies
+
+                        #plot of spectrum
+                        f = Fs*(0:(L/2))/L;
+                        subplot(2, 2, 4)
+                        plot(f,P1)
+                        title('Single-Sided Amplitude Spectrum of X(t)')
+                        xlabel('f (Hz)')
+                        ylabel('|P1(f)|')
+                        axis([0 1000 0 10])
+                    </input>
+                </sage>
+
+
+            </subsection>
+
+            <subsection>
+                <title>Going backwards - <c>ifft</c></title>
+                <p>We've seen that <c>fft</c> takes a signal <m>x</m> in the time domain and produces a vector <m>X</m> in the frequency domain. Since each entry in <m>X</m> is a linear combination of the entries of <m>x</m>, we should suspect that this process can be inverted. Indeed, <term>inverse DFT</term> , implemented in Octave as <c>ifft</c>, takes a frequency vector <m>X</m> and produces a time domain signal <m>x</m>. Note that since we normalized the output of <c>fft</c> by dividing by the length of the vector (since <c>fft(x)</c><m>= \sum_{n=0}^{N-1} x_k e^{i2\pi \frac{k}{N} n}</m>), we need to undo the normalization before we compute the <c>ifft</c>. </p>
+                <sage language="octave">
+                    <input>
+                        x = linspace(0,1,100);
+                        f = @(x) sin(10*pi*x);
+                        y = f(x);
+                        subplot(1, 3, 1)
+                        plot(x, y)
+
+                        Y = fft(y)/length(y);
+                        subplot(1, 3, 2)
+                        plot(abs(Y))
+
+                        YY = Y*length(Y);
+                        yy = ifft(YY);
+                        subplot(1,3,3)
+                        plot(x, real(yy))
+                    </input>
+                </sage>
+            </subsection>
+
+        </section>
+
+
+        <section>
+            <title>Code examples</title>
+            <subsection>
+                <title>Lab 1 - Introduction</title>
+                <listing>
+                    <caption>A first set of Octave/Matlab commands and examples</caption>
+                    <program>
+                        <input>
+                            #Symbolic math in Octave/Matlab --
+                            #September 4, 2019
+                            #Numerical Analysis
+
+                            #to use symbolic math, we first need to load the symbolic package
+                            #using the command pkg load symbolic
+                            #once the package is installed and loaded, we can use the symbolic capabilities
+                            #installed in Octave
+
+                            syms x; #defines x as a symbolic variable
+                            fun = sin(x); #defines the variable fun as a symbolic object sin(x)
+
+                            #one useful command that works on symbolic objects is diff
+                            #which is Octave's built in command for differentiation.
+
+                            #diff(fun) takes the symbolic derivative of the symbolic function
+                            #sin(x).
+                            diff(fun);
+
+                            #this can be stored as another variable
+                            dfun = diff(fun);
+
+                            #note that this object cannot be evaluted. If we want to turn it
+                            #into a function, we can use the command function_handle.
+
+                            dfun = function_handle(dfun);
+
+                            dfun(pi/3) #evaluates the derivative at pi/3
+
+                            #dfun is now a function that can be evaluated on scalars or arrays.
+                            #it can also be plotted. the simplest possible plotting command is
+                            #ezplot, which takes care of a lot of the mechanics for you. ezplot
+                            #doesn't care if an expression is symbolic or a function
+                            ezplot(dfun)
+
+                            #if you want to plot multiple graphs on the same figure, you can use the
+                            # hold command to keep the figure in place before the next plot
+                            ezplot(fun)
+                            hold on;
+                            ezplot(dfun)
+                            hold off;
+
+                            #another useful mathematical command is factorial
+                            factorial(3)
+
+                            #putting this together, we might plot sin x against a Taylor
+                            #polynomial
+                            fun = sin(x);
+                            T = x - x.^3/factorial(3) + x.^5/factorial(5) - x.^7/factorial(7);
+                            ezplot(fun)
+                            hold on;
+                            ezplot(T)
+                            hold off;
+
+                            #we will look at more powerful visualizations in the next set of
+                            #notes. ezplot is fast, but very limited in what can be controlled.
+                            #we want to work numerically in general.
+                        </input>
+                    </program>
+                </listing>
+                <listing>
+                    <caption>Loops and arrays</caption>
+                    <program>
+                        <input>
+                            #Loops and arrays
+                            #Numerical Analysis
+                            #9/5/2019
+                            #Ryan Tully-Doyle
+
+                            #This set of examples will focus on loops and arrays, which are structures
+                            #that we will be using constantly.
+                            #A for loop runs over an index that goes through a prescribed set of numbers.
+                            #The formatting is slightly different than other languages, but powerful
+                            #in a mathematics context.
+
+                            #the following loop will run for values of i starting at 1 and ending at 10.
+                            #Each iteration will perform the same command.
+
+                            for i = 1:10
+                              disp(i) #display the current value of i
+                            end
+
+                            #unlike other langauges, non-integer indicies can be used in octave/matlab.
+
+                            for i = 1:.1:10 #starts at 1, counts by .1 until reaching 10
+                              disp(i) #display the current value of i
+                            end
+
+                            #it is useful to be able to exit a loop on a condition. in octave, this
+                            #command is called break
+
+                            for i=1:10
+                              disp(i)
+                              if i == 5
+                                printf("You have to stop now!\n") #\n tells printf to break the line
+                                break
+                              end
+                            end
+
+                            #Next, we'll look at how octave deals with arrays, or lists of numbers.
+                            #Functions in octave by default can act on arrays or scalars without using loops
+
+                            X = 12:17;
+                            disp(X)
+
+                            #you might wish to know how long an array is
+
+                            length(X)
+
+                            #you might like to know the largest element in an array
+
+                            max(X)
+
+                            #If you want to refer to a specific element in an array, you can extract it
+                            #by invoking its index.
+
+                            X(3) #calls the third entry of X
+
+                            #You can take slices of arrays by using index ranges
+
+                            X(3:5) #calls the third through fifth entry of X
+
+                            #As octave is natively an array based language, vector operations are natural.
+                            #arrays of the appropriate sizes can be added, subtracted and multiplied by scalars.
+
+                            X=1:10;
+                            Y = 2:11;
+                            X + Y
+                            Y - Y
+                            2*X
+
+                            #since mathematical functions are natively array functions, you can apply a function
+                            #to an array.
+
+                            sin(X)
+
+                            #Every time you use an operation that might be ambiguous (things involving
+                            #multiplication and subtraction, add a . to the operation to specify that you
+                            #want the operation to be applied to each entry.
+
+                            X.^2
+                        </input>
+                    </program>
+                </listing>
+            </subsection>
+        </section>
+
+        <section>
+            <title>Assignments</title>
+            <subsection>
+                <title>Assignment Set 1</title>
+                <program>
+                    <input>
+                        #Assignment set 1
+                        #Numerical Analysis
+                        #September 5, 2019
+
+                        ##############################################
+                        #Exercise 1
+                        ##############################################
+                        #Useful commands:
+                        #inline(), plot(), abs(), max()
+                        ##############################################
+                        #A) Plot the functions
+                        #f(x) = sin(x)
+                        #T7(x) = x - x^3/3! + x^5/5! - x^7/7!
+                        #on the same set of axes.
+                        #
+                        #B) Then, given the domain you've chosen, calculate the maximum error.
+                        #
+                        #C)Finally, find the largest interval you can so that the maximum absolute true
+                        #error is less than 0.1.
+
+
+
+
+
+
+                        ##############################################
+                        #Exercise 2
+                        ##############################################
+                        #Useful commands:
+                        #sym, syms, diff, factorial, function_handle, plot
+                        ##############################################
+                        #A) Write a loop that constructs the degree 7 Taylor expansion of
+                        #f(x) = sin(x)
+                        #about the point a = 0.
+                        #
+                        #B) Rewrite your loop so that it can find the Taylor series of degree n about
+                        #any center a for f(x) = sin(x).
+                        #
+                        #C) Rewrite your loop so that it can take an arbitrary function, produce the
+                        #degree n Taylor polynomial, and plot the function and the Taylor polynomial
+                        #near a.
+
+
+
+
+                        ################################################
+                        #Exercise 3 (optional)
+                        ################################################
+                        #Modify your answer to Exercise 2 so that given an error tolerance,
+                        #the program produces the largest domain near a for which the maximum error is
+                        #less than that tolerance. The output should be both the Taylor polynomial
+                        #and a domain where the approximation is good.
+                    </input>
+                </program>
+            </subsection>
+            <subsection>
+                <title>Assignment Set 2</title>
+                <program>
+                    <input>
+                        #Assignment set 2
+                        #Numerical Analysis
+                        #September 13, 2019
+
+                        ##############################################
+                        #Exercise 1
+                        ##############################################
+                        ##############################################
+                        #useful commands:
+                        #for/endfor, while/endwhile, break, @, if/elseif/else/endif
+                        ##############################################
+                        #A) Plot the function f(x) = x^6 - x - 1. Use your plot
+                        #to construct reasonable brackets for the roots of f.
+                        #
+                        #B) Use the bisection method to compute the roots of f. Set
+                        #your tolerance so that the approximation is good to six
+                        #significant figures.
+
+
+
+
+
+
+                        ##############################################
+                        #Exercise 2
+                        ##############################################
+                        #Useful commands:
+                        #function, return, for, while, break
+                        ##############################################
+                        #Write a function that takes as input a function,
+                        #a bracket [a,b], a tolerance, and a maximum number
+                        #of iterations and produces an approximation to the
+                        #root in the interval [a,b]. You should consider
+                        #adding a logic check to make sure that a root really
+                        #is inside the bracket before executing.
+
+
+
+
+                        ################################################
+                        #Exercise 3 (optional)
+                        ################################################
+                        #Rewrite the function in Exercise 2 so that the user specifies
+                        #a desired number of significant figures instead of a tolerance.
+                    </input>
+                </program>
+            </subsection>
+            <subsection>
+                <title>Assignment set 3</title>
+                <program>
+                    <input>
+                        ################################################
+                        #Exercise 1
+                        ################################################
+                        #Find an approximation for the square root of 2 using
+                        #the method of false position.
+
+
+                        ################################################
+                        #Exercise 2
+                        ################################################
+                        #Find an approximation for the square root of 2 using
+                        #the Newton-Raphson method. Compare the number of steps and
+                        #the running time with Exercise 1.
+
+                        ################################################
+                        #Exercise 3
+                        ################################################
+                        #Find a function for which your bisection solver runs faster than
+                        #your false position solver. Explain what you think is happening.
+
+                        ################################################
+                        #Exercise 4
+                        ################################################
+                        #Find a function that gives you extremely slow convergence
+                        #in Newton's method. Explain what you think is happening.
+                    </input>
+                </program>
+            </subsection>
+
+            <subsection>
+                <title>Assignment set 4</title>
+                <program>
+                    <input>
+                        ################################################
+                        #Exercise 1
+                        ################################################
+                        #Use Newtons' method to find the roots of
+                        #f(x) = x^6 - 9x^3 + 2x - 10
+
+
+                        ################################################
+                        #Exercise 2
+                        ################################################
+                        #Repeat exercise 1 but using the secant method.
+
+                        ################################################
+                        #Exercise 3
+                        ################################################
+                        #Turn your secant and Newton's method routines into funtions.
+                        #You should build in failure checks (that is, the x's get huge
+                        #or the answers don't converge).
+
+
+                        ################################################
+                        #Exercise 4
+                        ################################################
+                        #Write a hybrid method that first tries the secant method to find a root
+                        #and then uses the bisection method if the secant method fails.
+                    </input>
+                </program>
+            </subsection>
+            <subsection>
+                <title>Assignment set 5 (including challenge set)</title>
+                <program>
+                    <input>
+                        ################################################
+                        #Exercise 1 (challenge)
+                        ################################################
+                        #Implement synthetic division. Input should be an array of
+                        #numbers representing the coefficients and one number representing
+                        #the point to be evaluated. Output should be the quotient and
+                        #the function value.
+
+
+                        ################################################
+                        #Exercise 2 (challenge)
+                        ################################################
+                        #Use the synthetic division method and Newton's method to factor the polynomial
+                        #f(x) = x^3 - 2x^2 - 5x + 6 completely.
+
+                        ################################################
+                        #Exercise 3
+                        ################################################
+                        #Find the Lagrange interpolating polynomial for the points
+                        #(2,8), (4,2), (8,0.125).
+                        #Plot the polynomial and the function f(x) = 2^(5-x),
+                        #which generates the points, on the same graph.
+                        #Is the Lagrange polynomial a good interpolant?
+                        #Is it a good extrapolant?
+
+
+                        ################################################
+                        #Exercise 4
+                        ################################################
+                        #Find the Lagrange interpolating function for the points
+                        #(-3, 4/10), (-2, 4/5), (-1, 2), (0,4), (1, 2), (2, 4/5), (3, 4/10)
+                        #These points come from the function f(x) = 1/(x^2 + 1).
+                        #What happens? Is the Lagrange polynomial a good approximation
+                        #for f? Why or why not?
+                    </input>
+                </program>
+            </subsection>
+            <subsection>
+                <title>Assignment set 6 - Newton polynomials</title>
+                <program>
+                    <input>
+                        ################################################
+                        #Exercise 1
+                        ################################################
+                        #Write a script that produces the coefficients to the Newton
+                        #polynomial corresponding to the points (1,1), (2,3), (5,10), (6, -2)
+                        #and then produces the polynomial. Verify that the polynomial is
+                        #correct by plotting the points and the polynomial on the same axes.
+
+
+                        ################################################
+                        #Exercise 2
+                        ################################################
+                        #Write a function that takes a matrix containing n
+                        #interpolation points and produces the corresponding Newton
+                        #polynomial.
+                    </input>
+                </program>
+            </subsection>
+            <subsection>
+                <title>Assignment set 7 - Cubic splines</title>
+                <program>
+                    <input>
+                        ################################################3
+                        #Exercise 1
+                        ################################################
+                        #Compute the cubic spline function that interpolates the points
+                        #(-1, 3), (0,1), (1, 3). Plot your function and the points.
+
+
+                        ####################################################
+                        #Exercise 2
+                        ###################################################
+                        #Extend your previous result by appending the point (2,0). Pay attention to the organization
+                        #of the matrix that you use to find the spline coefficients.
+
+
+                        #########################################################
+                        #Exercise 3
+                        ##########################################################
+                        #Use array appending to build a script that will compute and plot the spline interpolation for
+                        #an arbitrary number of points.
+
+                        ############################################################
+                        #Exercise 4
+                        ###########################################################
+                        #Sample the function f(x) = 1/(x^2 + 16) with an odd number of equally spaced points.
+                        #Compare the graph of the original function, the graph of the unique polynomial interpolating function through
+                        #the sample points, and the spline interpolating function through the sample points.
+                    </input>
+                </program>
+            </subsection>
+
+            <subsection>
+                <title>Assignment 8 - Numerical integration</title>
+                <program>
+                    <input>
+                        #############################################################
+                        #Exercise 1
+                        ################################################################
+                        #Write a function that implements the n segment trapezoid rule
+                        #for inputs consisting of an interval (a,b), a number of segments n,
+                        #and an anonymous function f. Then wrap that function into a driver
+                        #that takes the above inputs plus a tolerance and increases the
+                        #number of segments until a given tolerance is met (in absolute
+                        #relative error). Compute the area under the function e^(-x^2) from
+                        # x=0 to x=2.
+
+                        ###############################################################
+                        #Exercise 2
+                        #################################################################
+                        #Write a function that implements Richardson's first order
+                        #extrapolation of the trapezoid rule. Compare the speed of
+                        #convergence with the trapezoid rule for the function x^2 sin(2x)
+                        #on the interval [0,10].
+
+                        ################################################################
+                        #Exercise 3
+                        ##################################################################
+                        #Write a function that implements Simpson's 1/3 rule. Then create a
+                        #driver function that takes the same inputs plus a tolerance and
+                        #increases the number of segments until the tolerance is met (in
+                        #absolute relative error).
+                    </input>
+                </program>
+            </subsection>
+
+            <subsection>
+                <title>Assignment 9 - Fourier series</title>
+                <program>
+                    <input>
+                        ##############################################################
+                        #Exercise 1
+                        ##############################################################
+                        #Compute the Fourier coefficients of the function y = x on the
+                        #interval [-pi, pi] (this is an example of a sawtooth wave).
+                        #It will be easiest to use the trapz function to compute
+                        #the trapezoid rule approximations of the sample point vectors.
+
+                        ##############################################################
+                        #Exercise 2
+                        ##############################################################
+                        #Construct a finite Fourier series approximation for the previous
+                        #exercise, and plot it against your function. If you increase the
+                        #number of terms, what happens to the approximation near the
+                        #discontinuous points?
+                    </input>
+                </program>
+            </subsection>
+
+
+        </section>
+
+    </article>
+
+</mathbook>

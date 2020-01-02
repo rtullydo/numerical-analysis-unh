@@ -1,44 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <!--********************************************************************
-Copyright 2015 Robert A. Beezer
+    Notes from Numerical Analysis as taught at University of New Haven
+    Fall 2019. 
 
-This file is part of MathBook XML.
+    There is work to be done - the interactive octave pieces aren't suitable
+    for rendering into pdf - the output is largely plots, and I haven't yet
+    figured out how to have plot type objects in output that renders only if the book
+    is processed into latex.
 
-MathBook XML is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 2 or version 3 of the
-License (at your option).
-
-MathBook XML is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with MathBook XML.  If not, see <http://www.gnu.org/licenses/>.
-*********************************************************************-->
-
-<!-- To process this file do                                                                      -->
-<!--                                                                                              -->
-<!-- (1) LaTeX/PDF:                                                                               -->
-<!--     xsltproc mathbook/xsl/mathbook-latex.xsl minimal.xml                                     -->
-<!--     pdflatex minimal.tex                                                                     -->
-<!--     xelatex minimal.tex                                                                      -->
-<!--                                                                                              -->
-<!-- (2) HTML:                                                                                    -->
-<!--     xsltproc mathbook/xsl/mathbook-html.xsl minimal.xml                                      -->
-<!--     <browswer>  minimal.html                                                                 -->
-<!--                                                                                              -->
-<!-- (3) CoCalc worksheet (parameter causes a single file for output)                             -->
-<!--     REMOVE the "X" in the double dash (which is not legal in an XML comment)                 -->
-<!--     xsltproc -X-stringparam chunk.level 0 mathbook/xsl/mathbook-smc.xsl minimal.xml          -->
-<!--     <CoCalc> minimal.sagews                                                                  -->
-<!--                                                                                              -->
-<!-- (4) Sage doctesting                                                                          -->
-<!--     REMOVE the "X" in the double dash (which is not legal in an XML comment)                 -->
-<!--     xsltproc -X-stringparam chunk.level 0 mathbook/xsl/mathbook-sage-doctest.xsl minimal.xml -->
-<!--     <read further instructions in> minimal.py                                                -->
+    Ryan Tully-Doyle, Nov 2019
+                                            -->
 
  <mathbook xmlns:xi="http://www.w3.org/2001/XInclude">
 
@@ -1847,14 +1819,14 @@ along with MathBook XML.  If not, see <http://www.gnu.org/licenses/>.
             </subsection>
 
             <subsection>
-                <title>The space <m>L^2[-\pi,\pi]</m></title>
+                <title>The space <m>L^2([-\pi,\pi])</m></title>
                 <p> (Note: the current draft of these notes is going to skip a lot of the theoretical development of <m>L^2</m> in favor of computing with it. As such, this draft should be considered a flavorful introduction rather than a rigorous treatment. Better a little taste than none at all.)</p>
 
                 <p>We're going to narrow our focus to one particular infinite dimensional Hilbert space. Consider the set of integrable functions <m>f: [\pi,\pi] \to F</m> that satisfy the condition
                 <me>
                     \int_{-\pi}^\pi \abs{f(x)}^2 \, dx \lt \infty.
                 </me>
-                This set is a vector space under pointwise addition of functions and standard scalar multiplication. In addition, the product
+                This set is a vector space under pointwise addition of functions and standard scalar multiplication under the complex numbers. In addition, the product
                 <me>
                     \ip{f}{g} = \int_{-\pi}^\pi f(x)\cc{g(x)} \, dx
                 </me>
@@ -1865,7 +1837,7 @@ along with MathBook XML.  If not, see <http://www.gnu.org/licenses/>.
                 <p>The following theorem, stated in this version in the spirit of Fourier, is one of the most important theorems in applied mathematics.</p>
                 <theorem  xml:id="fourierseries">
                     <title>Existence of Fourier Series in <m>L^2</m></title>
-                    <p>Every function <m>f \in L^2[-\pi, \pi]</m> has a Fourier series representation
+                    <p>Every function <m>f \in L^2([-\pi, \pi])</m> has a Fourier series representation
                     <me>
                         f(x) = \frac{a_0}{2} + \sum_{i=1}^\infty a_n \cos nx + b_n \sin nx.
                     </me></p>
@@ -1930,7 +1902,7 @@ along with MathBook XML.  If not, see <http://www.gnu.org/licenses/>.
                         axis([-2*pi 2*pi -1.5 1.5])
                     </input>
                 </sage>
-                <p>We'll be using the function <c>trapz(x,y)</c> to compute numerical integrals from sample points. (In Octave, one can install the <c>control</c> and <c>signal</c> packages to have the function <c>square</c> already defined, but in this notes the function will have to be defined inline.)
+                <p>We'll be using the function <c>trapz(x,y)</c> to compute numerical integrals from sample points. (In Octave, one can install the <c>control</c> and <c>signal</c> packages to have the function <c>square</c> already defined, but in this notes the function will have to be defined inline.) In the code example below, the accuracy of the approximation is set by the constant <m>n</m>. The default setting is <m>n = 20</m> (which is really only 10 terms, as the square wave we've defined is an odd function, and so the even harmonics integrate to zero).
                 </p>
                 <sage language="octave">
                     <input>

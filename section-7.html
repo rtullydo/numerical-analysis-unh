@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-11-22T13:11:17-05:00    *-->
+<!--*    on 2019-12-13T10:04:41-05:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -226,23 +226,29 @@ var js_version = 0.12;
 <li class="link active">
 <a href="section-7.html" data-scroll="section-7"><span class="codenumber">7</span> <span class="title">Introduction to Fourier Series (a linear algebra perspective)</span></a><ul>
 <li><a href="section-7.html#subsection-21" data-scroll="subsection-21">Review of linear algebra</a></li>
-<li><a href="section-7.html#subsection-22" data-scroll="subsection-22">The space \(L^2[-\pi,\pi]\)</a></li>
+<li><a href="section-7.html#subsection-22" data-scroll="subsection-22">The space \(L^2([-\pi,\pi])\)</a></li>
 <li><a href="section-7.html#subsection-23" data-scroll="subsection-23">Example computation</a></li>
+<li><a href="section-7.html#subsection-24" data-scroll="subsection-24">Complex numbers and Fourier series</a></li>
+<li><a href="section-7.html#subsection-25" data-scroll="subsection-25">Introduction to the discrete Fourier transform</a></li>
+<li><a href="section-7.html#subsection-26" data-scroll="subsection-26">Leakage and the DFT</a></li>
+<li><a href="section-7.html#subsection-27" data-scroll="subsection-27">Octave and the DFT</a></li>
+<li><a href="section-7.html#subsection-28" data-scroll="subsection-28">Going backwards - <code class="code-inline tex2jax_ignore">ifft</code></a></li>
 </ul>
 </li>
 <li class="link">
-<a href="section-8.html" data-scroll="section-8"><span class="codenumber">8</span> <span class="title">Code examples</span></a><ul><li><a href="section-8.html#subsection-24" data-scroll="subsection-24">Lab 1 - Introduction</a></li></ul>
+<a href="section-8.html" data-scroll="section-8"><span class="codenumber">8</span> <span class="title">Code examples</span></a><ul><li><a href="section-8.html#subsection-29" data-scroll="subsection-29">Lab 1 - Introduction</a></li></ul>
 </li>
 <li class="link">
 <a href="section-9.html" data-scroll="section-9"><span class="codenumber">9</span> <span class="title">Assignments</span></a><ul>
-<li><a href="section-9.html#subsection-25" data-scroll="subsection-25">Assignment Set 1</a></li>
-<li><a href="section-9.html#subsection-26" data-scroll="subsection-26">Assignment Set 2</a></li>
-<li><a href="section-9.html#subsection-27" data-scroll="subsection-27">Assignment set 3</a></li>
-<li><a href="section-9.html#subsection-28" data-scroll="subsection-28">Assignment set 4</a></li>
-<li><a href="section-9.html#subsection-29" data-scroll="subsection-29">Assignment set 5 (including challenge set)</a></li>
-<li><a href="section-9.html#subsection-30" data-scroll="subsection-30">Assignment set 6 - Newton polynomials</a></li>
-<li><a href="section-9.html#subsection-31" data-scroll="subsection-31">Assignment set 7 - Cubic splines</a></li>
-<li><a href="section-9.html#subsection-32" data-scroll="subsection-32">Assignment 8 - Numerical integration</a></li>
+<li><a href="section-9.html#subsection-30" data-scroll="subsection-30">Assignment Set 1</a></li>
+<li><a href="section-9.html#subsection-31" data-scroll="subsection-31">Assignment Set 2</a></li>
+<li><a href="section-9.html#subsection-32" data-scroll="subsection-32">Assignment set 3</a></li>
+<li><a href="section-9.html#subsection-33" data-scroll="subsection-33">Assignment set 4</a></li>
+<li><a href="section-9.html#subsection-34" data-scroll="subsection-34">Assignment set 5 (including challenge set)</a></li>
+<li><a href="section-9.html#subsection-35" data-scroll="subsection-35">Assignment set 6 - Newton polynomials</a></li>
+<li><a href="section-9.html#subsection-36" data-scroll="subsection-36">Assignment set 7 - Cubic splines</a></li>
+<li><a href="section-9.html#subsection-37" data-scroll="subsection-37">Assignment 8 - Numerical integration</a></li>
+<li><a href="section-9.html#subsection-38" data-scroll="subsection-38">Assignment 9 - Fourier series</a></li>
 </ul>
 </li>
 </ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
@@ -253,7 +259,7 @@ var js_version = 0.12;
 <section class="subsection" id="subsection-21"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">7.1</span> <span class="title">Review of linear algebra</span>
 </h3>
-<p id="p-145">A <dfn class="terminology">vector space</dfn> over a scalar field \(F\) is a collection of vectors together with operations that make it possible to do algebra on that collection. In particular, a set of vectors \(V\) is a vector space under the operations of addition and scalar multiplication if the following axioms are satisfied:</p>
+<p id="p-147">A <dfn class="terminology">vector space</dfn> over a scalar field \(F\) is a collection of vectors together with operations that make it possible to do algebra on that collection. In particular, a set of vectors \(V\) is a vector space under the operations of addition and scalar multiplication if the following axioms are satisfied:</p>
 <ol class="decimal">
 <li id="li-25">associativity of addition: \(u, v, w \in V \Rightarrow u+(v+w) = (u+v)+w\)</li>
 <li id="li-26">commutativity of addition: \(u, v \in V \Rightarrow u + v = v + u\)</li>
@@ -265,7 +271,7 @@ var js_version = 0.12;
 <li id="li-32">distribution over field addition: \(\alpha, \beta \in F, u \in V \Rightarrow (\alpha + \beta) u = \alpha u + \beta u\)</li>
 </ol>
 <p>The prototypical example of a vector space is \(n\)-dimensional <dfn class="terminology">Euclidean space</dfn>, \(\R^n\text{,}\) our usual notion of vectors. However, many other sets of objects constitute vector spaces with the appropriate operations - for example, \(C([0,1])\text{,}\) the space of continuous functions on the interval \([0,1]\) is a vector space over \(\R\) under addition of functions. We are building to understanding spaces of functions.</p>
-<p id="p-146">Notice that the defintion of vector spaces doesn't include any way to multiply vectors. One notion of vector multiplication that you've likely seen before on \(\R^n\) is the <dfn class="terminology">dot product</dfn> of vectors. Let \(v = (v_1, \ldots, v_n), u = (u_1, \ldots, u_n) \in \R^n\text{.}\) Then</p>
+<p id="p-148">Notice that the defintion of vector spaces doesn't include any way to multiply vectors. One notion of vector multiplication that you've likely seen before on \(\R^n\) is the <dfn class="terminology">dot product</dfn> of vectors. Let \(v = (v_1, \ldots, v_n), u = (u_1, \ldots, u_n) \in \R^n\text{.}\) Then</p>
 <div class="displaymath">
 \begin{equation*}
 u \cdot v = \sum_{i=1}^n v_i u_i.
@@ -278,14 +284,14 @@ u \cdot v = \norm{u}\norm{v} \cos \theta
 \end{equation*}
 </div>
 <p>where \(\theta\) is the angle between \(u\) and \(v\) and \(\norm{u} = \sqrt{u\cdot u}\text{.}\) Notice that when the vectors are perpendicular, this implies that the dot product is 0. We can generalize this geometry to the setting of general vector spaces.</p>
-<p id="p-147">The dot product is an example of a more general kind of product called an <dfn class="terminology">inner product</dfn> on a vector space. Let \(V\) be a vector space over a field \(F\text{.}\) An operation \(\ip{}{}\) is called an inner product on \(V\) if</p>
+<p id="p-149">The dot product is an example of a more general kind of product called an <dfn class="terminology">inner product</dfn> on a vector space. Let \(V\) be a vector space over a field \(F\text{.}\) An operation \(\ip{}{}\) is called an inner product on \(V\) if</p>
 <ol class="decimal">
 <li id="li-33">positive definite: \(\ip{u}{u} &gt; 0\) whenever \(u \neq 0\)</li>
 <li id="li-34">conjugate symmetric: \(\ip{u}{v} = \cc{\ip{v}{u}}\)</li>
 <li id="li-35">linear in the first entry: \(\ip{\alpha u + \beta v}{w} = \alpha \ip{u}{w} + \beta \ip{v}{w}\)</li>
 </ol>
 <p>where \(\cc z\) denotes the complex conjugate. Note that in the case that the field \(F = \R\text{,}\) an inner product is symmetric.</p>
-<p id="p-148">A vector space \(V\) with an inner product that satisfies the axioms above is called an <dfn class="terminology">inner product space</dfn>. One immediate feature of an inner product space is that the inner product defines a notion of length (or <dfn class="terminology">norm</dfn>) of a vector:</p>
+<p id="p-150">A vector space \(V\) with an inner product that satisfies the axioms above is called an <dfn class="terminology">inner product space</dfn>. One immediate feature of an inner product space is that the inner product defines a notion of length (or <dfn class="terminology">norm</dfn>) of a vector:</p>
 <div class="displaymath">
 \begin{equation*}
 \norm{v} = \sqrt{\ip{v}{v}}.
@@ -303,9 +309,9 @@ u \cdot v = \norm{u}\norm{v} \cos \theta
 \ip{f}{g} = \int f(x)g(x) \, dx.
 \end{equation*}
 </div>
-<p id="p-149">In \(\R^n\text{,}\) two vectors are perpendicular when their dot product is 0 - that is, the angle between them is \(\pi/2\text{.}\) We will make the same definition more generally in inner product spaces, where we don't have a notion of angle, but we do have a notion related to the dot product - in an inner product space \(V\text{,}\) two vectors \(u\) and \(v\) are said to be <dfn class="terminology">orthogonal</dfn> if \(\ip{u}{v} = 0\text{,}\) in which case we write \(u\perp v\text{.}\)</p>
-<p id="p-150">Every vector space \(V\) has a structural set of vectors called a <dfn class="terminology">basis</dfn>, which can be used to build every other vector in the space - for example, the so-called standard basis of \(\R^3\) is the set \(\bbm 1\\0\\0 \ebm, \bbm 0\\1\\0 \ebm, \bbm 0\\0\\1\ebm\text{.}\) There are other bases for \(\R^3\text{,}\) in fact infinitely many.</p>
-<p id="p-151">Formally, a set of vectors \(\{b_i\}_I\) is a basis for \(V\) if</p>
+<p id="p-151">In \(\R^n\text{,}\) two vectors are perpendicular when their dot product is 0 - that is, the angle between them is \(\pi/2\text{.}\) We will make the same definition more generally in inner product spaces, where we don't have a notion of angle, but we do have a notion related to the dot product - in an inner product space \(V\text{,}\) two vectors \(u\) and \(v\) are said to be <dfn class="terminology">orthogonal</dfn> if \(\ip{u}{v} = 0\text{,}\) in which case we write \(u\perp v\text{.}\)</p>
+<p id="p-152">Every vector space \(V\) has a structural set of vectors called a <dfn class="terminology">basis</dfn>, which can be used to build every other vector in the space - for example, the so-called standard basis of \(\R^3\) is the set \(\bbm 1\\0\\0 \ebm, \bbm 0\\1\\0 \ebm, \bbm 0\\0\\1\ebm\text{.}\) There are other bases for \(\R^3\text{,}\) in fact infinitely many.</p>
+<p id="p-153">Formally, a set of vectors \(\{b_i\}_I\) is a basis for \(V\) if</p>
 <ol class="decimal">
 <li id="li-36">linear independence: \(c_1 b_1 + \ldots + c_n b_n = 0\) has only the solution \(c_1 = c_2 = \ldots = c_n = 0\text{.}\)</li>
 <li id="li-37">spanning set: every vector \(v \in V\) can be written as a linear combination of the \(b_i\text{.}\)</li>
@@ -317,20 +323,20 @@ c_1 b_1 + \ldots + c_n b_n = v.
 \end{equation*}
 </div>
 <p>The constants \(c_i\) are called the <dfn class="terminology">coordinates of v</dfn> with respect to the basis \(\{b_i\}\text{.}\)</p>
-<p id="p-152">Now we'll blend orthogonality with basis and coordinates. If the vectors in a basis are pairwise orthogonal, then \(\{b_i\}\) is called an <dfn class="terminology">orthogonal basis</dfn>. Furthermore, if the norm of each vector is 1, the basis is called <dfn class="terminology">orthonormal</dfn>. It is exceptionally easy to compute coordinates of vectors when the basis is orthonormal.</p>
+<p id="p-154">Now we'll blend orthogonality with basis and coordinates. If the vectors in a basis are pairwise orthogonal, then \(\{b_i\}\) is called an <dfn class="terminology">orthogonal basis</dfn>. Furthermore, if the norm of each vector is 1, the basis is called <dfn class="terminology">orthonormal</dfn>. It is exceptionally easy to compute coordinates of vectors when the basis is orthonormal.</p>
 <article class="theorem-like" id="orthocoord"><h6 class="heading">
 <span class="type">Theorem</span> <span class="codenumber">7.1</span>.</h6>
-<p id="p-153">Let \(V\) be an inner product space with an orthonormal basis \(\{b_i\}\text{.}\) Then for any vector \(v \in V\text{,}\) we have the expansion</p>
+<p id="p-155">Let \(V\) be an inner product space with an orthonormal basis \(\{b_i\}\text{.}\) Then for any vector \(v \in V\text{,}\) we have the expansion</p>
 <div class="displaymath">
 \begin{equation*}
 v = \ip{v}{b_1}b_1 + \ip{v}{b_2}b_2 + \ldots + \ip{v}{b_n}b_n.
 \end{equation*}
 </div></article><article class="hiddenproof" id="proof-2"><a data-knowl="" class="id-ref" data-refid="hk-proof-2"><h6 class="heading"><span class="type">Proof.</span></h6></a></article><div id="hk-proof-2" class="hidden-content tex2jax_ignore"><article class="hiddenproof">This is standard in introductory linear algebra textbooks. I've elided a significant amount of geometric reasoning about projections here, to be filled in for completeness at some points.</article></div>
-<p id="p-154">The giant leap that we need to make is this - not every vector space is finite dimensional. An infinite dimensional inner product space is called a <dfn class="terminology">Hilbert space</dfn> (whereas a finite dimensional inner product space is called a <dfn class="terminology">Euclidean space</dfn>). For a Hilbert space, a basis will also be infinite dimensional. (If you're curious, the analogue of a matrix in the Hilbert space setting is called a <dfn class="terminology">linear operator</dfn>, and the general study of these objects is called operator theory.) One of single most important ideas in engineering and modern science is that the set of \(L^2\) functions that are \(2\pi\)-periodic is a Hilbert space. In the next sections, we'll find a truly excellent orthonormal basis for that space of functions, and we'll begin to interpret the coefficients that we compute for a given function in terms of that basis. (This is the launching point of a field called signal analysis, typically found in electrical engineering.)</p></section><section class="subsection" id="subsection-22"><h3 class="heading hide-type">
-<span class="type">Subsection</span> <span class="codenumber">7.2</span> <span class="title">The space \(L^2[-\pi,\pi]\)</span>
+<p id="p-156">The giant leap that we need to make is this - not every vector space is finite dimensional. An infinite dimensional inner product space is called a <dfn class="terminology">Hilbert space</dfn> (whereas a finite dimensional inner product space is called a <dfn class="terminology">Euclidean space</dfn>). For a Hilbert space, a basis will also be infinite dimensional. (If you're curious, the analogue of a matrix in the Hilbert space setting is called a <dfn class="terminology">linear operator</dfn>, and the general study of these objects is called operator theory.) One of single most important ideas in engineering and modern science is that the set of \(L^2\) functions that are \(2\pi\)-periodic is a Hilbert space. In the next sections, we'll find a truly excellent orthonormal basis for that space of functions, and we'll begin to interpret the coefficients that we compute for a given function in terms of that basis. (This is the launching point of a field called signal analysis, typically found in electrical engineering.)</p></section><section class="subsection" id="subsection-22"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">7.2</span> <span class="title">The space \(L^2([-\pi,\pi])\)</span>
 </h3>
-<p id="p-155">(Note: the current draft of these notes is going to skip a lot of the theoretical development of \(L^2\) in favor of computing with it. As such, this draft should be considered a flavorful introduction rather than a rigorous treatment. Better a little taste than none at all.)</p>
-<p id="p-156">We're going to narrow our focus to one particular infinite dimensional Hilbert space. Consider the set of integrable functions \(f: [\pi,\pi] \to F\) that satisfy the condition</p>
+<p id="p-157">(Note: the current draft of these notes is going to skip a lot of the theoretical development of \(L^2\) in favor of computing with it. As such, this draft should be considered a flavorful introduction rather than a rigorous treatment. Better a little taste than none at all.)</p>
+<p id="p-158">We're going to narrow our focus to one particular infinite dimensional Hilbert space. Consider the set of integrable functions \(f: [\pi,\pi] \to F\) that satisfy the condition</p>
 <div class="displaymath">
 \begin{equation*}
 \int_{-\pi}^\pi \abs{f(x)}^2 \, dx \lt \infty.
@@ -348,19 +354,19 @@ v = \ip{v}{b_1}b_1 + \ip{v}{b_2}b_2 + \ldots + \ip{v}{b_n}b_n.
 \norm{f}_{L^2} = \sqrt{\ip{f}{f}}.
 \end{equation*}
 </div>
-<p id="p-157">The following theorem, stated in this version in the spirit of Fourier, is one of the most important theorems in applied mathematics.</p>
+<p id="p-159">The following theorem, stated in this version in the spirit of Fourier, is one of the most important theorems in applied mathematics.</p>
 <article class="theorem-like" id="fourierseries"><h6 class="heading">
 <span class="type">Theorem</span> <span class="codenumber">7.2</span>. <span class="title">Existence of Fourier Series in \(L^2\).</span>
 </h6>
-<p id="p-158">Every function \(f \in L^2[-\pi, \pi]\) has a Fourier series representation</p>
+<p id="p-160">Every function \(f \in L^2[-\pi, \pi]\) has a Fourier series representation</p>
 <div class="displaymath">
 \begin{equation*}
 f(x) = \frac{a_0}{2} + \sum_{i=1}^\infty a_n \cos nx + b_n \sin nx.
 \end{equation*}
-</div></article><p id="p-159">\(\cos nx\) and \(\sin nx\) are called <dfn class="terminology">harmonics</dfn>, in analogy with the musical term.</p>
-<p id="p-160">The theorem is quite a bit more powerful than stated here. The proof requires some sophisticated machinery from the area of functional analysis, and will be sketched in sometime in the future. The main issue is one of convergence - why should an infinite series for an \(L^2\) function converge? What conditions need to be present on the coefficients of such a series to make this happen? For now, we suppress this discussion as outside the scope of the current objective, which is to treat the Fourier series as a black box and discover a method for computing the coefficients.</p>
-<p id="p-161">The form of the series in <a data-knowl="./knowl/fourierseries.html" title="Theorem 7.2: Existence of Fourier Series in \(L^2\)">Theorem 7.2</a> is suggestive. If the \(\cos nx\) and \(\sin nx\) terms form an orthogonal basis for \(L^2\text{,}\) then we can use <a data-knowl="./knowl/orthocoord.html" title="Theorem 7.1">Theorem 7.1</a> to compute the mysterious coefficients \(a_n, b_n\text{.}\)</p>
-<p id="p-162">Leaving questions of convergence aside for the moment, let's check orthogonality. It should be clear that \(\ip{\sin(mx)}{\cos(nx)} = 0\text{.}\) (Hint: the integral of an odd function on a symmetric interval is 0). It remains to check that \(\sin mx \perp \sin nx\) and that \(\cos mx \perp \cos nx\) for \(m \neq n\text{.}\) The integrals are left as an exercise to the reader, with the hint that the appropriate starting place for the integrals is to use the identities</p>
+</div></article><p id="p-161">\(\cos nx\) and \(\sin nx\) are called <dfn class="terminology">harmonics</dfn>, in analogy with the musical term.</p>
+<p id="p-162">The theorem is quite a bit more powerful than stated here. The proof requires some sophisticated machinery from the area of functional analysis, and will be sketched in sometime in the future. The main issue is one of convergence - why should an infinite series for an \(L^2\) function converge? What conditions need to be present on the coefficients of such a series to make this happen? For now, we suppress this discussion as outside the scope of the current objective, which is to treat the Fourier series as a black box and discover a method for computing the coefficients.</p>
+<p id="p-163">The form of the series in <a data-knowl="./knowl/fourierseries.html" title="Theorem 7.2: Existence of Fourier Series in \(L^2\)">Theorem 7.2</a> is suggestive. If the \(\cos nx\) and \(\sin nx\) terms form an orthogonal basis for \(L^2\text{,}\) then we can use <a data-knowl="./knowl/orthocoord.html" title="Theorem 7.1">Theorem 7.1</a> to compute the mysterious coefficients \(a_n, b_n\text{.}\)</p>
+<p id="p-164">Leaving questions of convergence aside for the moment, let's check orthogonality. It should be clear that \(\ip{\sin(mx)}{\cos(nx)} = 0\text{.}\) (Hint: the integral of an odd function on a symmetric interval is 0). It remains to check that \(\sin mx \perp \sin nx\) and that \(\cos mx \perp \cos nx\) for \(m \neq n\text{.}\) The integrals are left as an exercise to the reader, with the hint that the appropriate starting place for the integrals is to use the identities</p>
 <div class="displaymath">
 \begin{gather*}
 \cos(a)\cos(b) = \frac{1}{2} (\cos(a+b) + \cos(a - b))\\
@@ -375,7 +381,7 @@ f(x) = \frac{a_0}{2} + \sum_{i=1}^\infty a_n \cos nx + b_n \sin nx.
 </div>
 <p><article class="remark-like" id="note-1"><h6 class="heading">
 <span class="type">Note</span> <span class="codenumber">7.3</span>.</h6>You might wonder about this basis. After all, there are infinitely many different bases for \(\R^n\text{.}\) The same is true in \(L^2([-\pi,\pi]).\) The Fourier basis is chosen for work with periodic functions. There are other bases in the form of orthogonal polynomials of various flavors. Another basis is the complex exponential functions, which we can get from the Fourier basis using the identity \(e^{i\theta} = \cos \theta + i \sin \theta\text{.}\)</article></p>
-<p id="p-163">If we accept that convergence won't be an issue, we can now apply the Hilbert space analogue of <a data-knowl="./knowl/orthocoord.html" title="Theorem 7.1">Theorem 7.1</a>: for \(f \in L^2([-\pi, \pi])\text{,}\) we have</p>
+<p id="p-165">If we accept that convergence won't be an issue, we can now apply the Hilbert space analogue of <a data-knowl="./knowl/orthocoord.html" title="Theorem 7.1">Theorem 7.1</a>: for \(f \in L^2([-\pi, \pi])\text{,}\) we have</p>
 <div class="displaymath">
 \begin{align*}
 f \amp= \ip{f}{\frac{1}{\sqrt{2\pi}}} \frac{1}{\sqrt{2\pi}} + \ip{f}{\frac{1}{\sqrt{\pi}} \cos x}\cos x + \ip{f}{\frac{1}{\sqrt{\pi}}\sin x}\sin x + \ldots\\
@@ -391,9 +397,9 @@ b_n \amp= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \sin nx \, dx
 </div></section><section class="subsection" id="subsection-23"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">7.3</span> <span class="title">Example computation</span>
 </h3>
-<p id="p-164">In this section, we'll build a Fourier series for a function that seems at first glance to be impossible to approximate with continuous period functions - the square wave. Square waves are not differentiable because they are full of jump discontinuities. Can we really hope to approximate such a function with sines and cosines?</p>
-<div class="sagecell-octave" id="sage-47"><script type="text/x-sage">## s = square(t,duty)
-## 
+<p id="p-166">In this section, we'll build a Fourier series for a function that seems at first glance to be impossible to approximate with continuous period functions - the square wave. Square waves are not differentiable because they are full of jump discontinuities. Can we really hope to approximate such a function with sines and cosines?</p>
+<div class="sagecell-octave" id="sage-48"><script type="text/x-sage">## s = square(t,duty)
+##
 ## Generate a square wave of period 2 pi with limits +1/-1.
 ##
 
@@ -416,8 +422,8 @@ f = square(t);
 plot(t,f)
 axis([-2*pi 2*pi -1.5 1.5])
 </script></div>
-<p id="p-165">We'll be using the function <code class="code-inline tex2jax_ignore">trapz(x,y)</code> to compute numerical integrals from sample points. (In Octave, one can install the <code class="code-inline tex2jax_ignore">control</code> and <code class="code-inline tex2jax_ignore">signal</code> packages to have the function <code class="code-inline tex2jax_ignore">square</code> already defined, but in this notes the function will have to be defined inline.)</p>
-<div class="sagecell-octave" id="sage-48"><script type="text/x-sage">#define the square wave function
+<p id="p-167">We'll be using the function <code class="code-inline tex2jax_ignore">trapz(x,y)</code> to compute numerical integrals from sample points. (In Octave, one can install the <code class="code-inline tex2jax_ignore">control</code> and <code class="code-inline tex2jax_ignore">signal</code> packages to have the function <code class="code-inline tex2jax_ignore">square</code> already defined, but in this notes the function will have to be defined inline.) In the code example below, the accuracy of the approximation is set by the constant \(n\text{.}\) The default setting is \(n = 20\) (which is really only 10 terms, as the square wave we've defined is an odd function, and so the even harmonics integrate to zero).</p>
+<div class="sagecell-octave" id="sage-49"><script type="text/x-sage">#define the square wave function
 function v = square (t,duty)
 
   if nargin == 1,
@@ -463,8 +469,8 @@ for i=0:n-1
 endfor
 plot(tt, s, tt, ff)
 </script></div>
-<p id="p-166">The following code chunk, written in Sagemath, is an interactive illustration of the effect of increasing the number of terms.</p>
-<div class="sagecell-sage" id="sage-49"><script type="text/x-sage">def ftermSquare(n):
+<p id="p-168">The following code chunk, written in Sagemath, is an interactive illustration of the effect of increasing the number of terms.</p>
+<div class="sagecell-sage" id="sage-50"><script type="text/x-sage">def ftermSquare(n):
  return(1/n*sin(n*x*pi/3))
 
 def ftermSawtooth(n):
@@ -491,6 +497,190 @@ def plotFourier(n=slider(1, 30,1,3,'Number of terms')
      show(plot(fseriesSquare(n),x,-6,6,figsize=(7,3)))
     if Function=='Periodic Parabola':
      show(plot(fseriesParabola(n),x,-6,6,figsize=(7,3)))
+</script></div></section><section class="subsection" id="subsection-24"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">7.4</span> <span class="title">Complex numbers and Fourier series</span>
+</h3>
+<p id="p-169">Complex numbers are usually denoted in the form \(a + ib\) where \(i\) is the imaginary unit satisfying \(i^2 = -1\text{.}\) However, there is another useful form - if we think the complex numbers as giving \(x\) and \(y\) coordinates in the <dfn class="terminology">complex plane</dfn> and \(a\) and \(b\) as the legs of a right triangle, then then hypoteneuse of the triangle will be \(r = \sqrt{a^2 + b^2}\text{,}\) and then angle at the origin will be \(\tan \theta = \frac{b}{a}\text{.}\) The quantity \(r\) is called the magnitude of a complex number and the angle \(\theta\) is called the <dfn class="terminology">argument</dfn>.</p>
+<p id="p-170">Another important piece of working with complex numbers (a formula that physicist Richard Feynman called "the most remarkable theorem in mathematics") is <dfn class="terminology">Euler's formula</dfn>, which allows the expression of movement around the unit circle in terms of a complex exponential function.</p>
+<div class="displaymath">
+\begin{equation*}
+\cos \theta + i \sin \theta = e^{i \theta}.
+\end{equation*}
+</div>
+<p>If you're interested in seeing why this might be true, consider the power series expansions for each of the functions in question to at least get a formal sense of the computation. (There isn't any prima facie reason to believe that complex numbers can just be plugged into infinite series, but it turns out to work very similarly to the real case.)</p>
+<p id="p-171">Combining Euler's formula with the right triangle picture of complex numbers gives the <dfn class="terminology">polar representation</dfn></p>
+<div class="displaymath">
+\begin{equation*}
+z = r e^{i \theta},
+\end{equation*}
+</div>
+<p>where \(r\) is the radius or magnitude of \(z\) and \(e^{i \theta}\) is a point on the unit circle corresponding to the angle or argument \(\theta\text{.}\)</p>
+<p id="p-172">Fourier series can be reformulated into the complex exponential form using Euler's formula.</p>
+<div class="displaymath">
+\begin{align*}
+\cos nx \amp= \frac{e^{inx} + e^{-inx}}{2}\\
+\sin nx \amp= \frac{e^{inx} - e^{-inx}}{2i}
+\end{align*}
+</div>
+<p id="p-173">Then we can manipulate the trigonometric Fourier series as follows.</p>
+<div class="displaymath">
+\begin{align*}
+f(x) \amp= \frac{a_0}{2} + \sum_{n=1}^{\infty} a_n \cos nx + b_n \sin nx\\
+\amp= \frac{a_0}{2} + \sum_{n=1}^{\infty} a_n \frac{e^{inx} + e^{-inx}}{2} + b_n \frac{e^{inx} - e^{-inx}}{2i}\\
+\amp= \frac{a_0}{2} + \sum_{n=1}^\infty \frac{a_n - ib_n}{2}e^{inx} + \frac{a_n + ib_n}{2} e^{-inx}\\
+\amp= \sum_{\infty}^{\infty} c_n e^{inx}
+\end{align*}
+</div>
+<p>where</p>
+<div class="displaymath">
+\begin{align*}
+c_0 \amp= \frac{a_0}{2}\\
+c_n \amp= \frac{a_n - ib_n}{2}\\
+c_{-n} \amp= \frac{a_n + ib_n}{2}.
+\end{align*}
+</div>
+<p id="p-174">I want to stress the view that \(e^{ni\theta}\) corresponds to moving around the unit circle as \(\theta\) goes from \(-\pi\) to \(\pi\text{.}\) The larger \(n\) is, the faster the function travels around the circle, decreasing period and increasing frequency, just as in the cosine/sine case. To further push the analogy, we give the unit circle its own name, typically the fancy \(\T\text{.}\)</p>
+<p id="p-175">A little computation on \(a_n\) and \(b_n\) gives the following complex exponential form of Fourier series in \(L^2\text{.}\) (Alternatively, one can show that the set \(\{e^{\pm inx}\}_{n=1, \ldots, \infty}\) is an orthonormal basis for \(L^2\) and use the projection formula to generate the coordinate computation.)</p>
+<article class="theorem-like" id="theorem-9"><h6 class="heading">
+<span class="type">Theorem</span> <span class="codenumber">7.4</span>. <span class="title">Fourier series on \(L^2(\T)\).</span>
+</h6>
+<p id="p-176">Let \(f \in L^2(\T)\text{.}\) Then \(f\) has a Fourier representation</p>
+<div class="displaymath">
+\begin{equation*}
+f(x) = \sum_{n=-\infty}^\infty c_n e^{inx}
+\end{equation*}
+</div>
+<p>where</p>
+<div class="displaymath">
+\begin{equation*}
+c_n = \frac{1}{2\pi} \int_{-\pi}^{\pi} f(x) e^{-inx} \, dx.
+\end{equation*}
+</div></article></section><section class="subsection" id="subsection-25"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">7.5</span> <span class="title">Introduction to the discrete Fourier transform</span>
+</h3>
+<p id="p-177">A sampled function results in a <dfn class="terminology">signal</dfn>, that is a vector \(x = [x_0, \ldots, x_{n}]\text{.}\) This is a discrete object. We used integral approximations to estimate the Fourier coefficients of such an object in the previous sections by assuming that the signal represented a continuous function \(f(t)\text{.}\) However, given that signals are discrete, it seems useful to introduce a discrete method for recovering Fourier coefficients.</p>
+<p id="p-178">The method that we (very very briefly) introduce here is called the <dfn class="terminology">discrete Fourier transform</dfn>. A signal \(x = (x_n)_{n=0, \ldots, N-1}\) lives in the <dfn class="terminology">time domain</dfn> - that is, we think of the array indicies as corresponding to an independent variable in time. The entries of the array represent the magnitude of the signal at time \(k\text{.}\) The discrete Fourier series will produce a vector of the same length, but in the <dfn class="terminology">frequency domain</dfn> - that is, the array indicies will correspond to frequencies. The entries of the array will be complex numbers representing the amplitude and phase shift of the corresponding frequency \(k\text{.}\) The discrete Fourier transform takes a signal in the time domain and produces an array (really a function) in the frequency domain.</p>
+<article class="definition-like" id="definition-3"><h6 class="heading">
+<span class="type">Definition</span> <span class="codenumber">7.5</span>.</h6>Let \(x = (x_n)_{n = 0, \ldots, N-1}\) be a signal in the time domain. Then the DFT of \(x\) is the vector \(X\) with complex entries given by<div class="displaymath">
+\begin{equation*}
+X_k = \frac{1}{N} \sum_{n=0}^{N - 1} x_n e^{-i2\pi \frac{k}{N}n}.
+\end{equation*}
+</div></article><p id="p-179">Before we talk about how the DFT works, we can talk about what it produces. First, frequencies in this setting are with respect to \(N\text{,}\) the length of the signal. A frequency of \(k\) corresponds to a pattern that is repeated \(k\) times over \(N\) terms. In other words, the period of the pattern is \(\frac{N}{k}\text{.}\) Each \(X_k\) is a complex number that contains the amplitude and phase shift of the corresponding harmonic that describes the pattern. That is, if a harmonic of frequency \(k\) is hidden in a signal, the magnitude \(\abs{X_k}\) will be significantly larger than the magnitude of the “noise” present. Plotting the frequencies reveals which harmonics are present.</p>
+<p id="p-180">We can illustrate how the DFT works with an example composite signal. Let \(v_1 = [1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1]\) and \(v_2 = [3, -4, -1, 3, -4, -1, 3, -4, -1, 3, -4, -1]\text{.}\) Relative to the length of the signal, \(v_1\) has frequency 6 and \(v_2\) has frequency 4. If we add the signals, we get the composite vector</p>
+<div class="displaymath">
+\begin{equation*}
+v_1 + v_2 = x = [4, -5, 0, 2, -3, -2, 4, -5, 0, 2, -3, -2 ],
+\end{equation*}
+</div>
+<p>which looks to have frequency 2. The DFT should recover that the signal \(x\) has harmonics at frequencies 6 and 4. The computation essentially converts the problem into a vector addition problem. We can illustrate by looking at the graphs corresponding to the computation of \(X_1\) and \(X_4\text{.}\) We should expect \(\abs{X_1} = 0\) and \(\abs{X_4} &gt;&gt; 0\text{,}\) as a component signal of frequency 1 is not present and a signal of frequence 4 is.</p>
+<div class="displaymath">
+\begin{equation*}
+X_1 = \frac{1}{12}\left(4 -5 e^{-i2\pi\frac{1}{12}} + 0 e^{-i2\pi\frac{2}{12}} + \ldots -2 e^{-i2\pi\frac{11}{12}}\right)
+\end{equation*}
+</div>
+<p>Essentially, this is a vector addition problem, as the following figure should make clear. <div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/x1.png" style="width: 100%; height: auto;" alt=""></div> Visually, it should be apparent that the sum of these vectors is 0.</p>
+<p id="p-181">On the other hand, we can look at a frequency that is present in \(x\text{,}\) say \(X_4\text{.}\) We compute</p>
+<div class="displaymath">
+\begin{equation*}
+X_4 = \frac{1}{12}\left(4 -5 e^{-i2\pi\frac{4}{12}} + 0 e^{-i2\pi\frac{8}{12}} + \ldots -2 e^{-i2\pi\frac{44}{12}}\right)
+\end{equation*}
+</div>
+<p>which is an addition of this set of vectors, clearly a set with a non-zero sum. <div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/x4.png" style="width: 100%; height: auto;" alt=""></div> That this vector has non-zero magnitude should not be surprising, given that a pattern of frequency 4 is one of the constituent signals in \(x\text{.}\)</p></section><section class="subsection" id="subsection-26"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">7.6</span> <span class="title">Leakage and the DFT</span>
+</h3> To be added.</section><section class="subsection" id="subsection-27"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">7.7</span> <span class="title">Octave and the DFT</span>
+</h3>
+<p id="p-182">Of course in practice, signals are thousands or millions of entries long. We don't want to have to compute millions of entries for the frequency domain function by hand. Instead, we use an implementation of the DFT called the <dfn class="terminology">fast Fourier transform</dfn>, an algorithm that is outside the scope of these notes. What you need to know about the command <code class="code-inline tex2jax_ignore">fft</code> is that it produces most of \(X\) for a signal \(x\) in the time domain. The part that it leaves out is the normalization \(1/N\) that accounts for the total energy contained in a signal (longer signals mean more energy).</p>
+<div class="displaymath">
+\begin{equation*}
+\mathrm{fft}(x) = \left[\sum_{n=0}^{N-1} x_k e^{-i2\pi\frac{k}{N}n}\right]_{k=0, \ldots, N-1}.
+\end{equation*}
+</div>
+<p>That is, the entries of <code class="code-inline tex2jax_ignore">fft(x)</code> are the unnormalized discrete Fourier coefficients \(N X_k\text{.}\)</p>
+<p id="p-183">Let's take a look at our signal from the previous section. <div class="sagecell-octave" id="sage-51"><script type="text/x-sage">x = [4, -5, 0, 2, -3, -2, 4, -5, 0, 2, -3, -2 ];
+X = fft(x);
+X = 1/length(x)*abs(X); #normalizes X and finds magnitude of complex #
+k = 0:11;
+scatter(k, X, 400)
+</script></div> Several things should be immediately apparent. The first is that (with the exception of the term at \(k=0\text{,}\) which is special) the plot is symmetric about the line \(k = 6\text{.}\) The reason is that once you go beyond the midpoint of the vector, you are recovering the harmonic corresponding to the <em class="emphasis">backwards</em> frequency \(k\text{,}\) which will have the same magnitude as the forwards frequency \(k\) for real signals. This will be apparent if you look at how the points move around the unit circle. (For example, compare how multiples of \(\frac{\pi}{6}\) and \(\frac{11 \pi}{6}\) traverse the circle.) Thus, the frequency \(k\) for a real signal has two components of equal magnitude that contribute to that harmonic (much like the sine and cosine contribute to a single harmonic in the trigonometric setting). The special nodes are at \(k = 0 \text{,}\) which electrical engineers call the <dfn class="terminology">DC component</dfn> (that is, the center of oscilliation for the signal), and at \(k = N/2\) which is called the <dfn class="terminology">Nyquist frequency</dfn>, beyond which no frequency can be detected.</p>
+<p id="p-184">Since we want all of the frequencies between the DC component and the Nyquist frequency to count twice, we'll construct the following <dfn class="terminology">one-sided spectrum</dfn>. <div class="sagecell-octave" id="sage-52"><script type="text/x-sage">x = [4, -5, 0, 2, -3, -2, 4, -5, 0, 2, -3, -2 ];
+N = length(x);
+X = fft(x);
+X = 1/N*abs(X); #normalizes X and finds magnitude of complex #
+twosidespec = X;
+onesidespec = twosidespec(1:N/2+1);
+onesidespec(2:end-1) = 2*onesidespec(2:end-1);
+freq = 0:N/2;
+scatter(freq, onesidespec, 400)
+</script></div> This shows precisely what we expect - the 0 frequency reflects the fact that the signal isn't centered about the x-axis. The \(k=4\) and \(k=6\) values reflect the constituent patterns from \(v_1\) and \(v_2\text{.}\)</p>
+<p id="p-185">One of the extremely useful features of the DFT is how good it is at pulling signal out of noise. Consider the following example. We're going to construct a signal with units inherited from a known sample rate. Suppose we have a signal that we sample at a rate of \(Fs\) Hz. Then each increase in array position corresponds to a time step of \(\Delta t = 1/Fs\) seconds. Given a signal of length \(L\text{,}\) the total time of the signal will be \(T = L\times\Delta t\text{.}\) Knowing the sample rate will allow us to explicitly interpret the spectral analysis in terms of the input signal frequencies. (That is, we'll be able to attach units to our spectrum.)</p>
+<p id="p-186">The following example constructs a nice period function from a sum of sines and cosines, then corrupts the signal with random noies. The <code class="code-inline tex2jax_ignore">fft</code> can be used to produce a one-sided spectrum that recovers the frequences of the original signal.</p>
+<div class="sagecell-octave" id="sage-53"><script type="text/x-sage">Fs = 10000; #sample rate
+T = 1/Fs; #delta t
+L = 30000; #signal length
+t = (0:L-1)*T; #time domain axis
+
+#function to be sampled
+S = 10*sin(2*pi*100*t) - 2*cos(2*pi*100*t) + 6*sin(2*pi*350*t);
+subplot(2,2,1)
+plot(1000*t(1:2000),S(1:2000)) #plots a part of the signal
+title('Signal')
+xlabel('t (milliseconds)')
+ylabel('X(t)')
+
+#original spectrum
+Y = fft(S);
+P2 = abs(Y/L);
+P1 = P2(1:L/2+1); #sets up two-sided spectrum
+P1(2:end-1) = 2*P1(2:end-1);  #adds backwards frequecies
+f = Fs*(0:(L/2))/L;
+subplot(2, 2, 2)
+plot(f,P1)
+title('Single-Sided Amplitude Spectrum of S(t)')
+xlabel('f (Hz)')
+ylabel('|P1(f)|')
+axis([0 1000 0 10])
+
+#corruption
+X = S + 20*randn(size(t)); #adds random noise
+subplot(2, 2, 3)
+plot(1000*t(1:2000),X(1:2000))
+title('Signal Corrupted with Zero-Mean Random Noise')
+xlabel('t (milliseconds)')
+ylabel('X(t)')
+
+#spectal analysis
+Y = fft(X);
+P2 = abs(Y/L);
+P1 = P2(1:L/2+1); #sets up two-sided spectrum
+P1(2:end-1) = 2*P1(2:end-1);  #adds backwards frequecies
+
+#plot of spectrum
+f = Fs*(0:(L/2))/L;
+subplot(2, 2, 4)
+plot(f,P1)
+title('Single-Sided Amplitude Spectrum of X(t)')
+xlabel('f (Hz)')
+ylabel('|P1(f)|')
+axis([0 1000 0 10])
+</script></div></section><section class="subsection" id="subsection-28"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">7.8</span> <span class="title">Going backwards - <code class="code-inline tex2jax_ignore">ifft</code></span>
+</h3>
+<p id="p-187">We've seen that <code class="code-inline tex2jax_ignore">fft</code> takes a signal \(x\) in the time domain and produces a vector \(X\) in the frequency domain. Since each entry in \(X\) is a linear combination of the entries of \(x\text{,}\) we should suspect that this process can be inverted. Indeed, <dfn class="terminology">inverse DFT</dfn> , implemented in Octave as <code class="code-inline tex2jax_ignore">ifft</code>, takes a frequency vector \(X\) and produces a time domain signal \(x\text{.}\) Note that since we normalized the output of <code class="code-inline tex2jax_ignore">fft</code> by dividing by the length of the vector (since <code class="code-inline tex2jax_ignore">fft(x)</code>\(= \sum_{n=0}^{N-1} x_k e^{i2\pi \frac{k}{N} n}\)), we need to undo the normalization before we compute the <code class="code-inline tex2jax_ignore">ifft</code>.</p>
+<div class="sagecell-octave" id="sage-54"><script type="text/x-sage">x = linspace(0,1,100);
+f = @(x) sin(10*pi*x);
+y = f(x);
+subplot(1, 3, 1)
+plot(x, y)
+
+Y = fft(y)/length(y);
+subplot(1, 3, 2)
+plot(abs(Y))
+
+YY = Y*length(Y);
+yy = ifft(YY);
+subplot(1,3,3)
+plot(x, real(yy))
 </script></div></section></section></div></main>
 </div>
 <div class="login-link"><span id="loginlogout" class="login">login</span></div>

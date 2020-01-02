@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-11-22T13:11:17-05:00    *-->
+<!--*    on 2019-12-13T10:04:41-05:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -226,23 +226,29 @@ var js_version = 0.12;
 <li class="link">
 <a href="section-7.html" data-scroll="section-7"><span class="codenumber">7</span> <span class="title">Introduction to Fourier Series (a linear algebra perspective)</span></a><ul>
 <li><a href="section-7.html#subsection-21" data-scroll="subsection-21">Review of linear algebra</a></li>
-<li><a href="section-7.html#subsection-22" data-scroll="subsection-22">The space \(L^2[-\pi,\pi]\)</a></li>
+<li><a href="section-7.html#subsection-22" data-scroll="subsection-22">The space \(L^2([-\pi,\pi])\)</a></li>
 <li><a href="section-7.html#subsection-23" data-scroll="subsection-23">Example computation</a></li>
+<li><a href="section-7.html#subsection-24" data-scroll="subsection-24">Complex numbers and Fourier series</a></li>
+<li><a href="section-7.html#subsection-25" data-scroll="subsection-25">Introduction to the discrete Fourier transform</a></li>
+<li><a href="section-7.html#subsection-26" data-scroll="subsection-26">Leakage and the DFT</a></li>
+<li><a href="section-7.html#subsection-27" data-scroll="subsection-27">Octave and the DFT</a></li>
+<li><a href="section-7.html#subsection-28" data-scroll="subsection-28">Going backwards - <code class="code-inline tex2jax_ignore">ifft</code></a></li>
 </ul>
 </li>
 <li class="link">
-<a href="section-8.html" data-scroll="section-8"><span class="codenumber">8</span> <span class="title">Code examples</span></a><ul><li><a href="section-8.html#subsection-24" data-scroll="subsection-24">Lab 1 - Introduction</a></li></ul>
+<a href="section-8.html" data-scroll="section-8"><span class="codenumber">8</span> <span class="title">Code examples</span></a><ul><li><a href="section-8.html#subsection-29" data-scroll="subsection-29">Lab 1 - Introduction</a></li></ul>
 </li>
 <li class="link">
 <a href="section-9.html" data-scroll="section-9"><span class="codenumber">9</span> <span class="title">Assignments</span></a><ul>
-<li><a href="section-9.html#subsection-25" data-scroll="subsection-25">Assignment Set 1</a></li>
-<li><a href="section-9.html#subsection-26" data-scroll="subsection-26">Assignment Set 2</a></li>
-<li><a href="section-9.html#subsection-27" data-scroll="subsection-27">Assignment set 3</a></li>
-<li><a href="section-9.html#subsection-28" data-scroll="subsection-28">Assignment set 4</a></li>
-<li><a href="section-9.html#subsection-29" data-scroll="subsection-29">Assignment set 5 (including challenge set)</a></li>
-<li><a href="section-9.html#subsection-30" data-scroll="subsection-30">Assignment set 6 - Newton polynomials</a></li>
-<li><a href="section-9.html#subsection-31" data-scroll="subsection-31">Assignment set 7 - Cubic splines</a></li>
-<li><a href="section-9.html#subsection-32" data-scroll="subsection-32">Assignment 8 - Numerical integration</a></li>
+<li><a href="section-9.html#subsection-30" data-scroll="subsection-30">Assignment Set 1</a></li>
+<li><a href="section-9.html#subsection-31" data-scroll="subsection-31">Assignment Set 2</a></li>
+<li><a href="section-9.html#subsection-32" data-scroll="subsection-32">Assignment set 3</a></li>
+<li><a href="section-9.html#subsection-33" data-scroll="subsection-33">Assignment set 4</a></li>
+<li><a href="section-9.html#subsection-34" data-scroll="subsection-34">Assignment set 5 (including challenge set)</a></li>
+<li><a href="section-9.html#subsection-35" data-scroll="subsection-35">Assignment set 6 - Newton polynomials</a></li>
+<li><a href="section-9.html#subsection-36" data-scroll="subsection-36">Assignment set 7 - Cubic splines</a></li>
+<li><a href="section-9.html#subsection-37" data-scroll="subsection-37">Assignment 8 - Numerical integration</a></li>
+<li><a href="section-9.html#subsection-38" data-scroll="subsection-38">Assignment 9 - Fourier series</a></li>
 </ul>
 </li>
 </ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
@@ -557,15 +563,49 @@ errorR = (R6 - trueArea) / trueArea
 <p id="p-144">Recall that there is a unique parabola through any three points - we'll use the points \((a, f(a)), ((a+b)/2, f((a+b)/2), (b, f(b))\text{.}\) We have several techniques available for finding such an interpolation - we'll derive ours using Newton polynomials. The Newton polynomial through our points is</p>
 <div class="displaymath">
 \begin{equation*}
-f(x) = b_0 + b_1 (x - a) + b_2 (x -a) (x - (\frac{a+b}{2})),
+g(x) = b_0 + b_1 (x - a) + b_2 (x -a) (x - (\frac{a+b}{2})),
 \end{equation*}
 </div>
 <p>where</p>
 <div class="displaymath">
 \begin{equation*}
-b_0 = a, b_1 = \frac{f((a+b)/2) - f(a)}{(a + b)/2 - a}, b_2 = \frac{\frac{f(b) - f((a+b)/2)}{b - (a+b)/2} - \frac{f((a+b)/2) - f(a)}{(a+b)/2 - a}}{b - a}
+b_0 = a, b_1 = \frac{f((a+b)/2) - f(a)}{(a + b)/2 - a}, b_2 = \frac{\frac{f(b) - f((a+b)/2)}{b - (a+b)/2} - \frac{f((a+b)/2) - f(a)}{(a+b)/2 - a}}{b - a}.
 \end{equation*}
-</div></section></section></div></main>
+</div>
+<p id="p-145">So in effect, we're saying that</p>
+<div class="displaymath">
+\begin{align*}
+\int_a^b f(x)\, dx \amp \approx \int_a^b b_0 + b_1 (x - a) + b_2 (x -a) (x - (\frac{a+b}{2}))\\
+\amp = \ldots\\
+\amp= \frac{\Delta x}{3}\left( f(a) + 4f(\frac{a+b}{2}) + f(b)\right)
+\end{align*}
+</div>
+<p>where we have shoved integration and substitution under the rug (or into the ellipsis, as it were).</p>
+<p id="p-146">Now suppose that \([a,b]\) is partitioned into \(n\) segments of equal length \(\Delta x = \frac{b - a}{n}\text{,}\) where \(n\) is even (which will allow overlapping sequences of three points). Then for three sequential points \(x_i, x_{i+1}, x_{i+2}\text{,}\) the previous computation gives</p>
+<div class="displaymath">
+\begin{equation*}
+\int_{x_i}^{x_{i+2}} f(x) \, dx \approx \frac{\Delta x}{3}\left(f(x_i) + 4f(x_{i+1}) + f(x_{i+2})\right).
+\end{equation*}
+</div>
+<p>Since we chose \(n\) to be even, we get</p>
+<div class="displaymath">
+\begin{align*}
+\int_a^b f(x)\, dx \amp\approx \frac{\Delta x}{3}\left(f(x_0) + 4f(x_{1}) + f(x_{2})\right) + \ldots + \frac{\Delta x}{3}\left(f(x_{n-2}) + 4f(x_{n-1}) + f(x_{n})\right)\\
+\amp\approx \frac{\Delta x}{3} \left(f(x_0) + 4 \sum_{i \text{ odd}} f(x_i)) + 2 \sum_{i \text{ even}} f(x_i) + f(x_n)\right)
+\end{align*}
+</div>
+<div class="sagecell-octave" id="sage-47"><script type="text/x-sage">f = @(x) cos(x);
+a = 0;
+b = 2;
+n = 4;
+h = (b-a)/n;
+X = linspace(a,b,n+1);
+Y = f(X);
+S = (h/3)*(f(X(1)) + 4*f(X(2)) + 2*f(X(3)) + 4*f(X(4)) + f(X(5)))
+F = @(x) sin(x);
+trueArea = F(b) - F(a)
+error = abs((trueArea - S)/trueArea)
+</script></div></section></section></div></main>
 </div>
 <div class="login-link"><span id="loginlogout" class="login">login</span></div>
 <script src="https://pretextbook.org/js/0.12/login.js"></script>

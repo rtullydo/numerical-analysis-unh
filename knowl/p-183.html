@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-11-21T15:45:43-05:00    *-->
+<!--*    on 2019-12-13T10:04:42-05:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -10,15 +10,32 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script><script>$(function () {
+    // Make *any* div with class 'sagecell-octave' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-octave',
+                           linked: true,
+                           languages: ['octave'],
+                           evalButtonText: 'Evaluate (Octave)'});
+});
+</script>
 </head>
 <body>
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>If it is the case that \(G = \langle g \rangle\) for some element \(g\text{,}\) then \(G\) is called a <dfn class="terminology">cyclic group</dfn>. For example, consider the group \(F_7\ad\) and the element \(3\text{.}\)</p>
-<div class="displaymath">
-\begin{equation*}
-\langle 3 \rangle = \{3, 3^2 = 2, 3^3 = 6, 3^4 = 4, 3^5 = 5, 3^6 = 1\} = \F_7\ad \text{.}
-\end{equation*}
-</div>
-<span class="incontext"><a href="section-subgroups.html#p-183">in-context</a></span>
+<p>Let's take a look at our signal from the previous section. <div class="sagecell-octave" id="sage-51"><script type="text/x-sage">x = [4, -5, 0, 2, -3, -2, 4, -5, 0, 2, -3, -2 ];
+X = fft(x);
+X = 1/length(x)*abs(X); #normalizes X and finds magnitude of complex #
+k = 0:11;
+scatter(k, X, 400)
+</script></div> Several things should be immediately apparent. The first is that (with the exception of the term at \(k=0\text{,}\) which is special) the plot is symmetric about the line \(k = 6\text{.}\) The reason is that once you go beyond the midpoint of the vector, you are recovering the harmonic corresponding to the <em class="emphasis">backwards</em> frequency \(k\text{,}\) which will have the same magnitude as the forwards frequency \(k\) for real signals. This will be apparent if you look at how the points move around the unit circle. (For example, compare how multiples of \(\frac{\pi}{6}\) and \(\frac{11 \pi}{6}\) traverse the circle.) Thus, the frequency \(k\) for a real signal has two components of equal magnitude that contribute to that harmonic (much like the sine and cosine contribute to a single harmonic in the trigonometric setting). The special nodes are at \(k = 0 \text{,}\) which electrical engineers call the <dfn class="terminology">DC component</dfn> (that is, the center of oscilliation for the signal), and at \(k = N/2\) which is called the <dfn class="terminology">Nyquist frequency</dfn>, beyond which no frequency can be detected.</p>
+<span class="incontext"><a href="section-7.html#p-183">in-context</a></span>
 </body>
 </html>

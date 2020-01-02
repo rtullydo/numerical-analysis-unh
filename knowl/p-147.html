@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-11-22T13:11:17-05:00    *-->
+<!--*    on 2019-12-13T10:04:42-05:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -13,13 +13,18 @@
 </head>
 <body>
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>The dot product is an example of a more general kind of product called an <dfn class="terminology">inner product</dfn> on a vector space. Let \(V\) be a vector space over a field \(F\text{.}\) An operation \(\ip{}{}\) is called an inner product on \(V\) if</p>
+<p>A <dfn class="terminology">vector space</dfn> over a scalar field \(F\) is a collection of vectors together with operations that make it possible to do algebra on that collection. In particular, a set of vectors \(V\) is a vector space under the operations of addition and scalar multiplication if the following axioms are satisfied:</p>
 <ol class="decimal">
-<li>positive definite: \(\ip{u}{u} &gt; 0\) whenever \(u \neq 0\)</li>
-<li>conjugate symmetric: \(\ip{u}{v} = \cc{\ip{v}{u}}\)</li>
-<li>linear in the first entry: \(\ip{\alpha u + \beta v}{w} = \alpha \ip{u}{w} + \beta \ip{v}{w}\)</li>
+<li>associativity of addition: \(u, v, w \in V \Rightarrow u+(v+w) = (u+v)+w\)</li>
+<li>commutativity of addition: \(u, v \in V \Rightarrow u + v = v + u\)</li>
+<li>additive identity: there is an element \(0\text{,}\) the zero vector, so that \(v \in V \Rightarrow v + 0 = 0 + v = 0\)</li>
+<li>additive inverses: every vector \(v\) has an inverse \(-v\) \(\Rightarrow v + (-v) = 0\)</li>
+<li>compatibility: \(\alpha , \beta \in F, u \in V \Rightarrow (\alpha\beta)u = \alpha(\beta u)\)</li>
+<li>multiplicative identity: \(1 \in F, u \in V \Rightarrow 1u = u\)</li>
+<li>distribution over vector addition: \(\alpha \in F, u,v \in V \Rightarrow \alpha(u+v) = \alpha u + \alpha v\)</li>
+<li>distribution over field addition: \(\alpha, \beta \in F, u \in V \Rightarrow (\alpha + \beta) u = \alpha u + \beta u\)</li>
 </ol>
-<p>where \(\cc z\) denotes the complex conjugate. Note that in the case that the field \(F = \R\text{,}\) an inner product is symmetric.</p>
+<p>The prototypical example of a vector space is \(n\)-dimensional <dfn class="terminology">Euclidean space</dfn>, \(\R^n\text{,}\) our usual notion of vectors. However, many other sets of objects constitute vector spaces with the appropriate operations - for example, \(C([0,1])\text{,}\) the space of continuous functions on the interval \([0,1]\) is a vector space over \(\R\) under addition of functions. We are building to understanding spaces of functions.</p>
 <span class="incontext"><a href="section-7.html#p-147">in-context</a></span>
 </body>
 </html>

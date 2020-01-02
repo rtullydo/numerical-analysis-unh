@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-11-22T13:11:17-05:00    *-->
+<!--*    on 2019-12-13T10:04:41-05:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -210,23 +210,29 @@ var js_version = 0.12;
 <li class="link">
 <a href="section-7.html" data-scroll="section-7"><span class="codenumber">7</span> <span class="title">Introduction to Fourier Series (a linear algebra perspective)</span></a><ul>
 <li><a href="section-7.html#subsection-21" data-scroll="subsection-21">Review of linear algebra</a></li>
-<li><a href="section-7.html#subsection-22" data-scroll="subsection-22">The space \(L^2[-\pi,\pi]\)</a></li>
+<li><a href="section-7.html#subsection-22" data-scroll="subsection-22">The space \(L^2([-\pi,\pi])\)</a></li>
 <li><a href="section-7.html#subsection-23" data-scroll="subsection-23">Example computation</a></li>
+<li><a href="section-7.html#subsection-24" data-scroll="subsection-24">Complex numbers and Fourier series</a></li>
+<li><a href="section-7.html#subsection-25" data-scroll="subsection-25">Introduction to the discrete Fourier transform</a></li>
+<li><a href="section-7.html#subsection-26" data-scroll="subsection-26">Leakage and the DFT</a></li>
+<li><a href="section-7.html#subsection-27" data-scroll="subsection-27">Octave and the DFT</a></li>
+<li><a href="section-7.html#subsection-28" data-scroll="subsection-28">Going backwards - <code class="code-inline tex2jax_ignore">ifft</code></a></li>
 </ul>
 </li>
 <li class="link">
-<a href="section-8.html" data-scroll="section-8"><span class="codenumber">8</span> <span class="title">Code examples</span></a><ul><li><a href="section-8.html#subsection-24" data-scroll="subsection-24">Lab 1 - Introduction</a></li></ul>
+<a href="section-8.html" data-scroll="section-8"><span class="codenumber">8</span> <span class="title">Code examples</span></a><ul><li><a href="section-8.html#subsection-29" data-scroll="subsection-29">Lab 1 - Introduction</a></li></ul>
 </li>
 <li class="link active">
 <a href="section-9.html" data-scroll="section-9"><span class="codenumber">9</span> <span class="title">Assignments</span></a><ul>
-<li><a href="section-9.html#subsection-25" data-scroll="subsection-25">Assignment Set 1</a></li>
-<li><a href="section-9.html#subsection-26" data-scroll="subsection-26">Assignment Set 2</a></li>
-<li><a href="section-9.html#subsection-27" data-scroll="subsection-27">Assignment set 3</a></li>
-<li><a href="section-9.html#subsection-28" data-scroll="subsection-28">Assignment set 4</a></li>
-<li><a href="section-9.html#subsection-29" data-scroll="subsection-29">Assignment set 5 (including challenge set)</a></li>
-<li><a href="section-9.html#subsection-30" data-scroll="subsection-30">Assignment set 6 - Newton polynomials</a></li>
-<li><a href="section-9.html#subsection-31" data-scroll="subsection-31">Assignment set 7 - Cubic splines</a></li>
-<li><a href="section-9.html#subsection-32" data-scroll="subsection-32">Assignment 8 - Numerical integration</a></li>
+<li><a href="section-9.html#subsection-30" data-scroll="subsection-30">Assignment Set 1</a></li>
+<li><a href="section-9.html#subsection-31" data-scroll="subsection-31">Assignment Set 2</a></li>
+<li><a href="section-9.html#subsection-32" data-scroll="subsection-32">Assignment set 3</a></li>
+<li><a href="section-9.html#subsection-33" data-scroll="subsection-33">Assignment set 4</a></li>
+<li><a href="section-9.html#subsection-34" data-scroll="subsection-34">Assignment set 5 (including challenge set)</a></li>
+<li><a href="section-9.html#subsection-35" data-scroll="subsection-35">Assignment set 6 - Newton polynomials</a></li>
+<li><a href="section-9.html#subsection-36" data-scroll="subsection-36">Assignment set 7 - Cubic splines</a></li>
+<li><a href="section-9.html#subsection-37" data-scroll="subsection-37">Assignment 8 - Numerical integration</a></li>
+<li><a href="section-9.html#subsection-38" data-scroll="subsection-38">Assignment 9 - Fourier series</a></li>
 </ul>
 </li>
 </ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
@@ -234,7 +240,7 @@ var js_version = 0.12;
 <main class="main"><div id="content" class="pretext-content"><section class="section" id="section-9"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">9</span> <span class="title">Assignments</span>
 </h2>
-<section class="subsection" id="subsection-25"><h3 class="heading hide-type">
+<section class="subsection" id="subsection-30"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">9.1</span> <span class="title">Assignment Set 1</span>
 </h3>
 <pre class="plainprint">#Assignment set 1
@@ -289,7 +295,7 @@ var js_version = 0.12;
 #the program produces the largest domain near a for which the maximum error is
 #less than that tolerance. The output should be both the Taylor polynomial
 #and a domain where the approximation is good.
-</pre></section><section class="subsection" id="subsection-26"><h3 class="heading hide-type">
+</pre></section><section class="subsection" id="subsection-31"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">9.2</span> <span class="title">Assignment Set 2</span>
 </h3>
 <pre class="plainprint">#Assignment set 2
@@ -336,7 +342,7 @@ var js_version = 0.12;
 ################################################
 #Rewrite the function in Exercise 2 so that the user specifies
 #a desired number of significant figures instead of a tolerance.
-</pre></section><section class="subsection" id="subsection-27"><h3 class="heading hide-type">
+</pre></section><section class="subsection" id="subsection-32"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">9.3</span> <span class="title">Assignment set 3</span>
 </h3>
 <pre class="plainprint">################################################
@@ -364,7 +370,7 @@ var js_version = 0.12;
 ################################################
 #Find a function that gives you extremely slow convergence
 #in Newton's method. Explain what you think is happening.
-</pre></section><section class="subsection" id="subsection-28"><h3 class="heading hide-type">
+</pre></section><section class="subsection" id="subsection-33"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">9.4</span> <span class="title">Assignment set 4</span>
 </h3>
 <pre class="plainprint">################################################
@@ -392,7 +398,7 @@ var js_version = 0.12;
 ################################################
 #Write a hybrid method that first tries the secant method to find a root
 #and then uses the bisection method if the secant method fails.
-</pre></section><section class="subsection" id="subsection-29"><h3 class="heading hide-type">
+</pre></section><section class="subsection" id="subsection-34"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">9.5</span> <span class="title">Assignment set 5 (including challenge set)</span>
 </h3>
 <pre class="plainprint">################################################
@@ -429,7 +435,7 @@ var js_version = 0.12;
 #These points come from the function f(x) = 1/(x^2 + 1).
 #What happens? Is the Lagrange polynomial a good approximation
 #for f? Why or why not?
-</pre></section><section class="subsection" id="subsection-30"><h3 class="heading hide-type">
+</pre></section><section class="subsection" id="subsection-35"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">9.6</span> <span class="title">Assignment set 6 - Newton polynomials</span>
 </h3>
 <pre class="plainprint">################################################
@@ -447,7 +453,7 @@ var js_version = 0.12;
 #Write a function that takes a matrix containing n
 #interpolation points and produces the corresponding Newton
 #polynomial.
-</pre></section><section class="subsection" id="subsection-31"><h3 class="heading hide-type">
+</pre></section><section class="subsection" id="subsection-36"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">9.7</span> <span class="title">Assignment set 7 - Cubic splines</span>
 </h3>
 <pre class="plainprint">################################################3
@@ -476,7 +482,7 @@ var js_version = 0.12;
 #Sample the function f(x) = 1/(x^2 + 16) with an odd number of equally spaced points.
 #Compare the graph of the original function, the graph of the unique polynomial interpolating function through
 #the sample points, and the spline interpolating function through the sample points.
-</pre></section><section class="subsection" id="subsection-32"><h3 class="heading hide-type">
+</pre></section><section class="subsection" id="subsection-37"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">9.8</span> <span class="title">Assignment 8 - Numerical integration</span>
 </h3>
 <pre class="plainprint">#############################################################
@@ -505,6 +511,24 @@ var js_version = 0.12;
 #driver function that takes the same inputs plus a tolerance and
 #increases the number of segments until the tolerance is met (in
 #absolute relative error).
+</pre></section><section class="subsection" id="subsection-38"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">9.9</span> <span class="title">Assignment 9 - Fourier series</span>
+</h3>
+<pre class="plainprint">##############################################################
+#Exercise 1
+##############################################################
+#Compute the Fourier coefficients of the function y = x on the
+#interval [-pi, pi] (this is an example of a sawtooth wave).
+#It will be easiest to use the trapz function to compute
+#the trapezoid rule approximations of the sample point vectors.
+
+##############################################################
+#Exercise 2
+##############################################################
+#Construct a finite Fourier series approximation for the previous
+#exercise, and plot it against your function. If you increase the
+#number of terms, what happens to the approximation near the
+#discontinuous points?
 </pre></section></section></div></main>
 </div>
 <div class="login-link"><span id="loginlogout" class="login">login</span></div>
