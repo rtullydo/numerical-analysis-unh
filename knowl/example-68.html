@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:44-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<article class="example-like"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">3.7.2</span>.</h6>
+<p>Find a particular solution to</p>
+<div class="displaymath">
+\begin{equation*}
+y^{\prime\prime}+4y=\frac{1}{\cos\left(2t\right)}.
+\end{equation*}
+</div>
+<p>Step1: First find \(y_{h}\) if possible. In this case \(y_{h}\)will be given by solving \(r^{2}+4=0\) so that \(r=\pm2i\) hence</p>
+<div class="displaymath">
+\begin{equation*}
+y_{h}(t)=c_{1}\cos(2t)+c_{2}\sin\left(2t\right).
+\end{equation*}
+</div>
+<p>Thus \(y_{1}(t)=\cos(2t)\) and \(y_{2}(t)=\sin\left(2t\right)\text{.}\)</p>
+<p>Step2: Find the Wronskian:</p>
+<div class="displaymath">
+\begin{align*}
+W(y_{1},y_{2})(t) \amp =\left|\begin{array}{cc}
+\cos(2t) \amp \sin\left(2t\right)\\
+-2\sin(2t) \amp 2\cos(2t)
+\end{array}\right|\\
+\amp =2\cos^{2}(2t)+2\sin^{2}(2t)\\
+\amp =2\left[\cos^{2}(2t)+\sin^{2}(2t)\right]\\
+\amp =2\cdot1=2.
+\end{align*}
+</div>
+<p>Step3: Use our formula with \(g(t)=\frac{1}{\cos\left(2t\right)}\) and get</p>
+<div class="displaymath">
+\begin{align*}
+y_{p}(t) \amp =-y_{1}(t)\left[\int\frac{y_{2}(t)g(t)}{W\left(y_{1},y_{2}\right)(t)}dt\right]+y_{2}(t)\left[\int\frac{y_{1}(t)g(t)}{W\left(y_{1},y_{2}\right)(t)}dt\right]\\
+\amp =-\cos(2t)\left[\int\frac{1}{2}\frac{\sin(2t)}{\cos\left(2t\right)}dt\right]+\sin(2t)\left[\int\frac{\cos(2t)}{2}\frac{1}{\cos\left(2t\right)}dt\right]\\
+\amp =-\cos(2t)\left[\frac{1}{2}\int\frac{\sin(2t)}{\cos\left(2t\right)}dt\right]+\frac{t}{2}\sin(2t)
+\end{align*}
+</div>
+<p>Now you can remember the antiderivative of \(\int\tan(2t)dt\) or use \(u\)-substitution with \(u=\cos(2t)\) and get \(du=-2\sin(2t)dt\) so that</p>
+<div class="displaymath">
+\begin{equation*}
+\int\frac{\sin(2t)}{\cos\left(2t\right)}dt=-\frac{1}{2}\int\frac{du}{u}=-\frac{1}{2}\ln\left|u\right|=-\frac{1}{2}\ln\left|\cos(2t)\right|
+\end{equation*}
+</div>
+<p>hence</p>
+<div class="displaymath">
+\begin{equation*}
+y_{p}(t)=\frac{1}{4}\cos(2t)\ln\left|\cos(2t)\right|+\frac{t}{2}\sin(2t).
+\end{equation*}
+</div></article><span class="incontext"><a href="section-18.html#example-68">in-context</a></span>
+</body>
+</html>

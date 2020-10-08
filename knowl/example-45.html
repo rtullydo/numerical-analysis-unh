@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:44-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body>
+<article class="example-like"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.8.12</span>.</h6>
+<p>Solve \(\left(x\cos x+e^{y}\right)dx+xe^{y}dy\)</p>
+<ol class="decimal">
+<li>If this equation is exact then \(M_{y}=N_{x}\text{,}\) and<div class="displaymath">
+\begin{align*}
+M_{y} \amp =e^{y}\\
+N_{x} \amp =e^{y}
+\end{align*}
+</div>Now note that it is actually easier to integrate \(N\) with respect to \(y\text{:}\) Thus we can start the diagram in the other direction<div class="displaymath">
+\begin{align*}
+\amp \psi_{x}=x\cos x+e^{y} \amp \Longleftarrow \amp =\psi_{x}=e^{y}+g^{\prime}(x)\\
+\amp  \amp  \amp \boldsymbol{\psi=xe^{y}+g(x)}\\
+\amp  \amp  \amp \Uparrow\\
+\text{Start here:} \amp \psi_{y}=xe^{y} \amp \implies \amp \psi_{y}=\int\left(xe^{y}\right)dy+g(x)
+\end{align*}
+</div>
+</li>
+<li>Solve for \(g(x)\) by noting that since<div class="displaymath">
+\begin{align*}
+x\cos x+e^{y}=e^{y}+g^{\prime}(x)\implies \amp g^{\prime}(x)=x\cos x
+\end{align*}
+</div>but at the end of the day we can't avoid the harder integration, as we still need to integration by parts to \(g(x)=x\sin x+\cos x\)</li>
+<li><p>Put it all together and get \(\psi(x,y)=xe^{y}+x\sin x+\cos x\) and hence the <em class="emphasis">implicit solution</em> is \(xe^{y}+x\sin x+\cos x=C.\)</p></li>
+</ol>
+<div class="sagecell-sage" id="sage-18"><script type="text/x-sage">var('x,y')
+P = plot_vector_field((x*cos(x) + e^y, x*e^y), (-3,3),(0,5))
+Q = implicit_plot(x*e^y + x*sin(x) + cos(x) - 120,(-3,3),(0,5), color="red")
+R = implicit_plot(x*e^y + x*sin(x) + cos(x) - 50,(-3,3),(0,5), color ="orange")
+S = implicit_plot(x*e^y + x*sin(x) + cos(x) - 10,(-3,3),(0,5), color ="blue")
+P + Q +R +S
+</script></div></article><span class="incontext"><a href="ch2-8.html#example-45">in-context</a></span>
+</body>
+</html>

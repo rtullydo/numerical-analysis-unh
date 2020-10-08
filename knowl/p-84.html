@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-12-13T10:04:41-05:00    *-->
+<!--*    on 2020-03-18T09:31:45-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -13,7 +13,13 @@
 </head>
 <body>
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>This exercise can be made slightly harder by allowing one of the points to move off of the \(x\)-axis. Now consider the points \((1,0),(2,0), (5,10)\text{.}\) Ignoring the third point for the moment, we can still interpolate \((1,0), (2,0)\) in the same way as before: with \(p(x) = (x -1)(x-2)\text{.}\) Maybe we're lucky and \(p\) also passes through \((5,10)\text{.}\) We can check -- \(p(5) = (5-1)(4-1) = 12\text{.}\) That is, \(p\) misses \((5,10)\text{.}\)</p>
+<p>Suppose that we are given the points \((1,0), (2,0), (5,0)\) and we are asked to provide an interpolating polynomial of degree two (these points are collinear, but they very soon won't be). One obvious choice is to form the polynomial</p>
+<div class="displaymath">
+\begin{equation*}
+p(x) = (x - 1)(x - 2)(x - 5).
+\end{equation*}
+</div>
+<p>This polynomial is not a unique polynomial of degree two, but it certainly interpolates them. We are going to use the idea of interpolating roots, as we've done here, to build interpolating functions for data off of the \(x\)-axis.</p>
 <span class="incontext"><a href="section-5.html#p-84">in-context</a></span>
 </body>
 </html>

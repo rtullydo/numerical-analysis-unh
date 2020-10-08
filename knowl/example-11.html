@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:43-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body>
+<article class="example-like"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.2.3</span>. <span class="title">(missing solution).</span>
+</h6>
+<p>Find the general solution for</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt}=y^{2}.
+\end{equation*}
+</div>
+<ul class="disc">
+<li><p>First let's find the equilibrium solutions: \(y(t)=0\) is the only one.</p></li>
+<li>
+<p>Then use the general separation of variables procedure</p>
+<div class="displaymath">
+\begin{align*}
+\frac{dy}{dt}=y^{2} \amp \iff \amp \frac{1}{y^{2}}dy=dt\\
+\amp \iff \amp \int\frac{1}{y^{2}}dy=\int dt\\
+\amp \iff \amp -\frac{1}{y}=t+C.
+\end{align*}
+</div>
+</li>
+<li>
+<p>But notice that</p>
+<div class="displaymath">
+\begin{equation*}
+y=-\frac{1}{t+C}
+\end{equation*}
+</div>
+<p>does NOT solve the IVP with \(y(0)=0\text{.}\) Thus we have to include the equilibrium solution \(y(t)=0\) to get the complete general solution. In this case we say the general solution is:</p>
+<div class="displaymath">
+\begin{equation*}
+y_g(t) = \begin{cases}
+0\\
+-\frac{1}{t + C}
+\end{cases}
+\end{equation*}
+</div>
+</li>
+</ul>
+<p><em class="alert">Moral of the story:</em> Always find the equilibrium solutions first in case there are any missing solutions from separating variables!</p>
+<div class="sagecell-sage" id="sage-4"><script type="text/x-sage">t, y = var('t,y')
+g = Graphics()
+g += plot_slope_field(y^2, (t, -5,5),(y,-5,5))
+g += plot(-1/(t + 4), (t, -5,5), ymin = -5, ymax = 5)
+g += plot(0, (t, -5,5), ymin=-5, ymax=5)
+g.show()
+</script></div></article><span class="incontext"><a href="ch2-2.html#example-11">in-context</a></span>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:44-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body><article class="example-like"><p>Consider</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt}=1+y^{2}\qquad y(0)=0.
+\end{equation*}
+</div>
+<p><em class="alert">Part (a):</em> Find where in the \(t-y\) plane the hypothesis of <a data-knowl="./knowl/existencethm2.html" title="Theorem 2.6.4: General 1st Order ODE existence and uniqueness theorem">Theorem 2.6.4</a> is satisfied:</p>
+<p><em class="alert">Solution:</em> Note that \(f(t,y)=1+y^{2}\) and \(\frac{\partial f}{\partial y}=2y\) are always continuous, thus satisfied in all of \(\mathbb{R}^{2}\text{.}\)</p>
+<p><em class="alert">Part (b):</em> Find the actual interval in which the IVP exists uniquely. We <em class="alert">must</em> keep in mind that the solution could blow up at an asymptote.</p>
+<p>Solve using separable equations and get \(y(t)=\tan(t+c)\) and with initial condition you get \(y(t)=\tan(t)\text{.}\) But this solution is only valid for \(t\in\left(-\frac{\pi}{2},\frac{\pi}{2}\right)\text{.}\)</p>
+<div class="sagecell-sage" id="sage-8"><script type="text/x-sage">t,y = var('t,y')
+g = Graphics()
+g += plot_slope_field(1 + y^2, (t,-5,5), (y,-5,5))
+g += plot(tan(t), (t,-5,5), ymax=5, ymin=-5)
+g.show()
+</script></div>
+<p><em class="alert">Moral</em>: Unlike <a data-knowl="./knowl/existencethm1.html" title="Theorem 2.6.1: Linear \(1\)st order ODE Existence and Uniqueness Theorem">Theorem 2.6.1</a>, the conclusion of <a data-knowl="./knowl/existencethm2.html" title="Theorem 2.6.4: General 1st Order ODE existence and uniqueness theorem">Theorem 2.6.4</a> does not say that the solution needs to exist in the entire rectangle, it just says that there exists some (possibly mysterious) interval in which it exists.</p></article></body>
+</html>

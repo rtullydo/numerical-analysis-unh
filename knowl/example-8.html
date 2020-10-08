@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:43-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<article class="example-like"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.1.5</span>. <span class="title">(using formula).</span>
+</h6>
+<p>Find general solution of</p>
+<div class="displaymath">
+\begin{equation*}
+t^{3}y^{\prime}+4t^{2}y=e^{-t}.
+\end{equation*}
+</div>
+<ul class="disc">
+<li>
+<p>Step 1: Rewrite as</p>
+<div class="displaymath">
+\begin{equation*}
+y^{\prime}+\frac{4}{t}y=\frac{e^{-t}}{t^{3}}
+\end{equation*}
+</div>
+<p>so that \(p(t)=\frac{4}{t}\) and \(g(t)=\frac{e^{-t}}{t^{3}}\text{.}\)</p>
+</li>
+<li>
+<p>Step 2: Find an integrating factor:</p>
+<div class="displaymath">
+\begin{equation*}
+\mu(t)=e^{\int\frac{4}{t}dt}=e^{4\ln\left|t\right|}=t^{4}.
+\end{equation*}
+</div>
+<p>Note we only need an integrating factor, not a general integrating factor. So we never need to have a \(+C\) in this step!</p>
+</li>
+<li>
+<p>Step 3: I can go through the process again, or I can just plug in the formula and get</p>
+<div class="displaymath">
+\begin{align*}
+y(t) \amp = \amp \frac{1}{\mu(t)}\left[\int\mu(t)g(t)dt.+C\right]\\
+\amp = \amp \frac{1}{t^{4}}\left[\int t^{4}\frac{e^{-t}}{t^{3}}dt+C\right]\\
+\amp = \amp \frac{1}{t^{4}}\left[\int te^{-t}dt+C\right]\\
+\amp = \amp \frac{1}{t^{4}}\left[-te^{-t}-e^{-t}+C\right]\\
+\amp = \amp -\frac{1}{t^{3}}e^{-t}-\frac{1}{t^{4}}e^{-t}+\frac{C}{t^{4}}.
+\end{align*}
+</div>
+</li>
+</ul> where we used <em class="emphasis">integration by parts</em>.</article><span class="incontext"><a href="ch2-1.html#example-8">in-context</a></span>
+</body>
+</html>

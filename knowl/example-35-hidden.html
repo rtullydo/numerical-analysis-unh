@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:44-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body><article class="example-like"><p>Consider the equation \(\frac{dy}{dt}=\frac{1}{1-y}\text{.}\)</p>
+<p>The phase line would be: <div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/1.6-Phase3.png" style="width: 100%; height: auto;" alt=""></div> We can sketch “cusp-like” curves. Once a curve has fallen into a hole once it reaches the dotted line.</p>
+<div class="sagecell-sage" id="sage-13"><script type="text/x-sage">t,y=var('t,y')
+g = Graphics()
+g+= plot_slope_field(1/(1-y), (t, -5, 5), (y, -5, 5))
+g+= plot(1 + sqrt(-2*t + 4), (t, -5, 2))
+g+= plot(1 - sqrt(-2*t -2), (t, -5, -1), color="red")
+g.show()
+</script></div></article></body>
+</html>

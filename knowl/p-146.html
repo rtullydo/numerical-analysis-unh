@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-12-13T10:04:42-05:00    *-->
+<!--*    on 2020-03-18T09:31:45-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -13,19 +13,15 @@
 </head>
 <body>
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>Now suppose that \([a,b]\) is partitioned into \(n\) segments of equal length \(\Delta x = \frac{b - a}{n}\text{,}\) where \(n\) is even (which will allow overlapping sequences of three points). Then for three sequential points \(x_i, x_{i+1}, x_{i+2}\text{,}\) the previous computation gives</p>
-<div class="displaymath">
-\begin{equation*}
-\int_{x_i}^{x_{i+2}} f(x) \, dx \approx \frac{\Delta x}{3}\left(f(x_i) + 4f(x_{i+1}) + f(x_{i+2})\right).
-\end{equation*}
-</div>
-<p>Since we chose \(n\) to be even, we get</p>
+<p>So in effect, we're saying that</p>
 <div class="displaymath">
 \begin{align*}
-\int_a^b f(x)\, dx \amp\approx \frac{\Delta x}{3}\left(f(x_0) + 4f(x_{1}) + f(x_{2})\right) + \ldots + \frac{\Delta x}{3}\left(f(x_{n-2}) + 4f(x_{n-1}) + f(x_{n})\right)\\
-\amp\approx \frac{\Delta x}{3} \left(f(x_0) + 4 \sum_{i \text{ odd}} f(x_i)) + 2 \sum_{i \text{ even}} f(x_i) + f(x_n)\right)
+\int_a^b f(x)\, dx \amp \approx \int_a^b b_0 + b_1 (x - a) + b_2 (x -a) (x - (\frac{a+b}{2}))\\
+\amp = \ldots\\
+\amp= \frac{\Delta x}{3}\left( f(a) + 4f(\frac{a+b}{2}) + f(b)\right)
 \end{align*}
 </div>
+<p>where we have shoved integration and substitution under the rug (or into the ellipsis, as it were).</p>
 <span class="incontext"><a href="section-6.html#p-146">in-context</a></span>
 </body>
 </html>

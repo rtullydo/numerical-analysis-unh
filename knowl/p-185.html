@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-12-13T10:04:42-05:00    *-->
+<!--*    on 2020-03-18T09:31:46-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -10,10 +10,36 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script><script>$(function () {
+    // Make *any* div with class 'sagecell-octave' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-octave',
+                           linked: true,
+                           languages: ['octave'],
+                           evalButtonText: 'Evaluate (Octave)'});
+});
+</script>
 </head>
 <body>
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>One of the extremely useful features of the DFT is how good it is at pulling signal out of noise. Consider the following example. We're going to construct a signal with units inherited from a known sample rate. Suppose we have a signal that we sample at a rate of \(Fs\) Hz. Then each increase in array position corresponds to a time step of \(\Delta t = 1/Fs\) seconds. Given a signal of length \(L\text{,}\) the total time of the signal will be \(T = L\times\Delta t\text{.}\) Knowing the sample rate will allow us to explicitly interpret the spectral analysis in terms of the input signal frequencies. (That is, we'll be able to attach units to our spectrum.)</p>
+<p>Since we want all of the frequencies between the DC component and the Nyquist frequency to count twice, we'll construct the following <dfn class="terminology">one-sided spectrum</dfn>. <div class="sagecell-octave" id="sage-52"><script type="text/x-sage">x = [4, -5, 0, 2, -3, -2, 4, -5, 0, 2, -3, -2 ];
+N = length(x);
+X = fft(x);
+X = 1/N*abs(X); #normalizes X and finds magnitude of complex #
+twosidespec = X;
+onesidespec = twosidespec(1:N/2+1);
+onesidespec(2:end-1) = 2*onesidespec(2:end-1);
+freq = 0:N/2;
+scatter(freq, onesidespec, 400)
+</script></div> This shows precisely what we expect - the 0 frequency reflects the fact that the signal isn't centered about the x-axis. The \(k=4\) and \(k=6\) values reflect the constituent patterns from \(v_1\) and \(v_2\text{.}\)</p>
 <span class="incontext"><a href="section-7.html#p-185">in-context</a></span>
 </body>
 </html>

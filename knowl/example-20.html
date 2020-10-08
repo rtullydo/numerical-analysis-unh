@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:43-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<article class="example-like"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.4.2</span>. <span class="title">Mixing problem 1.</span>
+</h6>
+<p><em class="alert">Problem:</em> A vat contains 60L of water with 5kg of salt water dissolved in it. A salt water solution that contains 2kg of salt per liter enters the vat at a rate of 3 L/min. Pure water is also flowing into the vat at a rate of 2 L/min. The solution in the vat is kept well mixed and is drained at a rate of 5 L/min, so that the rate in is the same as the rate out. Thus there is always 60L of salt water at any given time. How much salt is in the tank after 30 minutes? What is the long term behavior?</p>
+<p><em class="alert">Solution:</em></p>
+<ul class="disc">
+<li>
+<p><em class="alert">Step 1:</em> Define variables.</p>
+<p>Let \(y(t)=\)amount of salt at time \(t\text{.}\) Let \(y(0)=5\) kg.</p>
+</li>
+<li>
+<p><em class="alert">Step 2:</em> Find rate in/rate out</p>
+<p>Two equations from basic physics will help here. First,</p>
+<div class="displaymath">
+\begin{equation*}
+\text{mass(kg) } = \text{ density(kg/L) } \times \text{ volume(L)}.
+\end{equation*}
+</div>
+<p>Second,</p>
+<div class="displaymath">
+\begin{equation*}
+\text{rate of mass (kg/min) } = \text{ concentration (kg/L) } \times \text{rate of volume (L/min)}.
+\end{equation*}
+</div>
+<p>Finally, when the volume of the mixture doesn't change, it must by that</p>
+<div class="displaymath">
+\begin{equation*}
+\text{ volume rate in } = \text{ volume rate out}
+\end{equation*}
+</div>
+<p>Using the information from the problem we have</p>
+<div class="displaymath">
+\begin{align*}
+\mbox{Rate in } \amp = \amp \underset{\mbox{-salt water solution}}{\left(2\frac{\mbox{kg}}{\mbox{L}}\right)\left(3\frac{\mbox{L}}{\mbox{min}}\right)}+\underset{-\mbox{pure water}}{\left(0\frac{\mbox{kg}}{L}\right)\left(2\frac{\mbox{L}}{\mbox{min}}\right)}\\
+\amp = \amp 6\frac{\mbox{kg}}{\mbox{min}}.
+\end{align*}
+</div>
+<p>and</p>
+<div class="displaymath">
+\begin{align*}
+\mbox{Rate out } \amp = \amp \left(\begin{array}{c}
+\mbox{concentrarion}\\
+\mbox{of stuff going out}
+\end{array}\right)\times\mbox{Rate}\\
+\amp = \amp \left(\frac{y(t)}{60} \frac{\mbox{kg}}{\mbox{L}}\right)\times5\frac{\mbox{L}}{\mbox{min}}.\\
+\amp = \amp \frac{y(t)}{12}\frac{\mbox{kg}}{\mbox{min}}.
+\end{align*}
+</div>
+</li>
+<li>
+<p><em class="alert">Step 3:</em> Write the IVP</p>
+<p>Always recall that for mixing problems we have</p>
+<div class="displaymath">
+\begin{align*}
+\frac{dy}{dt} \amp = \amp \mbox{Rate in}-\mbox{Rate out}\\
+\amp = \amp 6-\frac{y}{12}.
+\end{align*}
+</div>
+<p>and the initial condition is</p>
+<div class="displaymath">
+\begin{equation*}
+y(0)=5.
+\end{equation*}
+</div>
+</li>
+<li>
+<p><em class="alert">Step 4:</em> Find the common denominator and solve using separation of variables.</p>
+<p>Write</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt}=6-\frac{y}{12}=\frac{72-y}{12}
+\end{equation*}
+</div>
+<p>and using separation of variables we get</p>
+<div class="displaymath">
+\begin{align*}
+\frac{dy}{dt}=\frac{72-y}{12} \amp \iff \amp \frac{dy}{72-y}=\frac{dt}{12}\\
+\amp \iff \amp -\ln\left|72-y\right|=\frac{t}{12}+C_{1}\\
+\amp \iff \amp \ln\left|72-y\right|=\frac{-t}{12}+C_{2}\\
+\amp \iff \amp \left|72-y\right|=C_{3}e^{-\frac{t}{12}}\\
+\amp \iff \amp 72-y=ke^{-\frac{t}{12}}\\
+\amp \iff \amp y=72-ke^{-\frac{t}{12}}.
+\end{align*}
+</div>
+<p>Solving the IVP by using \(y(0)=5\text{,}\) we get</p>
+<div class="displaymath">
+\begin{align*}
+y(0)=5 \amp \iff \amp 72-ke^{0}=5\\
+\amp \iff \amp k=72-5=67
+\end{align*}
+</div>
+<p>so the final solution is</p>
+<div class="displaymath">
+\begin{equation*}
+y(t)=72-67e^{-\frac{t}{12}}.
+\end{equation*}
+</div>
+</li>
+<li>
+<p><em class="alert">Step 5:</em></p>
+<p>After 30 minutes there is</p>
+<div class="displaymath">
+\begin{equation*}
+y(30)=72-67e^{-\frac{30}{12}}=66.5\mbox{ kg}.
+\end{equation*}
+</div>
+<p>The long term behavior is simply the limit:</p>
+<div class="displaymath">
+\begin{equation*}
+\lim_{t\to\infty}y(t)=\lim_{t\to\infty}72-67e^{-\frac{30}{12}}=72-0=72.
+\end{equation*}
+</div>
+</li>
+</ul></article><span class="incontext"><a href="ch2-4.html#example-20">in-context</a></span>
+</body>
+</html>

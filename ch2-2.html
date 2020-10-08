@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:41-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Separable equations</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    asciimath2jax: {
+        ignoreClass: ".*",
+        processClass: "has_am"
+    },
+    jax: ["input/AsciiMath"],
+    extensions: ["asciimath2jax.js"],
+    TeX: {
+        extensions: ["extpfeil.js", "autobold.js", "https://pretextbook.org/js/lib/mathjaxknowl.js", ],
+        // scrolling to fragment identifiers is controlled by other Javascript
+        positionToHash: false,
+        equationNumbers: { autoNumber: "none", useLabelIds: true, },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    // HTML-CSS output Jax to be dropped for MathJax 3.0
+    "HTML-CSS": {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+    CommonHTML: {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+});
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML-full"></script><script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.12/pretext.js"></script><script src="https://pretextbook.org/js/0.12/pretext_add_on.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/toc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/setcolors.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/features.css" rel="stylesheet" type="text/css">
+<script>var logged_in = false;
+var role = 'student';
+var guest_access = true;
+var login_required = false;
+var js_version = 0.12;
+</script>
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div class="hidden-content" style="display:none">\(\DeclareMathOperator{\RE}{Re}
+  \DeclareMathOperator{\IM}{Im}
+  \DeclareMathOperator{\ess}{ess}
+  \DeclareMathOperator{\intr}{int}
+  \DeclareMathOperator{\dist}{dist}
+  \DeclareMathOperator{\dom}{dom}
+  \DeclareMathOperator{\diag}{diag}
+  \DeclareMathOperator\re{\mathrm {Re~}}
+  \DeclareMathOperator\im{\mathrm {Im~}}
+  
+  \newcommand\dd{\mathrm d}
+  \newcommand{\eps}{\varepsilon}
+  \newcommand{\To}{\longrightarrow}
+  \newcommand{\hilbert}{\mathcal{H}}
+  \newcommand{\s}{\mathcal{S}_2}
+  \newcommand{\A}{\mathcal{A}}
+  \newcommand\h{\mathcal{H}}
+  \newcommand{\J}{\mathcal{J}}
+  \newcommand{\M}{\mathcal{M}}
+  \newcommand{\F}{\mathbb{F}}
+  \newcommand{\N}{\mathcal{N}}
+  \newcommand{\T}{\mathbb{T}}
+  \newcommand{\W}{\mathcal{W}}
+  \newcommand{\X}{\mathcal{X}}
+  \newcommand{\D}{\mathbb{D}}
+  \newcommand{\C}{\mathbb{C}}
+  \newcommand{\BOP}{\mathbf{B}}
+  \newcommand{\Z}{\mathbb{Z}}
+  \newcommand{\BH}{\mathbf{B}(\mathcal{H})}
+  \newcommand{\KH}{\mathcal{K}(\mathcal{H})}
+  \newcommand{\pick}{\mathcal{P}_2}
+  \newcommand{\schur}{\mathcal{S}_2}
+  \newcommand{\R}{\mathbb{R}}
+  \newcommand{\Complex}{\mathbb{C}}
+  \newcommand{\Field}{\mathbb{F}}
+  \newcommand{\RPlus}{\Real^{+}}
+  \newcommand{\Polar}{\mathcal{P}_{\s}}
+  \newcommand{\Poly}{\mathcal{P}(E)}
+  \newcommand{\EssD}{\mathcal{D}}
+  \newcommand{\Lop}{\mathcal{L}}
+  \newcommand{\cc}[1]{\overline{#1}}
+  \newcommand{\abs}[1]{\left\vert#1\right\vert}
+  \newcommand{\set}[1]{\left\{#1\right\}}
+  \newcommand{\seq}[1]{\left\lt#1\right&gt;}
+  \newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+  \newcommand{\essnorm}[1]{\norm{#1}_{\ess}}
+  \newcommand{\tr}{\operatorname{tr}}
+  \newcommand{\ran}[1]{\operatorname{ran}#1}
+  \newcommand{\nt}{\stackrel{\mathrm {nt}}{\to}}
+  \newcommand{\pnt}{\xrightarrow{pnt}}
+  \newcommand{\ip}[2]{\left\langle #1, #2 \right\rangle}
+  \newcommand{\ad}{^\ast}
+  \newcommand{\inv}{^{-1}}
+  \newcommand{\adinv}{^{\ast -1}}
+  \newcommand{\invad}{^{-1 \ast}}
+  \newcommand\Pick{\mathcal P}
+  \newcommand\Ha{\mathbb{H}}
+  \newcommand{\HH}{\Ha\times\Ha}
+  \newcommand\Htau{\mathbb{H}(\tau)}
+  \newcommand{\vp}{\varphi}
+  \newcommand{\ph}{\varphi}
+  \newcommand\al{\alpha}
+  \newcommand\ga{\gamma}
+  \newcommand\de{\delta}
+  \newcommand\ep{\varepsilon}
+  \newcommand\la{\lambda}
+  \newcommand\up{\upsilon}
+  \newcommand\si{\sigma}
+  \newcommand\beq{\begin{equation}}
+  \newcommand\ds{\displaystyle}
+  \newcommand\eeq{\end{equation}}
+  \newcommand\df{\stackrel{\rm def}{=}}
+  \newcommand\ii{\mathrm i}
+  \newcommand{\vectwo}[2]
+  {
+     \begin{pmatrix} #1 \\ #2 \end{pmatrix}
+  }
+  \newcommand{\vecthree}[3]
+  {
+     \begin{pmatrix} #1 \\ #2 \\ #3 \end{pmatrix}
+  }
+  \newcommand\blue{\color{blue}}
+  \newcommand\black{\color{black}}
+  \newcommand\red{\color{red}}
+  
+  \newcommand\nn{\nonumber}
+  \newcommand\bbm{\begin{bmatrix}}
+  \newcommand\ebm{\end{bmatrix}}
+  \newcommand\bpm{\begin{pmatrix}}
+  \newcommand\epm{\end{pmatrix}}
+  \numberwithin{equation}{section}
+  \newcommand\nin{\noindent}
+  \newcommand{\nCr}[2]{\,_{#1}C_{#2}} 
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="diffeqs.html"><span class="title">Differential Equations</span></a></h1>
+<p class="byline">Phanuel Mariano, Ryan Tully-Doyle</p>
+</div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3"><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="ch2-1.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="ch2.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="ch2-3.html" title="Next">Next</a></span></div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="ch2-1.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="ch2.html" title="Up">Up</a><a class="next-button button toolbar-item" href="ch2-3.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link"><a href="frontmatter-1.html" data-scroll="frontmatter-1"><span class="title">Front Matter</span></a></li>
+<li class="link">
+<a href="introduction.html" data-scroll="introduction"><span class="codenumber">1</span> <span class="title">Introduction</span></a><ul>
+<li><a href="ch1-1.html" data-scroll="ch1-1">Modeling via differential equations, some solutions and definitions</a></li>
+<li><a href="ch1-2.html" data-scroll="ch1-2">Slope fields (direction fields)</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch2.html" data-scroll="ch2"><span class="codenumber">2</span> <span class="title">First Order Differential Equations</span></a><ul>
+<li><a href="ch2-1.html" data-scroll="ch2-1">Linear equations and integrating factors</a></li>
+<li><a href="ch2-2.html" data-scroll="ch2-2" class="active">Separable equations</a></li>
+<li><a href="ch2-3.html" data-scroll="ch2-3">Separable homogeneous equations and the substitution method</a></li>
+<li><a href="ch2-4.html" data-scroll="ch2-4">Modeling with Differential Equations</a></li>
+<li><a href="ch2-5.html" data-scroll="ch2-5">Modeling with differential equations - more problems</a></li>
+<li><a href="ch2-6.html" data-scroll="ch2-6">Existence and Uniqueness of Solutions</a></li>
+<li><a href="ch2-7.html" data-scroll="ch2-7">Autonomous Equations and Population dynamics</a></li>
+<li><a href="ch2-8.html" data-scroll="ch2-8">Exact equations</a></li>
+<li><a href="ch2-9.html" data-scroll="ch2-9">Euler's method</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch3.html" data-scroll="ch3"><span class="codenumber">3</span> <span class="title">Second Order Linear Equations</span></a><ul>
+<li><a href="ch3-1.html" data-scroll="ch3-1">Motivation - mass-spring systems.</a></li>
+<li><a href="ch3-2.html" data-scroll="ch3-2">Second order linear equations</a></li>
+<li><a href="ch3-3.html" data-scroll="ch3-3">Solutions to Linear Equations; the Wronskian</a></li>
+<li><a href="ch3-4.html" data-scroll="ch3-4">Complex roots of the characteristic equation</a></li>
+<li><a href="ch3-5.html" data-scroll="ch3-5">Repeated roots; Reduction of order</a></li>
+<li><a href="ch3-6.html" data-scroll="ch3-6">Non-homogeneous equations - Undetermined coefficients</a></li>
+<li><a href="section-18.html" data-scroll="section-18">Variation of Parameters</a></li>
+<li><a href="section-19.html" data-scroll="section-19">Harmonic oscillations</a></li>
+<li><a href="section-20.html" data-scroll="section-20">Forced oscillations</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter-4.html" data-scroll="chapter-4"><span class="codenumber">4</span> <span class="title">Higher order differential equations</span></a><ul>
+<li><a href="section-21.html" data-scroll="section-21">Linear equations</a></li>
+<li><a href="section-22.html" data-scroll="section-22">Constant coefficients</a></li>
+<li><a href="section-23.html" data-scroll="section-23">The Method of Undetermined Coefficients</a></li>
+</ul>
+</li>
+<li class="link"><a href="backmatter-1.html" data-scroll="backmatter-1"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="quadratic.html" data-scroll="quadratic"><span class="codenumber">A</span> <span class="title">A fast quadratic method</span></a></li>
+<li class="link">
+<a href="appendix-2.html" data-scroll="appendix-2"><span class="codenumber">B</span> <span class="title">Exercises for Chapter 1</span></a><ul>
+<li><a href="section-24.html" data-scroll="section-24">Section 1.1</a></li>
+<li><a href="section-25.html" data-scroll="section-25">Section 1.2</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-3.html" data-scroll="appendix-3"><span class="codenumber">C</span> <span class="title">Exercises for Chapter 2</span></a><ul>
+<li><a href="section-26.html" data-scroll="section-26">Section 2.1</a></li>
+<li><a href="section-27.html" data-scroll="section-27">Section 2.2</a></li>
+<li><a href="section-28.html" data-scroll="section-28">Section 2.3</a></li>
+<li><a href="section-29.html" data-scroll="section-29">Section 2.4</a></li>
+<li><a href="section-30.html" data-scroll="section-30">Section 2.5</a></li>
+<li><a href="section-31.html" data-scroll="section-31">Section 2.6</a></li>
+<li><a href="section-32.html" data-scroll="section-32">Section 2.7</a></li>
+<li><a href="section-33.html" data-scroll="section-33">Section 2.8</a></li>
+<li><a href="section-34.html" data-scroll="section-34">Section 2.9</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-4.html" data-scroll="appendix-4"><span class="codenumber">D</span> <span class="title">Exercises for Chapter 3</span></a><ul>
+<li><a href="section-35.html" data-scroll="section-35">Section 3.2</a></li>
+<li><a href="section-36.html" data-scroll="section-36">Section 3.3</a></li>
+<li><a href="section-37.html" data-scroll="section-37">Section 3.4</a></li>
+<li><a href="section-38.html" data-scroll="section-38">Section 3.5</a></li>
+<li><a href="section-39.html" data-scroll="section-39">Section 3.6</a></li>
+</ul>
+</li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="ch2-2"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">2.2</span> <span class="title">Separable equations</span>
+</h2>
+<a href="ch2-2.html" class="permalink">¶</a><p id="p-65">One of the easiest methods to solve a first order ODE is called <dfn class="terminology">separation of variables</dfn> (presuming that one can integrate the result!). In the previous section, we focused on linear equations, which cover a good deal of first order ODEs. But we want to be able to solve at least some nonlinear equations if they fall into easily computable forms.</p>
+<p id="p-66">The technique we'll use in this section will only work if the first order ODE is <dfn class="terminology">separable</dfn>. We say a first order ODE is separable if we can write it in the following form:</p>
+<div class="displaymath">
+\begin{equation}
+\frac{dy}{dt}=g(t)h(y).\label{sepeqn}\tag{2.2.1}
+\end{equation}
+</div>
+<p>If we can write it this way, then separate the variables to get (put all the \(y\)'s on one side and all \(t\)'s on the other side)</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{1}{h(y)}dy=g(t)dt,
+\end{equation*}
+</div>
+<p>and then integrate both side with respect to their respective variable. This is legal by a \(u\)-substitution argument. (This is informal algebra!)</p>
+<p id="p-67">Note: Sometimes you'll see a separable equation written in the following <dfn class="terminology">differential</dfn> form:</p>
+<div class="displaymath">
+\begin{equation*}
+M(x)dy+N(y)dy=0.
+\end{equation*}
+</div>
+<article class="example-like" id="example-9"><a data-knowl="" class="id-ref" data-refid="hk-example-9"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.2.1</span>. <span class="title">(Not separable).</span>
+</h6></a></article><div id="hk-example-9" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-68">Notice that \(\frac{dy}{dt}=y+t\) is not separable.</p>
+<p id="p-69">But we can solve this using the methods of the previous section.</p></article></div>
+<article class="example-like" id="example-10"><a data-knowl="" class="id-ref" data-refid="hk-example-10"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.2.2</span>.</h6></a></article><div id="hk-example-10" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-70">Find the general solution of</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt}=\frac{t}{y^{2}}.
+\end{equation*}
+</div>
+<p id="p-71">Separate variables in the equation, integrate and then solve for \(y\text{:}\)</p>
+<div class="displaymath">
+\begin{align*}
+\frac{dy}{dt}=\frac{t}{y^{2}} \amp \iff \amp y^{2}dy=t\,dt\\
+\amp \iff \amp \int y^{2}dy=\int t\,dt\\
+\amp \iff \amp \frac{y^{3}}{3}=\frac{t^{2}}{2}+c_{1}\\
+\amp \iff \amp y=\sqrt[3]{\frac{3t^{2}}{2}+3c_{1}}.
+\end{align*}
+</div>
+<p id="p-72">We can then rename \(C=3c_{1}\) and get the <em class="emphasis">general solution</em></p>
+<div class="displaymath">
+\begin{equation*}
+y(t)=\sqrt[3]{\frac{3t^{2}}{2}+C}.
+\end{equation*}
+</div>
+<p>If you are able to solve for \(y\) exactly, then this is called an <dfn class="terminology">explicit</dfn> solution, because we can solve exactly with a formula.</p></article></div>
+<article class="example-like" id="example-11"><a data-knowl="" class="id-ref" data-refid="hk-example-11"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.2.3</span>. <span class="title">(missing solution).</span>
+</h6></a></article><div id="hk-example-11" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-73">Find the general solution for</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt}=y^{2}.
+\end{equation*}
+</div>
+<ul class="disc">
+<li id="li-68"><p id="p-74">First let's find the equilibrium solutions: \(y(t)=0\) is the only one.</p></li>
+<li id="li-69">
+<p id="p-75">Then use the general separation of variables procedure</p>
+<div class="displaymath">
+\begin{align*}
+\frac{dy}{dt}=y^{2} \amp \iff \amp \frac{1}{y^{2}}dy=dt\\
+\amp \iff \amp \int\frac{1}{y^{2}}dy=\int dt\\
+\amp \iff \amp -\frac{1}{y}=t+C.
+\end{align*}
+</div>
+</li>
+<li id="li-70">
+<p id="p-76">But notice that</p>
+<div class="displaymath">
+\begin{equation*}
+y=-\frac{1}{t+C}
+\end{equation*}
+</div>
+<p>does NOT solve the IVP with \(y(0)=0\text{.}\) Thus we have to include the equilibrium solution \(y(t)=0\) to get the complete general solution. In this case we say the general solution is:</p>
+<div class="displaymath">
+\begin{equation*}
+y_g(t) = \begin{cases}
+0\\
+-\frac{1}{t + C}
+\end{cases}
+\end{equation*}
+</div>
+</li>
+</ul>
+<p id="p-77"><em class="alert">Moral of the story:</em> Always find the equilibrium solutions first in case there are any missing solutions from separating variables!</p>
+<div class="hidden-sagecell-sage" id="sage-4"><script type="text/x-sage">t, y = var('t,y')
+g = Graphics()
+g += plot_slope_field(y^2, (t, -5,5),(y,-5,5))
+g += plot(-1/(t + 4), (t, -5,5), ymin = -5, ymax = 5)
+g += plot(0, (t, -5,5), ymin=-5, ymax=5)
+g.show()
+</script></div></article></div>
+<article class="example-like" id="example-12"><a data-knowl="" class="id-ref" data-refid="hk-example-12"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.2.4</span>. <span class="title">(Clever quadratic formula trick).</span>
+</h6></a></article><div id="hk-example-12" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-78">Solve the IVP:</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dx}=\frac{2x+1}{y+1}\,\,\,\,\,\,y(0)=1
+\end{equation*}
+</div>
+<ul class="disc">
+<li id="li-71"><p id="p-79">Note there are no equilibrium solutions</p></li>
+<li id="li-72">
+<p id="p-80">Use the general separation of variables procedure</p>
+<div class="displaymath">
+\begin{align*}
+\frac{dy}{dt}=\frac{2x+1}{y+1} \amp \iff \amp \int\left(y+1\right)dy=\int\left(2x+1\right)dx\\
+\amp \iff \amp \frac{y^{2}}{2}+y=x^{2}+x+C\\
+\amp \iff \amp \frac{y^{2}}{2}+y-x^{2}-x+c=0\\
+\amp \iff \amp y^{2}+2y-2x^{2}-2x+C=0
+\end{align*}
+</div>
+</li>
+<li id="li-73">
+<p id="p-81">Then we can use the quadratic formula on</p>
+<div class="displaymath">
+\begin{equation*}
+ay^{2}+by+c=0
+\end{equation*}
+</div>
+<p>where</p>
+<div class="displaymath">
+\begin{align*}
+a \amp =1\\
+b \amp =2\\
+c \amp =-2x^{2}-2x+C
+\end{align*}
+</div>
+<p>hence an explicit solution is given by</p>
+<div class="displaymath">
+\begin{align*}
+y \amp =\frac{-b\pm\sqrt{b^{2}-4ac}}{2a}\\
+\amp =\frac{-2\pm\sqrt{4-4\left(-2x^{2}-2x+C\right)}}{2}\\
+\amp =-1\pm\sqrt{1+2x^{2}+2x+C}\\
+\amp =-1\pm\sqrt{2x^{2}+2x+C}.
+\end{align*}
+</div>
+<p>Thus the general solution is</p>
+<div class="displaymath">
+\begin{equation*}
+y_g(x)=-1\pm\sqrt{2x^{2}+2x+C}.
+\end{equation*}
+</div>
+</li>
+<li id="li-74">
+<p id="p-82">Now to solve the IVP use the initial condition: \(y(0)=1\)</p>
+<div class="displaymath">
+\begin{equation*}
+1=y(0)=-1\pm\sqrt{C}
+\end{equation*}
+</div>
+<p>so that</p>
+<div class="displaymath">
+\begin{equation*}
+2=\pm\sqrt{c}
+\end{equation*}
+</div>
+<p>since the LHS is positive we choose the positive sign in the \(\pm\) so that</p>
+<div class="displaymath">
+\begin{equation*}
+2=\sqrt{c}
+\end{equation*}
+</div>
+<p>hence</p>
+<div class="displaymath">
+\begin{equation*}
+c=4
+\end{equation*}
+</div>
+<p>so that we get the particular solution</p>
+<div class="displaymath">
+\begin{equation*}
+y_p(x)=-1+\sqrt{2x^{2}+2x+4}.
+\end{equation*}
+</div>
+</li>
+</ul>
+<div class="hidden-sagecell-sage" id="sage-5"><script type="text/x-sage">x, y = var('x,y')
+g = Graphics()
+g += plot_slope_field((2*x+1)/(y+1), (x, -5,5),(y,-5,5))
+g += plot(-1 + sqrt(2*x^2 + 2*x + 4), (x, -5,5), ymin = -5, ymax = 5)
+g += points([(0,1)], size = 50)
+g.show()
+</script></div></article></div>
+<article class="example-like" id="example-13"><a data-knowl="" class="id-ref" data-refid="hk-example-13"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.2.5</span>. <span class="title">Implicit solutions.</span>
+</h6></a></article><div id="hk-example-13" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-83">Find the general solution for</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt}=\frac{y}{1+y^{2}}.
+\end{equation*}
+</div>
+<p id="p-84">In this example, we would get</p>
+<div class="displaymath">
+\begin{equation*}
+\ln\left|y\right|+\frac{y^{2}}{2}=t+C
+\end{equation*}
+</div>
+<p>and leave it that way as there is no nice way to solve this. But any function \(y(t)\) that satisfies the equation above is a solution to our ODE. When we write solutions this way, we call this an <dfn class="terminology">implicit solution</dfn>, as the equation implicitly defines \(y\) as a function of \(t\text{.}\)</p></article></div>
+<article class="example-like" id="example-14"><a data-knowl="" class="id-ref" data-refid="hk-example-14"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.2.6</span>.</h6></a></article><div id="hk-example-14" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-85">Solve the IVP</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt}=t^{4}y\,\,\,\,\,\,y(0)=1.
+\end{equation*}
+</div>
+<ul class="disc">
+<li id="li-75"><p id="p-86">Solution:</p></li>
+<li id="li-76"><p id="p-87">Start with equilibrium solutions \(y=0\text{.}\)</p></li>
+<li id="li-77"><p id="p-88">Get \(\left|y\right|=Ce^{t^{5}/5}\) but notice that by choise of \(C\) this shortens to \(y=Ce^{t^{5}/5}\text{.}\)</p></li>
+<li id="li-78"><p id="p-89">Note that this includes the equilibrum solution \(y=0\) by setting \(C=0\text{.}\)</p></li>
+<li id="li-79">
+<p id="p-90">Thus then general solution is given by</p>
+<div class="displaymath">
+\begin{equation*}
+y_g(t)=Ce^{t^{5}/5}.
+\end{equation*}
+</div>
+</li>
+<li id="li-80">
+<p id="p-91">To solve the IVP we use the initial condition</p>
+<div class="displaymath">
+\begin{equation*}
+1=y(0)=Ce^{0}=C
+\end{equation*}
+</div>
+<p>thus \(C=1\text{,}\) hence the particular solution to the IVP is</p>
+<div class="displaymath">
+\begin{equation*}
+y_p(t)=e^{t^{5}/5}.
+\end{equation*}
+</div>
+</li>
+</ul>
+<div class="hidden-sagecell-sage" id="sage-6"><script type="text/x-sage">t, y = var('t,y')
+g = Graphics()
+g += plot_slope_field(y*t^4, (t, -5,5),(y,-5,5))
+g += plot(exp((t^5)/5), (t, -5,5), ymin = -5, ymax = 5)
+g += points([(0,1)], size = 50)
+g.show()
+</script></div></article></div>
+<article class="example-like" id="example-15"><a data-knowl="" class="id-ref" data-refid="hk-example-15"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.2.7</span>.</h6></a></article><div id="hk-example-15" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-92">Find the general solution:</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt}=\left(y+1\right)\left(y+5\right).
+\end{equation*}
+</div>
+<ul class="disc">
+<li id="li-81"><p id="p-93">Solution:</p></li>
+<li id="li-82"><p id="p-94">Start with equilibrium solutions \(y=-1,-5\) .</p></li>
+<li id="li-83"><p id="p-95">Use partial fractions to get \(\frac{1}{\left(y+1\right)\left(y+5\right)}=\frac{1/4}{y+1}-\frac{1/4}{y+5}\text{.}\)</p></li>
+<li id="li-84">
+<p id="p-96">The solution is</p>
+<div class="displaymath">
+\begin{align*}
+\frac{1}{4}\ln\left|y+1\right|-\frac{1}{4}\ln\left|y+5\right|=t+C \amp \iff \amp \ln\left|\frac{y+1}{y+5}\right|=4t+C_{1}\\
+\amp \iff \amp \left|\frac{y+1}{y+5}\right|=C_{2}e^{4t}\\
+\amp \iff \amp \frac{y+1}{y+5}=C_{3}e^{4t}\\
+\amp \iff \amp y=\frac{5ke^{4t}-1}{1-ke^{4t}}.
+\end{align*}
+</div>
+</li>
+<li id="li-85">
+<p id="p-97">This yields all solutions but the equilibrium solution \(y=-5\text{.}\) Note that \(y=-1\) can be found by taking \(k=-1\text{.}\) Thus</p>
+<div class="displaymath">
+\begin{equation*}
+y_g(t) =  \begin{cases}
+y(t)=\frac{5ke^{4t}-1}{1-ke^{4t}}\\
+y(t)=-5.
+\end{cases}
+\end{equation*}
+</div>
+</li>
+</ul></article></div></section></div></main>
+</div>
+<div class="login-link"><span id="loginlogout" class="login">login</span></div>
+<script src="https://pretextbook.org/js/0.12/login.js"></script>
+</body>
+</html>

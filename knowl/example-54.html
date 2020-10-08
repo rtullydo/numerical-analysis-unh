@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:44-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<article class="example-like"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">3.3.9</span>.</h6>
+<p>Find the general solution to</p>
+<div class="displaymath">
+\begin{equation*}
+y^{\prime\prime}+4y^{\prime}-5y=0.
+\end{equation*}
+</div>
+<p>Solution: In the last section we showed that to find solutions to this ODE we simply need to solve the characteristic equation</p>
+<div class="displaymath">
+\begin{equation*}
+r^{2}+4r-5=\left(r-1\right)\left(r+5\right)=0
+\end{equation*}
+</div>
+<p>and get \(r=1,-5\) so that</p>
+<div class="displaymath">
+\begin{equation*}
+y(t)=c_{1}e^{t}+c_{2}e^{-5t}
+\end{equation*}
+</div>
+<p>gives other solutions to the ODE. To show this gives all of them, we simply need to show the Wronksian is not always zero:</p>
+<div class="displaymath">
+\begin{align*}
+W\left(e^{t},e^{-5t}\right) \amp =\left|\begin{array}{cc}
+y_{1}(t) \amp y_{2}(t)\\
+y_{1}^{\prime}(t) \amp y_{2}^{\prime}(t)
+\end{array}\right|=\left|\begin{array}{cc}
+e^{t} \amp e^{-5t}\\
+e^{t} \amp -5e^{-5t}
+\end{array}\right|\\
+\amp =-5e^{-4t}-e^{-4t}\\
+\amp =-6e^{-4t}\\
+\amp \neq0.
+\end{align*}
+</div></article><span class="incontext"><a href="ch3-3.html#example-54">in-context</a></span>
+</body>
+</html>

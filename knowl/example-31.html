@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:44-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body>
+<article class="example-like"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.6.9</span>. <span class="title">Applications of uniqueness: comparing solutions.</span>
+</h6>
+<p>Consider the equation \(\frac{dy}{dt}=\frac{(1+t)^{2}}{(1+y)^{2}}\text{.}\)</p>
+<p>We can easily check that \(y_{1}(t)=t\) is a solution. Now say that \(y_{2}(t)\) is the unique solution to the IVP</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt}=\frac{(1+t)^{2}}{(1+y)^{2}}\quad y(0)=-.1.
+\end{equation*}
+</div>
+<p>It is very hard to solve this equation. But we can still say something about the behavior of \(y_2\text{.}\) In particular, \(y_{2}(t)\) can't cross the other solution \(y_{1}(t)=t\text{.}\) Then we can say that</p>
+<div class="displaymath">
+\begin{equation*}
+y_{2}(t) \lt t
+\end{equation*}
+</div>
+<p>for all \(t\text{,}\) which is a useful and striking bound on the behavior of \(y_2\text{.}\)</p>
+<div class="sagecell-sage" id="sage-9"><script type="text/x-sage">t,y = var('t,y')
+g = Graphics()
+g += plot_slope_field((1+t)^2/(1+y)^2, (t,-5,5), (y,-5,5))
+g += plot(t, (t,-5,5), ymin=-5, ymax = 5)
+Y =function('Y')(t)
+ode = diff(Y,t) == (1+t)^2/(1+Y)^2
+g += desolve_rk4(ode, Y, ivar=t, ics=[0,-.1], step=.1, end_points=[-5,5], output = 'plot', xmin=-5, xmax = 5, color='red')
+g.show()
+</script></div></article><span class="incontext"><a href="ch2-6.html#example-31">in-context</a></span>
+</body>
+</html>

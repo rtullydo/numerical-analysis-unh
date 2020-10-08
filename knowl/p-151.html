@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-12-13T10:04:42-05:00    *-->
+<!--*    on 2020-03-18T09:31:45-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -13,7 +13,24 @@
 </head>
 <body>
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>In \(\R^n\text{,}\) two vectors are perpendicular when their dot product is 0 - that is, the angle between them is \(\pi/2\text{.}\) We will make the same definition more generally in inner product spaces, where we don't have a notion of angle, but we do have a notion related to the dot product - in an inner product space \(V\text{,}\) two vectors \(u\) and \(v\) are said to be <dfn class="terminology">orthogonal</dfn> if \(\ip{u}{v} = 0\text{,}\) in which case we write \(u\perp v\text{.}\)</p>
+<p>A vector space \(V\) with an inner product that satisfies the axioms above is called an <dfn class="terminology">inner product space</dfn>. One immediate feature of an inner product space is that the inner product defines a notion of length (or <dfn class="terminology">norm</dfn>) of a vector:</p>
+<div class="displaymath">
+\begin{equation*}
+\norm{v} = \sqrt{\ip{v}{v}}.
+\end{equation*}
+</div>
+<p>The prototypical example is \(\R^n\) with the standard vector dot product. However, there are many others. For example, one extremely useful inner product space of functions is the vector space of functions \(f\) satisfying</p>
+<div class="displaymath">
+\begin{equation*}
+\int \abs{f(x)}^2 \, dx \lt \infty
+\end{equation*}
+</div>
+<p>- these are sometimes called functions of bounded energy and are referred to as the space \(L^2\) in mathematics. The inner product on \(L^2\) is given by</p>
+<div class="displaymath">
+\begin{equation*}
+\ip{f}{g} = \int f(x)g(x) \, dx.
+\end{equation*}
+</div>
 <span class="incontext"><a href="section-7.html#p-151">in-context</a></span>
 </body>
 </html>

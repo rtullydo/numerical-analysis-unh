@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-12-13T10:04:42-05:00    *-->
+<!--*    on 2020-03-18T09:31:46-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -13,13 +13,13 @@
 </head>
 <body>
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>Of course in practice, signals are thousands or millions of entries long. We don't want to have to compute millions of entries for the frequency domain function by hand. Instead, we use an implementation of the DFT called the <dfn class="terminology">fast Fourier transform</dfn>, an algorithm that is outside the scope of these notes. What you need to know about the command <code class="code-inline tex2jax_ignore">fft</code> is that it produces most of \(X\) for a signal \(x\) in the time domain. The part that it leaves out is the normalization \(1/N\) that accounts for the total energy contained in a signal (longer signals mean more energy).</p>
+<p>On the other hand, we can look at a frequency that is present in \(x\text{,}\) say \(X_4\text{.}\) We compute</p>
 <div class="displaymath">
 \begin{equation*}
-\mathrm{fft}(x) = \left[\sum_{n=0}^{N-1} x_k e^{-i2\pi\frac{k}{N}n}\right]_{k=0, \ldots, N-1}.
+X_4 = \frac{1}{12}\left(4 -5 e^{-i2\pi\frac{4}{12}} + 0 e^{-i2\pi\frac{8}{12}} + \ldots -2 e^{-i2\pi\frac{44}{12}}\right)
 \end{equation*}
 </div>
-<p>That is, the entries of <code class="code-inline tex2jax_ignore">fft(x)</code> are the unnormalized discrete Fourier coefficients \(N X_k\text{.}\)</p>
+<p>which is an addition of this set of vectors, clearly a set with a non-zero sum. <div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/x4.png" style="width: 100%; height: auto;" alt=""></div> That this vector has non-zero magnitude should not be surprising, given that a pattern of frequency 4 is one of the constituent signals in \(x\text{.}\)</p>
 <span class="incontext"><a href="section-7.html#p-182">in-context</a></span>
 </body>
 </html>

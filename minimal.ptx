@@ -769,7 +769,7 @@
 
                     <p>A first approach to this problem might take advantage of the following fact.
                     <theorem>
-                        Let <m>p_1, \ldots, p_n</m> be non-collinear. Then there is a unique polynomial of degree <m>n -1</m> that interpolates the data.
+                        <p>Let <m>p_1, \ldots, p_n</m> be non-collinear. Then there is a unique polynomial of degree <m>n -1</m> that interpolates the data.</p>
                     </theorem>
                     One possible proof of this fact is the construction of the Lagrange polynomials, to be discussed in the next section.</p>
 

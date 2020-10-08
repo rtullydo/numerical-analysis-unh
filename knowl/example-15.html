@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:43-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<article class="example-like"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.2.7</span>.</h6>
+<p>Find the general solution:</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt}=\left(y+1\right)\left(y+5\right).
+\end{equation*}
+</div>
+<ul class="disc">
+<li><p>Solution:</p></li>
+<li><p>Start with equilibrium solutions \(y=-1,-5\) .</p></li>
+<li><p>Use partial fractions to get \(\frac{1}{\left(y+1\right)\left(y+5\right)}=\frac{1/4}{y+1}-\frac{1/4}{y+5}\text{.}\)</p></li>
+<li>
+<p>The solution is</p>
+<div class="displaymath">
+\begin{align*}
+\frac{1}{4}\ln\left|y+1\right|-\frac{1}{4}\ln\left|y+5\right|=t+C \amp \iff \amp \ln\left|\frac{y+1}{y+5}\right|=4t+C_{1}\\
+\amp \iff \amp \left|\frac{y+1}{y+5}\right|=C_{2}e^{4t}\\
+\amp \iff \amp \frac{y+1}{y+5}=C_{3}e^{4t}\\
+\amp \iff \amp y=\frac{5ke^{4t}-1}{1-ke^{4t}}.
+\end{align*}
+</div>
+</li>
+<li>
+<p>This yields all solutions but the equilibrium solution \(y=-5\text{.}\) Note that \(y=-1\) can be found by taking \(k=-1\text{.}\) Thus</p>
+<div class="displaymath">
+\begin{equation*}
+y_g(t) =  \begin{cases}
+y(t)=\frac{5ke^{4t}-1}{1-ke^{4t}}\\
+y(t)=-5.
+\end{cases}
+\end{equation*}
+</div>
+</li>
+</ul></article><span class="incontext"><a href="ch2-2.html#example-15">in-context</a></span>
+</body>
+</html>

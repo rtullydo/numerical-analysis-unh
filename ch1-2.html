@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:41-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Slope fields (direction fields)</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    asciimath2jax: {
+        ignoreClass: ".*",
+        processClass: "has_am"
+    },
+    jax: ["input/AsciiMath"],
+    extensions: ["asciimath2jax.js"],
+    TeX: {
+        extensions: ["extpfeil.js", "autobold.js", "https://pretextbook.org/js/lib/mathjaxknowl.js", ],
+        // scrolling to fragment identifiers is controlled by other Javascript
+        positionToHash: false,
+        equationNumbers: { autoNumber: "none", useLabelIds: true, },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    // HTML-CSS output Jax to be dropped for MathJax 3.0
+    "HTML-CSS": {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+    CommonHTML: {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+});
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML-full"></script><script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.12/pretext.js"></script><script src="https://pretextbook.org/js/0.12/pretext_add_on.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/toc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/setcolors.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/features.css" rel="stylesheet" type="text/css">
+<script>var logged_in = false;
+var role = 'student';
+var guest_access = true;
+var login_required = false;
+var js_version = 0.12;
+</script>
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div class="hidden-content" style="display:none">\(\DeclareMathOperator{\RE}{Re}
+  \DeclareMathOperator{\IM}{Im}
+  \DeclareMathOperator{\ess}{ess}
+  \DeclareMathOperator{\intr}{int}
+  \DeclareMathOperator{\dist}{dist}
+  \DeclareMathOperator{\dom}{dom}
+  \DeclareMathOperator{\diag}{diag}
+  \DeclareMathOperator\re{\mathrm {Re~}}
+  \DeclareMathOperator\im{\mathrm {Im~}}
+  
+  \newcommand\dd{\mathrm d}
+  \newcommand{\eps}{\varepsilon}
+  \newcommand{\To}{\longrightarrow}
+  \newcommand{\hilbert}{\mathcal{H}}
+  \newcommand{\s}{\mathcal{S}_2}
+  \newcommand{\A}{\mathcal{A}}
+  \newcommand\h{\mathcal{H}}
+  \newcommand{\J}{\mathcal{J}}
+  \newcommand{\M}{\mathcal{M}}
+  \newcommand{\F}{\mathbb{F}}
+  \newcommand{\N}{\mathcal{N}}
+  \newcommand{\T}{\mathbb{T}}
+  \newcommand{\W}{\mathcal{W}}
+  \newcommand{\X}{\mathcal{X}}
+  \newcommand{\D}{\mathbb{D}}
+  \newcommand{\C}{\mathbb{C}}
+  \newcommand{\BOP}{\mathbf{B}}
+  \newcommand{\Z}{\mathbb{Z}}
+  \newcommand{\BH}{\mathbf{B}(\mathcal{H})}
+  \newcommand{\KH}{\mathcal{K}(\mathcal{H})}
+  \newcommand{\pick}{\mathcal{P}_2}
+  \newcommand{\schur}{\mathcal{S}_2}
+  \newcommand{\R}{\mathbb{R}}
+  \newcommand{\Complex}{\mathbb{C}}
+  \newcommand{\Field}{\mathbb{F}}
+  \newcommand{\RPlus}{\Real^{+}}
+  \newcommand{\Polar}{\mathcal{P}_{\s}}
+  \newcommand{\Poly}{\mathcal{P}(E)}
+  \newcommand{\EssD}{\mathcal{D}}
+  \newcommand{\Lop}{\mathcal{L}}
+  \newcommand{\cc}[1]{\overline{#1}}
+  \newcommand{\abs}[1]{\left\vert#1\right\vert}
+  \newcommand{\set}[1]{\left\{#1\right\}}
+  \newcommand{\seq}[1]{\left\lt#1\right&gt;}
+  \newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+  \newcommand{\essnorm}[1]{\norm{#1}_{\ess}}
+  \newcommand{\tr}{\operatorname{tr}}
+  \newcommand{\ran}[1]{\operatorname{ran}#1}
+  \newcommand{\nt}{\stackrel{\mathrm {nt}}{\to}}
+  \newcommand{\pnt}{\xrightarrow{pnt}}
+  \newcommand{\ip}[2]{\left\langle #1, #2 \right\rangle}
+  \newcommand{\ad}{^\ast}
+  \newcommand{\inv}{^{-1}}
+  \newcommand{\adinv}{^{\ast -1}}
+  \newcommand{\invad}{^{-1 \ast}}
+  \newcommand\Pick{\mathcal P}
+  \newcommand\Ha{\mathbb{H}}
+  \newcommand{\HH}{\Ha\times\Ha}
+  \newcommand\Htau{\mathbb{H}(\tau)}
+  \newcommand{\vp}{\varphi}
+  \newcommand{\ph}{\varphi}
+  \newcommand\al{\alpha}
+  \newcommand\ga{\gamma}
+  \newcommand\de{\delta}
+  \newcommand\ep{\varepsilon}
+  \newcommand\la{\lambda}
+  \newcommand\up{\upsilon}
+  \newcommand\si{\sigma}
+  \newcommand\beq{\begin{equation}}
+  \newcommand\ds{\displaystyle}
+  \newcommand\eeq{\end{equation}}
+  \newcommand\df{\stackrel{\rm def}{=}}
+  \newcommand\ii{\mathrm i}
+  \newcommand{\vectwo}[2]
+  {
+     \begin{pmatrix} #1 \\ #2 \end{pmatrix}
+  }
+  \newcommand{\vecthree}[3]
+  {
+     \begin{pmatrix} #1 \\ #2 \\ #3 \end{pmatrix}
+  }
+  \newcommand\blue{\color{blue}}
+  \newcommand\black{\color{black}}
+  \newcommand\red{\color{red}}
+  
+  \newcommand\nn{\nonumber}
+  \newcommand\bbm{\begin{bmatrix}}
+  \newcommand\ebm{\end{bmatrix}}
+  \newcommand\bpm{\begin{pmatrix}}
+  \newcommand\epm{\end{pmatrix}}
+  \numberwithin{equation}{section}
+  \newcommand\nin{\noindent}
+  \newcommand{\nCr}[2]{\,_{#1}C_{#2}} 
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="diffeqs.html"><span class="title">Differential Equations</span></a></h1>
+<p class="byline">Phanuel Mariano, Ryan Tully-Doyle</p>
+</div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3"><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="ch1-1.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="introduction.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="ch2.html" title="Next">Next</a></span></div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="ch1-1.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="introduction.html" title="Up">Up</a><a class="next-button button toolbar-item" href="ch2.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link"><a href="frontmatter-1.html" data-scroll="frontmatter-1"><span class="title">Front Matter</span></a></li>
+<li class="link">
+<a href="introduction.html" data-scroll="introduction"><span class="codenumber">1</span> <span class="title">Introduction</span></a><ul>
+<li><a href="ch1-1.html" data-scroll="ch1-1">Modeling via differential equations, some solutions and definitions</a></li>
+<li><a href="ch1-2.html" data-scroll="ch1-2" class="active">Slope fields (direction fields)</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch2.html" data-scroll="ch2"><span class="codenumber">2</span> <span class="title">First Order Differential Equations</span></a><ul>
+<li><a href="ch2-1.html" data-scroll="ch2-1">Linear equations and integrating factors</a></li>
+<li><a href="ch2-2.html" data-scroll="ch2-2">Separable equations</a></li>
+<li><a href="ch2-3.html" data-scroll="ch2-3">Separable homogeneous equations and the substitution method</a></li>
+<li><a href="ch2-4.html" data-scroll="ch2-4">Modeling with Differential Equations</a></li>
+<li><a href="ch2-5.html" data-scroll="ch2-5">Modeling with differential equations - more problems</a></li>
+<li><a href="ch2-6.html" data-scroll="ch2-6">Existence and Uniqueness of Solutions</a></li>
+<li><a href="ch2-7.html" data-scroll="ch2-7">Autonomous Equations and Population dynamics</a></li>
+<li><a href="ch2-8.html" data-scroll="ch2-8">Exact equations</a></li>
+<li><a href="ch2-9.html" data-scroll="ch2-9">Euler's method</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch3.html" data-scroll="ch3"><span class="codenumber">3</span> <span class="title">Second Order Linear Equations</span></a><ul>
+<li><a href="ch3-1.html" data-scroll="ch3-1">Motivation - mass-spring systems.</a></li>
+<li><a href="ch3-2.html" data-scroll="ch3-2">Second order linear equations</a></li>
+<li><a href="ch3-3.html" data-scroll="ch3-3">Solutions to Linear Equations; the Wronskian</a></li>
+<li><a href="ch3-4.html" data-scroll="ch3-4">Complex roots of the characteristic equation</a></li>
+<li><a href="ch3-5.html" data-scroll="ch3-5">Repeated roots; Reduction of order</a></li>
+<li><a href="ch3-6.html" data-scroll="ch3-6">Non-homogeneous equations - Undetermined coefficients</a></li>
+<li><a href="section-18.html" data-scroll="section-18">Variation of Parameters</a></li>
+<li><a href="section-19.html" data-scroll="section-19">Harmonic oscillations</a></li>
+<li><a href="section-20.html" data-scroll="section-20">Forced oscillations</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter-4.html" data-scroll="chapter-4"><span class="codenumber">4</span> <span class="title">Higher order differential equations</span></a><ul>
+<li><a href="section-21.html" data-scroll="section-21">Linear equations</a></li>
+<li><a href="section-22.html" data-scroll="section-22">Constant coefficients</a></li>
+<li><a href="section-23.html" data-scroll="section-23">The Method of Undetermined Coefficients</a></li>
+</ul>
+</li>
+<li class="link"><a href="backmatter-1.html" data-scroll="backmatter-1"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="quadratic.html" data-scroll="quadratic"><span class="codenumber">A</span> <span class="title">A fast quadratic method</span></a></li>
+<li class="link">
+<a href="appendix-2.html" data-scroll="appendix-2"><span class="codenumber">B</span> <span class="title">Exercises for Chapter 1</span></a><ul>
+<li><a href="section-24.html" data-scroll="section-24">Section 1.1</a></li>
+<li><a href="section-25.html" data-scroll="section-25">Section 1.2</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-3.html" data-scroll="appendix-3"><span class="codenumber">C</span> <span class="title">Exercises for Chapter 2</span></a><ul>
+<li><a href="section-26.html" data-scroll="section-26">Section 2.1</a></li>
+<li><a href="section-27.html" data-scroll="section-27">Section 2.2</a></li>
+<li><a href="section-28.html" data-scroll="section-28">Section 2.3</a></li>
+<li><a href="section-29.html" data-scroll="section-29">Section 2.4</a></li>
+<li><a href="section-30.html" data-scroll="section-30">Section 2.5</a></li>
+<li><a href="section-31.html" data-scroll="section-31">Section 2.6</a></li>
+<li><a href="section-32.html" data-scroll="section-32">Section 2.7</a></li>
+<li><a href="section-33.html" data-scroll="section-33">Section 2.8</a></li>
+<li><a href="section-34.html" data-scroll="section-34">Section 2.9</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-4.html" data-scroll="appendix-4"><span class="codenumber">D</span> <span class="title">Exercises for Chapter 3</span></a><ul>
+<li><a href="section-35.html" data-scroll="section-35">Section 3.2</a></li>
+<li><a href="section-36.html" data-scroll="section-36">Section 3.3</a></li>
+<li><a href="section-37.html" data-scroll="section-37">Section 3.4</a></li>
+<li><a href="section-38.html" data-scroll="section-38">Section 3.5</a></li>
+<li><a href="section-39.html" data-scroll="section-39">Section 3.6</a></li>
+</ul>
+</li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="ch1-2"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">1.2</span> <span class="title">Slope fields (direction fields)</span>
+</h2>
+<a href="ch1-2.html" class="permalink">¶</a><section class="introduction" id="introduction-2"><p id="p-33">In this section, we will learn about a <em class="emphasis">qualitative</em> techinque - that is, we will learn to interpret the behavior of the solutions of differential equations using the equations themselves.</p></section><section class="subsection" id="subsection-5"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">1.2.1</span> <span class="title">Slope fields</span>
+</h3>
+<p id="p-34">Generally, there are three broad approaches to differential equations:</p>
+<ol class="decimal">
+<li id="li-36">
+<em class="alert">Analytically:</em> This means that one actually finds a formula for the solutions of a differential equations, typically using integral techniques.</li>
+<li id="li-37">
+<em class="alert">Numerically:</em> But often, it is very difficult to find an actual formula for the solution, even though there may be a solution. Thus one can use computers and algorithms to numerically approximate the solution. Even in the numerical case it is important to understand limitations of the calculated solutions.</li>
+<li id="li-38">
+<em class="alert">Qualitatively:</em> Maybe we don't need the full solution of a differential equation. We can use our knowledge of ODEs to have an idea of how the solution behaves. For example, maybe the only thing you want to answer about the solution is what the following asymptotic limit is:<div class="displaymath">
+\begin{equation*}
+\lim_{t\to\infty}y(t).
+\end{equation*}
+</div>
+</li>
+</ol>
+<p id="p-35">When we have an equation of the form \(\frac{dy}{dt}=f(t,y)\text{.}\) We can always make a <dfn class="terminology">slope field</dfn> for the ODE. A slope field contains minitangets at several points of a graph that describe the behavior of solutions through those points.</p>
+<article class="example-like" id="example-3"><a data-knowl="" class="id-ref" data-refid="hk-example-3"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">1.2.1</span>. <span class="title">Slope field for \(y' = t - y\).</span>
+</h6></a></article><div id="hk-example-3" class="hidden-content tex2jax_ignore"><article class="example-like"><table>
+<tr>
+<td class="l m b2 r1 l1 t1 lines">\(t\)</td>
+<td class="l m b2 r1 l0 t1 lines">\(y\)</td>
+<td class="l m b2 r1 l0 t1 lines">\(f(t,y) = t - y\)</td>
+</tr>
+<tr>
+<td class="l m b1 r1 l1 t0 lines">-1</td>
+<td class="l m b1 r1 l0 t0 lines">1</td>
+<td class="l m b1 r1 l0 t0 lines">2</td>
+</tr>
+<tr>
+<td class="l m b1 r1 l1 t0 lines">-1</td>
+<td class="l m b1 r1 l0 t0 lines">0</td>
+<td class="l m b1 r1 l0 t0 lines">1</td>
+</tr>
+<tr>
+<td class="l m b1 r1 l1 t0 lines">-1</td>
+<td class="l m b1 r1 l0 t0 lines">-1</td>
+<td class="l m b1 r1 l0 t0 lines">0</td>
+</tr>
+<tr>
+<td class="l m b1 r1 l1 t0 lines">0</td>
+<td class="l m b1 r1 l0 t0 lines">1</td>
+<td class="l m b1 r1 l0 t0 lines">1</td>
+</tr>
+<tr>
+<td class="l m b1 r1 l1 t0 lines">0</td>
+<td class="l m b1 r1 l0 t0 lines">0</td>
+<td class="l m b1 r1 l0 t0 lines">0</td>
+</tr>
+<tr>
+<td class="l m b1 r1 l1 t0 lines">0</td>
+<td class="l m b1 r1 l0 t0 lines">-1</td>
+<td class="l m b1 r1 l0 t0 lines">-1</td>
+</tr>
+<tr>
+<td class="l m b1 r1 l1 t0 lines">1</td>
+<td class="l m b1 r1 l0 t0 lines">1</td>
+<td class="l m b1 r1 l0 t0 lines">0</td>
+</tr>
+<tr>
+<td class="l m b1 r1 l1 t0 lines">1</td>
+<td class="l m b1 r1 l0 t0 lines">0</td>
+<td class="l m b1 r1 l0 t0 lines">-1</td>
+</tr>
+<tr>
+<td class="l m b1 r1 l1 t0 lines">1</td>
+<td class="l m b1 r1 l0 t0 lines">-1</td>
+<td class="l m b1 r1 l0 t0 lines">-2</td>
+</tr>
+</table></article></div>
+<p id="p-36">We can use mathematical software (the open source SageMath platform here) to generate slopefields that are accurate and easy to read.</p>
+<div class="sagecell-sage" id="sage-1"><script type="text/x-sage">t, y = var('t,y')
+plot_slope_field(y - t, (t, -3, 3), (y, -3, 3))
+</script></div>
+<ul class="disc">
+<li id="li-39">Qualitatively, given a starting point, we can predict the long-term behavior of a particular solution. One feature to notice in the picture above is that solutions seem to have very different asymptotic behavior depending on whether the initial point is above or below the line \(y = t + 1\text{.}\)</li>
+<li id="li-40">Slope fields like the one above allow us to sketch what solution curves <em class="emphasis">might</em> look like, as curves through a given point must have matching slope there. (Indeed, before computers, working by hand and sketching solutions was a time-consuming and detail-oriented art.)</li>
+<li id="li-41">You can find a link to <code class="code-inline tex2jax_ignore">Dfield</code>, an applet that generates slope/direction fields, at <a class="external" href="https://math.rice.edu/~dfield/dfpp.html" target="_blank">this link.</a>
+</li>
+<li id="li-42">Slope fields can also be visualized in Desmos in various ways. A simple example can be found <a class="external" href="https://www.desmos.com/calculator/v6ft5ichl3" target="_blank">here.</a>
+</li>
+</ul></section><section class="subsection" id="ch1-2b"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">1.2.2</span> <span class="title">Two important cases</span>
+</h3>
+<a href="ch1-2.html#ch1-2b" class="permalink">¶</a><p id="p-37">There are two forms of first order equations that are relatively open to qualitative analysis, the cases where the function \(f(t,y)\) on the RHS is a function of just one variable.</p>
+<p id="p-38"><em class="alert">Type 1:</em> \(\frac{dy}{dt} = f(t)\text{.}\)</p>
+<ul class="disc">
+<li id="li-43">The slopes are always the same in each <em class="emphasis">vertical line</em>. Draw a picture.</li>
+<li id="li-44">These are the simple ODEs corresponding to finding antiderivatives in Calculus II.</li>
+<li id="li-45">For example, the slope field of \(\frac{dy}{dt} = 2t\) is computed <div class="sagecell-sage" id="sage-2"><script type="text/x-sage">g = Graphics()
+t, y = var('t, y')
+g += plot_slope_field(2*t, (t,-5,5),(y,-5,5))
+g += plot(t^2 - 4, (t, -5,5), ymin = -5, ymax = 5)
+g += plot(t^2 - 5, (t, -5,5), ymin = -5, ymax = 5)
+g.show()
+</script></div>
+</li>
+<li id="li-46">Integrating both sides gives the general solution as the family of parabolas \(y = t^2 + C\text{,}\) which you should be able to see in the slope field.</li>
+</ul>
+<p id="p-39"><em class="alert">Type 2:</em> \(\frac{dy}{dt} = f(y)\)</p>
+<ul class="disc">
+<li id="li-47">These are called <dfn class="terminology">autonomous equations</dfn>.</li>
+<li id="li-48">The slopes are always the same in each <em class="emphasis">horizontal line</em>.</li>
+<li id="li-49">Autonomous equations have equilibrium solutions whenever \(f(y) = 0\text{.}\)</li>
+<li id="li-50">
+<p id="p-40">For example, to do a qualitative analysis of the autonomous equation</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt} = 4y(1-y)
+\end{equation*}
+</div>
+<p>first identify the equilibria (in this case \(y = 0\) and \(y = 1\)).</p>
+<p id="p-41">Now check slopes between the equilibrium solutions -</p>
+<div class="displaymath">
+\begin{align*}
+y'(2) \amp= (-)\\
+y'(.5) \amp= (+)\\
+y'(-1) \amp= (-)
+\end{align*}
+</div>
+<p>Before we visualize, we can already see what the long term behavior should be. The equilibrium solution \(y = 1\) attracts solutions (this is called a stable equilibrium) while the solution \(y = 0\) pushes solutions away (which is called an unstable equilibrium).</p>
+<div class="sagecell-sage" id="sage-3"><script type="text/x-sage">t, y  = var('t,y')
+plot_slope_field(4*y*(1-y), (t,-2,2),(y,-2,2))
+</script></div>
+</li>
+</ul> When trying to match slope fields you should always follow these steps: <ol class="decimal">
+<li id="li-51">Factor!</li>
+<li id="li-52">Find the equilibrium solutions.</li>
+<li id="li-53">Test points between equilibrium solutions.</li>
+</ol></section></section></div></main>
+</div>
+<div class="login-link"><span id="loginlogout" class="login">login</span></div>
+<script src="https://pretextbook.org/js/0.12/login.js"></script>
+</body>
+</html>

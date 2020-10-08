@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:42-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Variation of Parameters</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    asciimath2jax: {
+        ignoreClass: ".*",
+        processClass: "has_am"
+    },
+    jax: ["input/AsciiMath"],
+    extensions: ["asciimath2jax.js"],
+    TeX: {
+        extensions: ["extpfeil.js", "autobold.js", "https://pretextbook.org/js/lib/mathjaxknowl.js", ],
+        // scrolling to fragment identifiers is controlled by other Javascript
+        positionToHash: false,
+        equationNumbers: { autoNumber: "none", useLabelIds: true, },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    // HTML-CSS output Jax to be dropped for MathJax 3.0
+    "HTML-CSS": {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+    CommonHTML: {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+});
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML-full"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.12/pretext.js"></script><script src="https://pretextbook.org/js/0.12/pretext_add_on.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/toc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/setcolors.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/features.css" rel="stylesheet" type="text/css">
+<script>var logged_in = false;
+var role = 'student';
+var guest_access = true;
+var login_required = false;
+var js_version = 0.12;
+</script>
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div class="hidden-content" style="display:none">\(\DeclareMathOperator{\RE}{Re}
+  \DeclareMathOperator{\IM}{Im}
+  \DeclareMathOperator{\ess}{ess}
+  \DeclareMathOperator{\intr}{int}
+  \DeclareMathOperator{\dist}{dist}
+  \DeclareMathOperator{\dom}{dom}
+  \DeclareMathOperator{\diag}{diag}
+  \DeclareMathOperator\re{\mathrm {Re~}}
+  \DeclareMathOperator\im{\mathrm {Im~}}
+  
+  \newcommand\dd{\mathrm d}
+  \newcommand{\eps}{\varepsilon}
+  \newcommand{\To}{\longrightarrow}
+  \newcommand{\hilbert}{\mathcal{H}}
+  \newcommand{\s}{\mathcal{S}_2}
+  \newcommand{\A}{\mathcal{A}}
+  \newcommand\h{\mathcal{H}}
+  \newcommand{\J}{\mathcal{J}}
+  \newcommand{\M}{\mathcal{M}}
+  \newcommand{\F}{\mathbb{F}}
+  \newcommand{\N}{\mathcal{N}}
+  \newcommand{\T}{\mathbb{T}}
+  \newcommand{\W}{\mathcal{W}}
+  \newcommand{\X}{\mathcal{X}}
+  \newcommand{\D}{\mathbb{D}}
+  \newcommand{\C}{\mathbb{C}}
+  \newcommand{\BOP}{\mathbf{B}}
+  \newcommand{\Z}{\mathbb{Z}}
+  \newcommand{\BH}{\mathbf{B}(\mathcal{H})}
+  \newcommand{\KH}{\mathcal{K}(\mathcal{H})}
+  \newcommand{\pick}{\mathcal{P}_2}
+  \newcommand{\schur}{\mathcal{S}_2}
+  \newcommand{\R}{\mathbb{R}}
+  \newcommand{\Complex}{\mathbb{C}}
+  \newcommand{\Field}{\mathbb{F}}
+  \newcommand{\RPlus}{\Real^{+}}
+  \newcommand{\Polar}{\mathcal{P}_{\s}}
+  \newcommand{\Poly}{\mathcal{P}(E)}
+  \newcommand{\EssD}{\mathcal{D}}
+  \newcommand{\Lop}{\mathcal{L}}
+  \newcommand{\cc}[1]{\overline{#1}}
+  \newcommand{\abs}[1]{\left\vert#1\right\vert}
+  \newcommand{\set}[1]{\left\{#1\right\}}
+  \newcommand{\seq}[1]{\left\lt#1\right&gt;}
+  \newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+  \newcommand{\essnorm}[1]{\norm{#1}_{\ess}}
+  \newcommand{\tr}{\operatorname{tr}}
+  \newcommand{\ran}[1]{\operatorname{ran}#1}
+  \newcommand{\nt}{\stackrel{\mathrm {nt}}{\to}}
+  \newcommand{\pnt}{\xrightarrow{pnt}}
+  \newcommand{\ip}[2]{\left\langle #1, #2 \right\rangle}
+  \newcommand{\ad}{^\ast}
+  \newcommand{\inv}{^{-1}}
+  \newcommand{\adinv}{^{\ast -1}}
+  \newcommand{\invad}{^{-1 \ast}}
+  \newcommand\Pick{\mathcal P}
+  \newcommand\Ha{\mathbb{H}}
+  \newcommand{\HH}{\Ha\times\Ha}
+  \newcommand\Htau{\mathbb{H}(\tau)}
+  \newcommand{\vp}{\varphi}
+  \newcommand{\ph}{\varphi}
+  \newcommand\al{\alpha}
+  \newcommand\ga{\gamma}
+  \newcommand\de{\delta}
+  \newcommand\ep{\varepsilon}
+  \newcommand\la{\lambda}
+  \newcommand\up{\upsilon}
+  \newcommand\si{\sigma}
+  \newcommand\beq{\begin{equation}}
+  \newcommand\ds{\displaystyle}
+  \newcommand\eeq{\end{equation}}
+  \newcommand\df{\stackrel{\rm def}{=}}
+  \newcommand\ii{\mathrm i}
+  \newcommand{\vectwo}[2]
+  {
+     \begin{pmatrix} #1 \\ #2 \end{pmatrix}
+  }
+  \newcommand{\vecthree}[3]
+  {
+     \begin{pmatrix} #1 \\ #2 \\ #3 \end{pmatrix}
+  }
+  \newcommand\blue{\color{blue}}
+  \newcommand\black{\color{black}}
+  \newcommand\red{\color{red}}
+  
+  \newcommand\nn{\nonumber}
+  \newcommand\bbm{\begin{bmatrix}}
+  \newcommand\ebm{\end{bmatrix}}
+  \newcommand\bpm{\begin{pmatrix}}
+  \newcommand\epm{\end{pmatrix}}
+  \numberwithin{equation}{section}
+  \newcommand\nin{\noindent}
+  \newcommand{\nCr}[2]{\,_{#1}C_{#2}} 
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="diffeqs.html"><span class="title">Differential Equations</span></a></h1>
+<p class="byline">Phanuel Mariano, Ryan Tully-Doyle</p>
+</div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3"><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="ch3-6.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="ch3.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="section-19.html" title="Next">Next</a></span></div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="ch3-6.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="ch3.html" title="Up">Up</a><a class="next-button button toolbar-item" href="section-19.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link"><a href="frontmatter-1.html" data-scroll="frontmatter-1"><span class="title">Front Matter</span></a></li>
+<li class="link">
+<a href="introduction.html" data-scroll="introduction"><span class="codenumber">1</span> <span class="title">Introduction</span></a><ul>
+<li><a href="ch1-1.html" data-scroll="ch1-1">Modeling via differential equations, some solutions and definitions</a></li>
+<li><a href="ch1-2.html" data-scroll="ch1-2">Slope fields (direction fields)</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch2.html" data-scroll="ch2"><span class="codenumber">2</span> <span class="title">First Order Differential Equations</span></a><ul>
+<li><a href="ch2-1.html" data-scroll="ch2-1">Linear equations and integrating factors</a></li>
+<li><a href="ch2-2.html" data-scroll="ch2-2">Separable equations</a></li>
+<li><a href="ch2-3.html" data-scroll="ch2-3">Separable homogeneous equations and the substitution method</a></li>
+<li><a href="ch2-4.html" data-scroll="ch2-4">Modeling with Differential Equations</a></li>
+<li><a href="ch2-5.html" data-scroll="ch2-5">Modeling with differential equations - more problems</a></li>
+<li><a href="ch2-6.html" data-scroll="ch2-6">Existence and Uniqueness of Solutions</a></li>
+<li><a href="ch2-7.html" data-scroll="ch2-7">Autonomous Equations and Population dynamics</a></li>
+<li><a href="ch2-8.html" data-scroll="ch2-8">Exact equations</a></li>
+<li><a href="ch2-9.html" data-scroll="ch2-9">Euler's method</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch3.html" data-scroll="ch3"><span class="codenumber">3</span> <span class="title">Second Order Linear Equations</span></a><ul>
+<li><a href="ch3-1.html" data-scroll="ch3-1">Motivation - mass-spring systems.</a></li>
+<li><a href="ch3-2.html" data-scroll="ch3-2">Second order linear equations</a></li>
+<li><a href="ch3-3.html" data-scroll="ch3-3">Solutions to Linear Equations; the Wronskian</a></li>
+<li><a href="ch3-4.html" data-scroll="ch3-4">Complex roots of the characteristic equation</a></li>
+<li><a href="ch3-5.html" data-scroll="ch3-5">Repeated roots; Reduction of order</a></li>
+<li><a href="ch3-6.html" data-scroll="ch3-6">Non-homogeneous equations - Undetermined coefficients</a></li>
+<li><a href="section-18.html" data-scroll="section-18" class="active">Variation of Parameters</a></li>
+<li><a href="section-19.html" data-scroll="section-19">Harmonic oscillations</a></li>
+<li><a href="section-20.html" data-scroll="section-20">Forced oscillations</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter-4.html" data-scroll="chapter-4"><span class="codenumber">4</span> <span class="title">Higher order differential equations</span></a><ul>
+<li><a href="section-21.html" data-scroll="section-21">Linear equations</a></li>
+<li><a href="section-22.html" data-scroll="section-22">Constant coefficients</a></li>
+<li><a href="section-23.html" data-scroll="section-23">The Method of Undetermined Coefficients</a></li>
+</ul>
+</li>
+<li class="link"><a href="backmatter-1.html" data-scroll="backmatter-1"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="quadratic.html" data-scroll="quadratic"><span class="codenumber">A</span> <span class="title">A fast quadratic method</span></a></li>
+<li class="link">
+<a href="appendix-2.html" data-scroll="appendix-2"><span class="codenumber">B</span> <span class="title">Exercises for Chapter 1</span></a><ul>
+<li><a href="section-24.html" data-scroll="section-24">Section 1.1</a></li>
+<li><a href="section-25.html" data-scroll="section-25">Section 1.2</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-3.html" data-scroll="appendix-3"><span class="codenumber">C</span> <span class="title">Exercises for Chapter 2</span></a><ul>
+<li><a href="section-26.html" data-scroll="section-26">Section 2.1</a></li>
+<li><a href="section-27.html" data-scroll="section-27">Section 2.2</a></li>
+<li><a href="section-28.html" data-scroll="section-28">Section 2.3</a></li>
+<li><a href="section-29.html" data-scroll="section-29">Section 2.4</a></li>
+<li><a href="section-30.html" data-scroll="section-30">Section 2.5</a></li>
+<li><a href="section-31.html" data-scroll="section-31">Section 2.6</a></li>
+<li><a href="section-32.html" data-scroll="section-32">Section 2.7</a></li>
+<li><a href="section-33.html" data-scroll="section-33">Section 2.8</a></li>
+<li><a href="section-34.html" data-scroll="section-34">Section 2.9</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-4.html" data-scroll="appendix-4"><span class="codenumber">D</span> <span class="title">Exercises for Chapter 3</span></a><ul>
+<li><a href="section-35.html" data-scroll="section-35">Section 3.2</a></li>
+<li><a href="section-36.html" data-scroll="section-36">Section 3.3</a></li>
+<li><a href="section-37.html" data-scroll="section-37">Section 3.4</a></li>
+<li><a href="section-38.html" data-scroll="section-38">Section 3.5</a></li>
+<li><a href="section-39.html" data-scroll="section-39">Section 3.6</a></li>
+</ul>
+</li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="section-18"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">3.7</span> <span class="title">Variation of Parameters</span>
+</h2>
+<p id="p-419">Consider the equation</p>
+<div class="displaymath">
+\begin{equation*}
+y^{\prime\prime}+4y =\frac{3}{\sin t}
+\end{equation*}
+</div>
+<p>MOUC doesn't work with quotients, only products. We will learn a (more complicated) general formula to solving more general linear non-homoheneous 2nd order ODEs.</p>
+<article class="theorem-like" id="thmvarpara"><h6 class="heading">
+<span class="type">Theorem</span> <span class="codenumber">3.7.1</span>. <span class="title">Variation of Parameters.</span>
+</h6>
+<p id="p-420">If \(p,q,\) and \(g\) are continuous on an open interval \(I\text{,}\) and if the functions \(\left\{ y_{1},y_{2}\right\} \) form a fundamental set of solutions to the corresponding homogeneous equation</p>
+<div class="displaymath">
+\begin{equation*}
+y^{\prime\prime}+p(t)y^{\prime}+q(t)y=0,
+\end{equation*}
+</div>
+<p>then a particular solution to</p>
+<div class="displaymath">
+\begin{equation*}
+y^{\prime\prime}+p(t)y^{\prime}+q(t)y=g(t)
+\end{equation*}
+</div>
+<p>is given by</p>
+<div class="displaymath">
+\begin{align*}
+y_{p}(t) \amp =-y_{1}(t)\int_{t_{0}}^{t}\frac{y_{2}(s)g(s)}{W\left(y_{1},y_{2}\right)(s)}ds+y_{2}(t)\int_{t_{0}}^{t}\frac{y_{1}(s)g(s)}{W\left(y_{1},y_{2}\right)(s)}ds\\
+\amp =-y_{1}(t)\left[\int\frac{y_{2}(t)g(t)}{W\left(y_{1},y_{2}\right)(t)}dt\right]+y_{2}(t)\left[\int\frac{y_{1}(t)g(t)}{W\left(y_{1},y_{2}\right)(t)}dt\right]
+\end{align*}
+</div>
+<p>if the antiderivates exist, where \(t_{0}\) is any value in \(I\text{.}\) Then the general solution to the non-homogeneous solution is</p>
+<div class="displaymath">
+\begin{equation*}
+y(t)=c_{1}y_{1}(t)+c_{2}y_{2}(t)+y_{p}(t).
+\end{equation*}
+</div></article><article class="hiddenproof" id="proof-2"><a data-knowl="" class="id-ref" data-refid="hk-proof-2"><h6 class="heading"><span class="type">Proof.</span></h6></a></article><div id="hk-proof-2" class="hidden-content tex2jax_ignore"><article class="hiddenproof"><p id="p-421">The proof can be found in any differential equations text, or online. The idea is this: Suppose</p>
+<div class="displaymath">
+\begin{equation*}
+y_{h}(t)=c_{1}y_{1}(t)+c_{2}y_{1}(t)
+\end{equation*}
+</div>
+<p>is the general solution to</p>
+<div class="displaymath">
+\begin{equation*}
+y^{\prime\prime}+p(t)y^{\prime}+q(t)y=0.
+\end{equation*}
+</div>
+<p>Then the idea is to use the following guess:</p>
+<div class="displaymath">
+\begin{equation*}
+y_{p}(t)=u_{1}(t)y_{1}(t)+u_{2}(t)y_{2}(t)
+\end{equation*}
+</div>
+<p>for the non-homogeneous equation, and also make the extra assumption that</p>
+<div class="displaymath">
+\begin{equation*}
+u_{1}^{\prime}(t)y_{1}(t)+u_{2}^{\prime}(t)y_{2}(t)=0.\,\,\,\,\,(\star)
+\end{equation*}
+</div>
+<p>The validity of this assumption is difficult to justify without higher level mathematics, but one can at least take comfort in that we have an extra constraint to play with, so for computational convenience we select condition \((\star)\text{.}\)</p>
+<p id="p-422">Then take derivatives, simplify and put them back into the differential equation. This will always reduce to</p>
+<div class="displaymath">
+\begin{align*}
+LHS \amp =y_{p}^{\prime\prime}+p(t)y_{p}^{\prime}+q(t)y_{p}\\
+\amp =\text{work}\\
+\amp =u_{1}^{\prime}y_{1}^{\prime}(t)+u_{2}^{\prime}(t)y_{2}^{\prime}(t)
+\end{align*}
+</div>
+<p>and set LHS to RHS which is \(g(t)\) hence we get</p>
+<div class="displaymath">
+\begin{equation*}
+u_{1}^{\prime}(t)y_{1}^{\prime}(t)+u_{2}^{\prime}(t)y_{2}^{\prime}(t)=g(t).\,\,\,\,\,(\star\star)
+\end{equation*}
+</div>
+<p>Putting \((\star)\) and \((\star\star)\) together we have the two equations:</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{cases}
+u_{1}^{\prime}(t)y_{1}(t)+u_{2}^{\prime}(t)y_{2}(t)=0\\
+u_{1}^{\prime}y_{1}^{\prime}(t)+u_{2}^{\prime}(t)y_{2}^{\prime}(t)=g(t)
+\end{cases}
+\end{equation*}
+</div>
+<p>which boils to solving for \(u_{1}^{\prime}(t)\) and \(u_{2}^{\prime}(t)\) and getting</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{cases}
+u_{1}^{\prime}(t)=-\frac{y_{2}(t)g(t)}{W\left(y_{1},y_{2}\right)(t)}\\
+u_{2}^{\prime}(t)=\frac{y_{1}(t)g(t)}{W\left(y_{1},y_{2}\right)(t)}
+\end{cases}
+\end{equation*}
+</div>
+<p>which by integrating we have</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{cases}
+u_{1}(t)=-\int\frac{y_{2}(t)g(t)}{W\left(y_{1},y_{2}\right)(t)}dt\\
+u_{2}(t)=\int\frac{y_{1}(t)g(t)}{W\left(y_{1},y_{2}\right)(t)}dt
+\end{cases}
+\end{equation*}
+</div></article></div>
+<article class="example-like" id="example-68"><a data-knowl="" class="id-ref" data-refid="hk-example-68"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">3.7.2</span>.</h6></a></article><div id="hk-example-68" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-423">Find a particular solution to</p>
+<div class="displaymath">
+\begin{equation*}
+y^{\prime\prime}+4y=\frac{1}{\cos\left(2t\right)}.
+\end{equation*}
+</div>
+<p id="p-424">Step1: First find \(y_{h}\) if possible. In this case \(y_{h}\)will be given by solving \(r^{2}+4=0\) so that \(r=\pm2i\) hence</p>
+<div class="displaymath">
+\begin{equation*}
+y_{h}(t)=c_{1}\cos(2t)+c_{2}\sin\left(2t\right).
+\end{equation*}
+</div>
+<p>Thus \(y_{1}(t)=\cos(2t)\) and \(y_{2}(t)=\sin\left(2t\right)\text{.}\)</p>
+<p id="p-425">Step2: Find the Wronskian:</p>
+<div class="displaymath">
+\begin{align*}
+W(y_{1},y_{2})(t) \amp =\left|\begin{array}{cc}
+\cos(2t) \amp \sin\left(2t\right)\\
+-2\sin(2t) \amp 2\cos(2t)
+\end{array}\right|\\
+\amp =2\cos^{2}(2t)+2\sin^{2}(2t)\\
+\amp =2\left[\cos^{2}(2t)+\sin^{2}(2t)\right]\\
+\amp =2\cdot1=2.
+\end{align*}
+</div>
+<p id="p-426">Step3: Use our formula with \(g(t)=\frac{1}{\cos\left(2t\right)}\) and get</p>
+<div class="displaymath">
+\begin{align*}
+y_{p}(t) \amp =-y_{1}(t)\left[\int\frac{y_{2}(t)g(t)}{W\left(y_{1},y_{2}\right)(t)}dt\right]+y_{2}(t)\left[\int\frac{y_{1}(t)g(t)}{W\left(y_{1},y_{2}\right)(t)}dt\right]\\
+\amp =-\cos(2t)\left[\int\frac{1}{2}\frac{\sin(2t)}{\cos\left(2t\right)}dt\right]+\sin(2t)\left[\int\frac{\cos(2t)}{2}\frac{1}{\cos\left(2t\right)}dt\right]\\
+\amp =-\cos(2t)\left[\frac{1}{2}\int\frac{\sin(2t)}{\cos\left(2t\right)}dt\right]+\frac{t}{2}\sin(2t)
+\end{align*}
+</div>
+<p id="p-427">Now you can remember the antiderivative of \(\int\tan(2t)dt\) or use \(u\)-substitution with \(u=\cos(2t)\) and get \(du=-2\sin(2t)dt\) so that</p>
+<div class="displaymath">
+\begin{equation*}
+\int\frac{\sin(2t)}{\cos\left(2t\right)}dt=-\frac{1}{2}\int\frac{du}{u}=-\frac{1}{2}\ln\left|u\right|=-\frac{1}{2}\ln\left|\cos(2t)\right|
+\end{equation*}
+</div>
+<p>hence</p>
+<div class="displaymath">
+\begin{equation*}
+y_{p}(t)=\frac{1}{4}\cos(2t)\ln\left|\cos(2t)\right|+\frac{t}{2}\sin(2t).
+\end{equation*}
+</div></article></div>
+<article class="example-like" id="example-69"><a data-knowl="" class="id-ref" data-refid="hk-example-69"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">3.7.3</span>.</h6></a></article><div id="hk-example-69" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-428">Find the general solution to</p>
+<div class="displaymath">
+\begin{equation*}
+t^{2}y^{\prime\prime}+2ty^{\prime}-2y=6t
+\end{equation*}
+</div>
+<p>given that</p>
+<div class="displaymath">
+\begin{equation*}
+y_{1}(t)=t,\,\,\,y_{2}(t)=t^{-2}
+\end{equation*}
+</div>
+<p>forms a fundamental set of solution for the corresponding homogeneous differential equation.</p>
+<p id="p-429">Step 1: Since \(y_{1}(t)=t,\,\,\,y_{2}(t)=t^{-2}\) forms a fundamental set of solution, this means that the general solution for the homogeneous equation is</p>
+<div class="displaymath">
+\begin{equation*}
+y_{h}=c_{1}t+c_{2}t^{-2}.
+\end{equation*}
+</div>
+<p id="p-430">Step 2: Find the Wronskian:</p>
+<div class="displaymath">
+\begin{align*}
+W(y_{1},y_{2})(t) \amp =\left|\begin{array}{cc}
+t \amp t^{-2}\\
+1 \amp -2t^{-3}
+\end{array}\right|\\
+\amp =-2t^{-2}-t^{-2}=-3t^{-2}\neq0,
+\end{align*}
+</div>
+<p id="p-431">Step 3: Rewrite the equation in the form \(y^{\prime\prime}+p(t)y^{\prime}+q(t)y=g(t)\) and hence</p>
+<div class="displaymath">
+\begin{equation*}
+y^{\prime\prime}+\frac{2}{t}y^{\prime}-\frac{2}{t^{2}}y=\frac{6}{t}.
+\end{equation*}
+</div>
+<p>Use our formula with \(g(t)=\frac{6}{t}\) and get</p>
+<div class="displaymath">
+\begin{align*}
+y_{p}(t) \amp =-y_{1}(t)\left[\int\frac{y_{2}(t)g(t)}{W\left(y_{1},y_{2}\right)(t)}dt\right]+y_{2}(t)\left[\int\frac{y_{1}(t)g(t)}{W\left(y_{1},y_{2}\right)(t)}dt\right]\\
+\amp =-t\left[\int\frac{t^{-2}}{-3t^{-2}}\frac{6}{t}dt\right]+t^{-2}\left[\int\frac{t}{-3t^{-2})}\frac{6}{t}dt\right]\\
+\amp =-t\left[\int\frac{2}{t}dt\right]+t^{-2}\left[\int-2t^{2}dt\right]\\
+\amp =-t\left[2\ln t\right]+t^{-2}\left[-\frac{2}{3}t^{3}\right]\\
+\amp =-2t\ln t-\frac{2}{3}t.
+\end{align*}
+</div>
+<p>Hence, the general solution is</p>
+<div class="displaymath">
+\begin{align*}
+y(t) \amp =y_{h}+y_{p}\\
+\amp =c_{1}t+c_{2}t^{-2}-2t\ln t-\frac{2}{3}t.
+\end{align*}
+</div></article></div>
+<article class="example-like" id="example-70"><a data-knowl="" class="id-ref" data-refid="hk-example-70"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">3.7.4</span>.</h6></a></article><div id="hk-example-70" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-432">Find the general solution to</p>
+<div class="displaymath">
+\begin{equation*}
+t^{2}y^{\prime\prime}-3ty^{\prime}+3y=8t^{3},\,\,\,\,t&gt;0
+\end{equation*}
+</div>
+<p>given that</p>
+<div class="displaymath">
+\begin{equation*}
+y_{1}(t)=t,\,\,\,y_{2}(t)=t^{3}
+\end{equation*}
+</div>
+<p>forms a fundamental set of solution for the corresponding homogeneous differential equation.</p>
+<p id="p-433">Step 1: Since \(y_{1}(t)=t,\,\,\,y_{2}(t)=t^{3}\) forms a fundamental set of solution, this means that the general solution for the homogeneous equation is</p>
+<div class="displaymath">
+\begin{equation*}
+y_{h}=c_{1}t+c_{2}t^{3}.
+\end{equation*}
+</div>
+<p id="p-434">Step 2: Find the Wronskian:</p>
+<div class="displaymath">
+\begin{align*}
+W(y_{1},y_{2})(t) \amp =\left|\begin{array}{cc}
+t \amp t^{3}\\
+1 \amp 3t^{2}
+\end{array}\right|\\
+\amp =3t^{3}-t^{3}=2t^{3}\neq0,
+\end{align*}
+</div>
+<p id="p-435">Step 3: Rewrite the equation in the form \(y^{\prime\prime}+p(t)y^{\prime}+q(t)y=g(t)\) and hence</p>
+<div class="displaymath">
+\begin{equation*}
+y^{\prime\prime}-\frac{3}{t}y^{\prime}+\frac{3}{t^{2}}y=8t,.
+\end{equation*}
+</div>
+<p>Use our formula with \(g(t)=8t\) and get</p>
+<div class="displaymath">
+\begin{align*}
+y_{p}(t) \amp =-y_{1}(t)\left[\int\frac{y_{2}(t)g(t)}{W\left(y_{1},y_{2}\right)(t)}dt\right]+y_{2}(t)\left[\int\frac{y_{1}(t)g(t)}{W\left(y_{1},y_{2}\right)(t)}dt\right]\\
+\amp =-t\left[\int\frac{t^{3}}{2t^{3}}8tdt\right]+t^{3}\left[\int\frac{t}{2t^{3}}8tdt\right]\\
+\amp =-t\left[\int4tdt\right]+t^{3}\left[\int\frac{4}{t}dt\right]\\
+\amp =-t\left[2t^{2}\right]+t^{3}\left[4\ln t\right]\\
+\amp =-2t^{3}+4t^{3}\ln t
+\end{align*}
+</div>
+<p>hence the general solution is</p>
+<div class="displaymath">
+\begin{align*}
+y(t) \amp =y_{h}+y_{p}\\
+\amp =c_{1}t+c_{2}t^{3}-2t^{3}+4t^{3}\ln t.
+\end{align*}
+</div></article></div></section></div></main>
+</div>
+<div class="login-link"><span id="loginlogout" class="login">login</span></div>
+<script src="https://pretextbook.org/js/0.12/login.js"></script>
+</body>
+</html>

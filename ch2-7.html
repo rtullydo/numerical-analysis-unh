@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:41-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Autonomous Equations and Population dynamics</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    asciimath2jax: {
+        ignoreClass: ".*",
+        processClass: "has_am"
+    },
+    jax: ["input/AsciiMath"],
+    extensions: ["asciimath2jax.js"],
+    TeX: {
+        extensions: ["extpfeil.js", "autobold.js", "https://pretextbook.org/js/lib/mathjaxknowl.js", ],
+        // scrolling to fragment identifiers is controlled by other Javascript
+        positionToHash: false,
+        equationNumbers: { autoNumber: "none", useLabelIds: true, },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    // HTML-CSS output Jax to be dropped for MathJax 3.0
+    "HTML-CSS": {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+    CommonHTML: {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+});
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML-full"></script><script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.12/pretext.js"></script><script src="https://pretextbook.org/js/0.12/pretext_add_on.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/toc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/setcolors.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/features.css" rel="stylesheet" type="text/css">
+<script>var logged_in = false;
+var role = 'student';
+var guest_access = true;
+var login_required = false;
+var js_version = 0.12;
+</script>
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div class="hidden-content" style="display:none">\(\DeclareMathOperator{\RE}{Re}
+  \DeclareMathOperator{\IM}{Im}
+  \DeclareMathOperator{\ess}{ess}
+  \DeclareMathOperator{\intr}{int}
+  \DeclareMathOperator{\dist}{dist}
+  \DeclareMathOperator{\dom}{dom}
+  \DeclareMathOperator{\diag}{diag}
+  \DeclareMathOperator\re{\mathrm {Re~}}
+  \DeclareMathOperator\im{\mathrm {Im~}}
+  
+  \newcommand\dd{\mathrm d}
+  \newcommand{\eps}{\varepsilon}
+  \newcommand{\To}{\longrightarrow}
+  \newcommand{\hilbert}{\mathcal{H}}
+  \newcommand{\s}{\mathcal{S}_2}
+  \newcommand{\A}{\mathcal{A}}
+  \newcommand\h{\mathcal{H}}
+  \newcommand{\J}{\mathcal{J}}
+  \newcommand{\M}{\mathcal{M}}
+  \newcommand{\F}{\mathbb{F}}
+  \newcommand{\N}{\mathcal{N}}
+  \newcommand{\T}{\mathbb{T}}
+  \newcommand{\W}{\mathcal{W}}
+  \newcommand{\X}{\mathcal{X}}
+  \newcommand{\D}{\mathbb{D}}
+  \newcommand{\C}{\mathbb{C}}
+  \newcommand{\BOP}{\mathbf{B}}
+  \newcommand{\Z}{\mathbb{Z}}
+  \newcommand{\BH}{\mathbf{B}(\mathcal{H})}
+  \newcommand{\KH}{\mathcal{K}(\mathcal{H})}
+  \newcommand{\pick}{\mathcal{P}_2}
+  \newcommand{\schur}{\mathcal{S}_2}
+  \newcommand{\R}{\mathbb{R}}
+  \newcommand{\Complex}{\mathbb{C}}
+  \newcommand{\Field}{\mathbb{F}}
+  \newcommand{\RPlus}{\Real^{+}}
+  \newcommand{\Polar}{\mathcal{P}_{\s}}
+  \newcommand{\Poly}{\mathcal{P}(E)}
+  \newcommand{\EssD}{\mathcal{D}}
+  \newcommand{\Lop}{\mathcal{L}}
+  \newcommand{\cc}[1]{\overline{#1}}
+  \newcommand{\abs}[1]{\left\vert#1\right\vert}
+  \newcommand{\set}[1]{\left\{#1\right\}}
+  \newcommand{\seq}[1]{\left\lt#1\right&gt;}
+  \newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+  \newcommand{\essnorm}[1]{\norm{#1}_{\ess}}
+  \newcommand{\tr}{\operatorname{tr}}
+  \newcommand{\ran}[1]{\operatorname{ran}#1}
+  \newcommand{\nt}{\stackrel{\mathrm {nt}}{\to}}
+  \newcommand{\pnt}{\xrightarrow{pnt}}
+  \newcommand{\ip}[2]{\left\langle #1, #2 \right\rangle}
+  \newcommand{\ad}{^\ast}
+  \newcommand{\inv}{^{-1}}
+  \newcommand{\adinv}{^{\ast -1}}
+  \newcommand{\invad}{^{-1 \ast}}
+  \newcommand\Pick{\mathcal P}
+  \newcommand\Ha{\mathbb{H}}
+  \newcommand{\HH}{\Ha\times\Ha}
+  \newcommand\Htau{\mathbb{H}(\tau)}
+  \newcommand{\vp}{\varphi}
+  \newcommand{\ph}{\varphi}
+  \newcommand\al{\alpha}
+  \newcommand\ga{\gamma}
+  \newcommand\de{\delta}
+  \newcommand\ep{\varepsilon}
+  \newcommand\la{\lambda}
+  \newcommand\up{\upsilon}
+  \newcommand\si{\sigma}
+  \newcommand\beq{\begin{equation}}
+  \newcommand\ds{\displaystyle}
+  \newcommand\eeq{\end{equation}}
+  \newcommand\df{\stackrel{\rm def}{=}}
+  \newcommand\ii{\mathrm i}
+  \newcommand{\vectwo}[2]
+  {
+     \begin{pmatrix} #1 \\ #2 \end{pmatrix}
+  }
+  \newcommand{\vecthree}[3]
+  {
+     \begin{pmatrix} #1 \\ #2 \\ #3 \end{pmatrix}
+  }
+  \newcommand\blue{\color{blue}}
+  \newcommand\black{\color{black}}
+  \newcommand\red{\color{red}}
+  
+  \newcommand\nn{\nonumber}
+  \newcommand\bbm{\begin{bmatrix}}
+  \newcommand\ebm{\end{bmatrix}}
+  \newcommand\bpm{\begin{pmatrix}}
+  \newcommand\epm{\end{pmatrix}}
+  \numberwithin{equation}{section}
+  \newcommand\nin{\noindent}
+  \newcommand{\nCr}[2]{\,_{#1}C_{#2}} 
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="diffeqs.html"><span class="title">Differential Equations</span></a></h1>
+<p class="byline">Phanuel Mariano, Ryan Tully-Doyle</p>
+</div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3"><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="ch2-6.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="ch2.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="ch2-8.html" title="Next">Next</a></span></div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="ch2-6.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="ch2.html" title="Up">Up</a><a class="next-button button toolbar-item" href="ch2-8.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link"><a href="frontmatter-1.html" data-scroll="frontmatter-1"><span class="title">Front Matter</span></a></li>
+<li class="link">
+<a href="introduction.html" data-scroll="introduction"><span class="codenumber">1</span> <span class="title">Introduction</span></a><ul>
+<li><a href="ch1-1.html" data-scroll="ch1-1">Modeling via differential equations, some solutions and definitions</a></li>
+<li><a href="ch1-2.html" data-scroll="ch1-2">Slope fields (direction fields)</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch2.html" data-scroll="ch2"><span class="codenumber">2</span> <span class="title">First Order Differential Equations</span></a><ul>
+<li><a href="ch2-1.html" data-scroll="ch2-1">Linear equations and integrating factors</a></li>
+<li><a href="ch2-2.html" data-scroll="ch2-2">Separable equations</a></li>
+<li><a href="ch2-3.html" data-scroll="ch2-3">Separable homogeneous equations and the substitution method</a></li>
+<li><a href="ch2-4.html" data-scroll="ch2-4">Modeling with Differential Equations</a></li>
+<li><a href="ch2-5.html" data-scroll="ch2-5">Modeling with differential equations - more problems</a></li>
+<li><a href="ch2-6.html" data-scroll="ch2-6">Existence and Uniqueness of Solutions</a></li>
+<li><a href="ch2-7.html" data-scroll="ch2-7" class="active">Autonomous Equations and Population dynamics</a></li>
+<li><a href="ch2-8.html" data-scroll="ch2-8">Exact equations</a></li>
+<li><a href="ch2-9.html" data-scroll="ch2-9">Euler's method</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch3.html" data-scroll="ch3"><span class="codenumber">3</span> <span class="title">Second Order Linear Equations</span></a><ul>
+<li><a href="ch3-1.html" data-scroll="ch3-1">Motivation - mass-spring systems.</a></li>
+<li><a href="ch3-2.html" data-scroll="ch3-2">Second order linear equations</a></li>
+<li><a href="ch3-3.html" data-scroll="ch3-3">Solutions to Linear Equations; the Wronskian</a></li>
+<li><a href="ch3-4.html" data-scroll="ch3-4">Complex roots of the characteristic equation</a></li>
+<li><a href="ch3-5.html" data-scroll="ch3-5">Repeated roots; Reduction of order</a></li>
+<li><a href="ch3-6.html" data-scroll="ch3-6">Non-homogeneous equations - Undetermined coefficients</a></li>
+<li><a href="section-18.html" data-scroll="section-18">Variation of Parameters</a></li>
+<li><a href="section-19.html" data-scroll="section-19">Harmonic oscillations</a></li>
+<li><a href="section-20.html" data-scroll="section-20">Forced oscillations</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter-4.html" data-scroll="chapter-4"><span class="codenumber">4</span> <span class="title">Higher order differential equations</span></a><ul>
+<li><a href="section-21.html" data-scroll="section-21">Linear equations</a></li>
+<li><a href="section-22.html" data-scroll="section-22">Constant coefficients</a></li>
+<li><a href="section-23.html" data-scroll="section-23">The Method of Undetermined Coefficients</a></li>
+</ul>
+</li>
+<li class="link"><a href="backmatter-1.html" data-scroll="backmatter-1"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="quadratic.html" data-scroll="quadratic"><span class="codenumber">A</span> <span class="title">A fast quadratic method</span></a></li>
+<li class="link">
+<a href="appendix-2.html" data-scroll="appendix-2"><span class="codenumber">B</span> <span class="title">Exercises for Chapter 1</span></a><ul>
+<li><a href="section-24.html" data-scroll="section-24">Section 1.1</a></li>
+<li><a href="section-25.html" data-scroll="section-25">Section 1.2</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-3.html" data-scroll="appendix-3"><span class="codenumber">C</span> <span class="title">Exercises for Chapter 2</span></a><ul>
+<li><a href="section-26.html" data-scroll="section-26">Section 2.1</a></li>
+<li><a href="section-27.html" data-scroll="section-27">Section 2.2</a></li>
+<li><a href="section-28.html" data-scroll="section-28">Section 2.3</a></li>
+<li><a href="section-29.html" data-scroll="section-29">Section 2.4</a></li>
+<li><a href="section-30.html" data-scroll="section-30">Section 2.5</a></li>
+<li><a href="section-31.html" data-scroll="section-31">Section 2.6</a></li>
+<li><a href="section-32.html" data-scroll="section-32">Section 2.7</a></li>
+<li><a href="section-33.html" data-scroll="section-33">Section 2.8</a></li>
+<li><a href="section-34.html" data-scroll="section-34">Section 2.9</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-4.html" data-scroll="appendix-4"><span class="codenumber">D</span> <span class="title">Exercises for Chapter 3</span></a><ul>
+<li><a href="section-35.html" data-scroll="section-35">Section 3.2</a></li>
+<li><a href="section-36.html" data-scroll="section-36">Section 3.3</a></li>
+<li><a href="section-37.html" data-scroll="section-37">Section 3.4</a></li>
+<li><a href="section-38.html" data-scroll="section-38">Section 3.5</a></li>
+<li><a href="section-39.html" data-scroll="section-39">Section 3.6</a></li>
+</ul>
+</li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="ch2-7"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">2.7</span> <span class="title">Autonomous Equations and Population dynamics</span>
+</h2>
+<a href="ch2-7.html" class="permalink">¶</a><section class="introduction" id="introduction-5"><article class="definition-like" id="definition-5"><h6 class="heading">
+<span class="type">Definition</span> <span class="codenumber">2.7.1</span>.</h6>
+<p id="p-234">An <dfn class="terminology">autonomous differential equation</dfn> is of the form</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt}=f(y).
+\end{equation*}
+</div></article><p id="p-235">We will only deal with autonomous equations in this section. Autonomous equations are preferable for some physical models are autonomous (self-govering). For example a compressed spring has the same force at 4:00am and at 10:00pm.</p></section><section class="subsection" id="ch2-7a"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">2.7.1</span> <span class="title">Examples of autonomous systems</span>
+</h3>
+<a href="ch2-7.html#ch2-7a" class="permalink">¶</a><section class="subsubsection" id="subsubsection-1"><h4 class="heading hide-type">
+<span class="type">Subsubsection</span> <span class="codenumber">2.7.1.1</span> <span class="title">Population growth/decay</span>
+</h4>
+<p id="p-236">Assumption: The rate of growth of the population is proportional to the size of the population. Thus if \(k\) is the proportionality constant (growth rate) we have</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dP}{dt}=kP.
+\end{equation*}
+</div>
+<p>But here \(P\) is the dependent variable, \(t\) is time, which is the independent variable. Thus \(P=P(t)\) is actually a function! This is a ODE. We can also write it \(P^{\prime}=kP\text{,}\) or the physics way, \(\dot{P}=kP\text{.}\)</p></section><section class="subsubsection" id="subsubsection-2"><h4 class="heading hide-type">
+<span class="type">Subsubsection</span> <span class="codenumber">2.7.1.2</span> <span class="title">Logistic Growth:</span>
+</h4>
+<p id="p-237">Assumption: If population is small, then rate of growth is proportional to its size. If population is too large to be supported by its resources and environment, then the population will decrease, that \(\frac{dP}{dt} \lt 0\text{.}\) We can restate the assumptions as</p>
+<ol class="decimal">
+<li id="li-132">\(\frac{dP}{dt}\approx kP\) if \(P\) is small.</li>
+<li id="li-133">If \(P&gt;N\) then \(\frac{dP}{dt} \lt 0\text{.}\)</li>
+</ol>
+<p id="p-238">In this case, we have the <dfn class="terminology">logistic growth model</dfn></p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dP}{dt}=k\left(1-\frac{P}{N}\right)P
+\end{equation*}
+</div></section></section><section class="subsection" id="subsection-17"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">2.7.2</span> <span class="title">Phase lines</span>
+</h3>
+<p id="p-239">Suppose \(\frac{dy}{dt}=y(1-y)\text{,}\) which has the slope field <div class="sagecell-sage" id="sage-10"><script type="text/x-sage">t, y = var('t,y')
+plot_slope_field(y*(1-y), (t,-3,3), (y, -3, 3))
+</script></div></p>
+<p id="p-240">Since the slopes are the same at each horizontal direction we can compress this information to something <em class="emphasis">easier</em> to draw, the <dfn class="terminology">phase line</dfn> for the autonomous equation.</p>
+<p id="p-241">Rope Metaphor: We can reduce the entire 2d picture into a “rope” that the function climbs up and down.</p>
+<ol class="decimal">
+<li id="li-134">Start with IVP \(\frac{dy}{dt}=f(y)\) and \(y(0)=y_{0}\text{.}\)</li>
+<li id="li-135">Draw a rope at start at \(y_{0}\text{.}\)</li>
+<li id="li-136">At each \(y\) write \(f(y)\) on this rope to indicate the slope at that \(y\text{.}\)</li>
+<li id="li-137">If \(f(y)=0\) stay put. If \(f(y)&gt;0\) then climb up the rope, if \(f(y)\lt 0\) then climb down the rope.</li>
+<li id="li-138">Bigger values for \(f(y)\) means climb faster as \(t\) moves through time.</li>
+<li id="li-139">If you let \(y(t)\) your location on the rope, then \(y(t)\) is a solution to the IVP.</li>
+</ol>
+<p id="p-242">The rope in <a data-knowl="./knowl/fig-phase1.html" title="Figure 2.7.2">Figure 2.7.2</a> is the Phase line, but instead of numbers we use arrows to represent the slope.</p>
+<p id="p-243">The phase line for this equation has two points representing the equilibrium solutions, and arrows indicating the sign of the slopes given by \(f(y)\) between the equilibira.</p>
+<figure class="figure-like" id="fig-phase1"><div class="image-box" style="width: 30%; margin-left: 35%; margin-right: 35%;"><img src="images/1.6-Phase1.png" style="width: 100%; height: auto;" alt=""></div>
+<figcaption><span class="type">Figure</span> <span class="codenumber">2.7.2.</span> Phase line for \(\frac{dy}{dt} = y(1-y)\)</figcaption></figure><p id="p-244">For example, the phase line shows that as \(y\) is close to \(y=1\) from below, then the function keeps increasing, and thus must approach asymptotically to the equilibrium solution.</p>
+<p id="p-245">A sketch of some possible solutions looks like: <figure class="figure-like" id="fig-sketch1"><div class="image-box" style="width: 40%; margin-left: 30%; margin-right: 30%;"><img src="images/1.6-Sketch1.png" style="width: 100%; height: auto;" alt=""></div>
+<figcaption><span class="type">Figure</span> <span class="codenumber">2.7.3.</span> Solution sketch for \(\frac{dy}{dt} = y(1-y)\)</figcaption></figure></p>
+<p id="p-246">From our first sketch we can always notice the following things about sketching curves:</p>
+<ol class="decimal">
+<li id="li-140">If \(f(y(0))=0\) then \(y(0)\) is an equilibirum solution and \(y(t)=y(0)\) for all \(t\text{.}\)</li>
+<li id="li-141">If \(f(y(0))&gt;0\) then \(y(t)\) is <em class="emphasis">increasing</em> for all \(t\) and either \(y(y)\to\infty\) as \(t\to\infty\) or \(y(t)\) tends to first equilibirum point <em class="emphasis">larger</em> than \(y(0).\)</li>
+<li id="li-142">If \(f(y(0))
+\lt 0\) then then \(y(t)\) is <em class="emphasis">decreasing</em> for all \(t\) and either \(y(y)\to-\infty\) as \(t\to\infty\) or \(y(t)\) tends to first equilibirum point <em class="emphasis">smaller</em> than \(y(0).\)</li>
+</ol>
+<article class="example-like" id="example-32"><a data-knowl="" class="id-ref" data-refid="hk-example-32"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.7.4</span>. <span class="title">Curve Sketching.</span>
+</h6></a></article><div id="hk-example-32" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-247">We let</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt}=(2-y)\sin y.
+\end{equation*}
+</div>
+<ol class="decimal">
+<li id="li-143">Find equilibrium points \(y=2\) and \(y=n\pi\) (so infinite amount)</li>
+<li id="li-144">Plug points and get that the phase line is : <div class="image-box" style="width: 30%; margin-left: 35%; margin-right: 35%;"><img src="images/1.6-Phase2.png" style="width: 100%; height: auto;" alt=""></div>
+</li>
+<li id="li-145">Talk about what happens when things are getting close to the equilibrium solutions.</li>
+<li id="li-146">Sketch curves: <div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/1.6-Sketch2.png" style="width: 100%; height: auto;" alt=""></div>
+</li>
+</ol></article></div>
+<article class="example-like" id="example-33"><a data-knowl="" class="id-ref" data-refid="hk-example-33"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.7.5</span>. <span class="title">We don't know how quickly things jump.</span>
+</h6></a></article><div id="hk-example-33" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-248">Show that the graph \(\frac{dP}{dt}=(1-\frac{P}{20})^{3}(\frac{P}{5}-1)P^{7}\) has Phase line \([\ominus20\oplus5\ominus0\oplus]\)\(\begin{array}{c}
+\vee\\
+20\\
+\wedge\\
+5\\
+\vee\\
+0\\
+\wedge
+\end{array}\) but \(5\) jumps to \(20\) very quickly (like \(0.00001\) quick.</p>
+<div class="hidden-sagecell-sage" id="sage-11"><script type="text/x-sage">t,y=var('t,y')
+plot_slope_field((1 - y/20)^3 * (y/5 - 1) *y^7, (t,-5,5), (y,0, 20))
+</script></div></article></div>
+<article class="example-like" id="example-34"><a data-knowl="" class="id-ref" data-refid="hk-example-34"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.7.6</span>. <span class="title">Not all solutions exist for all \(t\).</span>
+</h6></a></article><div id="hk-example-34" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-249">Consider the equation \(\frac{dy}{dt}=(1+y)^{2}\text{.}\)</p>
+<p id="p-250">The phase line is \([\ominus-1\oplus]\) \(\begin{array}{c}
+\wedge\\
+-1\\
+\wedge
+\end{array}\) Sketch a curve.</p>
+<p id="p-251">These increasing/decreasing behaviors could be asymptotes. (Phase LINE DOES NOT TELL US THIS INFO)</p>
+<p id="p-252">ACTUAL SOL: \(y(t)=-1-\frac{1}{t+c}\text{.}\) Asymptote at \(t=c\text{.}\)</p>
+<p id="p-253">If \(y(0)&gt;-1\) then draw possible curve.</p>
+<div class="hidden-sagecell-sage" id="sage-12"><script type="text/x-sage">t,y=var('t,y')
+g = Graphics()
+g+= plot_slope_field((1+y)^2, (t,-5,5),(y,-5,5))
+g+= plot(-1-1/(t + 2), (t,-5,5), ymax = 5, ymin = -5)
+g.show()
+</script></div></article></div>
+<article class="example-like" id="example-35"><a data-knowl="" class="id-ref" data-refid="hk-example-35"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.7.7</span>. <span class="title">Cusps.</span>
+</h6></a></article><div id="hk-example-35" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-254">Consider the equation \(\frac{dy}{dt}=\frac{1}{1-y}\text{.}\)</p>
+<p id="p-255">The phase line would be: <div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/1.6-Phase3.png" style="width: 100%; height: auto;" alt=""></div> We can sketch “cusp-like” curves. Once a curve has fallen into a hole once it reaches the dotted line.</p>
+<div class="hidden-sagecell-sage" id="sage-13"><script type="text/x-sage">t,y=var('t,y')
+g = Graphics()
+g+= plot_slope_field(1/(1-y), (t, -5, 5), (y, -5, 5))
+g+= plot(1 + sqrt(-2*t + 4), (t, -5, 2))
+g+= plot(1 - sqrt(-2*t -2), (t, -5, -1), color="red")
+g.show()
+</script></div></article></div>
+<p id="p-256"><em class="alert">Role of Equilibrium points:</em></p>
+<p id="p-257">The solutions to autonomous equations either</p>
+<ol class="decimal">
+<li id="li-147">Tend to \(\pm\infty\)</li>
+<li id="li-148">Tend to the equilibrium solutions.</li>
+<li id="li-149">Stay consistently increasing/decreasing within equilibrium solutions.</li>
+</ol></section><section class="subsection" id="subsection-18"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">2.7.3</span> <span class="title">Classification of Equilibrium Solutions</span>
+</h3>
+<p id="p-258">Recall what <dfn class="terminology">asymptotic</dfn> means: say that \(f\) is asymptotic to the line \(y = c\) if</p>
+<div class="displaymath">
+\begin{equation*}
+\lim_{t \to \infty} f(t) = c.
+\end{equation*}
+</div>
+<p id="p-259">We can classify the equilibrium solutions to an autonomous equation by looking at the behavior of “nearby” solutions. Solutions fall into one of three categories.</p>
+<ol class="decimal">
+<li id="li-150">
+<p id="p-260"><em class="alert">Asymptotically stable (sink)</em></p>
+<ol class="lower-alpha">
+<li id="li-151">\(y_{0}\) is an <dfn class="terminology">asymptotically stable</dfn> equilibrium if any solution with initial condition sufficiently close to \(y_{0}\) is asymptotic to \(y_{0}\) as \(t\) increases.</li>
+<li id="li-152">Phase Line looks like this: \(\left[\ominus y_{0}\oplus\right]\) \(\begin{array}{c}
+\vee\\
+y_{0}\\
+\wedge
+\end{array}\)</li>
+<li id="li-153">Graph looks like: (reminds you that it is falling into something)</li>
+<li id="li-154">In a graph of \(f(y)\) vs. \(y\text{,}\) we have \(f^{\prime}(y_{0}) \lt 0\text{.}\)</li>
+</ol>
+</li>
+<li id="li-155">
+<p id="p-261"><em class="alert">Asymptotically unstable (source):</em></p>
+<ol class="lower-alpha">
+<li id="li-156">\(y_{0}\) is an <dfn class="terminology">asymptotically unstable</dfn> equilibrium if any solution with initial condition sufficiently close to \(y_{0}\) tends torward \(y_{0}\) as \(t\) decreases.</li>
+<li id="li-157">The phase line looks like this: \(\left[\oplus y_{0}\ominus\right]\) \(\begin{array}{c}
+\wedge\\
+y_{0}\\
+\vee
+\end{array}\)</li>
+<li id="li-158">Graph looks like: ( reminds you that it is coming from one place)</li>
+<li id="li-159">In \(f(y)\) vs. \(y\) graph, we have \(f^{\prime}(y_{0})&gt;0\text{.}\)</li>
+</ol>
+</li>
+<li id="li-160">
+<p id="p-262"><em class="alert">Semistable:</em></p>
+<ol class="lower-alpha">
+<li id="li-161">\(y_{0}\) is an <em class="alert">asymptotically semistable</em> equilibrium if it doesn't fit the category of a sink or source \item Phase Line looks like this: \(\left[\oplus y_{0}\oplus\right]\) \(\begin{array}{c}
+\wedge\\
+y_{0}\\
+\wedge
+\end{array}\)or \(\left[\ominus y_{0}\ominus\right]\) \(\begin{array}{c}
+\vee\\
+y_{0}\\
+\vee
+\end{array}\)</li>
+<li id="li-162">Graph looks like:</li>
+</ol>
+</li>
+</ol>
+<article class="example-like" id="example-36"><a data-knowl="" class="id-ref" data-refid="hk-example-36"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.7.8</span>. <span class="title">Drawing solution from the \(f(y)\) vs. \(y\) graph).</span>
+</h6></a></article><div id="hk-example-36" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-263">Consider the equation \(\frac{dy}{dt}=y^{2}+y-6=(y+3)(y-2)\text{.}\)</p>
+<p id="p-264">The phase line is \(\left[\oplus2\ominus-3\oplus\right]\) \(\begin{array}{c}
+\wedge\\
+2\\
+\vee\\
+-3\\
+\wedge
+\end{array}\)</p>
+<p id="p-265">How can these be classified?</p></article></div>
+<article class="example-like" id="example-37"><a data-knowl="" class="id-ref" data-refid="hk-example-37"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.7.9</span>. <span class="title">(Using \(f(y)\)).</span>
+</h6></a></article><div id="hk-example-37" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-266">We can figure out classification directly from the graph of \(f(y)\text{.}\) <div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/1.6-Classif-1.png" style="width: 100%; height: auto;" alt=""></div> Here, node means semistable, sink means stable, and source means unstable.</p></article></div>
+<article class="example-like" id="example-38"><a data-knowl="" class="id-ref" data-refid="hk-example-38"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.7.10</span>.</h6></a></article><div id="hk-example-38" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-267">Suppose we only know the graph of \(f(y)\) not the actual formula. <div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/1.6-f(y).png" style="width: 100%; height: auto;" alt=""></div> <p id="p-268">Then draw phase line : \(\left[\ominus c\oplus b\ominus a\oplus\right]\) \(\begin{array}{c}
+\vee\\
+c\\
+\wedge\\
+b\\
+\vee\\
+a\\
+\wedge
+\end{array}\) Now sketch some solution curves.</p></p></article></div></section></section></div></main>
+</div>
+<div class="login-link"><span id="loginlogout" class="login">login</span></div>
+<script src="https://pretextbook.org/js/0.12/login.js"></script>
+</body>
+</html>

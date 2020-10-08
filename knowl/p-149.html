@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-12-13T10:04:42-05:00    *-->
+<!--*    on 2020-03-18T09:31:45-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -13,13 +13,19 @@
 </head>
 <body>
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>The dot product is an example of a more general kind of product called an <dfn class="terminology">inner product</dfn> on a vector space. Let \(V\) be a vector space over a field \(F\text{.}\) An operation \(\ip{}{}\) is called an inner product on \(V\) if</p>
-<ol class="decimal">
-<li>positive definite: \(\ip{u}{u} &gt; 0\) whenever \(u \neq 0\)</li>
-<li>conjugate symmetric: \(\ip{u}{v} = \cc{\ip{v}{u}}\)</li>
-<li>linear in the first entry: \(\ip{\alpha u + \beta v}{w} = \alpha \ip{u}{w} + \beta \ip{v}{w}\)</li>
-</ol>
-<p>where \(\cc z\) denotes the complex conjugate. Note that in the case that the field \(F = \R\text{,}\) an inner product is symmetric.</p>
+<p>Notice that the defintion of vector spaces doesn't include any way to multiply vectors. One notion of vector multiplication that you've likely seen before on \(\R^n\) is the <dfn class="terminology">dot product</dfn> of vectors. Let \(v = (v_1, \ldots, v_n), u = (u_1, \ldots, u_n) \in \R^n\text{.}\) Then</p>
+<div class="displaymath">
+\begin{equation*}
+u \cdot v = \sum_{i=1}^n v_i u_i.
+\end{equation*}
+</div>
+<p>One of the most useful characteristics of the dot product on \(\R^n\) is that it allows a the definition of the angle between two vectors:</p>
+<div class="displaymath">
+\begin{equation*}
+u \cdot v = \norm{u}\norm{v} \cos \theta
+\end{equation*}
+</div>
+<p>where \(\theta\) is the angle between \(u\) and \(v\) and \(\norm{u} = \sqrt{u\cdot u}\text{.}\) Notice that when the vectors are perpendicular, this implies that the dot product is 0. We can generalize this geometry to the setting of general vector spaces.</p>
 <span class="incontext"><a href="section-7.html#p-149">in-context</a></span>
 </body>
 </html>

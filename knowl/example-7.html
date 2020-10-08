@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:43-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<article class="example-like"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.1.4</span>. <span class="title">(using formula).</span>
+</h6>
+<p>Find the general solution for</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt}=y+9\cos t^{2}.
+\end{equation*}
+</div>
+<ul class="disc">
+<li>
+<p>Step 1: Rewrite as</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt}-y=9\cos t^{2}
+\end{equation*}
+</div>
+<p>so that \(p(t)=-1\) and \(g(t)=9\cos t^{2}\text{.}\)</p>
+</li>
+<li>
+<p>Step 2: Find an integrating factor:</p>
+<div class="displaymath">
+\begin{equation*}
+\mu(t)=e^{\int-1dt}=e^{-t}.
+\end{equation*}
+</div>
+<p>Note we only need an integrating factor, not a general integrating factor. So we never need to have a \(+C\) in this step!</p>
+</li>
+<li>
+<p>Step 3: I can go through the process again, or I can just plug in the formula and get</p>
+<div class="displaymath">
+\begin{align*}
+y(t) \amp = \amp \frac{1}{\mu(t)}\left[\int\mu(t)g(t)dt.+C\right]\\
+\amp = \amp \frac{1}{e^{-t}}\left[\int e^{-t}9\cos t^{2}dt+C\right]\\
+\amp = \amp e^{t}\left[\int e^{-t}9\cos t^{2}dt+C\right]
+\end{align*}
+</div>
+<p>Can't integrate, so we leave the answer in this form.</p>
+</li>
+</ul></article><span class="incontext"><a href="ch2-1.html#example-7">in-context</a></span>
+</body>
+</html>

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:42-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Constant coefficients</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    asciimath2jax: {
+        ignoreClass: ".*",
+        processClass: "has_am"
+    },
+    jax: ["input/AsciiMath"],
+    extensions: ["asciimath2jax.js"],
+    TeX: {
+        extensions: ["extpfeil.js", "autobold.js", "https://pretextbook.org/js/lib/mathjaxknowl.js", ],
+        // scrolling to fragment identifiers is controlled by other Javascript
+        positionToHash: false,
+        equationNumbers: { autoNumber: "none", useLabelIds: true, },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    // HTML-CSS output Jax to be dropped for MathJax 3.0
+    "HTML-CSS": {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+    CommonHTML: {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+});
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML-full"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.12/pretext.js"></script><script src="https://pretextbook.org/js/0.12/pretext_add_on.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/toc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/setcolors.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/features.css" rel="stylesheet" type="text/css">
+<script>var logged_in = false;
+var role = 'student';
+var guest_access = true;
+var login_required = false;
+var js_version = 0.12;
+</script>
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div class="hidden-content" style="display:none">\(\DeclareMathOperator{\RE}{Re}
+  \DeclareMathOperator{\IM}{Im}
+  \DeclareMathOperator{\ess}{ess}
+  \DeclareMathOperator{\intr}{int}
+  \DeclareMathOperator{\dist}{dist}
+  \DeclareMathOperator{\dom}{dom}
+  \DeclareMathOperator{\diag}{diag}
+  \DeclareMathOperator\re{\mathrm {Re~}}
+  \DeclareMathOperator\im{\mathrm {Im~}}
+  
+  \newcommand\dd{\mathrm d}
+  \newcommand{\eps}{\varepsilon}
+  \newcommand{\To}{\longrightarrow}
+  \newcommand{\hilbert}{\mathcal{H}}
+  \newcommand{\s}{\mathcal{S}_2}
+  \newcommand{\A}{\mathcal{A}}
+  \newcommand\h{\mathcal{H}}
+  \newcommand{\J}{\mathcal{J}}
+  \newcommand{\M}{\mathcal{M}}
+  \newcommand{\F}{\mathbb{F}}
+  \newcommand{\N}{\mathcal{N}}
+  \newcommand{\T}{\mathbb{T}}
+  \newcommand{\W}{\mathcal{W}}
+  \newcommand{\X}{\mathcal{X}}
+  \newcommand{\D}{\mathbb{D}}
+  \newcommand{\C}{\mathbb{C}}
+  \newcommand{\BOP}{\mathbf{B}}
+  \newcommand{\Z}{\mathbb{Z}}
+  \newcommand{\BH}{\mathbf{B}(\mathcal{H})}
+  \newcommand{\KH}{\mathcal{K}(\mathcal{H})}
+  \newcommand{\pick}{\mathcal{P}_2}
+  \newcommand{\schur}{\mathcal{S}_2}
+  \newcommand{\R}{\mathbb{R}}
+  \newcommand{\Complex}{\mathbb{C}}
+  \newcommand{\Field}{\mathbb{F}}
+  \newcommand{\RPlus}{\Real^{+}}
+  \newcommand{\Polar}{\mathcal{P}_{\s}}
+  \newcommand{\Poly}{\mathcal{P}(E)}
+  \newcommand{\EssD}{\mathcal{D}}
+  \newcommand{\Lop}{\mathcal{L}}
+  \newcommand{\cc}[1]{\overline{#1}}
+  \newcommand{\abs}[1]{\left\vert#1\right\vert}
+  \newcommand{\set}[1]{\left\{#1\right\}}
+  \newcommand{\seq}[1]{\left\lt#1\right&gt;}
+  \newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+  \newcommand{\essnorm}[1]{\norm{#1}_{\ess}}
+  \newcommand{\tr}{\operatorname{tr}}
+  \newcommand{\ran}[1]{\operatorname{ran}#1}
+  \newcommand{\nt}{\stackrel{\mathrm {nt}}{\to}}
+  \newcommand{\pnt}{\xrightarrow{pnt}}
+  \newcommand{\ip}[2]{\left\langle #1, #2 \right\rangle}
+  \newcommand{\ad}{^\ast}
+  \newcommand{\inv}{^{-1}}
+  \newcommand{\adinv}{^{\ast -1}}
+  \newcommand{\invad}{^{-1 \ast}}
+  \newcommand\Pick{\mathcal P}
+  \newcommand\Ha{\mathbb{H}}
+  \newcommand{\HH}{\Ha\times\Ha}
+  \newcommand\Htau{\mathbb{H}(\tau)}
+  \newcommand{\vp}{\varphi}
+  \newcommand{\ph}{\varphi}
+  \newcommand\al{\alpha}
+  \newcommand\ga{\gamma}
+  \newcommand\de{\delta}
+  \newcommand\ep{\varepsilon}
+  \newcommand\la{\lambda}
+  \newcommand\up{\upsilon}
+  \newcommand\si{\sigma}
+  \newcommand\beq{\begin{equation}}
+  \newcommand\ds{\displaystyle}
+  \newcommand\eeq{\end{equation}}
+  \newcommand\df{\stackrel{\rm def}{=}}
+  \newcommand\ii{\mathrm i}
+  \newcommand{\vectwo}[2]
+  {
+     \begin{pmatrix} #1 \\ #2 \end{pmatrix}
+  }
+  \newcommand{\vecthree}[3]
+  {
+     \begin{pmatrix} #1 \\ #2 \\ #3 \end{pmatrix}
+  }
+  \newcommand\blue{\color{blue}}
+  \newcommand\black{\color{black}}
+  \newcommand\red{\color{red}}
+  
+  \newcommand\nn{\nonumber}
+  \newcommand\bbm{\begin{bmatrix}}
+  \newcommand\ebm{\end{bmatrix}}
+  \newcommand\bpm{\begin{pmatrix}}
+  \newcommand\epm{\end{pmatrix}}
+  \numberwithin{equation}{section}
+  \newcommand\nin{\noindent}
+  \newcommand{\nCr}[2]{\,_{#1}C_{#2}} 
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="diffeqs.html"><span class="title">Differential Equations</span></a></h1>
+<p class="byline">Phanuel Mariano, Ryan Tully-Doyle</p>
+</div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3"><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="section-21.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="chapter-4.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="section-23.html" title="Next">Next</a></span></div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="section-21.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="chapter-4.html" title="Up">Up</a><a class="next-button button toolbar-item" href="section-23.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link"><a href="frontmatter-1.html" data-scroll="frontmatter-1"><span class="title">Front Matter</span></a></li>
+<li class="link">
+<a href="introduction.html" data-scroll="introduction"><span class="codenumber">1</span> <span class="title">Introduction</span></a><ul>
+<li><a href="ch1-1.html" data-scroll="ch1-1">Modeling via differential equations, some solutions and definitions</a></li>
+<li><a href="ch1-2.html" data-scroll="ch1-2">Slope fields (direction fields)</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch2.html" data-scroll="ch2"><span class="codenumber">2</span> <span class="title">First Order Differential Equations</span></a><ul>
+<li><a href="ch2-1.html" data-scroll="ch2-1">Linear equations and integrating factors</a></li>
+<li><a href="ch2-2.html" data-scroll="ch2-2">Separable equations</a></li>
+<li><a href="ch2-3.html" data-scroll="ch2-3">Separable homogeneous equations and the substitution method</a></li>
+<li><a href="ch2-4.html" data-scroll="ch2-4">Modeling with Differential Equations</a></li>
+<li><a href="ch2-5.html" data-scroll="ch2-5">Modeling with differential equations - more problems</a></li>
+<li><a href="ch2-6.html" data-scroll="ch2-6">Existence and Uniqueness of Solutions</a></li>
+<li><a href="ch2-7.html" data-scroll="ch2-7">Autonomous Equations and Population dynamics</a></li>
+<li><a href="ch2-8.html" data-scroll="ch2-8">Exact equations</a></li>
+<li><a href="ch2-9.html" data-scroll="ch2-9">Euler's method</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch3.html" data-scroll="ch3"><span class="codenumber">3</span> <span class="title">Second Order Linear Equations</span></a><ul>
+<li><a href="ch3-1.html" data-scroll="ch3-1">Motivation - mass-spring systems.</a></li>
+<li><a href="ch3-2.html" data-scroll="ch3-2">Second order linear equations</a></li>
+<li><a href="ch3-3.html" data-scroll="ch3-3">Solutions to Linear Equations; the Wronskian</a></li>
+<li><a href="ch3-4.html" data-scroll="ch3-4">Complex roots of the characteristic equation</a></li>
+<li><a href="ch3-5.html" data-scroll="ch3-5">Repeated roots; Reduction of order</a></li>
+<li><a href="ch3-6.html" data-scroll="ch3-6">Non-homogeneous equations - Undetermined coefficients</a></li>
+<li><a href="section-18.html" data-scroll="section-18">Variation of Parameters</a></li>
+<li><a href="section-19.html" data-scroll="section-19">Harmonic oscillations</a></li>
+<li><a href="section-20.html" data-scroll="section-20">Forced oscillations</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter-4.html" data-scroll="chapter-4"><span class="codenumber">4</span> <span class="title">Higher order differential equations</span></a><ul>
+<li><a href="section-21.html" data-scroll="section-21">Linear equations</a></li>
+<li><a href="section-22.html" data-scroll="section-22" class="active">Constant coefficients</a></li>
+<li><a href="section-23.html" data-scroll="section-23">The Method of Undetermined Coefficients</a></li>
+</ul>
+</li>
+<li class="link"><a href="backmatter-1.html" data-scroll="backmatter-1"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="quadratic.html" data-scroll="quadratic"><span class="codenumber">A</span> <span class="title">A fast quadratic method</span></a></li>
+<li class="link">
+<a href="appendix-2.html" data-scroll="appendix-2"><span class="codenumber">B</span> <span class="title">Exercises for Chapter 1</span></a><ul>
+<li><a href="section-24.html" data-scroll="section-24">Section 1.1</a></li>
+<li><a href="section-25.html" data-scroll="section-25">Section 1.2</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-3.html" data-scroll="appendix-3"><span class="codenumber">C</span> <span class="title">Exercises for Chapter 2</span></a><ul>
+<li><a href="section-26.html" data-scroll="section-26">Section 2.1</a></li>
+<li><a href="section-27.html" data-scroll="section-27">Section 2.2</a></li>
+<li><a href="section-28.html" data-scroll="section-28">Section 2.3</a></li>
+<li><a href="section-29.html" data-scroll="section-29">Section 2.4</a></li>
+<li><a href="section-30.html" data-scroll="section-30">Section 2.5</a></li>
+<li><a href="section-31.html" data-scroll="section-31">Section 2.6</a></li>
+<li><a href="section-32.html" data-scroll="section-32">Section 2.7</a></li>
+<li><a href="section-33.html" data-scroll="section-33">Section 2.8</a></li>
+<li><a href="section-34.html" data-scroll="section-34">Section 2.9</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-4.html" data-scroll="appendix-4"><span class="codenumber">D</span> <span class="title">Exercises for Chapter 3</span></a><ul>
+<li><a href="section-35.html" data-scroll="section-35">Section 3.2</a></li>
+<li><a href="section-36.html" data-scroll="section-36">Section 3.3</a></li>
+<li><a href="section-37.html" data-scroll="section-37">Section 3.4</a></li>
+<li><a href="section-38.html" data-scroll="section-38">Section 3.5</a></li>
+<li><a href="section-39.html" data-scroll="section-39">Section 3.6</a></li>
+</ul>
+</li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="section-22"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">4.2</span> <span class="title">Constant coefficients</span>
+</h2>
+<p id="p-474">Now Consider the homogeneous \(n\)th order linear equation with constant coefficients.</p>
+<div class="displaymath">
+\begin{equation*}
+a_{n}y^{(n)}+a_{n-1}y^{(n-1)}+\cdots+a_{1}y^{\prime}+a_{0}y=0.
+\end{equation*}
+</div>
+<p>As we did in the \(2\)nd order case, the first thing we do is guess that the solution will look like \(y=e^{rt}\) and</p>
+<div class="displaymath">
+\begin{align*}
+y \amp =e^{rt}\\
+y^{\prime} \amp =re^{rt},\\
+\amp \vdots\\
+y^{(n)} \amp =r^{n}e^{rt}.
+\end{align*}
+</div>
+<p>Plugging into the LHS and setting equal to zero we have</p>
+<div class="displaymath">
+\begin{align*}
+LHS \amp =a_{n}\left(r^{n}e^{rt}\right)+\cdots+a_{1}\left(re^{rt}\right)+a_{0}\left(e^{rt}\right)\\
+\amp =e^{rt}\left(a_{n}r^{n}+\cdots+a_{0}\right)\\
+\amp =RHS=0
+\end{align*}
+</div>
+<p>hence</p>
+<div class="displaymath">
+\begin{equation*}
+e^{rt}\left(a_{n}r^{n}+\cdots+a_{0}\right)=0.
+\end{equation*}
+</div>
+<p>But since \(e^{rt}\neq0\) then</p>
+<div class="displaymath">
+\begin{equation*}
+a_{n}r^{n}+\cdots+a_{1}r+a_{0}=0.
+\end{equation*}
+</div>
+<p id="p-475">As before the <dfn class="terminology">characteristic equation</dfn> is given by:</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{array}{c}
+\underbrace{a_{n}r^{n}+\cdots+a_{0}}\\
+Z(r)
+\end{array}=0,
+\end{equation*}
+</div>
+<p>where we call \(Z(r)\) the characteristic polynomial. How do we solve \(n-\)degree polynomials? By factoring! The fundamental theorem of algebra guarantees that an \(n\)th degree polynomial factors into \(n\) linear terms (assuming that we allow complex roots).</p>
+<div class="displaymath">
+\begin{equation*}
+Z(t)=a_{n}\left(r-r_{1}\right)\left(r-r_{2}\right)\cdots\left(r-r_{n}\right).
+\end{equation*}
+</div>
+<p><em class="alert">HOWEVER</em>, there is no general approach to factoring polynomials of degree greater than 4. Numerical techniques are necessary in these cases.</p>
+<p id="p-476">Solutions to the ODE are built exactly like in the 2nd degree case. If there are any repeat solutions, then keep multiplying by \(t\) until you don't have any more repeat solutions.</p>
+<article class="example-like" id="example-75"><a data-knowl="" class="id-ref" data-refid="hk-example-75"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">4.2.1</span>.</h6></a></article><div id="hk-example-75" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-477">Find general solution and the particular solution to the IVP</p>
+<div class="displaymath">
+\begin{equation*}
+y^{\prime\prime\prime}-2y^{\prime\prime}-y^{\prime}+2y=0.\,\,\,\,y(0)=0,y^{\prime}(0)=1,y^{\prime}(0)=2.
+\end{equation*}
+</div>
+<p>(Hint: Suppose you know \(r^{3}-2r^{2}-r+2=\left(r-2\right)\left(r+1\right)\left(r-1\right)\))</p>
+<p id="p-478">The characteristic equation is \(2r^{3}-4r^{2}-2r+4=0\) and by the hint we have</p>
+<div class="displaymath">
+\begin{equation*}
+\left(r-2\right)\left(r+1\right)\left(r-1\right)=0,
+\end{equation*}
+</div>
+<p>hence the general solution is \(y(t)=c_{1}e^{2t}+c_{2}e^{-t}+c_{3}e^{t}\text{.}\) To find the particular solution to the IVP we start by:</p>
+<div class="displaymath">
+\begin{align*}
+y(t) \amp =c_{1}e^{2t}+c_{2}e^{-t}+c_{3}e^{t}\\
+y^{\prime}(t) \amp =2c_{1}e^{2t}-c_{2}e^{-t}+c_{3}e^{t}\\
+y^{\prime\prime}(t) \amp =4c_{1}e^{2t}+c_{2}e^{-t}+c_{2}e^{t}.
+\end{align*}
+</div>
+<p>Then we have to solve the following system of equations:</p>
+<div class="displaymath">
+\begin{align*}
+0 \amp =c_{1}+c_{2}+c_{3}\\
+1 \amp =2c_{1}-c_{2}+c_{3}\\
+2 \amp =4c_{1}+c_{2}+c_{3}
+\end{align*}
+</div>
+<p>and get \(c_{1}=\frac{2}{3}\text{,}\) \(c_{2}=-\frac{1}{6}\) and \(c_{3}=-\frac{1}{2}\text{,}\) hence</p>
+<div class="displaymath">
+\begin{equation*}
+y(t)=\frac{2}{3}e^{2t}-\frac{1}{6}e^{-t}-\frac{1}{2}e^{t}.
+\end{equation*}
+</div></article></div>
+<article class="example-like" id="example-76"><a data-knowl="" class="id-ref" data-refid="hk-example-76"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">4.2.2</span>.</h6></a></article><div id="hk-example-76" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-479">Find general solution of</p>
+<div class="displaymath">
+\begin{equation*}
+y^{(4)}+8y^{\prime\prime\prime}+16y^{\prime\prime}=0.
+\end{equation*}
+</div>
+<p>(Hint: \(r^{4}+8r^{3}+16r^{2}=r^{2}\left(r+4\right)^{2}\))</p>
+<p id="p-480">The characteristic polynomial is</p>
+<div class="displaymath">
+\begin{align*}
+r^{4}+8r^{3}+16r^{2} \amp =0
+\end{align*}
+</div>
+<p>which by the hint we know factors as</p>
+<div class="displaymath">
+\begin{equation*}
+r^{2}\left(r+4\right)^{2}=0.
+\end{equation*}
+</div>
+<p>Note that since this a 4th degree polynomial we need to have 4 roots: \(0,0,-4,-4\text{.}\) So we use the same method we do when we have repeats and get</p>
+<div class="displaymath">
+\begin{align*}
+y(t) \amp =c_{1}e^{0t}+c_{2}te^{0t}+c_{3}e^{-4t}+c_{4}te^{-4t}\\
+\amp =c_{1}+c_{2}t+c_{3}e^{-4t}+c_{4}te^{-4t}.
+\end{align*}
+</div></article></div>
+<article class="example-like" id="example-77"><a data-knowl="" class="id-ref" data-refid="hk-example-77"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">4.2.3</span>.</h6></a></article><div id="hk-example-77" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-481">Solve</p>
+<div class="displaymath">
+\begin{equation*}
+y^{(4)}+y^{\prime\prime\prime}-5y^{\prime\prime}+y^{\prime}-6y=0.
+\end{equation*}
+</div>
+<p>(Hint: Suppose \(\left(r-2\right)\left(r+3\right)\left(r^{2}+1\right)\))</p>
+<p id="p-482">The characteristic equation is given by</p>
+<div class="displaymath">
+\begin{equation*}
+r^{4}+r^{3}-5r^{2}+r-6=0
+\end{equation*}
+</div>
+<p>and by the hint</p>
+<div class="displaymath">
+\begin{equation*}
+Z(r)=\left(r-2\right)\left(r+3\right)\left(r^{2}+1\right)=0
+\end{equation*}
+</div>
+<p>which gives</p>
+<div class="displaymath">
+\begin{equation*}
+r=2,-3,\pm i
+\end{equation*}
+</div>
+<p>hence</p>
+<div class="displaymath">
+\begin{equation*}
+y(t)=c_{1}e^{2t}+c_{2}e^{-3t}+c_{3}\cos t+c_{3}\sin t.
+\end{equation*}
+</div></article></div>
+<article class="example-like" id="example-78"><a data-knowl="" class="id-ref" data-refid="hk-example-78"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">4.2.4</span>.</h6></a></article><div id="hk-example-78" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-483">Solve</p>
+<div class="displaymath">
+\begin{equation*}
+y^{\prime\prime\prime}-3y^{\prime\prime}+3y^{\prime}-y=0.
+\end{equation*}
+</div>
+<p>(Hint: \(r^{3}-3r^{2}+3r-1=\left(r-1\right)\left(r-1\right)^{2}\))</p>
+<p id="p-484">The characteristic polynomial is \(r^{3}-3r^{2}+3r-1=0\) and by the hint,</p>
+<div class="displaymath">
+\begin{equation*}
+\left(r-1\right)^{3}=0
+\end{equation*}
+</div>
+<p>\item So that \(r=1,1,1\)</p>
+<div class="displaymath">
+\begin{equation*}
+y(t)=c_{1}e^{t}+c_{2}te^{t}+c_{3}t^{2}e^{t}.
+\end{equation*}
+</div></article></div>
+<article class="example-like" id="example-79"><a data-knowl="" class="id-ref" data-refid="hk-example-79"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">4.2.5</span>.</h6></a></article><div id="hk-example-79" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-485">Solve</p>
+<div class="displaymath">
+\begin{equation*}
+y^{(4)}+8y^{\prime\prime}-9y=0
+\end{equation*}
+</div>
+<p>(Hint: \(r^{4}+8r^{2}-9=\left(r^{2}-1\right)\left(r^{2}+9\right)\))</p>
+<p id="p-486">By the hint</p>
+<div class="displaymath">
+\begin{align*}
+r^{4}+8r^{2}-9 \amp =\left(r^{2}-1\right)\left(r^{2}+9\right)\\
+\amp =\left(r-1\right)\left(r+1\right)\left(r-3i\right)\left(r+3i\right).
+\end{align*}
+</div>
+<p>then</p>
+<div class="displaymath">
+\begin{equation*}
+y(t)=c_{1}e^{t}+c_{2}e^{-t}+c_{3}\cos(3t)+c_{4}\sin(3t).
+\end{equation*}
+</div></article></div>
+<article class="example-like" id="example-80"><a data-knowl="" class="id-ref" data-refid="hk-example-80"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">4.2.6</span>.</h6></a></article><div id="hk-example-80" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-487">Suppose the roots of the characteristic equation are</p>
+<div class="displaymath">
+\begin{equation*}
+2,3,3,3,2\pm3i,2\pm3i
+\end{equation*}
+</div>
+<p>then the general solution is</p>
+<div class="displaymath">
+\begin{align*}
+y(t) \amp =c_{1}e^{2t}+c_{2}e^{3t}+c_{3}te^{3t}+c_{4}t^{2}e^{3t}\\
+\amp +c_{5}e^{2t}\cos(3t)+c_{6}e^{2t}\sin(3t)\\
+\amp +c_{5}te^{2t}\cos(3t)+c_{6}te^{2t}\sin(3t).
+\end{align*}
+</div></article></div></section></div></main>
+</div>
+<div class="login-link"><span id="loginlogout" class="login">login</span></div>
+<script src="https://pretextbook.org/js/0.12/login.js"></script>
+</body>
+</html>

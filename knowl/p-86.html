@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-12-13T10:04:41-05:00    *-->
+<!--*    on 2020-03-18T09:31:45-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -13,25 +13,14 @@
 </head>
 <body>
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>Now, notice that 10 was the value we wanted to be output with input 5, and that \(p(5) = 12\text{.}\) In fact, if \((5,10)\) had been given the name \((x_3, y_3)\text{,}\) then the value of \(c\) would have been \(c = \frac{y_3}{p(x_3)},\) and the interpolating function for \((1,0), (2,0)\) and \((x_3, y_3)\) would have been</p>
+<p>What we need is a way to adjust \(p\) that keeps the function passing through \((1,0)\) and \((2,0)\text{.}\) We might notice that every function of the form \(f(x) = c(x-1)(x-2) = c\cdot p(x)\) has this property, so let's choose a value of \(c\) that makes \(f\) pass through \((5,10)\text{.}\)</p>
 <div class="displaymath">
-\begin{equation*}
-f(x) = \frac{y_3}{p(x_3)} p(x) = \frac{y_3}{p(x_3)} (x - 1)(x-2).
-\end{equation*}
+\begin{align*}
+10 \amp= f(5) = c\cdot p(5) = c(5-1)(5-4) = 12c\\
+\frac{10}{12} \amp= c.
+\end{align*}
 </div>
-<p>We can modify this further: given initial data \((x_1, 0), (x_2, 0), (x_3, y_3)\text{,}\) define</p>
-<div class="displaymath">
-\begin{equation*}
-p(x) = (x - x_1)(x - x_2)
-\end{equation*}
-</div>
-<p>and</p>
-<div class="displaymath">
-\begin{equation*}
-f(x) = \frac{y_3}{p(x_3)} p(x) = \frac{y_3}{p(x_3)}(x - x_1)(x-x_2).
-\end{equation*}
-</div>
-<p>\(f\) is the interpolating function for the data.</p>
+<p>So \(f(x) = \frac{10}{12} p(x) = \frac{10}{12} (x-1)(x-2)\) interpolates the data.</p>
 <span class="incontext"><a href="section-5.html#p-86">in-context</a></span>
 </body>
 </html>

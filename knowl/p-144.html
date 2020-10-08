@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-12-13T10:04:42-05:00    *-->
+<!--*    on 2020-03-18T09:31:45-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -13,18 +13,7 @@
 </head>
 <body>
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>Recall that there is a unique parabola through any three points - we'll use the points \((a, f(a)), ((a+b)/2, f((a+b)/2), (b, f(b))\text{.}\) We have several techniques available for finding such an interpolation - we'll derive ours using Newton polynomials. The Newton polynomial through our points is</p>
-<div class="displaymath">
-\begin{equation*}
-g(x) = b_0 + b_1 (x - a) + b_2 (x -a) (x - (\frac{a+b}{2})),
-\end{equation*}
-</div>
-<p>where</p>
-<div class="displaymath">
-\begin{equation*}
-b_0 = a, b_1 = \frac{f((a+b)/2) - f(a)}{(a + b)/2 - a}, b_2 = \frac{\frac{f(b) - f((a+b)/2)}{b - (a+b)/2} - \frac{f((a+b)/2) - f(a)}{(a+b)/2 - a}}{b - a}.
-\end{equation*}
-</div>
+<p>An alternative to using trapezoids is to use polynomials to interpolate sample points. It turns out that using quadratic polynomials on equally spaced interpolation points gives a very nice formula. We'll begin with a single segment and approximate \(\int_a^b f(x)\, dx\text{.}\)</p>
 <span class="incontext"><a href="section-6.html#p-144">in-context</a></span>
 </body>
 </html>

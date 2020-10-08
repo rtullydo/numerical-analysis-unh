@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-12-13T10:04:42-05:00    *-->
+<!--*    on 2020-03-18T09:31:46-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -30,16 +30,12 @@
 </head>
 <body>
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>Since we want all of the frequencies between the DC component and the Nyquist frequency to count twice, we'll construct the following <dfn class="terminology">one-sided spectrum</dfn>. <div class="sagecell-octave" id="sage-52"><script type="text/x-sage">x = [4, -5, 0, 2, -3, -2, 4, -5, 0, 2, -3, -2 ];
-N = length(x);
+<p>Let's take a look at our signal from the previous section. <div class="sagecell-octave" id="sage-51"><script type="text/x-sage">x = [4, -5, 0, 2, -3, -2, 4, -5, 0, 2, -3, -2 ];
 X = fft(x);
-X = 1/N*abs(X); #normalizes X and finds magnitude of complex #
-twosidespec = X;
-onesidespec = twosidespec(1:N/2+1);
-onesidespec(2:end-1) = 2*onesidespec(2:end-1);
-freq = 0:N/2;
-scatter(freq, onesidespec, 400)
-</script></div> This shows precisely what we expect - the 0 frequency reflects the fact that the signal isn't centered about the x-axis. The \(k=4\) and \(k=6\) values reflect the constituent patterns from \(v_1\) and \(v_2\text{.}\)</p>
+X = 1/length(x)*abs(X); #normalizes X and finds magnitude of complex #
+k = 0:11;
+scatter(k, X, 400)
+</script></div> Several things should be immediately apparent. The first is that (with the exception of the term at \(k=0\text{,}\) which is special) the plot is symmetric about the line \(k = 6\text{.}\) The reason is that once you go beyond the midpoint of the vector, you are recovering the harmonic corresponding to the <em class="emphasis">backwards</em> frequency \(k\text{,}\) which will have the same magnitude as the forwards frequency \(k\) for real signals. This will be apparent if you look at how the points move around the unit circle. (For example, compare how multiples of \(\frac{\pi}{6}\) and \(\frac{11 \pi}{6}\) traverse the circle.) Thus, the frequency \(k\) for a real signal has two components of equal magnitude that contribute to that harmonic (much like the sine and cosine contribute to a single harmonic in the trigonometric setting). The special nodes are at \(k = 0 \text{,}\) which electrical engineers call the <dfn class="terminology">DC component</dfn> (that is, the center of oscilliation for the signal), and at \(k = N/2\) which is called the <dfn class="terminology">Nyquist frequency</dfn>, beyond which no frequency can be detected.</p>
 <span class="incontext"><a href="section-7.html#p-184">in-context</a></span>
 </body>
 </html>

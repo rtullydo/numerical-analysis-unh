@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-11-21T15:45:43-05:00    *-->
+<!--*    on 2020-03-18T09:31:43-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -13,10 +13,50 @@
 </head>
 <body>
 <article class="listitem"><h6 class="heading">
-<span class="type">Item</span> <span class="codenumber">3</span>.</h6>For all \(P, Q, R \in E\text{,}\)<div class="displaymath">
+<span class="type">Item</span>.</h6>
+<p><em class="alert">Step 2:</em> Find Rate in/ Rate out</p>
+<p>Note that for anything that comes in you can always find the rate in as</p>
+<div class="displaymath">
 \begin{equation*}
-P \oplus (Q \oplus R) = (P \oplus Q) \oplus R.
+\mbox{Rate in}=\left(\begin{array}{c}
+\mbox{concentration}\\
+\mbox{of sugar coming in}
+\end{array}\right)\times\mbox{Rate}.
 \end{equation*}
-</div></article><span class="incontext"><a href="section-elliptic-addition.html#li-107">in-context</a></span>
+</div>
+<p>Similarly you can always find the Rate out as</p>
+<div class="displaymath">
+\begin{equation*}
+\mbox{Rate out}=\left(\begin{array}{c}
+\mbox{concentration}\\
+\mbox{of sugar coming out}
+\end{array}\right)\times\mbox{Rate}.
+\end{equation*}
+</div>
+<p>We have</p>
+<div class="displaymath">
+\begin{align*}
+\text{Rate in}\amp = \amp \underset{\mbox{-sugar water solution}}{\left(5\frac{\mbox{pounds}}{\mbox{gallon}}\right)\left(6\frac{\mbox{gallons}}{\mbox{min}}\right)}\\
+\amp = \amp 30\frac{\mbox{pounds}}{\mbox{gallon}}.
+\end{align*}
+</div>
+<p>To find the concentration of sugar coming out we have know the amount of water at time \(t\text{.}\)</p>
+<div class="displaymath">
+\begin{align*}
+\mbox{Water at time }t \amp = \amp 200\mbox{ gallons}+\left(6\frac{\mbox{gallons}}{\mbox{min}}-4\frac{\mbox{gallons}}{\mbox{min}}\right)t\\
+\amp = \amp 200+2t,
+\end{align*}
+</div>
+<p>So</p>
+<div class="displaymath">
+\begin{align*}
+\mbox{Rate out} \amp = \amp \left(\begin{array}{c}
+\mbox{concentration}\\
+\mbox{of stuff going out}
+\end{array}\right)\times\mbox{Rate}\\
+\amp = \amp \left(\frac{y(t)}{200+2t}\frac{\text{pounds}}{\text{gallon}}\right)\times4\frac{\mbox{gallons}}{\mbox{min}}.\\
+\amp = \amp 4\frac{y(t)}{200+2t}\frac{\text{pound}}{\text{min}}.
+\end{align*}
+</div></article><span class="incontext"><a href="ch2-4.html#li-107">in-context</a></span>
 </body>
 </html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:44-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<article class="example-like"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">3.7.4</span>.</h6>
+<p>Find the general solution to</p>
+<div class="displaymath">
+\begin{equation*}
+t^{2}y^{\prime\prime}-3ty^{\prime}+3y=8t^{3},\,\,\,\,t&gt;0
+\end{equation*}
+</div>
+<p>given that</p>
+<div class="displaymath">
+\begin{equation*}
+y_{1}(t)=t,\,\,\,y_{2}(t)=t^{3}
+\end{equation*}
+</div>
+<p>forms a fundamental set of solution for the corresponding homogeneous differential equation.</p>
+<p>Step 1: Since \(y_{1}(t)=t,\,\,\,y_{2}(t)=t^{3}\) forms a fundamental set of solution, this means that the general solution for the homogeneous equation is</p>
+<div class="displaymath">
+\begin{equation*}
+y_{h}=c_{1}t+c_{2}t^{3}.
+\end{equation*}
+</div>
+<p>Step 2: Find the Wronskian:</p>
+<div class="displaymath">
+\begin{align*}
+W(y_{1},y_{2})(t) \amp =\left|\begin{array}{cc}
+t \amp t^{3}\\
+1 \amp 3t^{2}
+\end{array}\right|\\
+\amp =3t^{3}-t^{3}=2t^{3}\neq0,
+\end{align*}
+</div>
+<p>Step 3: Rewrite the equation in the form \(y^{\prime\prime}+p(t)y^{\prime}+q(t)y=g(t)\) and hence</p>
+<div class="displaymath">
+\begin{equation*}
+y^{\prime\prime}-\frac{3}{t}y^{\prime}+\frac{3}{t^{2}}y=8t,.
+\end{equation*}
+</div>
+<p>Use our formula with \(g(t)=8t\) and get</p>
+<div class="displaymath">
+\begin{align*}
+y_{p}(t) \amp =-y_{1}(t)\left[\int\frac{y_{2}(t)g(t)}{W\left(y_{1},y_{2}\right)(t)}dt\right]+y_{2}(t)\left[\int\frac{y_{1}(t)g(t)}{W\left(y_{1},y_{2}\right)(t)}dt\right]\\
+\amp =-t\left[\int\frac{t^{3}}{2t^{3}}8tdt\right]+t^{3}\left[\int\frac{t}{2t^{3}}8tdt\right]\\
+\amp =-t\left[\int4tdt\right]+t^{3}\left[\int\frac{4}{t}dt\right]\\
+\amp =-t\left[2t^{2}\right]+t^{3}\left[4\ln t\right]\\
+\amp =-2t^{3}+4t^{3}\ln t
+\end{align*}
+</div>
+<p>hence the general solution is</p>
+<div class="displaymath">
+\begin{align*}
+y(t) \amp =y_{h}+y_{p}\\
+\amp =c_{1}t+c_{2}t^{3}-2t^{3}+4t^{3}\ln t.
+\end{align*}
+</div></article><span class="incontext"><a href="section-18.html#example-70">in-context</a></span>
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-12-13T10:04:41-05:00    *-->
+<!--*    on 2020-03-18T09:31:45-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -13,40 +13,17 @@
 </head>
 <body>
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>Let's take a look at a small example to see how spline fitting works in practice. Suppose we're given three points, \((1,2), (2,4), (3,1)\text{.}\) Note that these are arranged in order of ascending \(x\) values. For each pair of points, we need a cubic spline - that is functions</p>
-<div class="displaymath">
-\begin{align*}
-f_1(x) \amp= a_1 x^3 + b_1 x^2 + c_1 x + d_1,\\
-f_2(x) \amp= a_2 x^3 + b_2 x^2 + c_2 x + d_2.
-\end{align*}
-</div>
-<p>We'll organize the equations as above. First, we have the interpolating conditions (that is, the functions need to pass through the points.)</p>
-<div class="displaymath">
-\begin{align*}
-a_1  + b_1 + c_1 + d_1 \amp= 2\\
-8 a_1  + 4 b_1 + 2 c_1 + d_1 \amp= 4\\
-8 a_2  + 4 b_2 + 2 c_2 + d_2 \amp= 4\\
-27 a_2  + 9 b_2 + 3 c_2 + d_2 \amp= 1
-\end{align*}
-</div>
-<p>Second, we want first derivatives to match at the transition point at \((2,4)\text{.}\)</p>
+<p>So far, we have \(4n\) parameters and \(2n + n - 1 + n - 1 = 4n -2\) conditions. Where are the last two conditions going to come from? The endpoints! Since we have two available conditions to impose, we'll get a nice square system if we impose them on the endpoints. There are a couple of common choices for how to do this. The first is called a <dfn class="terminology">natural spline</dfn>, which is the case where the function has no curvature at the endpoints - that is, it's locally linear:</p>
 <div class="displaymath">
 \begin{equation*}
-12 a_1 + 4 b_1 + c_1 = 12 a_2 + 4 b_2 + c_2
+f''(x_1) = f''(x_{n+1}) = 0.
 \end{equation*}
 </div>
-<p>Third, we want second derivatives to match at \((2,4)\text{.}\)</p>
+<p>In some physical applications, the designer of the spline might want to have prescribed slopes at the endpoints instead. That is,</p>
 <div class="displaymath">
 \begin{equation*}
-12 a_1 + 2 b_1 = 12 a_2 + 2 b_2
+f'(x_1) = c_1, \hspace{.5in} f'(x_{n+1}) = c_2.
 \end{equation*}
-</div>
-<p>Finally, we impose the endpoint condition for a natural spline, which is that \(f''(x_1) = f''(x_n) = 0\text{:}\)</p>
-<div class="displaymath">
-\begin{gather*}
-6 a_1 + 2 b_1 = 0\\
-18 a_2 + 2 b_2 = 0
-\end{gather*}
 </div>
 <span class="incontext"><a href="section-5.html#p-112">in-context</a></span>
 </body>

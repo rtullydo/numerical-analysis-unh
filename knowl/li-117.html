@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-11-21T15:45:43-05:00    *-->
+<!--*    on 2020-03-18T09:31:43-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -13,6 +13,70 @@
 </head>
 <body>
 <article class="listitem"><h6 class="heading">
-<span class="type">Item</span> <span class="codenumber">1</span>.</h6>If \(P = \mathcal O\text{,}\) then \(P+ Q = Q\text{.}\)</article><span class="incontext"><a href="section-ec-finite-fields.html#li-117">in-context</a></span>
+<span class="type">Item</span>.</h6>
+<p><em class="alert">Part (b):</em> Find the time that the object hits the ground, assuming it missed the platform.</p>
+<p><em class="alert">Solution:</em> We need to find the equation of when the object is falling down.When the object is falling down we thus have the following equation:</p>
+<div class="displaymath">
+\begin{equation*}
+m\frac{dv}{dt}=R(v)-mg,
+\end{equation*}
+</div>
+<p>and we have \(R(v)\) since the object is going down. Thus since the object is going <em class="emphasis">down</em> then \(v\lt0\text{.}\) Recall that</p>
+<div class="displaymath">
+\begin{equation*}
+\left|v\right|=\begin{cases}
+v \amp v&gt;0\\
+-v \amp v\lt0
+\end{cases}
+\end{equation*}
+</div>
+<p>then \(\left|v\right|=-v\) so that</p>
+<div class="displaymath">
+\begin{equation*}
+m\frac{dv}{dt}=\left|v\right|-mg=-v-mg.
+\end{equation*}
+</div>
+<p>hence</p>
+<div class="displaymath">
+\begin{equation*}
+m\frac{dv}{dt}=-v-mg.
+\end{equation*}
+</div>
+<p>Solving this we have that \(v_{2}(t)=Ce^{-t/m}-mg\) with initial condition \(v_{2}(0)=0\text{.}\) Thus</p>
+<div class="displaymath">
+\begin{align*}
+\end{align*}
+</div>
+<p>Then</p>
+<div class="displaymath">
+\begin{align*}
+x_{2}(t) \amp =\int v_{2}(t)dt+C\\
+\amp =-980e^{-t/10}-98t+C
+\end{align*}
+</div>
+<p>since</p>
+<div class="displaymath">
+\begin{equation*}
+x_{2}(0)=\text{maximum height}=21
+\end{equation*}
+</div>
+<p>then solving for \(C\) we have</p>
+<div class="displaymath">
+\begin{equation*}
+x_{2}(t)=-980e^{-t/10}-98t+1001.
+\end{equation*}
+</div>
+<p>To find out when \(x_{2}(t)\) hits the ground we need to find \(t_{2}\) such that \(x_{2}(t_{2})=0\) thus (using a calculator)</p>
+<div class="displaymath">
+\begin{equation*}
+0=-980e^{-t_{2}/10}-98t_{2}+1001\iff t_{2}\approx2.14.
+\end{equation*}
+</div>
+<p>Thus the ball hits the ground by adding the time it takes to reach its maximum plus the time after that:</p>
+<div class="displaymath">
+\begin{equation*}
+t_{0}=t_{1}+t_{2}=1.86+2.14=4\text{ seconds}.
+\end{equation*}
+</div></article><span class="incontext"><a href="ch2-5.html#li-117">in-context</a></span>
 </body>
 </html>

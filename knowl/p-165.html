@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-12-13T10:04:42-05:00    *-->
+<!--*    on 2020-03-18T09:31:45-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -13,20 +13,21 @@
 </head>
 <body>
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>If we accept that convergence won't be an issue, we can now apply the Hilbert space analogue of <a data-knowl="./knowl/orthocoord.html" title="Theorem 7.1">Theorem 7.1</a>: for \(f \in L^2([-\pi, \pi])\text{,}\) we have</p>
+<p>Leaving questions of convergence aside for the moment, let's check orthogonality. It should be clear that \(\ip{\sin(mx)}{\cos(nx)} = 0\text{.}\) (Hint: the integral of an odd function on a symmetric interval is 0). It remains to check that \(\sin mx \perp \sin nx\) and that \(\cos mx \perp \cos nx\) for \(m \neq n\text{.}\) The integrals are left as an exercise to the reader, with the hint that the appropriate starting place for the integrals is to use the identities</p>
 <div class="displaymath">
-\begin{align*}
-f \amp= \ip{f}{\frac{1}{\sqrt{2\pi}}} \frac{1}{\sqrt{2\pi}} + \ip{f}{\frac{1}{\sqrt{\pi}} \cos x}\cos x + \ip{f}{\frac{1}{\sqrt{\pi}}\sin x}\sin x + \ldots\\
-\amp= \ip{f}{1} \frac{1}{2\pi}  + \sum_{n=1}^\infty \frac{1}{\pi} \ip{f}{\cos nx} \cos nx + \frac{1}{\pi}\ip{f}{\sin nx} \sin nx.
-\end{align*}
+\begin{gather*}
+\cos(a)\cos(b) = \frac{1}{2} (\cos(a+b) + \cos(a - b))\\
+\sin(a)\sin(b) = \frac{1}{2} (\cos(a-b) - \cos(a + b))
+\end{gather*}
 </div>
-<p>We arrive at the computational formula for the Fourier coefficients \(a_n, b_n\) in <a data-knowl="./knowl/fourierseries.html" title="Theorem 7.2: Existence of Fourier Series in \(L^2\)">Theorem 7.2</a>.</p>
+<p>The double angle formulas can be used to establish that \(\norm{\cos nx}_{L^2} = \norm{\sin nx} = \sqrt{\pi}\text{,}\) and so we can create an orthonormal basis for \(L^2([-\pi,\pi])\) of the form</p>
 <div class="displaymath">
-\begin{align*}
-a_n \amp= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cos nx \, dx\\
-b_n \amp= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \sin nx \, dx
-\end{align*}
+\begin{equation*}
+\{\frac{1}{\sqrt{2\pi}}, \frac{1}{\sqrt{\pi}}\cos x, \frac{1}{\sqrt{\pi}} \sin x, \frac{1}{\sqrt{\pi}} \cos 2x, \frac{1}{\sqrt{\pi}} \sin 2x, \ldots\}.
+\end{equation*}
 </div>
+<p><article class="remark-like"><h6 class="heading">
+<span class="type">Note</span> <span class="codenumber">7.3</span>.</h6>You might wonder about this basis. After all, there are infinitely many different bases for \(\R^n\text{.}\) The same is true in \(L^2([-\pi,\pi]).\) The Fourier basis is chosen for work with periodic functions. There are other bases in the form of orthogonal polynomials of various flavors. Another basis is the complex exponential functions, which we can get from the Fourier basis using the identity \(e^{i\theta} = \cos \theta + i \sin \theta\text{.}\)</article></p>
 <span class="incontext"><a href="section-7.html#p-165">in-context</a></span>
 </body>
 </html>

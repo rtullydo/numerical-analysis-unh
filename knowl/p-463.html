@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:44-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<h6 class="heading"><span class="type">Paragraph</span></h6>
+<p>Step 2: We make our first guess</p>
+<div class="displaymath">
+\begin{equation*}
+u_{p}(t)=A\cos\left(\omega t\right)+B\sin\left(\omega t\right)
+\end{equation*}
+</div>
+<p>and there are no repeats with \(u_{h}\) as long as \(\omega\neq0\text{,}\) hence we have the correct guess. Thus</p>
+<div class="displaymath">
+\begin{align*}
+u_{p}^{\prime}(t) \amp =-A\omega\sin\left(\omega t\right)+B\omega\cos\left(\omega t\right)\\
+u_{p}^{\prime\prime}(t) \amp =-A\omega^{2}\cos\left(\omega t\right)-B\omega^{2}\sin\left(\omega t\right).
+\end{align*}
+</div>
+<p>Plugging this into the LHS, we have</p>
+<div class="displaymath">
+\begin{align*}
+LHS=u_{p}^{\prime\prime}+2u_{p} \amp =\left[-A\omega^{2}\cos\left(\omega t\right)-B\omega^{2}\sin\left(\omega t\right)\right]\\
+\amp +2A\cos\left(\omega t\right)+2B\sin\left(\omega t\right)\\
+\amp =A\left(2-\omega^{2}\right)\cos\left(\omega t\right)+B\left(2-\omega^{2}\right)\sin\left(\omega t\right)
+\end{align*}
+</div>
+<p>Then, setting \(LHS=RHS=1\cdot\cos\left(\omega t\right)+0\sin\left(\omega t\right)\) we have</p>
+<div class="displaymath">
+\begin{align*}
+A\left(2-\omega^{2}\right)=1 \amp ,\,\,\,\,\,\,B\left(2-\omega^{2}\right)=0\\
+A=\frac{1}{2-\omega^{2}} \amp ,\,\,\,\,\,\,B=0
+\end{align*}
+</div>
+<p>so that</p>
+<div class="displaymath">
+\begin{equation*}
+u(t)=c_{1}\cos\left(\sqrt{2}t\right)+c_{2}\sin\left(\sqrt{2}t\right)+\frac{1}{2-\omega^{2}}\cos\left(\omega t\right).
+\end{equation*}
+</div>
+<span class="incontext"><a href="section-20.html#p-463">in-context</a></span>
+</body>
+</html>

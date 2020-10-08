@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-12-13T10:04:42-05:00    *-->
+<!--*    on 2020-03-18T09:31:45-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -13,7 +13,18 @@
 </head>
 <body>
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>Now we'll blend orthogonality with basis and coordinates. If the vectors in a basis are pairwise orthogonal, then \(\{b_i\}\) is called an <dfn class="terminology">orthogonal basis</dfn>. Furthermore, if the norm of each vector is 1, the basis is called <dfn class="terminology">orthonormal</dfn>. It is exceptionally easy to compute coordinates of vectors when the basis is orthonormal.</p>
+<p>Formally, a set of vectors \(\{b_i\}_I\) is a basis for \(V\) if</p>
+<ol class="decimal">
+<li>linear independence: \(c_1 b_1 + \ldots + c_n b_n = 0\) has only the solution \(c_1 = c_2 = \ldots = c_n = 0\text{.}\)</li>
+<li>spanning set: every vector \(v \in V\) can be written as a linear combination of the \(b_i\text{.}\)</li>
+</ol>
+<p>In fact, the linear combination of the \(b_i\) used to build \(v\) is unique when the \(b_i\) are a basis for \(V\) - in this case there exist unique constants \(c_1, \ldots, c_n\) so that</p>
+<div class="displaymath">
+\begin{equation*}
+c_1 b_1 + \ldots + c_n b_n = v.
+\end{equation*}
+</div>
+<p>The constants \(c_i\) are called the <dfn class="terminology">coordinates of v</dfn> with respect to the basis \(\{b_i\}\text{.}\)</p>
 <span class="incontext"><a href="section-7.html#p-154">in-context</a></span>
 </body>
 </html>

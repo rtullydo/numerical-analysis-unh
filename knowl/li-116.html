@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-11-21T15:45:43-05:00    *-->
+<!--*    on 2020-03-18T09:31:43-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -13,11 +13,85 @@
 </head>
 <body>
 <article class="listitem"><h6 class="heading">
-<span class="type">Item</span> <span class="codenumber">6</span>.</h6>Then<div class="displaymath">
-\begin{gather*}
-x_3 = m^2 - x_1 - x_2,\\
-y_3 = m(x_1 - x_3) - y_1.
-\end{gather*}
-</div>and \(P + Q = (x_3, y_3).\)</article><span class="incontext"><a href="section-elliptic-addition.html#li-116">in-context</a></span>
+<span class="type">Item</span>.</h6>
+<p><em class="alert">Part (a):</em> Find the maximum height above the ground that the object reaches.</p>
+<p><em class="alert">Solution:</em> Suppose we consider when the object is going up in the air before it has reached the maximum height. Let \(R(v)=\left|v\right|\) be the resistance, then using what've discussed above we have</p>
+<div class="displaymath">
+\begin{equation*}
+m\frac{dv}{dt}=-R(v)-mg,
+\end{equation*}
+</div>
+<p>and we have \(-R(v)\) since the object is still going up. Since the object is going up then \(v&gt;0\text{.}\) Recall that</p>
+<div class="displaymath">
+\begin{equation*}
+\left|v\right|=\begin{cases}
+v \amp v&gt;0\\
+-v \amp v\lt0
+\end{cases}
+\end{equation*}
+</div>
+<p>then</p>
+<div class="displaymath">
+\begin{equation*}
+m\frac{dv}{dt}=-\left|v\right|-mg=-v-mg.
+\end{equation*}
+</div>
+<p>Hence</p>
+<div class="displaymath">
+\begin{equation*}
+m\frac{dv}{dt}=-v-mg.
+\end{equation*}
+</div>
+<p>Solving this we have that</p>
+<div class="displaymath">
+\begin{align*}
+\int\frac{dv}{v+mg}=\frac{\int-dt}{m} \amp \iff\ln\left|v+mg\right|=-\frac{t}{m}+C\\
+\amp \iff\left|v+mg\right|=Ce^{-t/m}\\
+\amp \iff v+mg=Ce^{-t/m}\\\\
+\amp \iff v=Ce^{-t/m}-mg.
+\end{align*}
+</div>
+<p>Since \(v(0)=20\) Then we can solve for \(C\) and obtain (using \(g=9.8 \text{m/s}^2\)</p>
+<div class="displaymath">
+\begin{align*}
+v(t) \amp =\left(20+mg\right)e^{-t/m}-mg,\\
+\amp =118e^{-t/10}-98.
+\end{align*}
+</div>
+<p>and this equation is valid only when the object is going up.</p>
+<p>The maximum happens when velocity is equal to zero. Thus set \(v(t_{1})=0\) and we get that</p>
+<div class="displaymath">
+\begin{align*}
+0=118e^{-t/10}-98 \amp \iff t_{1}=-10\ln\left(\frac{98}{118}\right)\\
+\amp \iff t_{1}\approx1.86.
+\end{align*}
+</div>
+<p>Solve for position: We get</p>
+<div class="displaymath">
+\begin{align*}
+x(t) \amp =\int v(t)dt+C\\
+\amp =-1180e^{-t/10}-98t+C.
+\end{align*}
+</div>
+<p>Since \(x(0)=3\text{,}\) then</p>
+<div class="displaymath">
+\begin{align*}
+3=-1180e^{0}-98\cdot0+C \amp \iff3=-1180+C\\
+\amp \iff C=1183.
+\end{align*}
+</div>
+<p>Thus</p>
+<div class="displaymath">
+\begin{equation*}
+x(t)=-1180e^{-t/10}-98t+1183.
+\end{equation*}
+</div>
+<p>Then</p>
+<div class="displaymath">
+\begin{align*}
+\text{maximum height} \amp =x(1.86)\\
+\amp \approx21.
+\end{align*}
+</div></article><span class="incontext"><a href="ch2-5.html#li-116">in-context</a></span>
 </body>
 </html>

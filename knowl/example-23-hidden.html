@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:43-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body><article class="example-like"><p>Suppose an object with mass \(10\) kg is launched upward with initial velocity \(20\) m/s from a platform that is \(3\) meters high. Suppose there is a force due to air resistance of magnitude \(\left|v\right|\) directed opposite to the velocity, where the velocity \(v\) is measured in m/s. We neglect the variation of the earth's gravitational fields with distance. (Since it's not going very high anyways)</p>
+<ul class="disc">
+<li>
+<p><em class="alert">Part (a):</em> Find the maximum height above the ground that the object reaches.</p>
+<p><em class="alert">Solution:</em> Suppose we consider when the object is going up in the air before it has reached the maximum height. Let \(R(v)=\left|v\right|\) be the resistance, then using what've discussed above we have</p>
+<div class="displaymath">
+\begin{equation*}
+m\frac{dv}{dt}=-R(v)-mg,
+\end{equation*}
+</div>
+<p>and we have \(-R(v)\) since the object is still going up. Since the object is going up then \(v&gt;0\text{.}\) Recall that</p>
+<div class="displaymath">
+\begin{equation*}
+\left|v\right|=\begin{cases}
+v \amp v&gt;0\\
+-v \amp v\lt0
+\end{cases}
+\end{equation*}
+</div>
+<p>then</p>
+<div class="displaymath">
+\begin{equation*}
+m\frac{dv}{dt}=-\left|v\right|-mg=-v-mg.
+\end{equation*}
+</div>
+<p>Hence</p>
+<div class="displaymath">
+\begin{equation*}
+m\frac{dv}{dt}=-v-mg.
+\end{equation*}
+</div>
+<p>Solving this we have that</p>
+<div class="displaymath">
+\begin{align*}
+\int\frac{dv}{v+mg}=\frac{\int-dt}{m} \amp \iff\ln\left|v+mg\right|=-\frac{t}{m}+C\\
+\amp \iff\left|v+mg\right|=Ce^{-t/m}\\
+\amp \iff v+mg=Ce^{-t/m}\\\\
+\amp \iff v=Ce^{-t/m}-mg.
+\end{align*}
+</div>
+<p>Since \(v(0)=20\) Then we can solve for \(C\) and obtain (using \(g=9.8 \text{m/s}^2\)</p>
+<div class="displaymath">
+\begin{align*}
+v(t) \amp =\left(20+mg\right)e^{-t/m}-mg,\\
+\amp =118e^{-t/10}-98.
+\end{align*}
+</div>
+<p>and this equation is valid only when the object is going up.</p>
+<p>The maximum happens when velocity is equal to zero. Thus set \(v(t_{1})=0\) and we get that</p>
+<div class="displaymath">
+\begin{align*}
+0=118e^{-t/10}-98 \amp \iff t_{1}=-10\ln\left(\frac{98}{118}\right)\\
+\amp \iff t_{1}\approx1.86.
+\end{align*}
+</div>
+<p>Solve for position: We get</p>
+<div class="displaymath">
+\begin{align*}
+x(t) \amp =\int v(t)dt+C\\
+\amp =-1180e^{-t/10}-98t+C.
+\end{align*}
+</div>
+<p>Since \(x(0)=3\text{,}\) then</p>
+<div class="displaymath">
+\begin{align*}
+3=-1180e^{0}-98\cdot0+C \amp \iff3=-1180+C\\
+\amp \iff C=1183.
+\end{align*}
+</div>
+<p>Thus</p>
+<div class="displaymath">
+\begin{equation*}
+x(t)=-1180e^{-t/10}-98t+1183.
+\end{equation*}
+</div>
+<p>Then</p>
+<div class="displaymath">
+\begin{align*}
+\text{maximum height} \amp =x(1.86)\\
+\amp \approx21.
+\end{align*}
+</div>
+</li>
+<li>
+<p><em class="alert">Part (b):</em> Find the time that the object hits the ground, assuming it missed the platform.</p>
+<p><em class="alert">Solution:</em> We need to find the equation of when the object is falling down.When the object is falling down we thus have the following equation:</p>
+<div class="displaymath">
+\begin{equation*}
+m\frac{dv}{dt}=R(v)-mg,
+\end{equation*}
+</div>
+<p>and we have \(R(v)\) since the object is going down. Thus since the object is going <em class="emphasis">down</em> then \(v\lt0\text{.}\) Recall that</p>
+<div class="displaymath">
+\begin{equation*}
+\left|v\right|=\begin{cases}
+v \amp v&gt;0\\
+-v \amp v\lt0
+\end{cases}
+\end{equation*}
+</div>
+<p>then \(\left|v\right|=-v\) so that</p>
+<div class="displaymath">
+\begin{equation*}
+m\frac{dv}{dt}=\left|v\right|-mg=-v-mg.
+\end{equation*}
+</div>
+<p>hence</p>
+<div class="displaymath">
+\begin{equation*}
+m\frac{dv}{dt}=-v-mg.
+\end{equation*}
+</div>
+<p>Solving this we have that \(v_{2}(t)=Ce^{-t/m}-mg\) with initial condition \(v_{2}(0)=0\text{.}\) Thus</p>
+<div class="displaymath">
+\begin{align*}
+\end{align*}
+</div>
+<p>Then</p>
+<div class="displaymath">
+\begin{align*}
+x_{2}(t) \amp =\int v_{2}(t)dt+C\\
+\amp =-980e^{-t/10}-98t+C
+\end{align*}
+</div>
+<p>since</p>
+<div class="displaymath">
+\begin{equation*}
+x_{2}(0)=\text{maximum height}=21
+\end{equation*}
+</div>
+<p>then solving for \(C\) we have</p>
+<div class="displaymath">
+\begin{equation*}
+x_{2}(t)=-980e^{-t/10}-98t+1001.
+\end{equation*}
+</div>
+<p>To find out when \(x_{2}(t)\) hits the ground we need to find \(t_{2}\) such that \(x_{2}(t_{2})=0\) thus (using a calculator)</p>
+<div class="displaymath">
+\begin{equation*}
+0=-980e^{-t_{2}/10}-98t_{2}+1001\iff t_{2}\approx2.14.
+\end{equation*}
+</div>
+<p>Thus the ball hits the ground by adding the time it takes to reach its maximum plus the time after that:</p>
+<div class="displaymath">
+\begin{equation*}
+t_{0}=t_{1}+t_{2}=1.86+2.14=4\text{ seconds}.
+\end{equation*}
+</div>
+</li>
+</ul></article></body>
+</html>

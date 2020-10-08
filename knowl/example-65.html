@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:44-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<article class="example-like"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">3.6.6</span>.</h6>Find the general form of a particular solution of<div class="displaymath">
+\begin{equation*}
+y^{\prime\prime}+6y^{\prime}+9y=-7te^{-3t}+t^{3}
+\end{equation*}
+</div>
+<p>Step 1: The characteristic equation is \(r^{2}+6r+9=(r+3)^{2}=0\text{,}\) which gives the repeated root of \(r_{1}=r_{2}=-3\text{.}\) Hence</p>
+<div class="displaymath">
+\begin{equation*}
+y_{h}(t)=c_{1}e^{-3t}+c_{2}te^{-3t}
+\end{equation*}
+</div>
+<p>Using our table we make our first guess as</p>
+<div class="displaymath">
+\begin{equation*}
+y_{p}=\left(At+B\right)e^{-3t}+Ct^{3}+Dt^{2}+Et+F
+\end{equation*}
+</div>
+<p>but this is wrong, since \(\left(At+B\right)e^{-3t}\) is included in the \(y_{h}\text{.}\) So our second guess is to multiply <em class="emphasis">only that part</em> by \(t\text{,}\) and get</p>
+<div class="displaymath">
+\begin{equation*}
+y_{p}=t\left(At+B\right)e^{-3t}+Ct^{3}+Dt^{2}+Et+F.
+\end{equation*}
+</div>
+<p>But this still doesn't work since \(Bte^{-3t}\) is included in the \(y_{c}\) as \(c_{2}te^{-3t}\text{.}\) Our third guess is to multiply again only that part by \(t\) and get</p>
+<div class="displaymath">
+\begin{equation*}
+y_{p}=t^{2}\left(At+B\right)e^{-3t}+Ct^{3}+Dt^{2}+Et+F,
+\end{equation*}
+</div>
+<p>which works since none of the terms in the \(y_{p}\) are included in the homogeneous solution \(y_{h}\text{.}\)</p></article><span class="incontext"><a href="ch3-6.html#example-65">in-context</a></span>
+</body>
+</html>

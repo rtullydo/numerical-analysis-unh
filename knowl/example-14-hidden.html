@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:43-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body><article class="example-like"><p>Solve the IVP</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt}=t^{4}y\,\,\,\,\,\,y(0)=1.
+\end{equation*}
+</div>
+<ul class="disc">
+<li><p>Solution:</p></li>
+<li><p>Start with equilibrium solutions \(y=0\text{.}\)</p></li>
+<li><p>Get \(\left|y\right|=Ce^{t^{5}/5}\) but notice that by choise of \(C\) this shortens to \(y=Ce^{t^{5}/5}\text{.}\)</p></li>
+<li><p>Note that this includes the equilibrum solution \(y=0\) by setting \(C=0\text{.}\)</p></li>
+<li>
+<p>Thus then general solution is given by</p>
+<div class="displaymath">
+\begin{equation*}
+y_g(t)=Ce^{t^{5}/5}.
+\end{equation*}
+</div>
+</li>
+<li>
+<p>To solve the IVP we use the initial condition</p>
+<div class="displaymath">
+\begin{equation*}
+1=y(0)=Ce^{0}=C
+\end{equation*}
+</div>
+<p>thus \(C=1\text{,}\) hence the particular solution to the IVP is</p>
+<div class="displaymath">
+\begin{equation*}
+y_p(t)=e^{t^{5}/5}.
+\end{equation*}
+</div>
+</li>
+</ul>
+<div class="sagecell-sage" id="sage-6"><script type="text/x-sage">t, y = var('t,y')
+g = Graphics()
+g += plot_slope_field(y*t^4, (t, -5,5),(y,-5,5))
+g += plot(exp((t^5)/5), (t, -5,5), ymin = -5, ymax = 5)
+g += points([(0,1)], size = 50)
+g.show()
+</script></div></article></body>
+</html>

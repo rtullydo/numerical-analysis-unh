@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:43-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body><article class="example-like">Suppose there was a murder in a room that is 70° F. Assume the victim had a temperature of 98.6° when murdered. Let \(t_{c}\) be the time it took for someone to finally discover the corpse since its death. As a detective, your goal is to find out how long ago the body died. Here is the given information <ul class="disc">
+<li>Fact 1: At the time time someone discovered the body, the temperature of the corpse was \(72.5\text{.}\)</li>
+<li>Fact 2: One hour after the body was discovered, the temperature of the corpse was \(72\text{.}\)</li>
+<li>Question: Find the critical value of \(t_{c}\)</li>
+</ul>
+<p><em class="alert">Solution:</em> One needs to solve the following IVP: Let \(T(t)\) be the temperature of the victim, then</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dT}{dt}=k\left(T-70\right),\,\,\,\,\,T\left(0\right)=98.6
+\end{equation*}
+</div>
+<p>and need to use the information</p>
+<div class="displaymath">
+\begin{align*}
+T(t_{c}) \amp =72.5,\\
+T(t_{c}+1) \amp =72.
+\end{align*}
+</div>
+<p>to solve for \(k\text{.}\)</p>
+<p>First solving for \(T(t)\) we get</p>
+<div class="displaymath">
+\begin{align*}
+T(t) \amp =70+\left(98.6-70\right)e^{kt}\\
+\amp =70+28.6e^{kt}.
+\end{align*}
+</div>
+<p>Then using</p>
+<div class="displaymath">
+\begin{align*}
+72.5 \amp =70+28.6e^{kt_{c}},\\
+72 \amp =70+28.6e^{k(t_{c}+1)}
+\end{align*}
+</div>
+<p>Solving the first equation for \(k\) we get</p>
+<div class="displaymath">
+\begin{equation*}
+k=\frac{1}{t_{c}}\ln\frac{2.5}{28.6}
+\end{equation*}
+</div>
+<p>and plugging this into second equation we get</p>
+<div class="displaymath">
+\begin{equation*}
+72=70+28.6e^{\frac{1}{t_{c}}\ln\frac{2.5}{28.6}(t_{c}+1)}
+\end{equation*}
+</div>
+<p>and hence</p>
+<div class="displaymath">
+\begin{equation*}
+t_{c}\approx10.92\text{ hours}.
+\end{equation*}
+</div>
+<p>and \(k=-0.223\text{.}\)</p></article></body>
+</html>

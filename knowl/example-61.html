@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:44-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<article class="example-like"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">3.6.2</span>.</h6>Find the solution to the following IVP:<div class="displaymath">
+\begin{equation*}
+y^{\prime\prime}+5y^{\prime}+6y=e^{-t}.\,\,\,\,\,\,\,\,\,y(0)=1,y^{\prime}(0)=\frac{1}{2}
+\end{equation*}
+</div>
+<p>Step 1: Find \(y_{h}(t)\) , which is simply the general solution of</p>
+<div class="displaymath">
+\begin{equation*}
+y^{\prime\prime}+5y^{\prime}+6y=0.
+\end{equation*}
+</div>
+<p>Solving the charateristic polynomial \(r^{2}+5r+6=(r+2)(r+3)= 0,\) we get \(r=-2,-3\) so that the solution is</p>
+<div class="displaymath">
+\begin{equation*}
+y_{h}(t)=c_{1}e^{-2t}+c_{2}e^{-3t}.
+\end{equation*}
+</div>
+<p>Step 2: We find \(y_{p}(t)\) by making our guess and to find the undertermined coefficient. So we let \(y_{p}(t)=Ae^{-t}\) and plug \(y_{p}\) into the LHS:</p>
+<div class="displaymath">
+\begin{align*}
+y_{p}^{\prime\prime}+5y_{p}^{\prime}+6y_{p} \amp = \amp Ae^{-t}-5Ae^{-t}+6Ae^{-t}\\
+\amp = \amp 2Ae^{-t}
+\end{align*}
+</div>
+<p>Step 3: Set the LHS equal to the RHS and solve for \(A\) to get</p>
+<div class="displaymath">
+\begin{equation*}
+2Ae^{-t}=e^{-t}
+\end{equation*}
+</div>
+<p>so that \(A=\frac{1}{2}\text{.}\)</p>
+<p>Step 4: Plug \(A\) back in and get \(y_{h}(t)=\frac{1}{2}e^{-t}\) and a general solution of</p>
+<div class="displaymath">
+\begin{equation*}
+y(t)=c_{1}e^{-2t}+c_{2}e^{-3t}+\frac{1}{2}e^{-t}.
+\end{equation*}
+</div>
+<p>Final IVP step: Now we need to find \(c_{1}\) and \(c_{2}\) using \(y(0)=1\) and \(y^{\prime}(0)=\frac{1}{2}\) and set up the following system of equations:</p>
+<div class="displaymath">
+\begin{align*}
+c_{1}+c_{2}+\frac{1}{2} \amp = \amp 1\\
+-2c_{1}-3c_{2}-\frac{1}{2} \amp = \amp \frac{1}{2}
+\end{align*}
+</div>
+<p>which comes from \(y(t)=c_{1}e^{-2t}+c_{2}e^{-3t}+\frac{1}{2}e^{-t}\) and \(y^{\prime}(t)=-2k_{1}e^{-2t}-3k_{2}e^{-3t}-\frac{1}{2}e^{-t}.\) Solving this we get \(c_{1}=\frac{5}{2}\) and \(c_{2}=-2\) thus the solution to the IVP is</p>
+<div class="displaymath">
+\begin{equation*}
+y(t)=\frac{5}{2}e^{-2t}-2e^{-3t}+\frac{1}{2}e^{-t}.
+\end{equation*}
+</div></article><span class="incontext"><a href="ch3-6.html#example-61">in-context</a></span>
+</body>
+</html>

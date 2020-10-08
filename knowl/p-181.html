@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-12-13T10:04:42-05:00    *-->
+<!--*    on 2020-03-18T09:31:46-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -13,13 +13,19 @@
 </head>
 <body>
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>On the other hand, we can look at a frequency that is present in \(x\text{,}\) say \(X_4\text{.}\) We compute</p>
+<p>We can illustrate how the DFT works with an example composite signal. Let \(v_1 = [1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1]\) and \(v_2 = [3, -4, -1, 3, -4, -1, 3, -4, -1, 3, -4, -1]\text{.}\) Relative to the length of the signal, \(v_1\) has frequency 6 and \(v_2\) has frequency 4. If we add the signals, we get the composite vector</p>
 <div class="displaymath">
 \begin{equation*}
-X_4 = \frac{1}{12}\left(4 -5 e^{-i2\pi\frac{4}{12}} + 0 e^{-i2\pi\frac{8}{12}} + \ldots -2 e^{-i2\pi\frac{44}{12}}\right)
+v_1 + v_2 = x = [4, -5, 0, 2, -3, -2, 4, -5, 0, 2, -3, -2 ],
 \end{equation*}
 </div>
-<p>which is an addition of this set of vectors, clearly a set with a non-zero sum. <div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/x4.png" style="width: 100%; height: auto;" alt=""></div> That this vector has non-zero magnitude should not be surprising, given that a pattern of frequency 4 is one of the constituent signals in \(x\text{.}\)</p>
+<p>which looks to have frequency 2. The DFT should recover that the signal \(x\) has harmonics at frequencies 6 and 4. The computation essentially converts the problem into a vector addition problem. We can illustrate by looking at the graphs corresponding to the computation of \(X_1\) and \(X_4\text{.}\) We should expect \(\abs{X_1} = 0\) and \(\abs{X_4} &gt;&gt; 0\text{,}\) as a component signal of frequency 1 is not present and a signal of frequence 4 is.</p>
+<div class="displaymath">
+\begin{equation*}
+X_1 = \frac{1}{12}\left(4 -5 e^{-i2\pi\frac{1}{12}} + 0 e^{-i2\pi\frac{2}{12}} + \ldots -2 e^{-i2\pi\frac{11}{12}}\right)
+\end{equation*}
+</div>
+<p>Essentially, this is a vector addition problem, as the following figure should make clear. <div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/x1.png" style="width: 100%; height: auto;" alt=""></div> Visually, it should be apparent that the sum of these vectors is 0.</p>
 <span class="incontext"><a href="section-7.html#p-181">in-context</a></span>
 </body>
 </html>

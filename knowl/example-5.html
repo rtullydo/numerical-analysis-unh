@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:43-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<article class="example-like"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.1.2</span>. <span class="title">(without formula).</span>
+</h6>
+<p>Find general solution of</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt}=\frac{3}{t}y+t^{5}.
+\end{equation*}
+</div>
+<ul class="disc">
+<li>
+<p>Step 1: Rewrite as</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt}-\frac{3}{t}y=t^{5}
+\end{equation*}
+</div>
+<p>so that \(p(t)=-\frac{3}{t}\) and \(g(t)=t^{5}\)</p>
+</li>
+<li>
+<p>Step 2: Find an integrating factor:</p>
+<div class="displaymath">
+\begin{equation*}
+\mu(t)=e^{\int-\frac{3}{t}dt}=e^{-3\ln t}=t^{-3}=\frac{1}{t^{3}}.
+\end{equation*}
+</div>
+<p>Note we only need an integrating factor, not a general integrating factor. So we never need to have a \(+C\) in this step! In the next step we will note that we also don't need the absolute value inside the natural log (why not?).</p>
+</li>
+<li>
+<p>Step 3: Multiply BOTH SIDES of the equation by \(\mu(t)\) and get</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{1}{t^{3}}\frac{dy}{dt}-\frac{3}{t^{4}}y=t^{2}
+\end{equation*}
+</div>
+<p>and notice that</p>
+<div class="displaymath">
+\begin{align*}
+\frac{1}{t^{3}}\frac{dy}{dt}-\frac{3}{t^{4}}y \amp =t^{2}\\
+\Downarrow\\
+\frac{d}{dt} \left[\frac{1}{t^{3}}y\right]\amp =t^{2}
+\end{align*}
+</div>
+</li>
+<li>
+<p>Step 4: Integrate and solve for \(y(t)\) (don't forget the constant \(C\) in this step, which is very important!)</p>
+<div class="displaymath">
+\begin{align*}
+\int\frac{d\left[\frac{1}{t^{3}}y\right]}{dt}=\int t^{2}dt+C \amp \iff \amp \frac{1}{t^{3}}y=\frac{t^{3}}{3}+C\\
+\amp \iff \amp y(t)=\frac{t^{6}}{3}+Ct^{3}.
+\end{align*}
+</div>
+</li>
+</ul></article><span class="incontext"><a href="ch2-1.html#example-5">in-context</a></span>
+</body>
+</html>

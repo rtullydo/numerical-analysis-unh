@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-12-13T10:04:42-05:00    *-->
+<!--*    on 2020-03-18T09:31:46-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -13,7 +13,18 @@
 </head>
 <body>
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>A sampled function results in a <dfn class="terminology">signal</dfn>, that is a vector \(x = [x_0, \ldots, x_{n}]\text{.}\) This is a discrete object. We used integral approximations to estimate the Fourier coefficients of such an object in the previous sections by assuming that the signal represented a continuous function \(f(t)\text{.}\) However, given that signals are discrete, it seems useful to introduce a discrete method for recovering Fourier coefficients.</p>
+<p>Let \(f \in L^2(\T)\text{.}\) Then \(f\) has a Fourier representation</p>
+<div class="displaymath">
+\begin{equation*}
+f(x) = \sum_{n=-\infty}^\infty c_n e^{inx}
+\end{equation*}
+</div>
+<p>where</p>
+<div class="displaymath">
+\begin{equation*}
+c_n = \frac{1}{2\pi} \int_{-\pi}^{\pi} f(x) e^{-inx} \, dx.
+\end{equation*}
+</div>
 <span class="incontext"><a href="section-7.html#p-177">in-context</a></span>
 </body>
 </html>

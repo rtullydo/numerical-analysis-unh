@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-11-21T15:45:43-05:00    *-->
+<!--*    on 2020-03-18T09:31:43-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -13,6 +13,46 @@
 </head>
 <body>
 <article class="listitem"><h6 class="heading">
-<span class="type">Item</span> <span class="codenumber">1</span>.</h6>If \(P = \mathcal O\text{,}\) then \(P+ Q = Q\text{.}\)</article><span class="incontext"><a href="section-elliptic-addition.html#li-109">in-context</a></span>
+<span class="type">Item</span>.</h6>
+<p><em class="alert">Step 4:</em> Solve using the Method of integrating factors:</p>
+<p>Write</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt}+\frac{4}{200+2t}y=30
+\end{equation*}
+</div>
+<p>so that \(g(t)=\frac{4}{200+2t}\) and \(b(t)=30\text{.}\) Thus the integrating factor is</p>
+<div class="displaymath">
+\begin{equation*}
+\mu(t)=e^{4\int\frac{dt}{200+2t}}=e^{2\int\frac{dt}{100+t}}=e^{2\ln\left(100+t\right)}=\left(100+t\right)^{2}.
+\end{equation*}
+</div>
+<p>Thus using the formula, we have that</p>
+<div class="displaymath">
+\begin{align*}
+y(t) \amp = \amp \frac{1}{\mu(t)}\left[\int\mu(t)b(t)dt.+C\right]\\
+\amp = \amp \frac{1}{\left(100+t\right)^{2}}\left[30\int\left(100+t\right)^{2}dt.+C\right]\\
+\amp = \amp \frac{1}{\left(100+t\right)^{2}}\left[30\frac{\left(100+t\right)^{3}}{3}.+C\right]\\
+\amp = \amp \frac{1}{\left(100+t\right)^{2}}\left[10\left(100+t\right)^{3}+C\right]
+\end{align*}
+</div>
+<p>and using \(y(0)=600\) we get that</p>
+<div class="displaymath">
+\begin{equation*}
+600=\frac{1}{100^{2}}\left[10\cdot100^{3}+C\right]
+\end{equation*}
+</div>
+<p>so that</p>
+<div class="displaymath">
+\begin{equation*}
+C=-4,000,000
+\end{equation*}
+</div>
+<p>and thus</p>
+<div class="displaymath">
+\begin{equation*}
+y(t)=\frac{10\left(100+t\right)^{3}-4,000,000}{\left(100+t\right)^{2}}.
+\end{equation*}
+</div></article><span class="incontext"><a href="ch2-4.html#li-109">in-context</a></span>
 </body>
 </html>

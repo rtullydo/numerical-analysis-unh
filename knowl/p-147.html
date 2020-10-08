@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-12-13T10:04:42-05:00    *-->
+<!--*    on 2020-03-18T09:31:45-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -13,18 +13,19 @@
 </head>
 <body>
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>A <dfn class="terminology">vector space</dfn> over a scalar field \(F\) is a collection of vectors together with operations that make it possible to do algebra on that collection. In particular, a set of vectors \(V\) is a vector space under the operations of addition and scalar multiplication if the following axioms are satisfied:</p>
-<ol class="decimal">
-<li>associativity of addition: \(u, v, w \in V \Rightarrow u+(v+w) = (u+v)+w\)</li>
-<li>commutativity of addition: \(u, v \in V \Rightarrow u + v = v + u\)</li>
-<li>additive identity: there is an element \(0\text{,}\) the zero vector, so that \(v \in V \Rightarrow v + 0 = 0 + v = 0\)</li>
-<li>additive inverses: every vector \(v\) has an inverse \(-v\) \(\Rightarrow v + (-v) = 0\)</li>
-<li>compatibility: \(\alpha , \beta \in F, u \in V \Rightarrow (\alpha\beta)u = \alpha(\beta u)\)</li>
-<li>multiplicative identity: \(1 \in F, u \in V \Rightarrow 1u = u\)</li>
-<li>distribution over vector addition: \(\alpha \in F, u,v \in V \Rightarrow \alpha(u+v) = \alpha u + \alpha v\)</li>
-<li>distribution over field addition: \(\alpha, \beta \in F, u \in V \Rightarrow (\alpha + \beta) u = \alpha u + \beta u\)</li>
-</ol>
-<p>The prototypical example of a vector space is \(n\)-dimensional <dfn class="terminology">Euclidean space</dfn>, \(\R^n\text{,}\) our usual notion of vectors. However, many other sets of objects constitute vector spaces with the appropriate operations - for example, \(C([0,1])\text{,}\) the space of continuous functions on the interval \([0,1]\) is a vector space over \(\R\) under addition of functions. We are building to understanding spaces of functions.</p>
-<span class="incontext"><a href="section-7.html#p-147">in-context</a></span>
+<p>Now suppose that \([a,b]\) is partitioned into \(n\) segments of equal length \(\Delta x = \frac{b - a}{n}\text{,}\) where \(n\) is even (which will allow overlapping sequences of three points). Then for three sequential points \(x_i, x_{i+1}, x_{i+2}\text{,}\) the previous computation gives</p>
+<div class="displaymath">
+\begin{equation*}
+\int_{x_i}^{x_{i+2}} f(x) \, dx \approx \frac{\Delta x}{3}\left(f(x_i) + 4f(x_{i+1}) + f(x_{i+2})\right).
+\end{equation*}
+</div>
+<p>Since we chose \(n\) to be even, we get</p>
+<div class="displaymath">
+\begin{align*}
+\int_a^b f(x)\, dx \amp\approx \frac{\Delta x}{3}\left(f(x_0) + 4f(x_{1}) + f(x_{2})\right) + \ldots + \frac{\Delta x}{3}\left(f(x_{n-2}) + 4f(x_{n-1}) + f(x_{n})\right)\\
+\amp\approx \frac{\Delta x}{3} \left(f(x_0) + 4 \sum_{i \text{ odd}} f(x_i)) + 2 \sum_{i \text{ even}} f(x_i) + f(x_n)\right)
+\end{align*}
+</div>
+<span class="incontext"><a href="section-6.html#p-147">in-context</a></span>
 </body>
 </html>

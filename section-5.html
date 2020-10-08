@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-12-13T10:04:41-05:00    *-->
+<!--*    on 2020-03-18T09:31:45-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -261,14 +261,15 @@ var js_version = 0.12;
 </h3>
 <p id="p-75">Given a set of points, say \(P(x_1, y_1), Q(x_2, y_2), R(x_3, y_3)\text{,}\) we say that a function \(f\) <dfn class="terminology">interpolates</dfn> \(P, Q, R\) if the graph of \(f\) passes through each prescribed point - that is, \(f(x_i) = y_i\) for each \(i = 1, \ldots 3\) in this case. The function \(f\) can be used to predict the values of \(y\) for values of \(x\) that fall in between these points. (Predicting points outside of the data is called <dfn class="terminology">extrapolation</dfn>.)</p>
 <p id="p-76">A first approach to this problem might take advantage of the following fact. <article class="theorem-like" id="theorem-4"><h6 class="heading">
-<span class="type">Theorem</span> <span class="codenumber">5.1</span>.</h6>\(p_1, \ldots, p_n\)\(n -1\)</article> One possible proof of this fact is the construction of the Lagrange polynomials, to be discussed in the next section.</p>
-<p id="p-77">So suppose that we are given the points \((1,1), (2,-3), (5,10)\text{.}\) A quick plot shows that they are clearly non-collinear. Thus, there should exist a degree two polynomial that interpolates the points, which will have the general form</p>
+<span class="type">Theorem</span> <span class="codenumber">5.1</span>.</h6>
+<p id="p-77">Let \(p_1, \ldots, p_n\) be non-collinear. Then there is a unique polynomial of degree \(n -1\) that interpolates the data.</p></article> One possible proof of this fact is the construction of the Lagrange polynomials, to be discussed in the next section.</p>
+<p id="p-78">So suppose that we are given the points \((1,1), (2,-3), (5,10)\text{.}\) A quick plot shows that they are clearly non-collinear. Thus, there should exist a degree two polynomial that interpolates the points, which will have the general form</p>
 <div class="displaymath">
 \begin{equation*}
 y = ax^2 + bx + c.
 \end{equation*}
 </div>
-<p id="p-78">The unknowns we need to find are the coefficients \(a, b, c\text{.}\) So we'll plug in the known data and get a system of equations.</p>
+<p id="p-79">The unknowns we need to find are the coefficients \(a, b, c\text{.}\) So we'll plug in the known data and get a system of equations.</p>
 <div class="displaymath">
 \begin{align*}
 1 \amp= a + b + c\\
@@ -276,18 +277,18 @@ y = ax^2 + bx + c.
 10 \amp= 25a + 5b + c
 \end{align*}
 </div>
-<p id="p-79">We can solve the system using matrices.</p>
+<p id="p-80">We can solve the system using matrices.</p>
 <div class="sagecell-octave" id="sage-24"><script type="text/x-sage">A = [1, 1, 1, 1;  4, 2, 1, -3; 25, 5, 1, 10]
 B = rref(A)
 </script></div>
-<p id="p-80">Doing this by hand would be potentially very time consuming, particularly if we had to work with many points, not just three. Our result says that the approximate polynomial that interpolates the data is</p>
+<p id="p-81">Doing this by hand would be potentially very time consuming, particularly if we had to work with many points, not just three. Our result says that the approximate polynomial that interpolates the data is</p>
 <div class="displaymath">
 \begin{equation*}
 f(x) = 2.08333 x^2 - 10.25 x + 9.16667.
 \end{equation*}
 </div>
 <p>Note that this polynomial is unique (up to approximation error). That is, any other technique that finds a degree two polynomial through these three points will find the same result.</p>
-<p id="p-81">In the next few sections, we will discuss two more interpolation techniques, one that is very easy for humans to understand (and evaluate with a little modification in certain cases) and one that is easy to program into a computer technique.</p>
+<p id="p-82">In the next few sections, we will discuss two more interpolation techniques, one that is very easy for humans to understand (and evaluate with a little modification in certain cases) and one that is easy to program into a computer technique.</p>
 <figure class="figure-like" id="figure-1"><div class="sagecell-octave" id="sage-25"><script type="text/x-sage">f = @(x) 2.08333* x.^2 - 10.25 *x + 9.16667;
 X = 0:.01:6;
 Y = f(X);
@@ -298,15 +299,15 @@ plot(X,Y, 'r')
 <figcaption><span class="type">Figure</span> <span class="codenumber">5.2.</span> Data and interpolating function example</figcaption></figure></section><section class="subsection" id="subsection-12"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">5.2</span> <span class="title">Lagrange interpolation</span>
 </h3>
-<p id="p-82">We'll begin with a method due to Lagrange that makes it very easy to write down by hand what the interpolating polynomal is (but doesn't give it in a computationally efficient form). Still, Lagrange interpolation is based on fundamental observations about the graphs of functions.</p>
-<p id="p-83">Suppose that we are given the points \((1,0), (2,0), (5,0)\) and we are asked to provide an interpolating polynomial of degree two (these points are collinear, but they very soon won't be). One obvious choice is to form the polynomial</p>
+<p id="p-83">We'll begin with a method due to Lagrange that makes it very easy to write down by hand what the interpolating polynomal is (but doesn't give it in a computationally efficient form). Still, Lagrange interpolation is based on fundamental observations about the graphs of functions.</p>
+<p id="p-84">Suppose that we are given the points \((1,0), (2,0), (5,0)\) and we are asked to provide an interpolating polynomial of degree two (these points are collinear, but they very soon won't be). One obvious choice is to form the polynomial</p>
 <div class="displaymath">
 \begin{equation*}
 p(x) = (x - 1)(x - 2)(x - 5).
 \end{equation*}
 </div>
 <p>This polynomial is not a unique polynomial of degree two, but it certainly interpolates them. We are going to use the idea of interpolating roots, as we've done here, to build interpolating functions for data off of the \(x\)-axis.</p>
-<p id="p-84">This exercise can be made slightly harder by allowing one of the points to move off of the \(x\)-axis. Now consider the points \((1,0),(2,0), (5,10)\text{.}\) Ignoring the third point for the moment, we can still interpolate \((1,0), (2,0)\) in the same way as before: with \(p(x) = (x -1)(x-2)\text{.}\) Maybe we're lucky and \(p\) also passes through \((5,10)\text{.}\) We can check -- \(p(5) = (5-1)(4-1) = 12\text{.}\) That is, \(p\) misses \((5,10)\text{.}\)</p>
+<p id="p-85">This exercise can be made slightly harder by allowing one of the points to move off of the \(x\)-axis. Now consider the points \((1,0),(2,0), (5,10)\text{.}\) Ignoring the third point for the moment, we can still interpolate \((1,0), (2,0)\) in the same way as before: with \(p(x) = (x -1)(x-2)\text{.}\) Maybe we're lucky and \(p\) also passes through \((5,10)\text{.}\) We can check -- \(p(5) = (5-1)(4-1) = 12\text{.}\) That is, \(p\) misses \((5,10)\text{.}\)</p>
 <div class="sagecell-octave" id="sage-26"><script type="text/x-sage">f = @(x) (x - 1).*(x-2);
 X = 0:.01:6;
 Y = f(X);
@@ -314,7 +315,7 @@ plot([1, 2, 5],[0, 0, 10], 'b*')
 hold on
 plot(X,Y, 'r')
 </script></div>
-<p id="p-85">What we need is a way to adjust \(p\) that keeps the function passing through \((1,0)\) and \((2,0)\text{.}\) We might notice that every function of the form \(f(x) = c(x-1)(x-2) = c\cdot p(x)\) has this property, so let's choose a value of \(c\) that makes \(f\) pass through \((5,10)\text{.}\)</p>
+<p id="p-86">What we need is a way to adjust \(p\) that keeps the function passing through \((1,0)\) and \((2,0)\text{.}\) We might notice that every function of the form \(f(x) = c(x-1)(x-2) = c\cdot p(x)\) has this property, so let's choose a value of \(c\) that makes \(f\) pass through \((5,10)\text{.}\)</p>
 <div class="displaymath">
 \begin{align*}
 10 \amp= f(5) = c\cdot p(5) = c(5-1)(5-4) = 12c\\
@@ -329,7 +330,7 @@ plot([1, 2, 5],[0, 0, 10], 'b*')
 hold on
 plot(X,Y, 'r')
 </script></div>
-<p id="p-86">Now, notice that 10 was the value we wanted to be output with input 5, and that \(p(5) = 12\text{.}\) In fact, if \((5,10)\) had been given the name \((x_3, y_3)\text{,}\) then the value of \(c\) would have been \(c = \frac{y_3}{p(x_3)},\) and the interpolating function for \((1,0), (2,0)\) and \((x_3, y_3)\) would have been</p>
+<p id="p-87">Now, notice that 10 was the value we wanted to be output with input 5, and that \(p(5) = 12\text{.}\) In fact, if \((5,10)\) had been given the name \((x_3, y_3)\text{,}\) then the value of \(c\) would have been \(c = \frac{y_3}{p(x_3)},\) and the interpolating function for \((1,0), (2,0)\) and \((x_3, y_3)\) would have been</p>
 <div class="displaymath">
 \begin{equation*}
 f(x) = \frac{y_3}{p(x_3)} p(x) = \frac{y_3}{p(x_3)} (x - 1)(x-2).
@@ -348,26 +349,26 @@ f(x) = \frac{y_3}{p(x_3)} p(x) = \frac{y_3}{p(x_3)}(x - x_1)(x-x_2).
 \end{equation*}
 </div>
 <p>\(f\) is the interpolating function for the data.</p>
-<p id="p-87">We're finally ready to tackle the full problem: using this approach to find the interpolating polynomial for \((1,1), (2, -3), (5,10)\text{.}\) We'll approach the problem in three pieces: First, construct \(f_3(x)\) for the points \((1,0), (2,0), (5,10)\) using the ideas from the last section.</p>
+<p id="p-88">We're finally ready to tackle the full problem: using this approach to find the interpolating polynomial for \((1,1), (2, -3), (5,10)\text{.}\) We'll approach the problem in three pieces: First, construct \(f_3(x)\) for the points \((1,0), (2,0), (5,10)\) using the ideas from the last section.</p>
 <div class="displaymath">
 \begin{equation*}
 f_3(x) = \frac{10}{12} (x-1)(x-2).
 \end{equation*}
 </div>
-<p id="p-88">Second, construct \(f_2(x)\) for the points \((1,0), (2, -3), (5,0).\) Since \(p_2(x) = (x-1)(x-5)\text{,}\) we get \(c = \frac{-3}{p_2(2)} = \frac{-3}{-3} = 1\text{.}\) So</p>
+<p id="p-89">Second, construct \(f_2(x)\) for the points \((1,0), (2, -3), (5,0).\) Since \(p_2(x) = (x-1)(x-5)\text{,}\) we get \(c = \frac{-3}{p_2(2)} = \frac{-3}{-3} = 1\text{.}\) So</p>
 <div class="displaymath">
 \begin{equation*}
 f_2(x) = 1(x - 1)(x-5)
 \end{equation*}
 </div>
 <p>interpolates this data.</p>
-<p id="p-89">For a third step, construct \(f_1(x)\) for the points \((1,1), (2,0), (5,0)\text{.}\) In this problem, \(p_1(x) = (x-2)(x-5)\text{,}\) and so \(c = \frac{1}{p(1)} = \frac{1}{4}\text{.}\) Thus,</p>
+<p id="p-90">For a third step, construct \(f_1(x)\) for the points \((1,1), (2,0), (5,0)\text{.}\) In this problem, \(p_1(x) = (x-2)(x-5)\text{,}\) and so \(c = \frac{1}{p(1)} = \frac{1}{4}\text{.}\) Thus,</p>
 <div class="displaymath">
 \begin{equation*}
 f_1(x) = \frac{1}{4} (x - 2)(x -5).
 \end{equation*}
 </div>
-<p id="p-90">What follows is a plot of the three solutions to the subproblems.</p>
+<p id="p-91">What follows is a plot of the three solutions to the subproblems.</p>
 <div class="sagecell-octave" id="sage-28"><script type="text/x-sage">f3 = @(x) 10/12*(x - 1).*(x - 2);
 f2 = @(x) (x - 1).*(x-5);
 f1 = @(x) 1/4*(x-2).*(x-5);
@@ -379,7 +380,7 @@ plot([1, 2, 5],[0,0,0], 'r*')
 set(gca,'xaxislocation','origin')
 set(gca, 'yaxislocation','origin')
 </script></div>
-<p id="p-91">You should notice that each parabola passes through one of the real points and two of the substituted roots. We are at the magic step. Let</p>
+<p id="p-92">You should notice that each parabola passes through one of the real points and two of the substituted roots. We are at the magic step. Let</p>
 <div class="displaymath">
 \begin{equation*}
 f = f_1 + f_2 + f_3.
@@ -397,7 +398,7 @@ plot([1, 2, 5],[0,0,0], 'r*')
 set(gca,'xaxislocation','origin')
 set(gca, 'yaxislocation','origin')
 </script></div>
-<p id="p-92">What happened? Let's look at \(f\) more closely.</p>
+<p id="p-93">What happened? Let's look at \(f\) more closely.</p>
 <div class="displaymath">
 \begin{equation*}
 f(x) = \frac{1}{4}(x - 2)(x - 5) + (x-1)(x-5) + \frac{10}{12}(x-1)(x-2).
@@ -412,7 +413,7 @@ f(5) \amp= 0 + 0 + \frac{10}{12}(3)(4) = 10
 \end{align*}
 </div>
 <p>Furthermore, \(f\) must be unique, because \(f\) is a degree two polynomial. (In fact, \(f\) is the same function from the previous section if you multiply it out.)</p>
-<p id="p-93">So what is the general procedure? Start with a list of interpolants, \((x_1, y_1), \ldots, (x_n, y_n)\text{.}\) For each \(i\text{,}\) let</p>
+<p id="p-94">So what is the general procedure? Start with a list of interpolants, \((x_1, y_1), \ldots, (x_n, y_n)\text{.}\) For each \(i\text{,}\) let</p>
 <div class="displaymath">
 \begin{equation*}
 p_i(x) = \prod_{j\neq i} (x - x_j) = (x - x_1)\ldots(x - x_{i-1})(x-x_{i+1})\ldots(x - x_n).
@@ -432,22 +433,22 @@ f(x) = \sum_i f_i(x) = f_1(x) + \ldots + f_n(x).
 </div></section><section class="subsection" id="subsection-13"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">5.3</span> <span class="title">Newton interpolation</span>
 </h3>
-<p id="p-94">Lagrange interpolation is easy to describe and relatively easy to write out by hand, even for many point, with some practice. However, the computation of the Lagrange interpolating polynomial doesn't easily lend itself to the structure of computer programs. We would like a method for writing down an interpolating polynomial that can be performed in a straightforward way in a recursive fashion. The approach that we present here is called <dfn class="terminology">Newton interpolation</dfn>. Of course, the result will be the same, as interpolating polynomials of degree \(n-1\) are unique for a given set of \(m\) points.</p>
-<p id="p-95">Suppose that we're given two points, \((x_0, y_0), (x_1, y_1)\text{.}\) The lowest degree polynomial \(f\) through the first point is the horizontal line \(f(x) = y_0 = f(x_0)\text{.}\) The lowest degree polynomial \(f\) through the two points is</p>
+<p id="p-95">Lagrange interpolation is easy to describe and relatively easy to write out by hand, even for many point, with some practice. However, the computation of the Lagrange interpolating polynomial doesn't easily lend itself to the structure of computer programs. We would like a method for writing down an interpolating polynomial that can be performed in a straightforward way in a recursive fashion. The approach that we present here is called <dfn class="terminology">Newton interpolation</dfn>. Of course, the result will be the same, as interpolating polynomials of degree \(n-1\) are unique for a given set of \(m\) points.</p>
+<p id="p-96">Suppose that we're given two points, \((x_0, y_0), (x_1, y_1)\text{.}\) The lowest degree polynomial \(f\) through the first point is the horizontal line \(f(x) = y_0 = f(x_0)\text{.}\) The lowest degree polynomial \(f\) through the two points is</p>
 <div class="displaymath">
 \begin{equation*}
 y = y_0 + \frac{y_1 - y_0}{x_1 - x_0}(x - x_0).
 \end{equation*}
 </div>
 <p>We call the quantities \(y_0\) and \(\frac{y_1 - y_0}{x_1 - x_0}\) <dfn class="terminology">divided differences.</dfn> So now lets see what happens with three points.</p>
-<p id="p-96">Suppose that we're given three points to interpolate, \((x_0,y_0), (x_1, y_1), (x_2, y_2)\text{.}\) We claim that we can construct a unique quadratic polynomial that interpolates the data of the form</p>
+<p id="p-97">Suppose that we're given three points to interpolate, \((x_0,y_0), (x_1, y_1), (x_2, y_2)\text{.}\) We claim that we can construct a unique quadratic polynomial that interpolates the data of the form</p>
 <div class="displaymath">
 \begin{equation*}
 f(x) = b_0 + b_1 (x - x_0) + b_2 (x - x_0)(x - x_1),
 \end{equation*}
 </div>
 <p>for some as yet unknown constants \(b_0, b_1, b_2\) that depend on the points. (You can easily show that for noncollinear points, you get a nonsingular coefficient matrix for the resulting system, which implies a unique solution.)</p>
-<p id="p-97">To find the values of the coefficients, we'll plug in our data points.</p>
+<p id="p-98">To find the values of the coefficients, we'll plug in our data points.</p>
 <div class="displaymath">
 \begin{equation*}
 f(x_0) = b_0 + 0 + 0
@@ -470,7 +471,7 @@ b_2 \amp= \frac{\frac{y_2 - y_1}{x_2 - x_1} - \frac{y_1 - y_0}{y_1 - y_0}}{x_2 -
 \end{align*}
 </div>
 <p>where the last step requires a bit of non-obvious algebra, but provides a more useful form.</p>
-<p id="p-98">It turns out that this process can be repeated for additional points, though one can imagine the formula for the next step is quite complicated to express in \(x_i, y_i\text{.}\) So we introduce a notation that will make this process easy to write in recursive form. The \(m\)th divided difference is given by the recursive formula</p>
+<p id="p-99">It turns out that this process can be repeated for additional points, though one can imagine the formula for the next step is quite complicated to express in \(x_i, y_i\text{.}\) So we introduce a notation that will make this process easy to write in recursive form. The \(m\)th divided difference is given by the recursive formula</p>
 <div class="displaymath">
 \begin{align*}
 f[x_i] \amp= y_i;\\
@@ -484,7 +485,7 @@ f[x_1, x_0] = \frac{f[x_1] - f[x_0]}{x_1 - x_0} = \frac{y_2 - y_1}{x_2 - x_1},
 \end{equation*}
 </div>
 <p>and you should convince yourself that the expression for \(f[x_2, x_1, x_0]\) agrees with our previous computation.</p>
-<p id="p-99">We want to use this approach because we'd prefer our computations to be purely in terms of array entries, not the application of general formulas. As an example, we will trace through the example of computing the coefficients of the Newton polynomial for the points \((1,1), (2, 3), (5,10)\) in code.</p>
+<p id="p-100">We want to use this approach because we'd prefer our computations to be purely in terms of array entries, not the application of general formulas. As an example, we will trace through the example of computing the coefficients of the Newton polynomial for the points \((1,1), (2, 3), (5,10)\) in code.</p>
 <div class="sagecell-octave" id="sage-30"><script type="text/x-sage">nodeX = [1, 2, 5];
 nodeY = [1, 3, 10];
 #this section calculates the coefficients
@@ -506,10 +507,10 @@ scatter(nodeX, nodeY, 400)
 hold on
 plot(0:.01:6, poly(0:.01:6))
 </script></div>
-<p id="p-100">The code above should provide an example of how to implement the recursion without having to rely on increasingly complex formulas to compute the coefficients. As a goal, one could try to produce all of the data in the matrix “data” in one loop, instead of the many loops that I have (suggestively) used. One could also write a much more revealing computation of the final polynomial.</p></section><section class="subsection" id="subsection-14"><h3 class="heading hide-type">
+<p id="p-101">The code above should provide an example of how to implement the recursion without having to rely on increasingly complex formulas to compute the coefficients. As a goal, one could try to produce all of the data in the matrix “data” in one loop, instead of the many loops that I have (suggestively) used. One could also write a much more revealing computation of the final polynomial.</p></section><section class="subsection" id="subsection-14"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">5.4</span> <span class="title">Problems with polynomials</span>
 </h3>
-<p id="p-101">Polynomial interpolation has a serious drawback in many cases: high degree polynomials can behave wildly between points in a way that doesn't reflect the expected behavior of the underlying function. To see this, consider the function</p>
+<p id="p-102">Polynomial interpolation has a serious drawback in many cases: high degree polynomials can behave wildly between points in a way that doesn't reflect the expected behavior of the underlying function. To see this, consider the function</p>
 <div class="displaymath">
 \begin{equation*}
 f(x) = \frac{1}{x^2 + 25}
@@ -521,7 +522,7 @@ plot(X, f(X))
 set(gca,'xaxislocation','origin')
 set(gca, 'yaxislocation','origin')
 </script></div></p>
-<p id="p-102">We will sample this function and then attempt to reconstruct it using polynomial interpolation. Suppose that we choose six equally spaced points from \(f\text{.}\) <div class="sagecell-octave" id="sage-32"><script type="text/x-sage">X = -1:.01:1;
+<p id="p-103">We will sample this function and then attempt to reconstruct it using polynomial interpolation. Suppose that we choose six equally spaced points from \(f\text{.}\) <div class="sagecell-octave" id="sage-32"><script type="text/x-sage">X = -1:.01:1;
 f = @(x) 1./(1 + 25*x.^2);
 
 P = [-1, -.6, -.2, .2, .6, 1];
@@ -561,9 +562,9 @@ plot(X, f(X))
 q = polyfit(Q, f(Q), 11)
 plot(X, polyval(q,X))
 </script></div>
-<p id="p-103">Unfortunately, this seems to have exacerbated the problem. The polynomial starts to oscillate wildly and to grow sharply between nodes near the outside of the domain.  It turns out that this behavior is common in high degree polynomial interpolation of equally-spaced points. Replacing a complicated function with a polynomial interpolant isn't going to be as easy as sampling equidistant points, and we should expect that similar bad behavior is going to crop up in data sets with many points if we use a unique polynomial fit.</p>
-<p id="p-104">There are many approaches to dealing with this undesirable behavior. In the next section, we'll talk about building smooth curves that pass through all of the points by considering them three at a time. In this section, we should at least be aware of better sampling methods that underlie much of modern approximation theory. Note that this is only a flavor - approximation theory is a huge field with myriad applications and techniques.</p>
-<p id="p-105">One way that we can try to make a better approximating polynomial for a function is to sample more points near the edge - this should allow us to control the bad behavior that seems to occur there. But how should we pick the points? For various reasons, it turns out that a natural choice for sampling nodes (that is, the \(x\)-values that we'll use to sample the function we're trying to approximate) is the so-called <dfn class="terminology">Chebyshev nodes</dfn>, which correspond to the \(x\) coordinates of equally spaced points on a unit circle.</p>
+<p id="p-104">Unfortunately, this seems to have exacerbated the problem. The polynomial starts to oscillate wildly and to grow sharply between nodes near the outside of the domain.  It turns out that this behavior is common in high degree polynomial interpolation of equally-spaced points. Replacing a complicated function with a polynomial interpolant isn't going to be as easy as sampling equidistant points, and we should expect that similar bad behavior is going to crop up in data sets with many points if we use a unique polynomial fit.</p>
+<p id="p-105">There are many approaches to dealing with this undesirable behavior. In the next section, we'll talk about building smooth curves that pass through all of the points by considering them three at a time. In this section, we should at least be aware of better sampling methods that underlie much of modern approximation theory. Note that this is only a flavor - approximation theory is a huge field with myriad applications and techniques.</p>
+<p id="p-106">One way that we can try to make a better approximating polynomial for a function is to sample more points near the edge - this should allow us to control the bad behavior that seems to occur there. But how should we pick the points? For various reasons, it turns out that a natural choice for sampling nodes (that is, the \(x\)-values that we'll use to sample the function we're trying to approximate) is the so-called <dfn class="terminology">Chebyshev nodes</dfn>, which correspond to the \(x\) coordinates of equally spaced points on a unit circle.</p>
 <div class="sagecell-octave" id="sage-35"><script type="text/x-sage">n = 11;
 nodes = cos(pi/n*((1:n)-.5));
 X = -1:.01:1;
@@ -575,7 +576,7 @@ plot(X, f(X))
 set(gca,'xaxislocation','origin')
 set(gca, 'yaxislocation','origin')
 </script></div>
-<p id="p-106">The following code will compare high degree approximations of \(f\) using equally spaced and Chebyshev nodes</p>
+<p id="p-107">The following code will compare high degree approximations of \(f\) using equally spaced and Chebyshev nodes</p>
 <div class="sagecell-octave" id="sage-36"><script type="text/x-sage">X = -1:.01:1;
 f = @(x) 1./(1 + 25*x.^2);
 
@@ -636,16 +637,16 @@ hold off
 </script></div></section><section class="subsection" id="subsection-15"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">5.5</span> <span class="title">Spline interpolation</span>
 </h3>
-<p id="p-107">Instead of trying to force a high degree polynomial to fit through many points, if we want an interpolating function that has smooth properties, we could consider a piecewise approach instead. That is, instead of a single formula that interpolates all of the points, we'll construct small segments that join together into a smooth(ish) function that changes definition as we move down the set of data points. Piecewise interpolation is usually done in early math classes with a ruler connecting points with lines - a more sophisticated name for this is linear interpolation. Because a given line only has two parameters (slope and intercept), the best we can expect is to meet two conditions - that is, the line passes through each of two points.</p>
-<p id="p-108">This is reflective of a general principle in mathematics that gets used but not often mentioned throughout college level courses - to meet one condition, an equation or set of equations needs one free parameter. In this case, since we're working with simultaneous equations, essentially we're using the invertible matrix theorem from linear algebra to guarantee a unique solutions.</p>
-<p id="p-109">What we're going to present is a method that breaks a set of data points into consecutive groups of two points. We'll need an interpolating function piece with at least two free parameters that can be chosen. Since we want the curve to be differentiable, we'll need each segment to meet the next with the same slope - that is, we need the first derivatives to match every time we change segments. With \(n+1\) points, that means we have \(n-1\) points that are connections (that is, not the endpoints of the data set). Since we're dictating a condition on derivatives, we know that we'll need at least three parameters. In order to make the changes between the segments curve naturally (which is important in many physical applications), we also want the second derivatives to match. (This is essentially dictating that the curvatures of the segments match, or more geometrically that there is an osculating circle where two pieces meet.) So each segment is actually dealing with four restrictions, and thus we need a function with four free parameters - a cubic polynomial fits the bill!</p>
-<p id="p-110">Where are we at? Suppose that we have \(n + 1\) points to interpolate. Then there are \(n\) segments, which requires \(n\) functions. Each segment has an associated cubic polynomial with 4 parameters, so there are \(4n\) parameters available. How many restrictions are there?</p>
+<p id="p-108">Instead of trying to force a high degree polynomial to fit through many points, if we want an interpolating function that has smooth properties, we could consider a piecewise approach instead. That is, instead of a single formula that interpolates all of the points, we'll construct small segments that join together into a smooth(ish) function that changes definition as we move down the set of data points. Piecewise interpolation is usually done in early math classes with a ruler connecting points with lines - a more sophisticated name for this is linear interpolation. Because a given line only has two parameters (slope and intercept), the best we can expect is to meet two conditions - that is, the line passes through each of two points.</p>
+<p id="p-109">This is reflective of a general principle in mathematics that gets used but not often mentioned throughout college level courses - to meet one condition, an equation or set of equations needs one free parameter. In this case, since we're working with simultaneous equations, essentially we're using the invertible matrix theorem from linear algebra to guarantee a unique solutions.</p>
+<p id="p-110">What we're going to present is a method that breaks a set of data points into consecutive groups of two points. We'll need an interpolating function piece with at least two free parameters that can be chosen. Since we want the curve to be differentiable, we'll need each segment to meet the next with the same slope - that is, we need the first derivatives to match every time we change segments. With \(n+1\) points, that means we have \(n-1\) points that are connections (that is, not the endpoints of the data set). Since we're dictating a condition on derivatives, we know that we'll need at least three parameters. In order to make the changes between the segments curve naturally (which is important in many physical applications), we also want the second derivatives to match. (This is essentially dictating that the curvatures of the segments match, or more geometrically that there is an osculating circle where two pieces meet.) So each segment is actually dealing with four restrictions, and thus we need a function with four free parameters - a cubic polynomial fits the bill!</p>
+<p id="p-111">Where are we at? Suppose that we have \(n + 1\) points to interpolate. Then there are \(n\) segments, which requires \(n\) functions. Each segment has an associated cubic polynomial with 4 parameters, so there are \(4n\) parameters available. How many restrictions are there?</p>
 <ul class="disc">
 <li id="li-22">Two points to interpolate for each segment, so \(2n\) conditions.</li>
 <li id="li-23">\(n-1\) points at which derivatives match.</li>
 <li id="li-24">\(n - 1\) points at which second derivatives match.</li>
 </ul>
-<p id="p-111">So far, we have \(4n\) parameters and \(2n + n - 1 + n - 1 = 4n -2\) conditions. Where are the last two conditions going to come from? The endpoints! Since we have two available conditions to impose, we'll get a nice square system if we impose them on the endpoints. There are a couple of common choices for how to do this. The first is called a <dfn class="terminology">natural spline</dfn>, which is the case where the function has no curvature at the endpoints - that is, it's locally linear:</p>
+<p id="p-112">So far, we have \(4n\) parameters and \(2n + n - 1 + n - 1 = 4n -2\) conditions. Where are the last two conditions going to come from? The endpoints! Since we have two available conditions to impose, we'll get a nice square system if we impose them on the endpoints. There are a couple of common choices for how to do this. The first is called a <dfn class="terminology">natural spline</dfn>, which is the case where the function has no curvature at the endpoints - that is, it's locally linear:</p>
 <div class="displaymath">
 \begin{equation*}
 f''(x_1) = f''(x_{n+1}) = 0.
@@ -657,7 +658,7 @@ f''(x_1) = f''(x_{n+1}) = 0.
 f'(x_1) = c_1, \hspace{.5in} f'(x_{n+1}) = c_2.
 \end{equation*}
 </div>
-<p id="p-112">Let's take a look at a small example to see how spline fitting works in practice. Suppose we're given three points, \((1,2), (2,4), (3,1)\text{.}\) Note that these are arranged in order of ascending \(x\) values. For each pair of points, we need a cubic spline - that is functions</p>
+<p id="p-113">Let's take a look at a small example to see how spline fitting works in practice. Suppose we're given three points, \((1,2), (2,4), (3,1)\text{.}\) Note that these are arranged in order of ascending \(x\) values. For each pair of points, we need a cubic spline - that is functions</p>
 <div class="displaymath">
 \begin{align*}
 f_1(x) \amp= a_1 x^3 + b_1 x^2 + c_1 x + d_1,\\
@@ -692,7 +693,7 @@ a_1  + b_1 + c_1 + d_1 \amp= 2\\
 18 a_2 + 2 b_2 = 0
 \end{gather*}
 </div>
-<p id="p-113">There are various algebraic approaches to solving splines that we will not consider here. Instead, we will try to organize these equations into a matrix form.</p>
+<p id="p-114">There are various algebraic approaches to solving splines that we will not consider here. Instead, we will try to organize these equations into a matrix form.</p>
 <div class="displaymath">
 \begin{equation*}
 \bbm 1 \amp 1 \amp 1 \amp 1 \amp 0 \amp 0 \amp 0 \amp 0  \\
@@ -706,7 +707,7 @@ a_1  + b_1 + c_1 + d_1 \amp= 2\\
 \ebm \bbm a_1 \\ b_1 \\ c_1 \\ d_1 \\ a_2 \\ b_2 \\ c_2 \\ d_2 \ebm = \bbm 2 \\ 4 \\ 4 \\ 1 \\ 0 \\ 0 \\ 0 \\ 0 \ebm
 \end{equation*}
 </div>
-<p id="p-114">At this point, we can solve the system using octave and row reduction. As long as there are no three consecutive points that are collinear, this system will have a unique solution (that is, the coefficient matrix is invertible). <div class="sagecell-octave" id="sage-37"><script type="text/x-sage">system = [1,1,1,1,0,0,0,0,2;8,4,2,1,0,0,0,0,4;0,0,0,0,8,4,2,1,4;0,0,0,0,27,9,3,1,1;12,4,1,0,-12,-4,-1,0,0;12,2,0,0,-12,-2,0,0,0;6,2,0,0,0,0,0,0,0;0,0,0,0,6,2,0,0,0];
+<p id="p-115">At this point, we can solve the system using octave and row reduction. As long as there are no three consecutive points that are collinear, this system will have a unique solution (that is, the coefficient matrix is invertible). <div class="sagecell-octave" id="sage-37"><script type="text/x-sage">system = [1,1,1,1,0,0,0,0,2;8,4,2,1,0,0,0,0,4;0,0,0,0,8,4,2,1,4;0,0,0,0,27,9,3,1,1;12,4,1,0,-12,-4,-1,0,0;12,2,0,0,-12,-2,0,0,0;6,2,0,0,0,0,0,0,0;0,0,0,0,6,2,0,0,0];
 coeefs = rref(system)(:,9) #this row reduces the system and takes the answer column, which is column 9
 f1 = coeefs(1:4)'; #these take the coefficients associated with the first and second spline
 f2 = coeefs(5:8)'; #and put the polynomials in vector form
@@ -718,7 +719,7 @@ plot(X1, Y1, 'r', X2, Y2, 'b')
 hold on
 scatter([1,2,3],[2,4,1],400) #plots the original points.
 </script></div></p>
-<p id="p-115">Next is a quick code demonstration of the addition of one more points, say at \((4,10)\text{.}\) You should look for the pattern in the equation sets, as this should give a clue about how to implement a general routine. By way of comparison, we will also plot the unique cubic that passes through the four points. You should note that the purple graph makes wider oscillations between the points than the multi-colored spline fit. <div class="sagecell-octave" id="sage-38"><script type="text/x-sage">system = [1,1,1,1,0,0,0,0,0,0,0,0,2;
+<p id="p-116">Next is a quick code demonstration of the addition of one more points, say at \((4,10)\text{.}\) You should look for the pattern in the equation sets, as this should give a clue about how to implement a general routine. By way of comparison, we will also plot the unique cubic that passes through the four points. You should note that the purple graph makes wider oscillations between the points than the multi-colored spline fit. <div class="sagecell-octave" id="sage-38"><script type="text/x-sage">system = [1,1,1,1,0,0,0,0,0,0,0,0,2;
            8,4,2,1,0,0,0,0,0,0,0,0,4;
            0,0,0,0,8,4,2,1,0,0,0,0,4;
            0,0,0,0,27,9,3,1,0,0,0,0,1;

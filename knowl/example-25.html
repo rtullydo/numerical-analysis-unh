@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:43-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<article class="example-like"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.5.4</span>.</h6>
+<p>Suppose we fly a plane at an altitude of \(5000\) ft and drop a watermelon that weighs \(64\) pounds vertically downward. Assume that the force of air resistance, which is directed opposite to the velocity, is of magnitude \(\left|v\right|/128\text{.}\) (Use \(g=32\) ft/sec\(^2\))</p>
+<p><em class="alert">Question:</em> Find how long it takes for the watermelon to hit the ground.</p>
+<p><em class="alert">Solution:</em> Since the watermelon is falling down, \(v\lt0\text{.}\) Hence</p>
+<div class="displaymath">
+\begin{equation*}
+m\frac{dv}{dt}=R(v)-mg,
+\end{equation*}
+</div>
+<p>where \(R(v)\) is positive. Now recall that</p>
+<div class="displaymath">
+\begin{equation*}
+\text{weight}=mg
+\end{equation*}
+</div>
+<p>then \(m=\frac{64}{32}=2\text{.}\)</p>
+<p>Then \(R(v)=\left|v\right|/128=v/128\text{,}\) and so</p>
+<div class="displaymath">
+\begin{align*}
+m\frac{dv}{dt}=\frac{v}{128}-mg \amp \iff2\frac{dv}{dt}=\frac{v}{128}-64\\
+\amp \iff\frac{dv}{dt}=\frac{v}{256}-32\\
+\amp \iff\int\frac{dv}{v-256\cdot32}=\int\frac{1}{256}dt\\
+\amp \iff v(t)=Ce^{t/256}+256\cdot32.
+\end{align*}
+</div>
+<p>and since \(v(0)=0\) then</p>
+<div class="displaymath">
+\begin{equation*}
+v(t)=-256\cdot32e^{t/256}+256\cdot32.
+\end{equation*}
+</div>
+<p>Solving for the distance traveled \(x(t)\) from the ground we have</p>
+<div class="displaymath">
+\begin{equation*}
+x(t)=-\left(256\right)^{2}\cdot32e^{t/256}+32\cdot\left(256\right)t+C
+\end{equation*}
+</div>
+<p>and letting \(x(0)=0\text{,}\) then</p>
+<div class="displaymath">
+\begin{equation*}
+x(t)=-\left(256\right)^{2}\cdot32e^{t/256}+32\cdot\left(256\right)t+\left(256\right)^{2}\cdot32
+\end{equation*}
+</div>
+<p>Then, noting that since we chose the plane to be altitude 0 and the melon falls 5000ft down,</p>
+<div class="displaymath">
+\begin{align*}
+x(t_{0})=-5000 \amp \iff t_{0}\approx17.88\text{ seconds.}
+\end{align*}
+</div></article><span class="incontext"><a href="ch2-5.html#example-25">in-context</a></span>
+</body>
+</html>

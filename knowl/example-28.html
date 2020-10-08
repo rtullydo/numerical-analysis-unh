@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:43-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<article class="example-like"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.6.6</span>.</h6>
+<p>Consider</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt}=(y-1)^{1/2}\qquad y(0)=1.
+\end{equation*}
+</div>
+<p><em class="alert">Part (a):</em> Is this a linear or nonlinear equation? Can you use <a data-knowl="./knowl/existencethm1.html" title="Theorem 2.6.1: Linear \(1\)st order ODE Existence and Uniqueness Theorem">Theorem 2.6.1</a>?</p>
+<p><em class="alert">Solution:</em> This is a nonlinear equation, due to the expression \((y-1)^{1/2}\text{.}\) Since <a data-knowl="./knowl/existencethm1.html" title="Theorem 2.6.1: Linear \(1\)st order ODE Existence and Uniqueness Theorem">Theorem 2.6.1</a> only applies to linear equations, we can't use it for this IVP.</p>
+<p><em class="alert">Part (b):</em> Using <a data-knowl="./knowl/existencethm2.html" title="Theorem 2.6.4: General 1st Order ODE existence and uniqueness theorem">Theorem 2.6.4</a> (the general theorem), can you guarantee that there is a unique solution to this IVP? Why?</p>
+<p><em class="alert">Solution:</em> To apply <a data-knowl="./knowl/existencethm2.html" title="Theorem 2.6.4: General 1st Order ODE existence and uniqueness theorem">Theorem 2.6.4</a>, we need the right hand side equation</p>
+<div class="displaymath">
+\begin{equation*}
+f(t,y)=(y-1)^{1/2}
+\end{equation*}
+</div>
+<p>to be continuous and we need</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{\partial f}{\partial y}=\frac{1}{2\sqrt{y-1}}
+\end{equation*}
+</div>
+<p>to be continous around the point \((t_{0},y_{0})=(0,1)\text{.}\) But since \(\frac{1}{2\sqrt{y-1}}\) is not continuous when \(y_{0}=1\text{,}\) then we cannot guarantee uniqueness of the solution. (That is, this is a poor model at this point.)</p>
+<p><em class="alert">Moral:</em> There could be multiple solutions to this IVP. If a solution exists, it may not be unique!</p></article><span class="incontext"><a href="ch2-6.html#example-28">in-context</a></span>
+</body>
+</html>

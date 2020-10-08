@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:41-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Modeling via differential equations, some solutions and definitions</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    asciimath2jax: {
+        ignoreClass: ".*",
+        processClass: "has_am"
+    },
+    jax: ["input/AsciiMath"],
+    extensions: ["asciimath2jax.js"],
+    TeX: {
+        extensions: ["extpfeil.js", "autobold.js", "https://pretextbook.org/js/lib/mathjaxknowl.js", ],
+        // scrolling to fragment identifiers is controlled by other Javascript
+        positionToHash: false,
+        equationNumbers: { autoNumber: "none", useLabelIds: true, },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    // HTML-CSS output Jax to be dropped for MathJax 3.0
+    "HTML-CSS": {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+    CommonHTML: {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+});
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML-full"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.12/pretext.js"></script><script src="https://pretextbook.org/js/0.12/pretext_add_on.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/toc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/setcolors.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/features.css" rel="stylesheet" type="text/css">
+<script>var logged_in = false;
+var role = 'student';
+var guest_access = true;
+var login_required = false;
+var js_version = 0.12;
+</script>
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div class="hidden-content" style="display:none">\(\DeclareMathOperator{\RE}{Re}
+  \DeclareMathOperator{\IM}{Im}
+  \DeclareMathOperator{\ess}{ess}
+  \DeclareMathOperator{\intr}{int}
+  \DeclareMathOperator{\dist}{dist}
+  \DeclareMathOperator{\dom}{dom}
+  \DeclareMathOperator{\diag}{diag}
+  \DeclareMathOperator\re{\mathrm {Re~}}
+  \DeclareMathOperator\im{\mathrm {Im~}}
+  
+  \newcommand\dd{\mathrm d}
+  \newcommand{\eps}{\varepsilon}
+  \newcommand{\To}{\longrightarrow}
+  \newcommand{\hilbert}{\mathcal{H}}
+  \newcommand{\s}{\mathcal{S}_2}
+  \newcommand{\A}{\mathcal{A}}
+  \newcommand\h{\mathcal{H}}
+  \newcommand{\J}{\mathcal{J}}
+  \newcommand{\M}{\mathcal{M}}
+  \newcommand{\F}{\mathbb{F}}
+  \newcommand{\N}{\mathcal{N}}
+  \newcommand{\T}{\mathbb{T}}
+  \newcommand{\W}{\mathcal{W}}
+  \newcommand{\X}{\mathcal{X}}
+  \newcommand{\D}{\mathbb{D}}
+  \newcommand{\C}{\mathbb{C}}
+  \newcommand{\BOP}{\mathbf{B}}
+  \newcommand{\Z}{\mathbb{Z}}
+  \newcommand{\BH}{\mathbf{B}(\mathcal{H})}
+  \newcommand{\KH}{\mathcal{K}(\mathcal{H})}
+  \newcommand{\pick}{\mathcal{P}_2}
+  \newcommand{\schur}{\mathcal{S}_2}
+  \newcommand{\R}{\mathbb{R}}
+  \newcommand{\Complex}{\mathbb{C}}
+  \newcommand{\Field}{\mathbb{F}}
+  \newcommand{\RPlus}{\Real^{+}}
+  \newcommand{\Polar}{\mathcal{P}_{\s}}
+  \newcommand{\Poly}{\mathcal{P}(E)}
+  \newcommand{\EssD}{\mathcal{D}}
+  \newcommand{\Lop}{\mathcal{L}}
+  \newcommand{\cc}[1]{\overline{#1}}
+  \newcommand{\abs}[1]{\left\vert#1\right\vert}
+  \newcommand{\set}[1]{\left\{#1\right\}}
+  \newcommand{\seq}[1]{\left\lt#1\right&gt;}
+  \newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+  \newcommand{\essnorm}[1]{\norm{#1}_{\ess}}
+  \newcommand{\tr}{\operatorname{tr}}
+  \newcommand{\ran}[1]{\operatorname{ran}#1}
+  \newcommand{\nt}{\stackrel{\mathrm {nt}}{\to}}
+  \newcommand{\pnt}{\xrightarrow{pnt}}
+  \newcommand{\ip}[2]{\left\langle #1, #2 \right\rangle}
+  \newcommand{\ad}{^\ast}
+  \newcommand{\inv}{^{-1}}
+  \newcommand{\adinv}{^{\ast -1}}
+  \newcommand{\invad}{^{-1 \ast}}
+  \newcommand\Pick{\mathcal P}
+  \newcommand\Ha{\mathbb{H}}
+  \newcommand{\HH}{\Ha\times\Ha}
+  \newcommand\Htau{\mathbb{H}(\tau)}
+  \newcommand{\vp}{\varphi}
+  \newcommand{\ph}{\varphi}
+  \newcommand\al{\alpha}
+  \newcommand\ga{\gamma}
+  \newcommand\de{\delta}
+  \newcommand\ep{\varepsilon}
+  \newcommand\la{\lambda}
+  \newcommand\up{\upsilon}
+  \newcommand\si{\sigma}
+  \newcommand\beq{\begin{equation}}
+  \newcommand\ds{\displaystyle}
+  \newcommand\eeq{\end{equation}}
+  \newcommand\df{\stackrel{\rm def}{=}}
+  \newcommand\ii{\mathrm i}
+  \newcommand{\vectwo}[2]
+  {
+     \begin{pmatrix} #1 \\ #2 \end{pmatrix}
+  }
+  \newcommand{\vecthree}[3]
+  {
+     \begin{pmatrix} #1 \\ #2 \\ #3 \end{pmatrix}
+  }
+  \newcommand\blue{\color{blue}}
+  \newcommand\black{\color{black}}
+  \newcommand\red{\color{red}}
+  
+  \newcommand\nn{\nonumber}
+  \newcommand\bbm{\begin{bmatrix}}
+  \newcommand\ebm{\end{bmatrix}}
+  \newcommand\bpm{\begin{pmatrix}}
+  \newcommand\epm{\end{pmatrix}}
+  \numberwithin{equation}{section}
+  \newcommand\nin{\noindent}
+  \newcommand{\nCr}[2]{\,_{#1}C_{#2}} 
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="diffeqs.html"><span class="title">Differential Equations</span></a></h1>
+<p class="byline">Phanuel Mariano, Ryan Tully-Doyle</p>
+</div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3"><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="introduction.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="introduction.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="ch1-2.html" title="Next">Next</a></span></div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="introduction.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="introduction.html" title="Up">Up</a><a class="next-button button toolbar-item" href="ch1-2.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link"><a href="frontmatter-1.html" data-scroll="frontmatter-1"><span class="title">Front Matter</span></a></li>
+<li class="link">
+<a href="introduction.html" data-scroll="introduction"><span class="codenumber">1</span> <span class="title">Introduction</span></a><ul>
+<li><a href="ch1-1.html" data-scroll="ch1-1" class="active">Modeling via differential equations, some solutions and definitions</a></li>
+<li><a href="ch1-2.html" data-scroll="ch1-2">Slope fields (direction fields)</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch2.html" data-scroll="ch2"><span class="codenumber">2</span> <span class="title">First Order Differential Equations</span></a><ul>
+<li><a href="ch2-1.html" data-scroll="ch2-1">Linear equations and integrating factors</a></li>
+<li><a href="ch2-2.html" data-scroll="ch2-2">Separable equations</a></li>
+<li><a href="ch2-3.html" data-scroll="ch2-3">Separable homogeneous equations and the substitution method</a></li>
+<li><a href="ch2-4.html" data-scroll="ch2-4">Modeling with Differential Equations</a></li>
+<li><a href="ch2-5.html" data-scroll="ch2-5">Modeling with differential equations - more problems</a></li>
+<li><a href="ch2-6.html" data-scroll="ch2-6">Existence and Uniqueness of Solutions</a></li>
+<li><a href="ch2-7.html" data-scroll="ch2-7">Autonomous Equations and Population dynamics</a></li>
+<li><a href="ch2-8.html" data-scroll="ch2-8">Exact equations</a></li>
+<li><a href="ch2-9.html" data-scroll="ch2-9">Euler's method</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch3.html" data-scroll="ch3"><span class="codenumber">3</span> <span class="title">Second Order Linear Equations</span></a><ul>
+<li><a href="ch3-1.html" data-scroll="ch3-1">Motivation - mass-spring systems.</a></li>
+<li><a href="ch3-2.html" data-scroll="ch3-2">Second order linear equations</a></li>
+<li><a href="ch3-3.html" data-scroll="ch3-3">Solutions to Linear Equations; the Wronskian</a></li>
+<li><a href="ch3-4.html" data-scroll="ch3-4">Complex roots of the characteristic equation</a></li>
+<li><a href="ch3-5.html" data-scroll="ch3-5">Repeated roots; Reduction of order</a></li>
+<li><a href="ch3-6.html" data-scroll="ch3-6">Non-homogeneous equations - Undetermined coefficients</a></li>
+<li><a href="section-18.html" data-scroll="section-18">Variation of Parameters</a></li>
+<li><a href="section-19.html" data-scroll="section-19">Harmonic oscillations</a></li>
+<li><a href="section-20.html" data-scroll="section-20">Forced oscillations</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter-4.html" data-scroll="chapter-4"><span class="codenumber">4</span> <span class="title">Higher order differential equations</span></a><ul>
+<li><a href="section-21.html" data-scroll="section-21">Linear equations</a></li>
+<li><a href="section-22.html" data-scroll="section-22">Constant coefficients</a></li>
+<li><a href="section-23.html" data-scroll="section-23">The Method of Undetermined Coefficients</a></li>
+</ul>
+</li>
+<li class="link"><a href="backmatter-1.html" data-scroll="backmatter-1"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="quadratic.html" data-scroll="quadratic"><span class="codenumber">A</span> <span class="title">A fast quadratic method</span></a></li>
+<li class="link">
+<a href="appendix-2.html" data-scroll="appendix-2"><span class="codenumber">B</span> <span class="title">Exercises for Chapter 1</span></a><ul>
+<li><a href="section-24.html" data-scroll="section-24">Section 1.1</a></li>
+<li><a href="section-25.html" data-scroll="section-25">Section 1.2</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-3.html" data-scroll="appendix-3"><span class="codenumber">C</span> <span class="title">Exercises for Chapter 2</span></a><ul>
+<li><a href="section-26.html" data-scroll="section-26">Section 2.1</a></li>
+<li><a href="section-27.html" data-scroll="section-27">Section 2.2</a></li>
+<li><a href="section-28.html" data-scroll="section-28">Section 2.3</a></li>
+<li><a href="section-29.html" data-scroll="section-29">Section 2.4</a></li>
+<li><a href="section-30.html" data-scroll="section-30">Section 2.5</a></li>
+<li><a href="section-31.html" data-scroll="section-31">Section 2.6</a></li>
+<li><a href="section-32.html" data-scroll="section-32">Section 2.7</a></li>
+<li><a href="section-33.html" data-scroll="section-33">Section 2.8</a></li>
+<li><a href="section-34.html" data-scroll="section-34">Section 2.9</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-4.html" data-scroll="appendix-4"><span class="codenumber">D</span> <span class="title">Exercises for Chapter 3</span></a><ul>
+<li><a href="section-35.html" data-scroll="section-35">Section 3.2</a></li>
+<li><a href="section-36.html" data-scroll="section-36">Section 3.3</a></li>
+<li><a href="section-37.html" data-scroll="section-37">Section 3.4</a></li>
+<li><a href="section-38.html" data-scroll="section-38">Section 3.5</a></li>
+<li><a href="section-39.html" data-scroll="section-39">Section 3.6</a></li>
+</ul>
+</li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="ch1-1"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">1.1</span> <span class="title">Modeling via differential equations, some solutions and definitions</span>
+</h2>
+<a href="ch1-1.html" class="permalink">¶</a><section class="introduction" id="introduction-1"><p id="p-2">We being by asking what a differential equation is. In your calculus career, you have seen quite a number of them already, just in disguise. For example, you might have been asked “what function is the antiderivative of \(x^2\text{?}\)” In other words, find a function \(f(x)\) so that</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{d}{dx} f(x) = x^2.
+\end{equation*}
+</div>
+<p>In your past life, this sort of equation was solved by using integration, which will also be true in this class. Indeed, the reason that you spent so much time on techniques of integration was to give you the basic toolset needed to solve differential equations.</p></section><section class="subsection" id="ch1-1a"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">1.1.1</span> <span class="title">What are differential equations?</span>
+</h3>
+<a href="ch1-1.html#ch1-1a" class="permalink">¶</a><p id="p-3">So let us consider the question “<em class="emphasis">What is a differential equation and what are its solutions?</em>” We can compare and contrast what we already know in algebra with what we know in differential equations.</p>
+<ul class="disc">
+<li id="li-1">
+<p id="p-4"><em class="alert">Algebraic equations:</em> are equations formed from numerical variables.</p>
+<ul class="circle">
+<li id="li-2">Examples: \(x^2 - 1 = 0\) or \(x^2 + 1 = 0\)</li>
+<li id="li-3">
+<p id="p-5">What are solutions? Are there even solutions? If so, how many?</p>
+<ul class="square">
+<li id="li-4">Solutions to algebraic equations are numbers.</li>
+<li id="li-5">We can always check if a number is a solution: note that \(x = 1\) is a solution of \(x^2 - 1 = 0\) since \(1^2 - 1 = 0\)</li>
+<li id="li-6">But notice that there is another solution, \(x = -1\) as well. So solutions are not <em class="emphasis">unique</em> in this case.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li id="li-7">
+<p id="p-6"><em class="alert">Differential equations:</em> are equations involving variables representing <em class="emphasis">functions and their derivatives</em>.</p>
+<ul class="circle">
+<li id="li-8">Examples: \(\frac{dy}{dt} = 2y\) or \(y' = 4y + e^t\text{.}\)</li>
+<li id="li-9">
+<p id="p-7">What are solutions to differential equations?</p>
+<ul class="square">
+<li id="li-10">
+<em class="alert">They are functions</em>! This is tricky because functions are more complicated than numbers. Functions have domains, ranges, etc.</li>
+<li id="li-11">Solutions to differential equations are <em class="emphasis">not!</em> equations.</li>
+</ul>
+</li>
+<li id="li-12">Is there even a solution? (<dfn class="terminology">Existence</dfn>) If so, how many? (<dfn class="terminology">Uniqueness</dfn>). These are the two main questions that one asks in differential equations.</li>
+<li id="li-13">
+<em class="alert">Check:</em> We can always check that a function is a solution to a differential equation.</li>
+<li id="li-14">
+<p id="p-8">Example: Show that \(y(t) = 9e^{2t}\) is a solution to the differential equation \(y' = 2y\text{.}\)</p>
+<p id="p-9">Solution: Plug \(y(t)\) into the left hand side (LHS) of the equation, then plug into the right hand side (RHS) and check that they are equal.</p>
+<div class="displaymath">
+\begin{gather*}
+LHS \overset{?}= RHS\\
+\frac{d}{dt}(9e^{2t}) \overset{?}= 2\cdot (9e^{2t})\\
+18e^{2t} \overset{\checkmark}= 18e^{2t}
+\end{gather*}
+</div>
+<p id="p-10">What about \(y = 9e^{2t}+1\text{?}\) Is this a solution? Take a pen and paper and try this yourself by hand. You will see that \(y\) is NOT actually a solution to the example equation.</p>
+</li>
+<li id="li-15">
+<p id="p-11">Check that \(y(t) = 1 + t\) is a solution to the differential equation</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt} = \frac{y^2 - 1}{t^2 + 2t}.
+\end{equation*}
+</div>
+<p id="p-12">You should find that the answer is yes.</p>
+</li>
+</ul>
+</li>
+</ul></section><section class="subsection" id="ch1-1b"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">1.1.2</span> <span class="title">Studying first order equations</span>
+</h3>
+<a href="ch1-1.html#ch1-1b" class="permalink">¶</a><p id="p-13">What are differential equations used for? The answer is pretty much everything in modern science. Derivatives measure rate of change. Since modern science, engineering, and applied mathematics study changing quantities in the physical world, <em class="emphasis">differential equations are the language of science</em>. Differential equations are models of the physical world that are used to make predictions.</p>
+<ul class="disc">
+<li id="li-16">Meteorologists try to model the weather constantly (using very complicated differential equations), and they get it wrong all the time. <em class="emphasis">Modeling is hard.</em>
+</li>
+<li id="li-17">
+<p id="p-14">Models frequently follow from qualitative observations about the world. A classical example is known as <dfn class="terminology">Newton's Law of Cooling</dfn>, which states that “at a given time, the rate at which an object in an environment of constant ambient temperature is cooling is proportional to the difference between the object's temperature and the ambient temperature.”</p>
+<p id="p-15">Mathematically, we can translate this into a differential equation. Let \(T\) be the temperature of the object at time \(t\text{,}\) and \(A\) be the ambient temperature. Then</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dT}{dt} = C(T - A),
+\end{equation*}
+</div>
+<p>where \(C\) is the constant of proportionality.</p>
+</li>
+<li id="li-18">The solution to the equation<div class="displaymath">
+\begin{equation*}
+\frac{dP}{dt} = k\cdot P
+\end{equation*}
+</div>models the population of a species at time \(t\text{,}\) assuming unrestricted growth. In words, the equation says “the rate at which a population grows at a given time is proportional to the current population at that time”.</li>
+<li id="li-19">A related equation called the <dfn class="terminology">logistic growth model</dfn> describes population growth in an environment with restricted resources, and is given by<div class="displaymath">
+\begin{equation*}
+\frac{dP}{dt} = C \cdot P(M - P),
+\end{equation*}
+</div>where the constant \(C\) is the constant of proportionality, and the constant \(M\) is called the <dfn class="terminology">carrying capacity</dfn> of the model. How does this equation behave for as time progresses?</li>
+</ul>
+<article class="definition-like" id="definition-1"><h6 class="heading">
+<span class="type">Definition</span> <span class="codenumber">1.1.1</span>.</h6>
+<p id="p-16">The standard form of a <dfn class="terminology">first order differential equation</dfn> (that is, an equation with only first derivatives) is</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt} = f(t,y),
+\end{equation*}
+</div>
+<p>where \(y = f(t)\) is a function and \(t\) is the independent variable.</p>
+<p id="p-17">An <dfn class="terminology">initial value problem (IVP)</dfn> is a differential equation with an intial condition:</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt} = f(t, y), \text{ and } y(t_0) = y_0.
+\end{equation*}
+</div></article><ul class="disc"><li id="li-20">
+<p id="p-18">Consider the IVP</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt} = 2y, \hspace{.1in} y(0) =9.
+\end{equation*}
+</div>
+<p>Is \(y(t) = 9e^{2t}\) a solution to the IVP?</p>
+<p id="p-19">Yes. We've already checked that \(y(t) = 9e^{2t}\) is a solution to the ODE, and furthermore we have that \(y(0) = 9e^{0} = 9\text{.}\)</p>
+</li></ul>
+<article class="definition-like" id="definition-2"><h6 class="heading">
+<span class="type">Definition</span> <span class="codenumber">1.1.2</span>.</h6>
+<p id="p-20">A <dfn class="terminology">particular solution</dfn> to an ODE is simply one of the functions \(y = y(t)\) that satisfy a differential equation \(y' = f(t,y)\) for all \(t\text{.}\)</p>
+<p id="p-21">A <dfn class="terminology">general solution</dfn> to an ODE is a parametrized collection of solutions that contains the solutions to every possible IVP built from that ODE.</p></article><article class="example-like" id="example-1"><a data-knowl="" class="id-ref" data-refid="hk-example-1"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">1.1.3</span>. <span class="title">Finding a general solution.</span>
+</h6></a></article><div id="hk-example-1" class="hidden-content tex2jax_ignore"><article class="example-like"> To find the general solution to \(\frac{dy}{dt} = 2y\text{,}\) we can separate the \(y\)'s and the \(t\)'s to opposite sides and then integrate.<div class="displaymath">
+\begin{align*}
+\frac{dy}{dt}=2y \amp \iff\frac{dy}{y}=2dt\\
+\amp \iff\int\frac{dy}{y}=\int2dt\\
+\amp \iff\ln\left|y\right|=2t+C\\
+\amp \iff\left|y\right|=e^{2t+C}=Ke^{2t},\text{ where }K=e^{C}\\
+\amp \iff y=ce^{2t},\text{ where }c=\pm K.
+\end{align*}
+</div>Thus, the general solution must be of the form<div class="displaymath">
+\begin{equation*}
+y = ce^{2t}.
+\end{equation*}
+</div>
+<em class="emphasis">There will be a whole section on this technique</em> (unsurprisingly named “separation of variables”).</article></div>
+<article class="definition-like" id="definition-3"><h6 class="heading">
+<span class="type">Definition</span> <span class="codenumber">1.1.4</span>.</h6>An <dfn class="terminology">equilibrium solution</dfn> to an ODE is a <em class="emphasis">constant solution</em>\(y(t) = y_0\text{.}\) That is,<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt} = 0 \text{ for all } t.
+\end{equation*}
+</div></article><article class="example-like" id="example-2"><a data-knowl="" class="id-ref" data-refid="hk-example-2"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">1.1.5</span>. <span class="title">Finding an equilibrium solution.</span>
+</h6></a></article><div id="hk-example-2" class="hidden-content tex2jax_ignore"><article class="example-like"> Find the equilibrium solution of the following equation. Suppose that<div class="displaymath">
+\begin{equation*}
+y' = y^3 + y^2 - 6y.
+\end{equation*}
+</div>For what values of \(y(0) = y_0\) is \(y(t)\) equilibrium, increasing, or decreasing? Factor to get<div class="displaymath">
+\begin{equation*}
+y' = y(y-2)(y+3),
+\end{equation*}
+</div>and create a sign chart (like in calculus!). The equilibrium solutions are \(y = -3, y=0,\) and \(y=2\text{.}\) We can observe that solutions decrease for \(y_0 \in (-\infty, -3)\cup(0,2)\) and that they increase for \((-3,0)\cup(2,\infty)\text{.}\)</article></div></section><section class="subsection" id="ch1-1c"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">1.1.3</span> <span class="title">Solutions to some differential Equations</span>
+</h3>
+<a href="ch1-1.html#ch1-1c" class="permalink">¶</a><ul class="disc">
+<li id="li-21">
+<p id="p-22"><em class="alert">A Linear Differential Equation:</em> Pick your favorite real numbers \(a,b,y_{0}\) and consider the IVP</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt}=ay-b,\,\,\,\,\,\,y(0)=y_{0}.
+\end{equation*}
+</div>
+<p id="p-23">The <em class="alert">general solution</em> to this differential equation is</p>
+<div class="displaymath">
+\begin{equation*}
+y(t)=\frac{b}{a}+\left(y_{0}-\frac{b}{a}\right)e^{at}
+\end{equation*}
+</div>
+<p><em class="emphasis">We will see how one can get this very soon!</em></p>
+</li>
+<li id="li-22">
+<p id="p-24"><em class="alert">Example:</em> Find the solution to</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt}=-2y+8,\,\,\,\,\,y(0)=5.
+\end{equation*}
+</div>
+<p id="p-25"><em class="alert">Solution:</em> The mysterious formula above says that</p>
+<div class="displaymath">
+\begin{equation*}
+a=-2,b=-8
+\end{equation*}
+</div>
+<p>and</p>
+<div class="displaymath">
+\begin{equation*}
+y_{0}=9
+\end{equation*}
+</div>
+<p>so the solution is</p>
+<div class="displaymath">
+\begin{equation*}
+y(t)=4+\left(5-\frac{8}{2}\right)e^{-2t}=4+e^{-2t}.
+\end{equation*}
+</div>
+</li>
+</ul></section><section class="subsection" id="ch1-1d"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">1.1.4</span> <span class="title">Studying general differential equations</span>
+</h3>
+<a href="ch1-1.html#ch1-1d" class="permalink">¶</a><ul class="disc">
+<li id="li-23">
+<p id="p-26">In this class, we will only study <dfn class="terminology">ordinary differential equations</dfn> (ODE): contains only ordinary derivatives:</p>
+<p id="p-27">Example: \(\frac{d^{2}y}{dt^{2}}+\frac{dy}{dt}=-1\)</p>
+</li>
+<li id="li-24">
+<p id="p-28">There is a whole separate course where one can study <dfn class="terminology">partial differential equations</dfn>(PDE):</p>
+<p id="p-29">Ex: \(\frac{\partial^{2}u(x,y)}{\partial x^{2}}+\frac{\partial^{2}u(x,y)}{\partial y^{2}}=-1\)</p>
+</li>
+<li id="li-25">System of equations:<div class="displaymath">
+\begin{align*}
+\frac{dx}{dt} \amp =x-xy\\
+\frac{dv}{dt} \amp =y-3x
+\end{align*}
+</div>
+</li>
+<li id="li-26">The <dfn class="terminology">order</dfn> of the equation speaks to the highest order derivative in the equation<div class="displaymath">
+\begin{align*}
+y^{\prime}+3y \amp =0\,\,\,\text{1st order}\\
+y^{\prime\prime}+3y^{\prime} \amp =2t\,\,\,\text{2nd order}\\
+\frac{d^{5}y}{dt}+\frac{dy}{dt} \amp =y\,\,\,\text{5th order}\\
+u_{xx}+u_{yy} \amp =0\,\,\,\text{2nd order}
+\end{align*}
+</div>
+</li>
+</ul>
+<article class="definition-like" id="definition-4"><h6 class="heading">
+<span class="type">Definition</span> <span class="codenumber">1.1.6</span>.</h6>An ODE is called <dfn class="terminology">linear</dfn> if it is linear in \(y\text{,}\) i.e. it is of the form<div class="displaymath">
+\begin{equation*}
+a_{n}(t)y^{(n)}+a_{n-1}(t)y^{(n-1)}+\cdots+a_{0}(t)y=g(t)
+\end{equation*}
+</div></article><ul class="disc">
+<li id="li-27">
+<p id="p-30"><em class="alert">Linear</em>:</p>
+<ul class="circle">
+<li id="li-28">\(y^{\prime}+4y=0\text{,}\)</li>
+<li id="li-29">\(t^{2}y^{\prime\prime}+\cos ty=1\text{,}\)</li>
+<li id="li-30">and \(\frac{y^{\prime}}{t}-y=t^{2}\text{.}\)</li>
+</ul>
+</li>
+<li id="li-31">
+<p id="p-31"><em class="alert">Nonlinear</em>:</p>
+<ul class="circle">
+<li id="li-32">\(\left(\frac{du}{dt}\right)^{2}+y=1\text{,}\)</li>
+<li id="li-33">\(yy^{\prime}+y=1\text{,}\)</li>
+<li id="li-34">\(y^{\prime\prime}+3e^{y}y,\)</li>
+<li id="li-35">and \(\frac{1}{y}-y^{\prime}=1\text{.}\)</li>
+</ul>
+</li>
+</ul>
+<p id="p-32">Nonlinear ODEs are some of the hardest equations to solve! In fact, most of the time, one won't be able to find an exact formula for the solution of a differential equation. Much of the study of differential equations comes down to qualitative analysis and approximate solutions. But one nice thing about studying ODEs is that we can always check if a function is really a solution to a differential equation or not. Futhermore, the equations can frequently be understood without an explicit solution at all.</p></section></section></div></main>
+</div>
+<div class="login-link"><span id="loginlogout" class="login">login</span></div>
+<script src="https://pretextbook.org/js/0.12/login.js"></script>
+</body>
+</html>

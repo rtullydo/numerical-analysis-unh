@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:44-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body><article class="example-like"><p>One of the most important geometric facts about the relationship between the <dfn class="terminology">potential function</dfn> \(f\) and the gradient field \(\nabla f\) is that <em class="emphasis">equipotentials are perpendicular to gradients.</em> Using our previous example:</p>
+<div class="sagecell-sage" id="sage-16"><script type="text/x-sage">x,y = var('x,y')
+g = Graphics()
+g+= implicit_plot(-x^2  + 3*y - y^2, (x, -2,2), (y, 0,3), color = "red" )
+g+=implicit_plot(-x^2  + 3*y - y^2 - 1, (x, -2,2), (y, 0,3), color="yellow" )
+g+= implicit_plot(-x^2  + 3*y - y^2-2, (x, -2,2), (y, 0,3), color="green" )
+g+= plot_vector_field((-2*x, 3 - 2*y), (-2,2), (0,3))
+g.show()
+</script></div></article></body>
+</html>

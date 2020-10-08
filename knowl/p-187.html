@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-12-13T10:04:42-05:00    *-->
+<!--*    on 2020-03-18T09:31:46-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -13,7 +13,7 @@
 </head>
 <body>
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>We've seen that <code class="code-inline tex2jax_ignore">fft</code> takes a signal \(x\) in the time domain and produces a vector \(X\) in the frequency domain. Since each entry in \(X\) is a linear combination of the entries of \(x\text{,}\) we should suspect that this process can be inverted. Indeed, <dfn class="terminology">inverse DFT</dfn> , implemented in Octave as <code class="code-inline tex2jax_ignore">ifft</code>, takes a frequency vector \(X\) and produces a time domain signal \(x\text{.}\) Note that since we normalized the output of <code class="code-inline tex2jax_ignore">fft</code> by dividing by the length of the vector (since <code class="code-inline tex2jax_ignore">fft(x)</code>\(= \sum_{n=0}^{N-1} x_k e^{i2\pi \frac{k}{N} n}\)), we need to undo the normalization before we compute the <code class="code-inline tex2jax_ignore">ifft</code>.</p>
+<p>The following example constructs a nice period function from a sum of sines and cosines, then corrupts the signal with random noies. The <code class="code-inline tex2jax_ignore">fft</code> can be used to produce a one-sided spectrum that recovers the frequences of the original signal.</p>
 <span class="incontext"><a href="section-7.html#p-187">in-context</a></span>
 </body>
 </html>

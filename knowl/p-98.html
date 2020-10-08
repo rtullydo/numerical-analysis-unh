@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-12-13T10:04:41-05:00    *-->
+<!--*    on 2020-03-18T09:31:45-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -13,20 +13,29 @@
 </head>
 <body>
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>It turns out that this process can be repeated for additional points, though one can imagine the formula for the next step is quite complicated to express in \(x_i, y_i\text{.}\) So we introduce a notation that will make this process easy to write in recursive form. The \(m\)th divided difference is given by the recursive formula</p>
-<div class="displaymath">
-\begin{align*}
-f[x_i] \amp= y_i;\\
-f[x_m, \ldots, x_0] \amp= \frac{f[x_m, \ldots, x_1] - f[x_{m-1}, \ldots, x_0]}{x_m - x_0}.
-\end{align*}
-</div>
-<p>For example, in this notation,</p>
+<p>To find the values of the coefficients, we'll plug in our data points.</p>
 <div class="displaymath">
 \begin{equation*}
-f[x_1, x_0] = \frac{f[x_1] - f[x_0]}{x_1 - x_0} = \frac{y_2 - y_1}{x_2 - x_1},
+f(x_0) = b_0 + 0 + 0
 \end{equation*}
 </div>
-<p>and you should convince yourself that the expression for \(f[x_2, x_1, x_0]\) agrees with our previous computation.</p>
+<p>and so \(b_0 = f(x_0) = y_0\text{.}\) Moving to \(x_1\text{,}\)</p>
+<div class="displaymath">
+\begin{align*}
+f(x_1) \amp= b_0 + b_1(x_1 - x_0) + 0\\
+y_1 \amp= y_0 + b_1(x_1 - x_0)\\
+b_1 \amp= \frac{y_1 - y_0}{x_1 - x_0}
+\end{align*}
+</div>
+<p>Notice that so far, we've exactly reproduced the line connecting the first two points. Now let's look at \(b_2\text{.}\)</p>
+<div class="displaymath">
+\begin{align*}
+f(x_2) \amp= y_0 + \frac{y_1 - y_0}{x_1 - x_0}(x_2 - x_0) + b_2 (x_2 - x_0)(x_2 - x_1)\\
+y_2 \amp- y_0 - \frac{y_1 - y_0}{x_1 - x_0}(x_2 - x_0) = b_2 (x_2 - x_0)(x_2 - x_1)\\
+b_2 \amp= \frac{\frac{y_2 - y_1}{x_2 - x_1} - \frac{y_1 - y_0}{y_1 - y_0}}{x_2 - x_0},
+\end{align*}
+</div>
+<p>where the last step requires a bit of non-obvious algebra, but provides a more useful form.</p>
 <span class="incontext"><a href="section-5.html#p-98">in-context</a></span>
 </body>
 </html>

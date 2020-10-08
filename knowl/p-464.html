@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:44-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body>
+<h6 class="heading"><span class="type">Paragraph</span></h6>
+<p>When the forcing function of an undamped system  is far from the natural frequency of a undamped system, forcing function and the natural behavior of the system interact in a combination of constructive and destructive interference. <div class="sagecell-sage" id="sage-20"><script type="text/x-sage">var('x')
+y = function('y')(x)
+de = diff(y, x, 2) + 2*y == cos(5*x)
+f = desolve(de, y, [0,0,0])
+plot(f, [0,10*pi], title = f)
+</script></div> However, when the frequency of the forcing function approaches the natural frequency of the system, constructive and destructive interference tend to cluster into locally strong or weak oscillations called <dfn class="terminology">beats</dfn>.</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{\omega_{0}}{2\pi}\approx\frac{\omega}{2\pi}\iff\omega_{0}\approx\omega.
+\end{equation*}
+</div>
+<p>Solutions in this case typically look something like this: <div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/3.8-2.jpg" style="width: 100%; height: auto;" alt=""></div></p>
+<span class="incontext"><a href="section-20.html#p-464">in-context</a></span>
+</body>
+</html>

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:41-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Existence and Uniqueness of Solutions</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    asciimath2jax: {
+        ignoreClass: ".*",
+        processClass: "has_am"
+    },
+    jax: ["input/AsciiMath"],
+    extensions: ["asciimath2jax.js"],
+    TeX: {
+        extensions: ["extpfeil.js", "autobold.js", "https://pretextbook.org/js/lib/mathjaxknowl.js", ],
+        // scrolling to fragment identifiers is controlled by other Javascript
+        positionToHash: false,
+        equationNumbers: { autoNumber: "none", useLabelIds: true, },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    // HTML-CSS output Jax to be dropped for MathJax 3.0
+    "HTML-CSS": {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+    CommonHTML: {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+});
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML-full"></script><script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.12/pretext.js"></script><script src="https://pretextbook.org/js/0.12/pretext_add_on.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/toc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/setcolors.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/features.css" rel="stylesheet" type="text/css">
+<script>var logged_in = false;
+var role = 'student';
+var guest_access = true;
+var login_required = false;
+var js_version = 0.12;
+</script>
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div class="hidden-content" style="display:none">\(\DeclareMathOperator{\RE}{Re}
+  \DeclareMathOperator{\IM}{Im}
+  \DeclareMathOperator{\ess}{ess}
+  \DeclareMathOperator{\intr}{int}
+  \DeclareMathOperator{\dist}{dist}
+  \DeclareMathOperator{\dom}{dom}
+  \DeclareMathOperator{\diag}{diag}
+  \DeclareMathOperator\re{\mathrm {Re~}}
+  \DeclareMathOperator\im{\mathrm {Im~}}
+  
+  \newcommand\dd{\mathrm d}
+  \newcommand{\eps}{\varepsilon}
+  \newcommand{\To}{\longrightarrow}
+  \newcommand{\hilbert}{\mathcal{H}}
+  \newcommand{\s}{\mathcal{S}_2}
+  \newcommand{\A}{\mathcal{A}}
+  \newcommand\h{\mathcal{H}}
+  \newcommand{\J}{\mathcal{J}}
+  \newcommand{\M}{\mathcal{M}}
+  \newcommand{\F}{\mathbb{F}}
+  \newcommand{\N}{\mathcal{N}}
+  \newcommand{\T}{\mathbb{T}}
+  \newcommand{\W}{\mathcal{W}}
+  \newcommand{\X}{\mathcal{X}}
+  \newcommand{\D}{\mathbb{D}}
+  \newcommand{\C}{\mathbb{C}}
+  \newcommand{\BOP}{\mathbf{B}}
+  \newcommand{\Z}{\mathbb{Z}}
+  \newcommand{\BH}{\mathbf{B}(\mathcal{H})}
+  \newcommand{\KH}{\mathcal{K}(\mathcal{H})}
+  \newcommand{\pick}{\mathcal{P}_2}
+  \newcommand{\schur}{\mathcal{S}_2}
+  \newcommand{\R}{\mathbb{R}}
+  \newcommand{\Complex}{\mathbb{C}}
+  \newcommand{\Field}{\mathbb{F}}
+  \newcommand{\RPlus}{\Real^{+}}
+  \newcommand{\Polar}{\mathcal{P}_{\s}}
+  \newcommand{\Poly}{\mathcal{P}(E)}
+  \newcommand{\EssD}{\mathcal{D}}
+  \newcommand{\Lop}{\mathcal{L}}
+  \newcommand{\cc}[1]{\overline{#1}}
+  \newcommand{\abs}[1]{\left\vert#1\right\vert}
+  \newcommand{\set}[1]{\left\{#1\right\}}
+  \newcommand{\seq}[1]{\left\lt#1\right&gt;}
+  \newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+  \newcommand{\essnorm}[1]{\norm{#1}_{\ess}}
+  \newcommand{\tr}{\operatorname{tr}}
+  \newcommand{\ran}[1]{\operatorname{ran}#1}
+  \newcommand{\nt}{\stackrel{\mathrm {nt}}{\to}}
+  \newcommand{\pnt}{\xrightarrow{pnt}}
+  \newcommand{\ip}[2]{\left\langle #1, #2 \right\rangle}
+  \newcommand{\ad}{^\ast}
+  \newcommand{\inv}{^{-1}}
+  \newcommand{\adinv}{^{\ast -1}}
+  \newcommand{\invad}{^{-1 \ast}}
+  \newcommand\Pick{\mathcal P}
+  \newcommand\Ha{\mathbb{H}}
+  \newcommand{\HH}{\Ha\times\Ha}
+  \newcommand\Htau{\mathbb{H}(\tau)}
+  \newcommand{\vp}{\varphi}
+  \newcommand{\ph}{\varphi}
+  \newcommand\al{\alpha}
+  \newcommand\ga{\gamma}
+  \newcommand\de{\delta}
+  \newcommand\ep{\varepsilon}
+  \newcommand\la{\lambda}
+  \newcommand\up{\upsilon}
+  \newcommand\si{\sigma}
+  \newcommand\beq{\begin{equation}}
+  \newcommand\ds{\displaystyle}
+  \newcommand\eeq{\end{equation}}
+  \newcommand\df{\stackrel{\rm def}{=}}
+  \newcommand\ii{\mathrm i}
+  \newcommand{\vectwo}[2]
+  {
+     \begin{pmatrix} #1 \\ #2 \end{pmatrix}
+  }
+  \newcommand{\vecthree}[3]
+  {
+     \begin{pmatrix} #1 \\ #2 \\ #3 \end{pmatrix}
+  }
+  \newcommand\blue{\color{blue}}
+  \newcommand\black{\color{black}}
+  \newcommand\red{\color{red}}
+  
+  \newcommand\nn{\nonumber}
+  \newcommand\bbm{\begin{bmatrix}}
+  \newcommand\ebm{\end{bmatrix}}
+  \newcommand\bpm{\begin{pmatrix}}
+  \newcommand\epm{\end{pmatrix}}
+  \numberwithin{equation}{section}
+  \newcommand\nin{\noindent}
+  \newcommand{\nCr}[2]{\,_{#1}C_{#2}} 
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="diffeqs.html"><span class="title">Differential Equations</span></a></h1>
+<p class="byline">Phanuel Mariano, Ryan Tully-Doyle</p>
+</div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3"><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="ch2-5.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="ch2.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="ch2-7.html" title="Next">Next</a></span></div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="ch2-5.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="ch2.html" title="Up">Up</a><a class="next-button button toolbar-item" href="ch2-7.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link"><a href="frontmatter-1.html" data-scroll="frontmatter-1"><span class="title">Front Matter</span></a></li>
+<li class="link">
+<a href="introduction.html" data-scroll="introduction"><span class="codenumber">1</span> <span class="title">Introduction</span></a><ul>
+<li><a href="ch1-1.html" data-scroll="ch1-1">Modeling via differential equations, some solutions and definitions</a></li>
+<li><a href="ch1-2.html" data-scroll="ch1-2">Slope fields (direction fields)</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch2.html" data-scroll="ch2"><span class="codenumber">2</span> <span class="title">First Order Differential Equations</span></a><ul>
+<li><a href="ch2-1.html" data-scroll="ch2-1">Linear equations and integrating factors</a></li>
+<li><a href="ch2-2.html" data-scroll="ch2-2">Separable equations</a></li>
+<li><a href="ch2-3.html" data-scroll="ch2-3">Separable homogeneous equations and the substitution method</a></li>
+<li><a href="ch2-4.html" data-scroll="ch2-4">Modeling with Differential Equations</a></li>
+<li><a href="ch2-5.html" data-scroll="ch2-5">Modeling with differential equations - more problems</a></li>
+<li><a href="ch2-6.html" data-scroll="ch2-6" class="active">Existence and Uniqueness of Solutions</a></li>
+<li><a href="ch2-7.html" data-scroll="ch2-7">Autonomous Equations and Population dynamics</a></li>
+<li><a href="ch2-8.html" data-scroll="ch2-8">Exact equations</a></li>
+<li><a href="ch2-9.html" data-scroll="ch2-9">Euler's method</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch3.html" data-scroll="ch3"><span class="codenumber">3</span> <span class="title">Second Order Linear Equations</span></a><ul>
+<li><a href="ch3-1.html" data-scroll="ch3-1">Motivation - mass-spring systems.</a></li>
+<li><a href="ch3-2.html" data-scroll="ch3-2">Second order linear equations</a></li>
+<li><a href="ch3-3.html" data-scroll="ch3-3">Solutions to Linear Equations; the Wronskian</a></li>
+<li><a href="ch3-4.html" data-scroll="ch3-4">Complex roots of the characteristic equation</a></li>
+<li><a href="ch3-5.html" data-scroll="ch3-5">Repeated roots; Reduction of order</a></li>
+<li><a href="ch3-6.html" data-scroll="ch3-6">Non-homogeneous equations - Undetermined coefficients</a></li>
+<li><a href="section-18.html" data-scroll="section-18">Variation of Parameters</a></li>
+<li><a href="section-19.html" data-scroll="section-19">Harmonic oscillations</a></li>
+<li><a href="section-20.html" data-scroll="section-20">Forced oscillations</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter-4.html" data-scroll="chapter-4"><span class="codenumber">4</span> <span class="title">Higher order differential equations</span></a><ul>
+<li><a href="section-21.html" data-scroll="section-21">Linear equations</a></li>
+<li><a href="section-22.html" data-scroll="section-22">Constant coefficients</a></li>
+<li><a href="section-23.html" data-scroll="section-23">The Method of Undetermined Coefficients</a></li>
+</ul>
+</li>
+<li class="link"><a href="backmatter-1.html" data-scroll="backmatter-1"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="quadratic.html" data-scroll="quadratic"><span class="codenumber">A</span> <span class="title">A fast quadratic method</span></a></li>
+<li class="link">
+<a href="appendix-2.html" data-scroll="appendix-2"><span class="codenumber">B</span> <span class="title">Exercises for Chapter 1</span></a><ul>
+<li><a href="section-24.html" data-scroll="section-24">Section 1.1</a></li>
+<li><a href="section-25.html" data-scroll="section-25">Section 1.2</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-3.html" data-scroll="appendix-3"><span class="codenumber">C</span> <span class="title">Exercises for Chapter 2</span></a><ul>
+<li><a href="section-26.html" data-scroll="section-26">Section 2.1</a></li>
+<li><a href="section-27.html" data-scroll="section-27">Section 2.2</a></li>
+<li><a href="section-28.html" data-scroll="section-28">Section 2.3</a></li>
+<li><a href="section-29.html" data-scroll="section-29">Section 2.4</a></li>
+<li><a href="section-30.html" data-scroll="section-30">Section 2.5</a></li>
+<li><a href="section-31.html" data-scroll="section-31">Section 2.6</a></li>
+<li><a href="section-32.html" data-scroll="section-32">Section 2.7</a></li>
+<li><a href="section-33.html" data-scroll="section-33">Section 2.8</a></li>
+<li><a href="section-34.html" data-scroll="section-34">Section 2.9</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-4.html" data-scroll="appendix-4"><span class="codenumber">D</span> <span class="title">Exercises for Chapter 3</span></a><ul>
+<li><a href="section-35.html" data-scroll="section-35">Section 3.2</a></li>
+<li><a href="section-36.html" data-scroll="section-36">Section 3.3</a></li>
+<li><a href="section-37.html" data-scroll="section-37">Section 3.4</a></li>
+<li><a href="section-38.html" data-scroll="section-38">Section 3.5</a></li>
+<li><a href="section-39.html" data-scroll="section-39">Section 3.6</a></li>
+</ul>
+</li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="ch2-6"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">2.6</span> <span class="title">Existence and Uniqueness of Solutions</span>
+</h2>
+<a href="ch2-6.html" class="permalink">¶</a><section class="subsection" id="ch2-6a"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">2.6.1</span> <span class="title">Existence theorems</span>
+</h3>
+<a href="ch2-6.html#ch2-6a" class="permalink">¶</a><p id="p-186">We want to know if solutions even exist to a given ODE.</p>
+<ul class="disc">
+<li id="li-120">If this models a physical phenomona and no solutions exists, then there is something seriously wrong about your model.</li>
+<li id="li-121">Why spend time trying to find a solution, and doing all the things in previous sections if no solutions exist.</li>
+</ul>
+<p id="p-187">By way of analogy, consider the polynomial equation</p>
+<div class="displaymath">
+\begin{equation*}
+2x^{5}-10x+3=0.
+\end{equation*}
+</div>
+<p>Plugging \(x=\pm1\) into \(f(x)=2x^{5}-10x+5\) we get \(f(1)=-5\) and \(f(-1)=11\text{.}\) What can we conclude about the solution set?</p>
+<ul class="disc">
+<li id="li-122">We draw a continuous sketch of this graph, and show it must cross the \(x-\)axis.</li>
+<li id="li-123">By the intermediate value theorem we know that at least one solution exists, since somewhere in between \(x=-1\) and \(x=1\) the function \(f(x)\) must have crossed the \(x-\) axis.</li>
+<li id="li-124">There could be more than one, we'd like to know if we should stop searching for more solutions.</li>
+<li id="li-125">This is a difficult questions. There is no “quadratic formula” for 5th degree polynomials.</li>
+</ul>
+<p id="p-188">On the other hand, no real solutions exist for \(x^{2}+1=0\text{.}\)</p>
+<p id="p-189">In the context of differential equations, there are theorems that tell us conditions for when a solution must <dfn class="terminology">exist</dfn> for a linear first order ODE and when we know that solution is <dfn class="terminology">unique</dfn>.</p>
+<article class="theorem-like" id="existencethm1"><h6 class="heading">
+<span class="type">Theorem</span> <span class="codenumber">2.6.1</span>. <span class="title">Linear \(1\)st order ODE Existence and Uniqueness Theorem.</span>
+</h6>
+<p id="p-190">If the function \(p\) and \(g\) are continuous on an open interval \(I=(a,b)\)      containing the point \(t=t_{0}\text{,}\) then there <dfn class="terminology">exists</dfn> a <dfn class="terminology">unique</dfn> function \(y=\phi(t)\) that satisties the IVP</p>
+<div class="displaymath">
+\begin{equation*}
+y^{\prime}+p(t)y=g(t),\,\,\,\,\,\,\,y(t_{0})=y_{0}
+\end{equation*}
+</div>
+<p>for each \(t\) in \(I\) and where \(y_{0}\) is an arbitrary initial value.</p></article><p id="p-191">This theorem guarantees the existence and uniqueness of solutions under the assumption of the theorem. <em class="emphasis">This is only for IVP, nothing to do with separate solutions to ODE's</em> (which we already know there are many).</p>
+<p id="p-192"><em class="emphasis">This theorem allows you to know the domain before even solving for the solution. That is, we know where the solution is valid, which is an important consideration in modeling problems.</em></p>
+<article class="example-like" id="example-26"><a data-knowl="" class="id-ref" data-refid="hk-example-26"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.6.2</span>.</h6></a></article><div id="hk-example-26" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-193"><em class="alert">Part (a):</em> Without solving the problem, what is the largest interval in which the solution of the given IVP is certain to exist by the Existence and Uniqueness Theorem?</p>
+<div class="displaymath">
+\begin{equation*}
+(t-1)y^{\prime}+\cos ty=\frac{e^{t}}{t-6}\,\,\,\,\,\,\,y(3)=-4
+\end{equation*}
+</div>
+<p id="p-194"><em class="alert">Solution:</em> We rewrite as</p>
+<div class="displaymath">
+\begin{equation*}
+y^{\prime}+\frac{\cos t}{(t-1)}y=\frac{e^{t}}{\left(t-6\right)(t-1)}
+\end{equation*}
+</div>
+<p>Since \(\frac{\cos t}{(t-1)}\) and \(\frac{e^{t}}{\left(t-6\right)(t-1)}\) are only both continuous for every \(t\neq1,6\text{.}\) The intervals are:</p>
+<div class="displaymath">
+\begin{equation*}
+\left(-\infty,1\right)\cup\left(1,6\right)\cup\left(6,\infty\right).
+\end{equation*}
+</div>
+<p id="p-195">But since the interval \(I=(1,6)\) is the only one that contains the initial point \(t_{0}=03\) is in \(I\text{.}\) Then we know there exists a unique solution \(y=\phi(t)\) on the interval \((1,6)\text{.}\)</p>
+<p id="p-196"><em class="alert">Part (b):</em> What if I change the initial condition to</p>
+<div class="displaymath">
+\begin{equation*}
+y(8)=7,
+\end{equation*}
+</div>
+<p>then what is the interval \(I\text{?}\)</p>
+<p id="p-197"><em class="alert">Solution:</em> Then \(I=\left(6,\infty\right)\text{.}\)</p></article></div>
+<article class="example-like" id="example-27"><a data-knowl="" class="id-ref" data-refid="hk-example-27"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.6.3</span>.</h6></a></article><div id="hk-example-27" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-198"><em class="alert">Part (a):</em> Without solving the problem, what is the largest interval in which the solution of the given IVP is certain to exist by the Existence and Uniqueness Theorem?</p>
+<div class="displaymath">
+\begin{equation*}
+t^{2}y^{\prime}+\frac{\ln\left(t-1\right)}{e^{t-2}}y=\frac{t-5}{\sin(t-4)}\,\,\,\,\,\,\,y(3)=\pi
+\end{equation*}
+</div>
+<p id="p-199"><em class="alert">Solution:</em> We rewrite as</p>
+<div class="displaymath">
+\begin{equation*}
+y^{\prime}+\frac{\ln\left(t-1\right)}{t^{2}e^{t-2}}y=\frac{t-5}{t^{2}\sin(t-4)}
+\end{equation*}
+</div>
+<p>\item The function \(\frac{\ln\left|t-1\right|}{t^{2}e^{t-2}}\) is continuous when \(t\neq0\) and \(t-1&gt;0\text{.}\) So continuous on \((1,\infty)\text{.}\)</p>
+<p id="p-200">The function \(\frac{t-5}{t^{2}\sin(t-4)}\) is continuous when \(t\neq0\) and when \(t-4\neq n\pi\) \(\implies t\neq4+n\pi\text{.}\) So the problem points are \(t=0\) and \(t=\dots,4-2\pi,4-\pi,4,4+\pi,4+2\pi\text{.}\) Note that \(4+\pi\approx7.14\) hence both functions are simultaneously continuous on</p>
+<div class="displaymath">
+\begin{equation*}
+\left(1,4\right)\cup\left(4,4+\pi\right)\cup\left(4+\pi,4+2\pi\right)\cup\cdots
+\end{equation*}
+</div>
+<p>since \(t_{0}=3\) falls inside \((1,4)\) then the solution to this IVP must have domain</p>
+<div class="displaymath">
+\begin{equation*}
+I=(1,4).
+\end{equation*}
+</div>
+<p id="p-201"><em class="alert">Part (b):</em> What if I change the initial condition to</p>
+<div class="displaymath">
+\begin{equation*}
+y(8)=10,
+\end{equation*}
+</div>
+<p>then what is \(I\text{?}\)</p>
+<p id="p-202">Then \(I=\left(4+\pi,4+2\pi\right)\text{.}\)</p></article></div>
+<p id="p-203">For general first order equations, the situation is more complicated. The content of the following theorem is that if the differential equation is nice enough, we can find some small circle where the solutions exist and are unique.</p>
+<article class="theorem-like" id="existencethm2"><h6 class="heading">
+<span class="type">Theorem</span> <span class="codenumber">2.6.4</span>. <span class="title">General 1st Order ODE existence and uniqueness theorem.</span>
+</h6>
+<p id="p-204">Suppose \(f(t,y)\) and \(\frac{\partial f}{\partial y}\) are continuous functions in a rectangle of the form</p>
+<div class="displaymath">
+\begin{equation*}
+\left\{ \left(t,y\right)\mid a\lt t\lt b,c \lt y \lt d\right\}
+\end{equation*}
+</div>
+<p>in the \(ty-\)plane. If \((t_{0},y_{0})\) is a point inside the rectangle. then there exists a unique \(\epsilon&gt;0\) and a <dfn class="terminology">unique function</dfn> \(y(t)=\phi(t)\) defined for \(\left(t_{0}-\epsilon,t_{0}+\epsilon\right)\) that solves the initial value problem</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt}=f(t,y),\qquad y(t_{0})=y_{0}.
+\end{equation*}
+</div></article><p id="p-205"><em class="alert">Warning:</em> Unlike <a data-knowl="./knowl/existencethm1.html" title="Theorem 2.6.1: Linear \(1\)st order ODE Existence and Uniqueness Theorem">Theorem 2.6.1</a>, the statement of <a data-knowl="./knowl/existencethm2.html" title="Theorem 2.6.4: General 1st Order ODE existence and uniqueness theorem">Theorem 2.6.4</a> does not tell you what domain the solution will be valid for. In this case, you really do have to explicitly find the solution to figure out the domain of the function.</p>
+<article class="theorem-like" id="corollary-1"><h6 class="heading">
+<span class="type">Corollary</span> <span class="codenumber">2.6.5</span>.</h6>
+<p id="p-206">Moreover assuming the same conditions as Theorem 1, if \((t_{0},y_{0})\) is a point in this rectangle and if \(y_{1}(t)\) and \(y_{2}(t)\) are two functions that solve the IVP</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt}=f(t,y),\quad y(t_{0})=y_{0},
+\end{equation*}
+</div>
+<p>for all \(t\in\left(t_{0}-\epsilon,t_{0}+\epsilon\right)\text{,}\) then</p>
+<div class="displaymath">
+\begin{equation*}
+y_{1}(t)=y_{2}(t)
+\end{equation*}
+</div>
+<p>for \(t\in\left(t_{0}-\epsilon,t_{0}+\epsilon\right)\text{.}\)</p></article><p id="p-207"><em class="alert">Restatement of Uniqueness Theorem:</em> If two solutions \(y_{1},y_{2}\) to an ODE that satisfies the condition of the uniqueness theorem, then if they are in the same place at the same time, then they must be the same function! That is, the uniqueness condition says that if \(y_{1},y_{2}\) are two solutions to some ODE and \(y_{1}\) and \(y_{2}\) are equal at some point \(t_{0}\text{,}\) then \(y_{1}(t)=y_{2}(t)\) for all \(t\) in some interval. <em class="emphasis">It's either all or nothing.</em></p>
+<article class="example-like" id="example-28"><a data-knowl="" class="id-ref" data-refid="hk-example-28"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.6.6</span>.</h6></a></article><div id="hk-example-28" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-208">Consider</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt}=(y-1)^{1/2}\qquad y(0)=1.
+\end{equation*}
+</div>
+<p id="p-209"><em class="alert">Part (a):</em> Is this a linear or nonlinear equation? Can you use <a data-knowl="./knowl/existencethm1.html" title="Theorem 2.6.1: Linear \(1\)st order ODE Existence and Uniqueness Theorem">Theorem 2.6.1</a>?</p>
+<p id="p-210"><em class="alert">Solution:</em> This is a nonlinear equation, due to the expression \((y-1)^{1/2}\text{.}\) Since <a data-knowl="./knowl/existencethm1.html" title="Theorem 2.6.1: Linear \(1\)st order ODE Existence and Uniqueness Theorem">Theorem 2.6.1</a> only applies to linear equations, we can't use it for this IVP.</p>
+<p id="p-211"><em class="alert">Part (b):</em> Using <a data-knowl="./knowl/existencethm2.html" title="Theorem 2.6.4: General 1st Order ODE existence and uniqueness theorem">Theorem 2.6.4</a> (the general theorem), can you guarantee that there is a unique solution to this IVP? Why?</p>
+<p id="p-212"><em class="alert">Solution:</em> To apply <a data-knowl="./knowl/existencethm2.html" title="Theorem 2.6.4: General 1st Order ODE existence and uniqueness theorem">Theorem 2.6.4</a>, we need the right hand side equation</p>
+<div class="displaymath">
+\begin{equation*}
+f(t,y)=(y-1)^{1/2}
+\end{equation*}
+</div>
+<p>to be continuous and we need</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{\partial f}{\partial y}=\frac{1}{2\sqrt{y-1}}
+\end{equation*}
+</div>
+<p>to be continous around the point \((t_{0},y_{0})=(0,1)\text{.}\) But since \(\frac{1}{2\sqrt{y-1}}\) is not continuous when \(y_{0}=1\text{,}\) then we cannot guarantee uniqueness of the solution. (That is, this is a poor model at this point.)</p>
+<p id="p-213"><em class="alert">Moral:</em> There could be multiple solutions to this IVP. If a solution exists, it may not be unique!</p></article></div>
+<p id="p-214">In summary:</p>
+<ul class="disc">
+<li id="li-126">
+<a data-knowl="./knowl/existencethm1.html" title="Theorem 2.6.1: Linear \(1\)st order ODE Existence and Uniqueness Theorem">Theorem 2.6.1</a>: Allows to check if there exists a unique solution for Linear Equations. Also tells us what the possible domain is.</li>
+<li id="li-127">
+<a data-knowl="./knowl/existencethm2.html" title="Theorem 2.6.4: General 1st Order ODE existence and uniqueness theorem">Theorem 2.6.4</a>: Allows to check if there exists a unique solution for general first order equations. Does not tell us about possible domains.</li>
+</ul></section><section class="subsection" id="ch2-6b"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">2.6.2</span> <span class="title">More examples. Domains of solutions.</span>
+</h3>
+<a href="ch2-6.html#ch2-6b" class="permalink">¶</a><p id="p-215">A <dfn class="terminology">partial derivative</dfn> is a derivative of a function in more than one variable with respect to just one of the variables, considering the other variables as constants. For a function \(f = f(t,y)\text{,}\) we denote the partial derivative with respect to \(t\) by \(\frac{\partial}{\partial t} f\) or by the compact notation \(f_t\text{.}\) For example, take the partials of \(y^{2}+t^{2},yt\) and \(y^{2}t\text{.}\)</p>
+<div class="displaymath" id="p-216">
+\begin{equation*}
+\frac{\partial}{\partial y} [y^2 + t^2] = 2y + 0 = 2y
+\end{equation*}
+</div>
+<p>and</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{\partial}{\partial t} [y^2 + t^2] = 0 + 2t = 2t.
+\end{equation*}
+</div>
+<p>For the second function,</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{\partial}{\partial y} y^2 t = 2yt
+\end{equation*}
+</div>
+<p>and</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{\partial}{\partial t} y^2 t = y^2.
+\end{equation*}
+</div>
+<p id="p-217">Notice that <a data-knowl="./knowl/existencethm2.html" title="Theorem 2.6.4: General 1st Order ODE existence and uniqueness theorem">Theorem 2.6.4</a> only gives you a function \(y(t)\) defined for some interval \(\left(t_{0}-\epsilon,t_{0}+\epsilon\right)\text{.}\) We need to keep in mind that the number \(\epsilon&gt;0\) may be super small, so the solution may not be valid for big \(t\text{.}\) So this affects how we can apply this theorem real world solutions.</p>
+<article class="example-like" id="example-29"><a data-knowl="" class="id-ref" data-refid="hk-example-29"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.6.7</span>. <span class="title">Finding the domain of a solution.</span>
+</h6></a></article><div id="hk-example-29" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-218">Consider</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt}=1+y^{2}\qquad y(0)=0.
+\end{equation*}
+</div>
+<p id="p-219"><em class="alert">Part (a):</em> Find where in the \(t-y\) plane the hypothesis of <a data-knowl="./knowl/existencethm2.html" title="Theorem 2.6.4: General 1st Order ODE existence and uniqueness theorem">Theorem 2.6.4</a> is satisfied:</p>
+<p id="p-220"><em class="alert">Solution:</em> Note that \(f(t,y)=1+y^{2}\) and \(\frac{\partial f}{\partial y}=2y\) are always continuous, thus satisfied in all of \(\mathbb{R}^{2}\text{.}\)</p>
+<p id="p-221"><em class="alert">Part (b):</em> Find the actual interval in which the IVP exists uniquely. We <em class="alert">must</em> keep in mind that the solution could blow up at an asymptote.</p>
+<p id="p-222">Solve using separable equations and get \(y(t)=\tan(t+c)\) and with initial condition you get \(y(t)=\tan(t)\text{.}\) But this solution is only valid for \(t\in\left(-\frac{\pi}{2},\frac{\pi}{2}\right)\text{.}\)</p>
+<div class="hidden-sagecell-sage" id="sage-8"><script type="text/x-sage">t,y = var('t,y')
+g = Graphics()
+g += plot_slope_field(1 + y^2, (t,-5,5), (y,-5,5))
+g += plot(tan(t), (t,-5,5), ymax=5, ymin=-5)
+g.show()
+</script></div>
+<p id="p-223"><em class="alert">Moral</em>: Unlike <a data-knowl="./knowl/existencethm1.html" title="Theorem 2.6.1: Linear \(1\)st order ODE Existence and Uniqueness Theorem">Theorem 2.6.1</a>, the conclusion of <a data-knowl="./knowl/existencethm2.html" title="Theorem 2.6.4: General 1st Order ODE existence and uniqueness theorem">Theorem 2.6.4</a> does not say that the solution needs to exist in the entire rectangle, it just says that there exists some (possibly mysterious) interval in which it exists.</p></article></div>
+<article class="example-like" id="example-30"><a data-knowl="" class="id-ref" data-refid="hk-example-30"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.6.8</span>. <span class="title">Lack of uniqueness.</span>
+</h6></a></article><div id="hk-example-30" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-224">Consider the problem \(\frac{dy}{dt}=3y^{2/3}\) and \(y(0)=0\text{.}\)</p>
+<p id="p-225"><em class="alert">Question 1:</em> Show that \(y_{1}(t)=0\) and \(y_{2}(t)=t^{3}\) are two solutions to this IVP. Why does this not contradict the uniqueness assertion of <a data-knowl="./knowl/existencethm2.html" title="Theorem 2.6.4: General 1st Order ODE existence and uniqueness theorem">Theorem 2.6.4</a>?</p>
+<p id="p-226"><em class="alert">Solution:</em> We know the equilibrium \(y_{1}(t)=0\) which solves the IVP is one solution. Use separation of variables to get \(y(t)=(t+c)^{3}\) so that \(y_{2}(t)=t^{3}\text{.}\)</p>
+<p id="p-227">That is, the solution through \((0,0)\) is <em class="alert">NOT UNIQUE!</em></p>
+<p id="p-228">This doesn't contradict <a data-knowl="./knowl/existencethm2.html" title="Theorem 2.6.4: General 1st Order ODE existence and uniqueness theorem">Theorem 2.6.4</a> because we can compute \(\frac{\partial f}{\partial y}=2y^{-\frac{1}{3}}=\frac{2}{y^{1/3}}\text{.}\) This is not continuous at \((t_{0},y_{0})=(0,0)\text{,}\) and so the theorem does not apply.</p>
+<p id="p-229"><em class="alert">Question 2:</em> Consider the problem \(\frac{dy}{dt}=3y^{2/3}\) and \(y(1)=1\text{.}\) Find where in the \(t-y\) plane solutions exist uniquely.</p>
+<p id="p-230"><em class="alert">Solution:</em> Solutions exist uniquely in any rectangle not containing \((0,0)\text{.}\)</p></article></div>
+<article class="example-like" id="example-31"><a data-knowl="" class="id-ref" data-refid="hk-example-31"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.6.9</span>. <span class="title">Applications of uniqueness: comparing solutions.</span>
+</h6></a></article><div id="hk-example-31" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-231">Consider the equation \(\frac{dy}{dt}=\frac{(1+t)^{2}}{(1+y)^{2}}\text{.}\)</p>
+<p id="p-232">We can easily check that \(y_{1}(t)=t\) is a solution. Now say that \(y_{2}(t)\) is the unique solution to the IVP</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt}=\frac{(1+t)^{2}}{(1+y)^{2}}\quad y(0)=-.1.
+\end{equation*}
+</div>
+<p id="p-233">It is very hard to solve this equation. But we can still say something about the behavior of \(y_2\text{.}\) In particular, \(y_{2}(t)\) can't cross the other solution \(y_{1}(t)=t\text{.}\) Then we can say that</p>
+<div class="displaymath">
+\begin{equation*}
+y_{2}(t) \lt t
+\end{equation*}
+</div>
+<p>for all \(t\text{,}\) which is a useful and striking bound on the behavior of \(y_2\text{.}\)</p>
+<div class="hidden-sagecell-sage" id="sage-9"><script type="text/x-sage">t,y = var('t,y')
+g = Graphics()
+g += plot_slope_field((1+t)^2/(1+y)^2, (t,-5,5), (y,-5,5))
+g += plot(t, (t,-5,5), ymin=-5, ymax = 5)
+Y =function('Y')(t)
+ode = diff(Y,t) == (1+t)^2/(1+Y)^2
+g += desolve_rk4(ode, Y, ivar=t, ics=[0,-.1], step=.1, end_points=[-5,5], output = 'plot', xmin=-5, xmax = 5, color='red')
+g.show()
+</script></div></article></div></section><section class="subsection" id="ch2-6c"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">2.6.3</span> <span class="title">Summary</span>
+</h3>
+<a href="ch2-6.html#ch2-6c" class="permalink">¶</a><ul class="disc">
+<li id="li-128">We must check continuity conditions to have uniqueness and existence.</li>
+<li id="li-129">Uniqueness implies that solutions can't cross each other.</li>
+<li id="li-130">Specifically, uniqueness implies that solutions can't cross equilibrium solutions.</li>
+<li id="li-131">We can use uniqueness to say that solutions are between other solutions, which can give strong qualitative understanding.</li>
+</ul></section></section></div></main>
+</div>
+<div class="login-link"><span id="loginlogout" class="login">login</span></div>
+<script src="https://pretextbook.org/js/0.12/login.js"></script>
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-12-13T10:04:42-05:00    *-->
+<!--*    on 2020-03-18T09:31:45-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -13,7 +13,24 @@
 </head>
 <body>
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>The following theorem, stated in this version in the spirit of Fourier, is one of the most important theorems in applied mathematics.</p>
+<p>We're going to narrow our focus to one particular infinite dimensional Hilbert space. Consider the set of integrable functions \(f: [\pi,\pi] \to F\) that satisfy the condition</p>
+<div class="displaymath">
+\begin{equation*}
+\int_{-\pi}^\pi \abs{f(x)}^2 \, dx \lt \infty.
+\end{equation*}
+</div>
+<p>This set is a vector space under pointwise addition of functions and standard scalar multiplication. In addition, the product</p>
+<div class="displaymath">
+\begin{equation*}
+\ip{f}{g} = \int_{-\pi}^\pi f(x)\cc{g(x)} \, dx
+\end{equation*}
+</div>
+<p>is an inner product on \(V\text{.}\) The resulting inner product space (or Hilbert space) is called \(L^2([-\pi, \pi])\text{.}\) (We may shorten this to \(L^2\) in this section, with the understood restriction of domain.) The <dfn class="terminology">\(L^2\)-norm</dfn> is given by</p>
+<div class="displaymath">
+\begin{equation*}
+\norm{f}_{L^2} = \sqrt{\ip{f}{f}}.
+\end{equation*}
+</div>
 <span class="incontext"><a href="section-7.html#p-159">in-context</a></span>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-12-13T10:04:41-05:00    *-->
+<!--*    on 2020-03-18T09:31:45-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -13,7 +13,7 @@
 </head>
 <body>
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>What we're going to present is a method that breaks a set of data points into consecutive groups of two points. We'll need an interpolating function piece with at least two free parameters that can be chosen. Since we want the curve to be differentiable, we'll need each segment to meet the next with the same slope - that is, we need the first derivatives to match every time we change segments. With \(n+1\) points, that means we have \(n-1\) points that are connections (that is, not the endpoints of the data set). Since we're dictating a condition on derivatives, we know that we'll need at least three parameters. In order to make the changes between the segments curve naturally (which is important in many physical applications), we also want the second derivatives to match. (This is essentially dictating that the curvatures of the segments match, or more geometrically that there is an osculating circle where two pieces meet.) So each segment is actually dealing with four restrictions, and thus we need a function with four free parameters - a cubic polynomial fits the bill!</p>
+<p>This is reflective of a general principle in mathematics that gets used but not often mentioned throughout college level courses - to meet one condition, an equation or set of equations needs one free parameter. In this case, since we're working with simultaneous equations, essentially we're using the invertible matrix theorem from linear algebra to guarantee a unique solutions.</p>
 <span class="incontext"><a href="section-5.html#p-109">in-context</a></span>
 </body>
 </html>

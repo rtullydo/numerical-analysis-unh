@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:44-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body><article class="example-like"><p>Solve the following undamped harmonic oscillator:</p>
+<div class="displaymath">
+\begin{equation*}
+u^{\prime\prime}+2u=\cos\left(\sqrt{2}t\right),\,\,\,\,u(0)=0,\,\,u^{\prime}(0)=0.
+\end{equation*}
+</div>
+<p>What is the natural frequency? What is the frequency for the external force? What kind of behavior of the solution will you get get?</p>
+<p>Solution:</p>
+<p>Step1: Recall that \(r^{2}+2=0\) so \(r=\pm\sqrt{2}i\text{,}\) so that</p>
+<div class="displaymath">
+\begin{equation*}
+u_{h}(t)=c_{1}\cos\left(\sqrt{2}t\right)+c_{2}\sin\left(\sqrt{2}t\right).
+\end{equation*}
+</div>
+<p>The natural frequency of the system is \(\omega_{0}=\sqrt{2}\text{.}\) The external frequency is \(\omega=\sqrt{2}\text{.}\) Since they match, then we will get resonance!</p>
+<p>Step 2: We make our first guess</p>
+<div class="displaymath">
+\begin{equation*}
+u_{p}(t)=A\cos\left(\sqrt{2}t\right)+B\sin\left(\sqrt{2}t\right)
+\end{equation*}
+</div>
+<p>but we know that this overlaps with the homogeneous solution, so we choose instead our second guess (by multiplying old guess by \(t\))</p>
+<div class="displaymath">
+\begin{equation*}
+u_{p}(t)=At\cos\left(\sqrt{2}t\right)+Bt\sin\left(\sqrt{2}t\right).
+\end{equation*}
+</div>
+<p>Then</p>
+<div class="displaymath">
+\begin{align*}
+u_{p}^{\prime}(t) \amp =A\cos\sqrt{2t}-A\sqrt{2}t\sin\sqrt{2}t\\
+\amp +B\sin\sqrt{2}t+B\sqrt{2}t\cos\sqrt{2}t\\
+u_{p}^{\prime\prime}(t) \amp =-\sqrt{2}A\sin\sqrt{2}t-A\sqrt{2}\sin\sqrt{2}t\\
+\amp -A2t\cos\sqrt{2}t\\
+\amp B\sqrt{2}\cos\sqrt{2}t+B\sqrt{2}\cos\sqrt{2}t\\
+\amp -B2t\sin\sqrt{2}t
+\end{align*}
+</div>
+<p>Plugging this into the LHS we have</p>
+<div class="displaymath">
+\begin{align*}
+LHS=u_{p}^{\prime\prime}+2u_{p} \amp =\text{simplify}\\
+\amp =2\sqrt{2}B\cos\left(\sqrt{2}t\right)-2\sqrt{2}A\sin\left(\sqrt{2}t\right).
+\end{align*}
+</div>
+<p>Now, setting \(LHS=RHS=1\cdot\cos\left(\sqrt{2}t\right)+0\sin\left(\sqrt{2}t\right),\) we have</p>
+<div class="displaymath">
+\begin{align*}
+2\sqrt{2}B=1 \amp ,\,\,\,\,\,\,-2\sqrt{2}A=0\\
+B=\frac{1}{2\sqrt{2}} \amp ,\,\,\,\,\,\,A=0
+\end{align*}
+</div>
+<p>so that</p>
+<div class="displaymath">
+\begin{equation*}
+u(t)=c_{1}\cos\left(\sqrt{2}t\right)+c_{2}\sin\left(\sqrt{2}t\right)+\frac{1}{2\sqrt{2}}t\sin\left(\sqrt{2}t\right).
+\end{equation*}
+</div>
+<p>Using initial condition we have \(c_{1}=0,c_{2}=0\text{.}\)</p>
+<div class="displaymath">
+\begin{equation*}
+u(t)=\frac{1}{2\sqrt{2}}t\sin\left(\sqrt{2}t\right).
+\end{equation*}
+</div>
+<p>Hence we get the picture similar to the one above since</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{1}{2\sqrt{2}}t\sin\left(\sqrt{2}t\right)\approx\pm\frac{t}{2\sqrt{2}}\text{ when }t\text{ is large.}
+\end{equation*}
+</div>
+<div class="sagecell-sage" id="sage-21"><script type="text/x-sage">var('x')
+y = function('y')(x)
+de = diff(y, x, 2) + 2*y == cos(sqrt(2)*x)
+f = desolve(de, y, [0,0,0])
+plot(f, [0,10*pi], title = f)
+</script></div></article></body>
+</html>

@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-11-21T15:45:43-05:00    *-->
+<!--*    on 2020-03-18T09:31:44-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -14,21 +14,24 @@
 <body>
 <article class="exercise-like"><h6 class="heading">
 <span class="type">Exercise</span> <span class="codenumber">2.</span>
-</h6>
-<p>An efficient algorithm for computing a solution to \(au + bv = \gcd(a,b)\) is given below:</p>
+</h6>Suppose the following ODE<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt}=y^{2}-t
+\end{equation*}
+</div>has the following slope field: <div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/1.2-2.png" style="width: 100%; height: auto;" alt=""></div>
 <ol class="lower-alpha">
-<li>Set \(u = 1, g = a, x = 0\) and \(y = b\text{.}\)</li>
-<li>If \(y = 0\text{,}\) set \(v = (g - au)/b\) and return values \((g, u, v)\text{.}\)</li>
-<li>Divide \(g\) by \(y\) to get \(g = qy + t\) with \(0 \leq t \lt y\text{,}\) store \(q\) and \(t\text{.}\)</li>
-<li>Set \(s = u - qx\text{.}\)</li>
-<li>Set \(u = x\) and \(g = y\text{.}\)</li>
-<li>Set \(x = s\) and \(y = t\text{.}\)</li>
-<li>Go to Step (b).</li>
-</ol>
-<p>Your tasks are:</p>
-<ol class="lower-alpha">
-<li>Convince me that \(g = \gcd(a,b)\) and \(au + bv = g\text{.}\)</li>
-<li>Implement this algorithm in a python function.</li>
-</ol></article><span class="incontext"><a href="section-euclidean.html#exercise-9">in-context</a></span>
+<li>Suppose \(y(t)\) is a solution to this ODE and also you know that \(y\left(-1\right)=1\text{.}\) Then based on the slope field, what is your prediction for the long term behavior of \(y(t)\text{.}\) That is, what is your prediction of<div class="displaymath">
+\begin{equation*}
+\lim_{t\to\infty}y(t)?
+\end{equation*}
+</div>
+</li>
+<li>Suppose \(y(t)\) is a solution to this ODE and also you know that \(y\left(1\right)=0\text{.}\) Then based on the slope field, what is your prediction for the long term behavior of \(y(t)\text{,}\) that is, what is your prediction of<div class="displaymath">
+\begin{equation*}
+\lim_{t\to\infty}y(t)=?
+\end{equation*}
+</div>
+</li>
+</ol></article><span class="incontext"><a href="section-25.html#exercise-9">in-context</a></span>
 </body>
 </html>

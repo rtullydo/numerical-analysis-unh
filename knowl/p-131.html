@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-12-13T10:04:41-05:00    *-->
+<!--*    on 2020-03-18T09:31:45-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -13,13 +13,25 @@
 </head>
 <body>
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>Let \(I = \int_a^b f(x) \, dx\text{.}\) Let \(T_n\) represent the \(n\) segment trapezoid approximation of \(I\text{.}\) Let \(E_T\) be the error in the approximation - that is</p>
+<p>We'll first recall the <dfn class="terminology">triangle inequality</dfn>, which says that \(\abs{a + b} \leq \abs{a} + \abs{b}\text{.}\) In fact, we can apply this to a sum of any finite length, by induction:</p>
 <div class="displaymath">
 \begin{equation*}
-E_T = I - T_n.
+\abs{\sum_i a_i} \leq \sum_i \abs{a_i}.
 \end{equation*}
 </div>
-<p>Our first goal is to measure how large the error \(E_T\) is expected to be in terms of the number of trapezoids \(n\text{.}\)</p>
+<p>Now, Riemann sums are finite sums, and so the triangle inequality applies.</p>
+<div class="displaymath">
+\begin{equation*}
+\abs{\sum_{i = 0}^{n-1} f(x_i^*) \Delta x} \leq \sum_{i = 0}^{n-1} \abs{f(x_i^*)} \Delta x,
+\end{equation*}
+</div>
+<p>and when the limit of the Riemann sum exists as the number of rectangles tends to infinity (that is, whenever \(f\) is Riemann integrable), we get the integral version of the triangle inequality:</p>
+<div class="displaymath">
+\begin{equation*}
+\abs{\int_a^b f(x) \, dx} \leq \int_a^b \abs{f(x)} \, dx.
+\end{equation*}
+</div>
+<p>This is a theorem in real analysis and will be used here without a formal proof beyond the sketch above.</p>
 <span class="incontext"><a href="section-6.html#p-131">in-context</a></span>
 </body>
 </html>

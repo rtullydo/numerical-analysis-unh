@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:42-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Exact equations</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    asciimath2jax: {
+        ignoreClass: ".*",
+        processClass: "has_am"
+    },
+    jax: ["input/AsciiMath"],
+    extensions: ["asciimath2jax.js"],
+    TeX: {
+        extensions: ["extpfeil.js", "autobold.js", "https://pretextbook.org/js/lib/mathjaxknowl.js", ],
+        // scrolling to fragment identifiers is controlled by other Javascript
+        positionToHash: false,
+        equationNumbers: { autoNumber: "none", useLabelIds: true, },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    // HTML-CSS output Jax to be dropped for MathJax 3.0
+    "HTML-CSS": {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+    CommonHTML: {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+});
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML-full"></script><script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.12/pretext.js"></script><script src="https://pretextbook.org/js/0.12/pretext_add_on.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/toc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/setcolors.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/features.css" rel="stylesheet" type="text/css">
+<script>var logged_in = false;
+var role = 'student';
+var guest_access = true;
+var login_required = false;
+var js_version = 0.12;
+</script>
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div class="hidden-content" style="display:none">\(\DeclareMathOperator{\RE}{Re}
+  \DeclareMathOperator{\IM}{Im}
+  \DeclareMathOperator{\ess}{ess}
+  \DeclareMathOperator{\intr}{int}
+  \DeclareMathOperator{\dist}{dist}
+  \DeclareMathOperator{\dom}{dom}
+  \DeclareMathOperator{\diag}{diag}
+  \DeclareMathOperator\re{\mathrm {Re~}}
+  \DeclareMathOperator\im{\mathrm {Im~}}
+  
+  \newcommand\dd{\mathrm d}
+  \newcommand{\eps}{\varepsilon}
+  \newcommand{\To}{\longrightarrow}
+  \newcommand{\hilbert}{\mathcal{H}}
+  \newcommand{\s}{\mathcal{S}_2}
+  \newcommand{\A}{\mathcal{A}}
+  \newcommand\h{\mathcal{H}}
+  \newcommand{\J}{\mathcal{J}}
+  \newcommand{\M}{\mathcal{M}}
+  \newcommand{\F}{\mathbb{F}}
+  \newcommand{\N}{\mathcal{N}}
+  \newcommand{\T}{\mathbb{T}}
+  \newcommand{\W}{\mathcal{W}}
+  \newcommand{\X}{\mathcal{X}}
+  \newcommand{\D}{\mathbb{D}}
+  \newcommand{\C}{\mathbb{C}}
+  \newcommand{\BOP}{\mathbf{B}}
+  \newcommand{\Z}{\mathbb{Z}}
+  \newcommand{\BH}{\mathbf{B}(\mathcal{H})}
+  \newcommand{\KH}{\mathcal{K}(\mathcal{H})}
+  \newcommand{\pick}{\mathcal{P}_2}
+  \newcommand{\schur}{\mathcal{S}_2}
+  \newcommand{\R}{\mathbb{R}}
+  \newcommand{\Complex}{\mathbb{C}}
+  \newcommand{\Field}{\mathbb{F}}
+  \newcommand{\RPlus}{\Real^{+}}
+  \newcommand{\Polar}{\mathcal{P}_{\s}}
+  \newcommand{\Poly}{\mathcal{P}(E)}
+  \newcommand{\EssD}{\mathcal{D}}
+  \newcommand{\Lop}{\mathcal{L}}
+  \newcommand{\cc}[1]{\overline{#1}}
+  \newcommand{\abs}[1]{\left\vert#1\right\vert}
+  \newcommand{\set}[1]{\left\{#1\right\}}
+  \newcommand{\seq}[1]{\left\lt#1\right&gt;}
+  \newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+  \newcommand{\essnorm}[1]{\norm{#1}_{\ess}}
+  \newcommand{\tr}{\operatorname{tr}}
+  \newcommand{\ran}[1]{\operatorname{ran}#1}
+  \newcommand{\nt}{\stackrel{\mathrm {nt}}{\to}}
+  \newcommand{\pnt}{\xrightarrow{pnt}}
+  \newcommand{\ip}[2]{\left\langle #1, #2 \right\rangle}
+  \newcommand{\ad}{^\ast}
+  \newcommand{\inv}{^{-1}}
+  \newcommand{\adinv}{^{\ast -1}}
+  \newcommand{\invad}{^{-1 \ast}}
+  \newcommand\Pick{\mathcal P}
+  \newcommand\Ha{\mathbb{H}}
+  \newcommand{\HH}{\Ha\times\Ha}
+  \newcommand\Htau{\mathbb{H}(\tau)}
+  \newcommand{\vp}{\varphi}
+  \newcommand{\ph}{\varphi}
+  \newcommand\al{\alpha}
+  \newcommand\ga{\gamma}
+  \newcommand\de{\delta}
+  \newcommand\ep{\varepsilon}
+  \newcommand\la{\lambda}
+  \newcommand\up{\upsilon}
+  \newcommand\si{\sigma}
+  \newcommand\beq{\begin{equation}}
+  \newcommand\ds{\displaystyle}
+  \newcommand\eeq{\end{equation}}
+  \newcommand\df{\stackrel{\rm def}{=}}
+  \newcommand\ii{\mathrm i}
+  \newcommand{\vectwo}[2]
+  {
+     \begin{pmatrix} #1 \\ #2 \end{pmatrix}
+  }
+  \newcommand{\vecthree}[3]
+  {
+     \begin{pmatrix} #1 \\ #2 \\ #3 \end{pmatrix}
+  }
+  \newcommand\blue{\color{blue}}
+  \newcommand\black{\color{black}}
+  \newcommand\red{\color{red}}
+  
+  \newcommand\nn{\nonumber}
+  \newcommand\bbm{\begin{bmatrix}}
+  \newcommand\ebm{\end{bmatrix}}
+  \newcommand\bpm{\begin{pmatrix}}
+  \newcommand\epm{\end{pmatrix}}
+  \numberwithin{equation}{section}
+  \newcommand\nin{\noindent}
+  \newcommand{\nCr}[2]{\,_{#1}C_{#2}} 
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="diffeqs.html"><span class="title">Differential Equations</span></a></h1>
+<p class="byline">Phanuel Mariano, Ryan Tully-Doyle</p>
+</div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3"><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="ch2-7.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="ch2.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="ch2-9.html" title="Next">Next</a></span></div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="ch2-7.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="ch2.html" title="Up">Up</a><a class="next-button button toolbar-item" href="ch2-9.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link"><a href="frontmatter-1.html" data-scroll="frontmatter-1"><span class="title">Front Matter</span></a></li>
+<li class="link">
+<a href="introduction.html" data-scroll="introduction"><span class="codenumber">1</span> <span class="title">Introduction</span></a><ul>
+<li><a href="ch1-1.html" data-scroll="ch1-1">Modeling via differential equations, some solutions and definitions</a></li>
+<li><a href="ch1-2.html" data-scroll="ch1-2">Slope fields (direction fields)</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch2.html" data-scroll="ch2"><span class="codenumber">2</span> <span class="title">First Order Differential Equations</span></a><ul>
+<li><a href="ch2-1.html" data-scroll="ch2-1">Linear equations and integrating factors</a></li>
+<li><a href="ch2-2.html" data-scroll="ch2-2">Separable equations</a></li>
+<li><a href="ch2-3.html" data-scroll="ch2-3">Separable homogeneous equations and the substitution method</a></li>
+<li><a href="ch2-4.html" data-scroll="ch2-4">Modeling with Differential Equations</a></li>
+<li><a href="ch2-5.html" data-scroll="ch2-5">Modeling with differential equations - more problems</a></li>
+<li><a href="ch2-6.html" data-scroll="ch2-6">Existence and Uniqueness of Solutions</a></li>
+<li><a href="ch2-7.html" data-scroll="ch2-7">Autonomous Equations and Population dynamics</a></li>
+<li><a href="ch2-8.html" data-scroll="ch2-8" class="active">Exact equations</a></li>
+<li><a href="ch2-9.html" data-scroll="ch2-9">Euler's method</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch3.html" data-scroll="ch3"><span class="codenumber">3</span> <span class="title">Second Order Linear Equations</span></a><ul>
+<li><a href="ch3-1.html" data-scroll="ch3-1">Motivation - mass-spring systems.</a></li>
+<li><a href="ch3-2.html" data-scroll="ch3-2">Second order linear equations</a></li>
+<li><a href="ch3-3.html" data-scroll="ch3-3">Solutions to Linear Equations; the Wronskian</a></li>
+<li><a href="ch3-4.html" data-scroll="ch3-4">Complex roots of the characteristic equation</a></li>
+<li><a href="ch3-5.html" data-scroll="ch3-5">Repeated roots; Reduction of order</a></li>
+<li><a href="ch3-6.html" data-scroll="ch3-6">Non-homogeneous equations - Undetermined coefficients</a></li>
+<li><a href="section-18.html" data-scroll="section-18">Variation of Parameters</a></li>
+<li><a href="section-19.html" data-scroll="section-19">Harmonic oscillations</a></li>
+<li><a href="section-20.html" data-scroll="section-20">Forced oscillations</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter-4.html" data-scroll="chapter-4"><span class="codenumber">4</span> <span class="title">Higher order differential equations</span></a><ul>
+<li><a href="section-21.html" data-scroll="section-21">Linear equations</a></li>
+<li><a href="section-22.html" data-scroll="section-22">Constant coefficients</a></li>
+<li><a href="section-23.html" data-scroll="section-23">The Method of Undetermined Coefficients</a></li>
+</ul>
+</li>
+<li class="link"><a href="backmatter-1.html" data-scroll="backmatter-1"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="quadratic.html" data-scroll="quadratic"><span class="codenumber">A</span> <span class="title">A fast quadratic method</span></a></li>
+<li class="link">
+<a href="appendix-2.html" data-scroll="appendix-2"><span class="codenumber">B</span> <span class="title">Exercises for Chapter 1</span></a><ul>
+<li><a href="section-24.html" data-scroll="section-24">Section 1.1</a></li>
+<li><a href="section-25.html" data-scroll="section-25">Section 1.2</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-3.html" data-scroll="appendix-3"><span class="codenumber">C</span> <span class="title">Exercises for Chapter 2</span></a><ul>
+<li><a href="section-26.html" data-scroll="section-26">Section 2.1</a></li>
+<li><a href="section-27.html" data-scroll="section-27">Section 2.2</a></li>
+<li><a href="section-28.html" data-scroll="section-28">Section 2.3</a></li>
+<li><a href="section-29.html" data-scroll="section-29">Section 2.4</a></li>
+<li><a href="section-30.html" data-scroll="section-30">Section 2.5</a></li>
+<li><a href="section-31.html" data-scroll="section-31">Section 2.6</a></li>
+<li><a href="section-32.html" data-scroll="section-32">Section 2.7</a></li>
+<li><a href="section-33.html" data-scroll="section-33">Section 2.8</a></li>
+<li><a href="section-34.html" data-scroll="section-34">Section 2.9</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-4.html" data-scroll="appendix-4"><span class="codenumber">D</span> <span class="title">Exercises for Chapter 3</span></a><ul>
+<li><a href="section-35.html" data-scroll="section-35">Section 3.2</a></li>
+<li><a href="section-36.html" data-scroll="section-36">Section 3.3</a></li>
+<li><a href="section-37.html" data-scroll="section-37">Section 3.4</a></li>
+<li><a href="section-38.html" data-scroll="section-38">Section 3.5</a></li>
+<li><a href="section-39.html" data-scroll="section-39">Section 3.6</a></li>
+</ul>
+</li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="ch2-8"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">2.8</span> <span class="title">Exact equations</span>
+</h2>
+<a href="ch2-8.html" class="permalink">¶</a><section class="introduction" id="introduction-6"><p id="p-269">This section introduces a family of equations that arise naturally in physical contexts. For example, suppose that we had a detailed temperature map of a hot metal sheet. Can we predict how the heat will flow? The answer to this question is provided by the gradient, studied in multi-variable calculus. But what about the opposite scenario? Given a heat flow map, can we reconstruct the original temperature distribution? To answer this question, we'll consider what are known as <dfn class="terminology">exact equations</dfn>. First, we recall some multivariable calculus.</p></section><section class="subsection" id="subsection-19"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">2.8.1</span> <span class="title">Partial derivatives and the gradient</span>
+</h3>
+<p id="p-270">Suppose that \(z = f(x,y)\) is a function of two independent variables. Just as in one variable, we want to understand how the graph of \(f\) changes at a point, but now we have lots of different directions to look at. To compute the rate of change in the \(x\) and \(y\) directions, we can use the <dfn class="terminology">partial derivative</dfn> in those directions. When we take a partial derivative with respect to a variable, we treat all other variables as constant so that we're isolating our view to change in that specific direction.</p>
+<article class="definition-like" id="definition-6"><h6 class="heading">
+<span class="type">Definition</span> <span class="codenumber">2.8.1</span>.</h6>
+<p id="p-271">Let \(z = f(x,y)\text{.}\) The partial derivative of \(f\) with respect to \(x\) is</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{\partial f}{\partial x} = \lim_{h \to 0} \frac{f(x + h, y) - f(x,y)}{h}.
+\end{equation*}
+</div>
+<p>The partial derivative of \(f\) with respect to \(y\) is</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{\partial f}{\partial y} = \lim_{h\to 0}\frac{f(x, y+h) - f(x,y)}{h}.
+\end{equation*}
+</div></article><p id="p-272">In practice, we can use the single variable differentiation rules, treating the other variable like it is a fixed number. For example,</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{\partial}{\partial x} x^2 + x \cos y + y^2 = 2x + \cos y + 0.
+\end{equation*}
+</div>
+<p id="p-273">Frequently, when given a function \(z = f(x,y)\text{,}\) we wish to know the direction of greatest slope or rate of change. For example, if \(z = f(x,y)\) represents the height of a mountain, the direction that water flows downhill will be in the direction of sleepest descent. We can use the partial derivatives to define a <dfn class="terminology">vector field</dfn> that at each point \((x,y)\) gives the direction of greatest slope of the graph of \(f\text{.}\)</p>
+<article class="definition-like" id="definition-7"><h6 class="heading">
+<span class="type">Definition</span> <span class="codenumber">2.8.2</span>.</h6>
+<p id="p-274">The <dfn class="terminology">gradient</dfn> of \(z = f(x,y)\) is the vector-valued function</p>
+<div class="displaymath">
+\begin{equation*}
+\nabla f = \langle \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}\rangle.
+\end{equation*}
+</div>
+<p>This is written shorthand as \(\nabla f = \langle f_x, f_y\rangle\text{.}\)</p></article><p id="p-275">You should think of the gradient in this context as a slope field - at every point in the \(x-y\) plane, the gradient attaches a vector that indicates the direction of greatest slope.</p>
+<p id="p-276">If we think of \(z = f(x,y)\) as a voltage map or a temperature map or a height map, a standard visualization is to use curves to represent points that have equal heights. Such curves are called <dfn class="terminology">isotherms</dfn> or <dfn class="terminology">equipotential lines</dfn> or altitude lines.</p>
+<article class="example-like" id="example-39"><a data-knowl="" class="id-ref" data-refid="hk-example-39"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.8.3</span>. <span class="title">Equipotentials and surfaces.</span>
+</h6></a></article><div id="hk-example-39" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-277">Let \(f(x, y) = -x^2 + 3y - y^2\text{.}\) The following code will plot some equipotentials of \(f\text{.}\) In particular, we will plot the curves corresponding to \(z = 0, 1, 2\text{.}\)</p>
+<div class="hidden-sagecell-sage" id="sage-14"><script type="text/x-sage">x,y = var('x,y')
+g = Graphics()
+g+= implicit_plot(-x^2  + 3*y - y^2, (x, -2,2), (y, 0,3), color = "red" )
+g+=implicit_plot(-x^2  + 3*y - y^2 - 1, (x, -2,2), (y, 0,3), color="yellow" )
+g+= implicit_plot(-x^2  + 3*y - y^2-2, (x, -2,2), (y, 0,3), color="green" )
+g.show()
+</script></div> Now compare to the surface itself: <div class="hidden-sagecell-sage" id="sage-15"><script type="text/x-sage">var('x y z')
+f(x, y) = -x^2  + 3*y - y^2
+P = implicit_plot3d(f-z, (x ,-1, 3), (y, 0, 3), (z, -2, 3))
+Q = plot3d(0, (-1,3), (0,3), color="red", opacity=".4")
+R = plot3d(1, (-1,3), (0,3), color="yellow", opacity = ".4")
+S = plot3d(2, (-1,3), (0,3), color ="green", opacity = ".4")
+P + Q +R +S
+</script></div></article></div>
+<article class="example-like" id="example-40"><a data-knowl="" class="id-ref" data-refid="hk-example-40"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.8.4</span>. <span class="title">Relationship between equipotentials and gradients.</span>
+</h6></a></article><div id="hk-example-40" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-278">One of the most important geometric facts about the relationship between the <dfn class="terminology">potential function</dfn> \(f\) and the gradient field \(\nabla f\) is that <em class="emphasis">equipotentials are perpendicular to gradients.</em> Using our previous example:</p>
+<div class="hidden-sagecell-sage" id="sage-16"><script type="text/x-sage">x,y = var('x,y')
+g = Graphics()
+g+= implicit_plot(-x^2  + 3*y - y^2, (x, -2,2), (y, 0,3), color = "red" )
+g+=implicit_plot(-x^2  + 3*y - y^2 - 1, (x, -2,2), (y, 0,3), color="yellow" )
+g+= implicit_plot(-x^2  + 3*y - y^2-2, (x, -2,2), (y, 0,3), color="green" )
+g+= plot_vector_field((-2*x, 3 - 2*y), (-2,2), (0,3))
+g.show()
+</script></div></article></div>
+<p id="p-279">In summary, given a <dfn class="terminology">potential function</dfn> \(z = f(x,y)\text{,}\)</p>
+<ol class="decimal">
+<li id="li-163">We can find the equipotential lines (lines of constant height)<div class="displaymath">
+\begin{equation*}
+C = f(x,y);
+\end{equation*}
+</div>
+</li>
+<li id="li-164">we can find the gradient field<div class="displaymath">
+\begin{equation*}
+\nabla f = \langle f_x, f_y \rangle;
+\end{equation*}
+</div>
+</li>
+<li id="li-165">and we know that at a given point, the equipotential and the gradient line are perpendicular.</li>
+</ol></section><section class="subsection" id="subsection-20"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">2.8.2</span> <span class="title">From gradient field to potential function</span>
+</h3>
+<p id="p-280">How do we know when we can go the other direction? That is, as we asked at the top of the section, when given a vector field \(F(x,y) = (M(x,y), N(x,y))\text{,}\) how can we recover a potential function \(f\text{?}\) Essentially, this is asking us to find a function so that \(\nabla f = F\) (the “antiderivative of \(F\) is \(f\)”). Like integration problems, this may not always exist.</p>
+<article class="definition-like" id="definition-8"><h6 class="heading">
+<span class="type">Definition</span> <span class="codenumber">2.8.5</span>.</h6>
+<p id="p-281">A vector field \(F\) is called <dfn class="terminology">conservative</dfn> if there exists a potential function \(f\) so that \(\nabla f = F\text{.}\)</p></article><p id="p-282">One marker of nice functions in two variables is the conclusion of <dfn class="terminology">Clairaut's theorem</dfn>, which states that the <dfn class="terminology">mixed partial derivatives</dfn> of \(f\) are equal - that is, for a nice \(f\text{,}\)</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{\partial^2 f}{\partial x \partial y} = \frac{\partial^2 f}{\partial y \partial x}.
+\end{equation*}
+</div>
+<p>Suppose for the moment that a vector field</p>
+<div class="displaymath">
+\begin{equation*}
+F = \langle M, N \rangle = \nabla f = \langle f_x, f_y \rangle
+\end{equation*}
+</div>
+<p>and that the derivatives \(f_{xx}, f_{yy}, f_{xy}, f_{yx}\) all exist and are continuous. Clairaut's theorem will force</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{\partial M}{\partial y} = f_{xy} = f_{yx} = \frac{\partial N}{\partial x}\text{.}
+\end{equation*}
+</div>
+<p>It turns out to be the case that this condition, \(M_y = N_x\text{,}\) is not only necessary but sufficient on nice enough domains like rectangles.</p>
+<article class="theorem-like" id="theorem-3"><h6 class="heading">
+<span class="type">Theorem</span> <span class="codenumber">2.8.6</span>.</h6>
+<p id="p-283">Let \(F = \langle M(x,y), N(x,y) \rangle\) be a vector field so that the partial derivatives of \(M\) and \(N\) exist and are continuous on a rectangle \(a \leq x \leq b, c \leq y \leq d\text{.}\) Then there exists a potential function \(f\) so that \(\nabla f = F\) if</p>
+<div class="displaymath">
+\begin{equation*}
+M_y = N_x.
+\end{equation*}
+</div></article></section><section class="subsection" id="subsection-21"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">2.8.3</span> <span class="title">Differential equations and equipotentials</span>
+</h3>
+<p id="p-284">The <dfn class="terminology">total derivative</dfn> of a function \(z = f(x,y)\) is given by the expression</p>
+<div class="displaymath">
+\begin{equation*}
+df = f_x \, dx + f_y \, dy.
+\end{equation*}
+</div>
+<p>Notice that the functions that appear as components in \(df\) are the components of the gradient \(\nabla f\text{.}\) If we were given the equation of an equipotential for \(f\text{,}\) say</p>
+<div class="displaymath">
+\begin{equation*}
+f(x, y) = C,
+\end{equation*}
+</div>
+<p>then the total derivative of the equation is</p>
+<div class="displaymath">
+\begin{align*}
+\amp df = dC \\
+\Rightarrow \amp f_x \, dx + f_y \, dy = 0\\
+\Rightarrow \amp M \, dx + N \, dy = 0.
+\end{align*}
+</div>
+<p>If we have further that \(f\) has continuous second partial derivatives on a rectangle \(a \leq x \leq b, c \leq y \leq d\text{,}\) then Clairaut's theorem gives</p>
+<div class="displaymath">
+\begin{equation*}
+M_y = f_{xy} = f_{yx} = N_x.
+\end{equation*}
+</div>
+<p id="p-285">The upshot of all of this is that we can view an equation of the form</p>
+<div class="displaymath">
+\begin{equation*}
+M \, dx + N \, dy = 0
+\end{equation*}
+</div>
+<p>as a differential equation that seeks to find the equipotentials \(f(x,y) = C\) for some unknown function \(f\) with \(\nabla f = \langle M, N \rangle\text{.}\)</p></section><section class="subsection" id="subsection-22"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">2.8.4</span> <span class="title">Exact equations</span>
+</h3>
+<p id="p-286">Consider an equation \(M(x,y)dx+N(x,y)dy=0.\) We say this equation is <dfn class="terminology">exact</dfn> if \(\frac{\partial M}{\partial y}=\frac{\partial N}{\partial x};\) that is, as discussed in the previous section, the equation represents a differential equation that seeks to find equipotentials of a function \(f\) so that \(\nabla f = \langle M, N \rangle\text{.}\)</p>
+<article class="example-like" id="example-41"><a data-knowl="" class="id-ref" data-refid="hk-example-41"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.8.7</span>.</h6></a></article><div id="hk-example-41" class="hidden-content tex2jax_ignore"><article class="example-like">Suppose \(\frac{dy}{dx}=\frac{-2x-y^{2}}{2xy}.\) We can rewrite this as \(\left(2x+y^{2}\right)dx+2xydy=0\) then \(M=2x+y^{2}\) and \(N=2xy\text{.}\) Computing the partial derivatives,<div class="displaymath">
+\begin{align*}
+M_{y} \amp =2y\\
+N_{x} \amp =2y
+\end{align*}
+</div>are \(M_{y}=N_{x}\text{.}\) Thus this equation is exact.</article></div>
+<article class="theorem-like" id="theorem-4"><h6 class="heading">
+<span class="type">Theorem</span> <span class="codenumber">2.8.8</span>.</h6>
+<p id="p-287">If \(M,N,M_{y},N_{x}\) are all continuous on a rectangle \([a,b]\times[c,d]\) and</p>
+<div class="displaymath">
+\begin{equation*}
+M\,dx+N\,dy=0
+\end{equation*}
+</div>
+<p>is exact then there exists a function \(\psi\) such that</p>
+<div class="displaymath">
+\begin{equation*}
+\psi_{x}(x,y)=M(x,y)\text{ and }\psi_{y}(x,y)=N(x,y)
+\end{equation*}
+</div>
+<p>and such that \(\psi(x,y)=C\) gives an implicit solution to the ODE.</p></article><article class="hiddenproof" id="proof-1"><a data-knowl="" class="id-ref" data-refid="hk-proof-1"><h6 class="heading"><span class="type">Proof.</span></h6></a></article><div id="hk-proof-1" class="hidden-content tex2jax_ignore"><article class="hiddenproof">If \(\psi\) satisfies \(\psi_{x}=M\) and \(\psi_{y}=N\) such that \(\psi(x,y)=C\) then \(\psi\) defines a function \(y=\phi(x)\) implicitly. Then we show \(\phi(x)\) solves the ODE. Note that \(0=M(x,y)+N(x,y)y^{\prime}=\frac{\partial\psi}{\partial x}+\frac{\partial\psi}{\partial y}\frac{dy}{dx}=\frac{d}{dx}\left(\psi\left(x,\phi(x)\right)\right)\) by the multivariable chain rule. Thus if we integrate both sides<div class="displaymath">
+\begin{align*}
+\amp 0 =\frac{d}{dx}\left(\psi\left(x,\phi(x)\right)\right) \\
+\iff\amp \int0dx=\int\frac{d}{dx}\left(\psi\left(x,\phi(x)\right)\right)dx\\
+\iff \amp c=\psi\left(x,\phi(x)\right),
+\end{align*}
+</div>as needed.</article></div>
+<p id="p-288"><em class="alert">Solving exact equations:</em> If \(Mdx+Ndy=0\) is exact then</p>
+<div class="displaymath">
+\begin{align*}
+\amp \psi_{x}=M(x,y) \amp \implies \amp \psi=\int M(x,y)dx+h(y)\\
+\amp \amp \amp \Downarrow\\
+\amp \psi_{y}=N(x,y) \amp \amp \psi_{y}=\frac{\partial}{\partial y}\left(\int M(x,y)dx\right)+h^{\prime}(y)
+\end{align*}
+</div>
+<p>and then solve for \(h(y)\text{.}\)</p>
+<p id="p-289"><em class="alert">Another way:</em> One may also solve it by starting with the second equation:</p>
+<div class="displaymath">
+\begin{align*}
+\amp \psi_{x}=M(x,y) \amp \amp \psi_{x}=\frac{\partial}{\partial x}\left(\int N(x,y)dx\right)+g^{\prime}(x)\\
+\amp \amp \amp \Uparrow\\
+\amp\psi_{y}=N(x,y)\implies \amp \amp\psi=\int N(x,y)dy+g(x).
+\end{align*}
+</div>
+<article class="example-like" id="example-42"><a data-knowl="" class="id-ref" data-refid="hk-example-42"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.8.9</span>.</h6></a></article><div id="hk-example-42" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-290">We know \(\left(2x+y^{2}\right)dx+2xydy=0\) is exact.</p>
+<ol class="decimal">
+<li id="li-166">Show it's exact(done earlier) and follow the arrows until you close the diagram:<div class="displaymath">
+\begin{align*}
+\text{Start here:} \amp \psi_{x}=2x+y^{2} \amp \implies \amp \psi=\int\left(2x+y^{2}\right)dx+h(y)\\
+\amp  \amp  \amp \boldsymbol{\psi=x^{2}+y^{2}x+h(y)}\\
+\amp  \amp  \amp \Downarrow\\
+\amp \psi_{y}=2xy \amp \Longleftarrow \amp \psi_{y}=2xy+h^{\prime}(y)
+\end{align*}
+</div>
+</li>
+<li id="li-167">Solve for \(h(y)\) by noting that since<div class="displaymath">
+\begin{align*}
+2xy=2xy+h^{\prime}(y)\implies \amp h^{\prime}(y)=0\\
+\implies \amp h(y)=C.
+\end{align*}
+</div>
+</li>
+<li id="li-168">Put it all together and get \(\psi(x,y)=x^{2}+y^{2}x+C\) and hence the <em class="emphasis">implicit solution</em> is \(x^{2}+y^{2}x=C.\)</li>
+</ol></article></div>
+<article class="example-like" id="example-43"><a data-knowl="" class="id-ref" data-refid="hk-example-43"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.8.10</span>.</h6></a></article><div id="hk-example-43" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-291">Solve \(\left(y\cos x+2xe^{y}\right)+\left(\sin x+x^{2}e^{y}-y^{2}\right)y^{\prime}=0.\)</p>
+<ol id="p-292" class="decimal">
+<li id="li-169">To show it's exact note that \(\left(y\cos x+2xe^{y}\right)dx+\left(\sin x+x^{2}e^{y}-y^{2}\right)dy=0,\) and not hard to see that<div class="displaymath">
+\begin{align*}
+M_{y} \amp =\cos x+2xe^{y}\\
+N_{x} \amp =\cos x+2xe^{y}
+\end{align*}
+</div>and they are equal, thus this ODE is exact. Follow the arrows until close the diagram:<div class="displaymath">
+\begin{align*}
+\text{Start here:} \amp \psi_{x}=y\cos x+2xe^{y} \amp \implies \amp \psi=\int\left(y\cos x+2xe^{y}\right)dx+h(y)\\
+\amp  \amp  \amp \boldsymbol{\psi=y\sin x+x^{2}e^{y}+h(y)}\\
+\amp  \amp  \amp \Downarrow\\
+\amp \psi_{y}=\sin x+x^{2}e^{y}-y^{2} \amp \Longleftarrow \amp \psi_{y}=\sin x+x^{2}e^{y}+h^{\prime}(y)
+\end{align*}
+</div>
+</li>
+<li id="li-170">Solve for \(h(y)\) by noting that since<div class="displaymath">
+\begin{align*}
+\sin x+x^{2}e^{y}-y^{2}=\sin x+x^{2}e^{y}+h^{\prime}(y)\implies \amp h^{\prime}(y)=-y^{2}\\
+\implies \amp h(y)=-\frac{y^{3}}{3}
+\end{align*}
+</div>
+</li>
+<li id="li-171">Put it all together and get \(\psi(x,y)=y\sin x+x^{2}e^{y}-y\) and hence the <em class="emphasis">implicit solution</em> is \(y\sin x+x^{2}e^{y}-\frac{y^{3}}{3}=C.\)</li>
+</ol>
+<div class="hidden-sagecell-sage" id="sage-17"><script type="text/x-sage">var('x,y')
+P = plot_vector_field((y*cos(x) + 2*x*e^y, sin(x) + x^2*e^y - y^2), (-3,3),(-3,3))
+Q = implicit_plot(y *sin(x) + x^2*e^y - y^3/3 - 5,(-3,3),(-3,3), color="red")
+R = implicit_plot(y *sin(x) + x^2*e^y - y^3/3 - 3,(-3,3),(-3,3), color ="orange")
+S = implicit_plot(y *sin(x) + x^2*e^y - y^3/3,(-3,3),(-3,3), color ="blue")
+P + Q +R +S
+</script></div></article></div>
+<article class="example-like" id="example-44"><a data-knowl="" class="id-ref" data-refid="hk-example-44"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.8.11</span>.</h6></a></article><div id="hk-example-44" class="hidden-content tex2jax_ignore"><article class="example-like">Find the value of \(b\) for which the given equation is exact, and then solve it using that \(b\text{:}\) \(\left(xy^{2}+bx^{2}y\right)dx+\left(x+y\right)x^{2}dy\)<ol class="decimal">
+<li id="li-172">If this equation is exact then \(M_{y}=N_{x}\text{,}\)<div class="displaymath">
+\begin{align*}
+M_{y} \amp =2xy+bx^{2}\\
+N_{x} \amp =3x^{2}+2yx
+\end{align*}
+</div>and are only equal when \(b=3\text{.}\) Follow the arrows until close the diagram:<div class="displaymath">
+\begin{align*}
+\text{Start here:} \amp \psi_{x}=xy^{2}+3x^{2}y \amp \implies \amp \psi=\int\left(xy^{2}+3x^{2}y\right)dx+h(y)\\
+\amp  \amp  \amp \boldsymbol{\psi=\frac{1}{2}x^{2}y^{2}+x^{3}y+h(y)}\\
+\amp  \amp  \amp \Downarrow\\
+\amp \psi_{y}=x^{3}+x^{2}y \amp \Longleftarrow \amp \psi_{y}=x^{2}y+x^{3}+h^{\prime}(y)
+\end{align*}
+</div>
+</li>
+<li id="li-173">Solve for \(h(y)\) by noting that since<div class="displaymath">
+\begin{align*}
+x^{3}+x^{2}y=x^{2}y+x^{3}+h^{\prime}(y)\implies \amp h^{\prime}(y)=0\\
+\implies \amp h(y)=C
+\end{align*}
+</div>
+</li>
+<li id="li-174">Put it all together and get \(\psi(x,y)=\frac{1}{2}x^{2}y^{2}+x^{3}y+C\) and hence the <em class="emphasis">implicit solution</em> is \(\frac{1}{2}x^{2}y^{2}+x^{3}y=C.\)</li>
+</ol></article></div>
+<article class="example-like" id="example-45"><a data-knowl="" class="id-ref" data-refid="hk-example-45"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.8.12</span>.</h6></a></article><div id="hk-example-45" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-293">Solve \(\left(x\cos x+e^{y}\right)dx+xe^{y}dy\)</p>
+<ol class="decimal">
+<li id="li-175">If this equation is exact then \(M_{y}=N_{x}\text{,}\) and<div class="displaymath">
+\begin{align*}
+M_{y} \amp =e^{y}\\
+N_{x} \amp =e^{y}
+\end{align*}
+</div>Now note that it is actually easier to integrate \(N\) with respect to \(y\text{:}\) Thus we can start the diagram in the other direction<div class="displaymath">
+\begin{align*}
+\amp \psi_{x}=x\cos x+e^{y} \amp \Longleftarrow \amp =\psi_{x}=e^{y}+g^{\prime}(x)\\
+\amp  \amp  \amp \boldsymbol{\psi=xe^{y}+g(x)}\\
+\amp  \amp  \amp \Uparrow\\
+\text{Start here:} \amp \psi_{y}=xe^{y} \amp \implies \amp \psi_{y}=\int\left(xe^{y}\right)dy+g(x)
+\end{align*}
+</div>
+</li>
+<li id="li-176">Solve for \(g(x)\) by noting that since<div class="displaymath">
+\begin{align*}
+x\cos x+e^{y}=e^{y}+g^{\prime}(x)\implies \amp g^{\prime}(x)=x\cos x
+\end{align*}
+</div>but at the end of the day we can't avoid the harder integration, as we still need to integration by parts to \(g(x)=x\sin x+\cos x\)</li>
+<li id="li-177"><p id="p-294">Put it all together and get \(\psi(x,y)=xe^{y}+x\sin x+\cos x\) and hence the <em class="emphasis">implicit solution</em> is \(xe^{y}+x\sin x+\cos x=C.\)</p></li>
+</ol>
+<div class="hidden-sagecell-sage" id="sage-18"><script type="text/x-sage">var('x,y')
+P = plot_vector_field((x*cos(x) + e^y, x*e^y), (-3,3),(0,5))
+Q = implicit_plot(x*e^y + x*sin(x) + cos(x) - 120,(-3,3),(0,5), color="red")
+R = implicit_plot(x*e^y + x*sin(x) + cos(x) - 50,(-3,3),(0,5), color ="orange")
+S = implicit_plot(x*e^y + x*sin(x) + cos(x) - 10,(-3,3),(0,5), color ="blue")
+P + Q +R +S
+</script></div></article></div></section></section></div></main>
+</div>
+<div class="login-link"><span id="loginlogout" class="login">login</span></div>
+<script src="https://pretextbook.org/js/0.12/login.js"></script>
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-12-13T10:04:41-05:00    *-->
+<!--*    on 2020-03-18T09:31:45-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -13,7 +13,24 @@
 </head>
 <body>
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>Lagrange interpolation is easy to describe and relatively easy to write out by hand, even for many point, with some practice. However, the computation of the Lagrange interpolating polynomial doesn't easily lend itself to the structure of computer programs. We would like a method for writing down an interpolating polynomial that can be performed in a straightforward way in a recursive fashion. The approach that we present here is called <dfn class="terminology">Newton interpolation</dfn>. Of course, the result will be the same, as interpolating polynomials of degree \(n-1\) are unique for a given set of \(m\) points.</p>
+<p>So what is the general procedure? Start with a list of interpolants, \((x_1, y_1), \ldots, (x_n, y_n)\text{.}\) For each \(i\text{,}\) let</p>
+<div class="displaymath">
+\begin{equation*}
+p_i(x) = \prod_{j\neq i} (x - x_j) = (x - x_1)\ldots(x - x_{i-1})(x-x_{i+1})\ldots(x - x_n).
+\end{equation*}
+</div>
+<p>Then define \(f_i\) to be</p>
+<div class="displaymath">
+\begin{equation*}
+f_i(x) = \frac{y_i}{p_i(x_i)} p_i(x),
+\end{equation*}
+</div>
+<p>and finally the <dfn class="terminology">Lagrange interpolating polynomial</dfn> to be</p>
+<div class="displaymath">
+\begin{equation*}
+f(x) = \sum_i f_i(x) = f_1(x) + \ldots + f_n(x).
+\end{equation*}
+</div>
 <span class="incontext"><a href="section-5.html#p-94">in-context</a></span>
 </body>
 </html>

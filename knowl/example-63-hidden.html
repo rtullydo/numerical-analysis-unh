@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:44-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body><article class="example-like">Find the general solution of<div class="displaymath">
+\begin{equation*}
+\frac{d^{2}y}{dt^{2}}+2\frac{dy}{dt}+10y=4\cos2t
+\end{equation*}
+</div>
+<p>Step 1: Find \(y_{h}\) which is the general solution to the unforced equation</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{d^{2}y}{dt^{2}}+2\frac{dy}{dt}+10y=0
+\end{equation*}
+</div>
+<p>which since \(r^{2}+2r+10=0\) gives \(r=-1\pm3i\) must be</p>
+<div class="displaymath">
+\begin{equation*}
+y_{h}(t)=c_{1}e^{-t}\cos3t+c_{2}e^{-t}\sin3t.
+\end{equation*}
+</div>
+<p>Step 2: Now as long as the RHS \(g(t)\) is not part of \(y_{c}\) then we can use that as our guess. So we let \(y_{p}(t)=A\cos2t+B\sin2t\text{.}\)</p>
+<p>Step 3: Plug into the LHS and set equal to RHS</p>
+<div class="displaymath">
+\begin{align*}
+\frac{d^{2}y_{p}}{dt^{2}}+2\frac{dy_{p}}{dt}+10y \amp = \left[-4A\cos2t-4B\sin2t\right]\\
+\amp +2\left[-2A\sin2t+2B\cos2t\right]+10\left[A\cos2t+B\sin2t\right]
+\end{align*}
+</div>
+<p>which gives us</p>
+<div class="displaymath">
+\begin{equation*}
+\left[-4A+4B+10A\right]\cos2t+\left[-4B-4A+10B\right]\sin2t=4\cos2t
+\end{equation*}
+</div>
+<p>so that</p>
+<div class="displaymath">
+\begin{align*}
+6A+4B \amp = \amp 4\\
+-4A+6B \amp = \amp 0
+\end{align*}
+</div>
+<p>gives us \(A=\frac{6}{13},B=\frac{4}{13}\text{.}\)</p>
+<p>Step 4: Plug into general solution of \(y(t)=y_{h}(t)+y_{p}(t)\) and get</p>
+<div class="displaymath">
+\begin{equation*}
+y(t)=c_{1}e^{-t}\cos3t+c_{2}e^{-t}\sin3t+\frac{6}{13}\cos2t+\frac{4}{13}\sin2t.
+\end{equation*}
+</div></article></body>
+</html>

@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-12-13T10:04:41-05:00    *-->
+<!--*    on 2020-03-18T09:31:45-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -30,36 +30,17 @@
 </head>
 <body>
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>Next is a quick code demonstration of the addition of one more points, say at \((4,10)\text{.}\) You should look for the pattern in the equation sets, as this should give a clue about how to implement a general routine. By way of comparison, we will also plot the unique cubic that passes through the four points. You should note that the purple graph makes wider oscillations between the points than the multi-colored spline fit. <div class="sagecell-octave" id="sage-38"><script type="text/x-sage">system = [1,1,1,1,0,0,0,0,0,0,0,0,2;
-           8,4,2,1,0,0,0,0,0,0,0,0,4;
-           0,0,0,0,8,4,2,1,0,0,0,0,4;
-           0,0,0,0,27,9,3,1,0,0,0,0,1;
-           0,0,0,0,0,0,0,0,27,9,3,1,1;
-           0,0,0,0,0,0,0,0,64, 16, 4, 1, 10;
-           12,4,1,0,-12,-4,-1,0,0,0,0,0,0;
-           0,0,0,0,27,6,1,0,-27,-6,-1,0,0;
-           12,2,0,0,-12,-2,0,0,0,0,0,0,0;
-           0,0,0,0,18, 2, 0,0, -18, -2, 0,0,0;
-           6,2,0,0,0,0,0,0,0,0,0,0,0;
-           0,0,0,0,0,0,0,0,24,2,0,0,0];
-coeefs = rref(system)(:,13) #this row reduces the system and takes the answer column, which is column 9
+<p>At this point, we can solve the system using octave and row reduction. As long as there are no three consecutive points that are collinear, this system will have a unique solution (that is, the coefficient matrix is invertible). <div class="sagecell-octave" id="sage-37"><script type="text/x-sage">system = [1,1,1,1,0,0,0,0,2;8,4,2,1,0,0,0,0,4;0,0,0,0,8,4,2,1,4;0,0,0,0,27,9,3,1,1;12,4,1,0,-12,-4,-1,0,0;12,2,0,0,-12,-2,0,0,0;6,2,0,0,0,0,0,0,0;0,0,0,0,6,2,0,0,0];
+coeefs = rref(system)(:,9) #this row reduces the system and takes the answer column, which is column 9
 f1 = coeefs(1:4)'; #these take the coefficients associated with the first and second spline
 f2 = coeefs(5:8)'; #and put the polynomials in vector form
-f3 = coeefs(9:12)';
 X1 = 1:.01:2;
 X2 = 2:.01:3;
-X3 = 3:.01:4;
 Y1 = polyval(f1, X1);#evaluates each spline segment on the correct domain
 Y2 = polyval(f2, X2);
-Y3 = polyval(f3,X3);
-
-X = 1:.01:4;
-f = polyfit([1,2,3,4],[2,4,1,10],3);
-Y = polyval(f,X);
-
-plot(X1, Y1, X2, Y2, X3, Y3, X, Y)
+plot(X1, Y1, 'r', X2, Y2, 'b')
 hold on
-scatter([1,2,3,4],[2,4,1,10],400) #plots the original points.
+scatter([1,2,3],[2,4,1],400) #plots the original points.
 </script></div></p>
 <span class="incontext"><a href="section-5.html#p-115">in-context</a></span>
 </body>

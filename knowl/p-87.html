@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-12-13T10:04:41-05:00    *-->
+<!--*    on 2020-03-18T09:31:45-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -13,12 +13,25 @@
 </head>
 <body>
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>We're finally ready to tackle the full problem: using this approach to find the interpolating polynomial for \((1,1), (2, -3), (5,10)\text{.}\) We'll approach the problem in three pieces: First, construct \(f_3(x)\) for the points \((1,0), (2,0), (5,10)\) using the ideas from the last section.</p>
+<p>Now, notice that 10 was the value we wanted to be output with input 5, and that \(p(5) = 12\text{.}\) In fact, if \((5,10)\) had been given the name \((x_3, y_3)\text{,}\) then the value of \(c\) would have been \(c = \frac{y_3}{p(x_3)},\) and the interpolating function for \((1,0), (2,0)\) and \((x_3, y_3)\) would have been</p>
 <div class="displaymath">
 \begin{equation*}
-f_3(x) = \frac{10}{12} (x-1)(x-2).
+f(x) = \frac{y_3}{p(x_3)} p(x) = \frac{y_3}{p(x_3)} (x - 1)(x-2).
 \end{equation*}
 </div>
+<p>We can modify this further: given initial data \((x_1, 0), (x_2, 0), (x_3, y_3)\text{,}\) define</p>
+<div class="displaymath">
+\begin{equation*}
+p(x) = (x - x_1)(x - x_2)
+\end{equation*}
+</div>
+<p>and</p>
+<div class="displaymath">
+\begin{equation*}
+f(x) = \frac{y_3}{p(x_3)} p(x) = \frac{y_3}{p(x_3)}(x - x_1)(x-x_2).
+\end{equation*}
+</div>
+<p>\(f\) is the interpolating function for the data.</p>
 <span class="incontext"><a href="section-5.html#p-87">in-context</a></span>
 </body>
 </html>

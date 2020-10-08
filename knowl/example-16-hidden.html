@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:43-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body><article class="example-like"><p>Consider</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dx}=\frac{x^{2}+xy+y^{2}}{x^{2}}.
+\end{equation*}
+</div>
+<p><em class="alert">Part (a):</em> Show that this ODE is homogeneous and rewrite the entire equation by only \(v\) and \(x\text{.}\)</p>
+<p>To see this we divide the numerator and denominator by \(x^{2}\) and get</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dx}=\frac{1+\frac{y}{x}+\left(\frac{y}{x}\right)^{2}}{1}.
+\end{equation*}
+</div>
+<p>Then replacing \(\frac{dy}{dx}=x\frac{dv}{dx}+v\) and \(v=\frac{y}{x}\text{,}\) we get a new equation</p>
+<div class="displaymath">
+\begin{equation*}
+x\frac{dv}{dx}+v=1+v+v^{2}.
+\end{equation*}
+</div>
+<p><em class="alert">Part (b):</em> Solve the ODE in terms of \(v\) and then return everything into terms of \(y,x\text{.}\)</p>
+<p>We rewrite</p>
+<div class="displaymath">
+\begin{align*}
+x\frac{dv}{dx}=1+v^{2} \amp \iff\int\frac{dv}{1+v^{2}}=\int\frac{1}{x}dx\\
+\amp \iff\tan^{-1}\left(v\right)=\ln\left|x\right|+c\\
+\amp \iff\tan^{-1}\left(\frac{y}{x}\right)=\ln\left|x\right|+c.
+\end{align*}
+</div>
+<p>Then</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{y}{x}=\tan\left(\ln\left|x\right|+C\right)
+\end{equation*}
+</div>
+<p>and the general solution is</p>
+<div class="displaymath">
+\begin{equation*}
+y_g(x)=x\tan\left(\ln\left|x\right|+C\right)
+\end{equation*}
+</div></article></body>
+</html>

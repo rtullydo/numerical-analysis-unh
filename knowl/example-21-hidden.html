@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:43-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body><article class="example-like"><p>The difference here is that now we allow the total volume of fluid to vary, when before it was kept fixed.</p>
+<p><em class="alert">Problem:</em> A \(400\)-gallon tank initially contains \(200\) gallons of water containing \(3\) pounds of sugar per gallon. Suppose water containing \(5\) pounds per gallon flows into the the top of the tank at a rate of \(6\) gallons per minute. The water in the tank is kept well mixed, and \(4\) gallons per minute are removed from the bottom of the tank. How much sugar is in the tank when the tank is full?</p>
+<p><em class="alert">Solution:</em></p>
+<ul class="disc">
+<li>
+<p><em class="alert">Step 1:</em> Define variables</p>
+<p>Let \(y(t)=\) amount of sugar at time \(t\text{,}\) which is in minutes. Let \(y(0)=3\times200=600\mbox{ pounds}\text{.}\)</p>
+</li>
+<li>
+<p><em class="alert">Step 2:</em> Find Rate in/ Rate out</p>
+<p>Note that for anything that comes in you can always find the rate in as</p>
+<div class="displaymath">
+\begin{equation*}
+\mbox{Rate in}=\left(\begin{array}{c}
+\mbox{concentration}\\
+\mbox{of sugar coming in}
+\end{array}\right)\times\mbox{Rate}.
+\end{equation*}
+</div>
+<p>Similarly you can always find the Rate out as</p>
+<div class="displaymath">
+\begin{equation*}
+\mbox{Rate out}=\left(\begin{array}{c}
+\mbox{concentration}\\
+\mbox{of sugar coming out}
+\end{array}\right)\times\mbox{Rate}.
+\end{equation*}
+</div>
+<p>We have</p>
+<div class="displaymath">
+\begin{align*}
+\text{Rate in}\amp = \amp \underset{\mbox{-sugar water solution}}{\left(5\frac{\mbox{pounds}}{\mbox{gallon}}\right)\left(6\frac{\mbox{gallons}}{\mbox{min}}\right)}\\
+\amp = \amp 30\frac{\mbox{pounds}}{\mbox{gallon}}.
+\end{align*}
+</div>
+<p>To find the concentration of sugar coming out we have know the amount of water at time \(t\text{.}\)</p>
+<div class="displaymath">
+\begin{align*}
+\mbox{Water at time }t \amp = \amp 200\mbox{ gallons}+\left(6\frac{\mbox{gallons}}{\mbox{min}}-4\frac{\mbox{gallons}}{\mbox{min}}\right)t\\
+\amp = \amp 200+2t,
+\end{align*}
+</div>
+<p>So</p>
+<div class="displaymath">
+\begin{align*}
+\mbox{Rate out} \amp = \amp \left(\begin{array}{c}
+\mbox{concentration}\\
+\mbox{of stuff going out}
+\end{array}\right)\times\mbox{Rate}\\
+\amp = \amp \left(\frac{y(t)}{200+2t}\frac{\text{pounds}}{\text{gallon}}\right)\times4\frac{\mbox{gallons}}{\mbox{min}}.\\
+\amp = \amp 4\frac{y(t)}{200+2t}\frac{\text{pound}}{\text{min}}.
+\end{align*}
+</div>
+</li>
+<li>
+<p><em class="alert">Step 3:</em> Write the IVP</p>
+<p>Always recall that for mixing problems we have</p>
+<div class="displaymath">
+\begin{align*}
+\frac{dy}{dt} \amp = \amp \mbox{Rate in}-\mbox{Rate out}\\
+\amp = \amp 30-\frac{4}{200+2t}y.
+\end{align*}
+</div>
+<p>and the initial condition</p>
+<div class="displaymath">
+\begin{equation*}
+y(0)=600.
+\end{equation*}
+</div>
+</li>
+<li>
+<p><em class="alert">Step 4:</em> Solve using the Method of integrating factors:</p>
+<p>Write</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dt}+\frac{4}{200+2t}y=30
+\end{equation*}
+</div>
+<p>so that \(g(t)=\frac{4}{200+2t}\) and \(b(t)=30\text{.}\) Thus the integrating factor is</p>
+<div class="displaymath">
+\begin{equation*}
+\mu(t)=e^{4\int\frac{dt}{200+2t}}=e^{2\int\frac{dt}{100+t}}=e^{2\ln\left(100+t\right)}=\left(100+t\right)^{2}.
+\end{equation*}
+</div>
+<p>Thus using the formula, we have that</p>
+<div class="displaymath">
+\begin{align*}
+y(t) \amp = \amp \frac{1}{\mu(t)}\left[\int\mu(t)b(t)dt.+C\right]\\
+\amp = \amp \frac{1}{\left(100+t\right)^{2}}\left[30\int\left(100+t\right)^{2}dt.+C\right]\\
+\amp = \amp \frac{1}{\left(100+t\right)^{2}}\left[30\frac{\left(100+t\right)^{3}}{3}.+C\right]\\
+\amp = \amp \frac{1}{\left(100+t\right)^{2}}\left[10\left(100+t\right)^{3}+C\right]
+\end{align*}
+</div>
+<p>and using \(y(0)=600\) we get that</p>
+<div class="displaymath">
+\begin{equation*}
+600=\frac{1}{100^{2}}\left[10\cdot100^{3}+C\right]
+\end{equation*}
+</div>
+<p>so that</p>
+<div class="displaymath">
+\begin{equation*}
+C=-4,000,000
+\end{equation*}
+</div>
+<p>and thus</p>
+<div class="displaymath">
+\begin{equation*}
+y(t)=\frac{10\left(100+t\right)^{3}-4,000,000}{\left(100+t\right)^{2}}.
+\end{equation*}
+</div>
+</li>
+<li>
+<p><em class="alert">Step5:</em> Answer the question</p>
+<p>Since the amount of water in the tank is \(200+2t\) then it fills up when</p>
+<div class="displaymath">
+\begin{equation*}
+200+2t=400
+\end{equation*}
+</div>
+<p>so that \(t=100\text{.}\) Thus the amount of sugar is</p>
+<div class="displaymath">
+\begin{align*}
+y(100) \amp = \amp \frac{10\left(200\right)^{3}-4,000,000}{\left(200\right)^{2}}\\
+\amp = \amp 1,900\mbox{ pounds}.
+\end{align*}
+</div>
+</li>
+</ul></article></body>
+</html>

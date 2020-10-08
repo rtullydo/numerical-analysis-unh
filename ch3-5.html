@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:42-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Repeated roots; Reduction of order</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    asciimath2jax: {
+        ignoreClass: ".*",
+        processClass: "has_am"
+    },
+    jax: ["input/AsciiMath"],
+    extensions: ["asciimath2jax.js"],
+    TeX: {
+        extensions: ["extpfeil.js", "autobold.js", "https://pretextbook.org/js/lib/mathjaxknowl.js", ],
+        // scrolling to fragment identifiers is controlled by other Javascript
+        positionToHash: false,
+        equationNumbers: { autoNumber: "none", useLabelIds: true, },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    // HTML-CSS output Jax to be dropped for MathJax 3.0
+    "HTML-CSS": {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+    CommonHTML: {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+});
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML-full"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.12/pretext.js"></script><script src="https://pretextbook.org/js/0.12/pretext_add_on.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/toc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/setcolors.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/features.css" rel="stylesheet" type="text/css">
+<script>var logged_in = false;
+var role = 'student';
+var guest_access = true;
+var login_required = false;
+var js_version = 0.12;
+</script>
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div class="hidden-content" style="display:none">\(\DeclareMathOperator{\RE}{Re}
+  \DeclareMathOperator{\IM}{Im}
+  \DeclareMathOperator{\ess}{ess}
+  \DeclareMathOperator{\intr}{int}
+  \DeclareMathOperator{\dist}{dist}
+  \DeclareMathOperator{\dom}{dom}
+  \DeclareMathOperator{\diag}{diag}
+  \DeclareMathOperator\re{\mathrm {Re~}}
+  \DeclareMathOperator\im{\mathrm {Im~}}
+  
+  \newcommand\dd{\mathrm d}
+  \newcommand{\eps}{\varepsilon}
+  \newcommand{\To}{\longrightarrow}
+  \newcommand{\hilbert}{\mathcal{H}}
+  \newcommand{\s}{\mathcal{S}_2}
+  \newcommand{\A}{\mathcal{A}}
+  \newcommand\h{\mathcal{H}}
+  \newcommand{\J}{\mathcal{J}}
+  \newcommand{\M}{\mathcal{M}}
+  \newcommand{\F}{\mathbb{F}}
+  \newcommand{\N}{\mathcal{N}}
+  \newcommand{\T}{\mathbb{T}}
+  \newcommand{\W}{\mathcal{W}}
+  \newcommand{\X}{\mathcal{X}}
+  \newcommand{\D}{\mathbb{D}}
+  \newcommand{\C}{\mathbb{C}}
+  \newcommand{\BOP}{\mathbf{B}}
+  \newcommand{\Z}{\mathbb{Z}}
+  \newcommand{\BH}{\mathbf{B}(\mathcal{H})}
+  \newcommand{\KH}{\mathcal{K}(\mathcal{H})}
+  \newcommand{\pick}{\mathcal{P}_2}
+  \newcommand{\schur}{\mathcal{S}_2}
+  \newcommand{\R}{\mathbb{R}}
+  \newcommand{\Complex}{\mathbb{C}}
+  \newcommand{\Field}{\mathbb{F}}
+  \newcommand{\RPlus}{\Real^{+}}
+  \newcommand{\Polar}{\mathcal{P}_{\s}}
+  \newcommand{\Poly}{\mathcal{P}(E)}
+  \newcommand{\EssD}{\mathcal{D}}
+  \newcommand{\Lop}{\mathcal{L}}
+  \newcommand{\cc}[1]{\overline{#1}}
+  \newcommand{\abs}[1]{\left\vert#1\right\vert}
+  \newcommand{\set}[1]{\left\{#1\right\}}
+  \newcommand{\seq}[1]{\left\lt#1\right&gt;}
+  \newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+  \newcommand{\essnorm}[1]{\norm{#1}_{\ess}}
+  \newcommand{\tr}{\operatorname{tr}}
+  \newcommand{\ran}[1]{\operatorname{ran}#1}
+  \newcommand{\nt}{\stackrel{\mathrm {nt}}{\to}}
+  \newcommand{\pnt}{\xrightarrow{pnt}}
+  \newcommand{\ip}[2]{\left\langle #1, #2 \right\rangle}
+  \newcommand{\ad}{^\ast}
+  \newcommand{\inv}{^{-1}}
+  \newcommand{\adinv}{^{\ast -1}}
+  \newcommand{\invad}{^{-1 \ast}}
+  \newcommand\Pick{\mathcal P}
+  \newcommand\Ha{\mathbb{H}}
+  \newcommand{\HH}{\Ha\times\Ha}
+  \newcommand\Htau{\mathbb{H}(\tau)}
+  \newcommand{\vp}{\varphi}
+  \newcommand{\ph}{\varphi}
+  \newcommand\al{\alpha}
+  \newcommand\ga{\gamma}
+  \newcommand\de{\delta}
+  \newcommand\ep{\varepsilon}
+  \newcommand\la{\lambda}
+  \newcommand\up{\upsilon}
+  \newcommand\si{\sigma}
+  \newcommand\beq{\begin{equation}}
+  \newcommand\ds{\displaystyle}
+  \newcommand\eeq{\end{equation}}
+  \newcommand\df{\stackrel{\rm def}{=}}
+  \newcommand\ii{\mathrm i}
+  \newcommand{\vectwo}[2]
+  {
+     \begin{pmatrix} #1 \\ #2 \end{pmatrix}
+  }
+  \newcommand{\vecthree}[3]
+  {
+     \begin{pmatrix} #1 \\ #2 \\ #3 \end{pmatrix}
+  }
+  \newcommand\blue{\color{blue}}
+  \newcommand\black{\color{black}}
+  \newcommand\red{\color{red}}
+  
+  \newcommand\nn{\nonumber}
+  \newcommand\bbm{\begin{bmatrix}}
+  \newcommand\ebm{\end{bmatrix}}
+  \newcommand\bpm{\begin{pmatrix}}
+  \newcommand\epm{\end{pmatrix}}
+  \numberwithin{equation}{section}
+  \newcommand\nin{\noindent}
+  \newcommand{\nCr}[2]{\,_{#1}C_{#2}} 
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="diffeqs.html"><span class="title">Differential Equations</span></a></h1>
+<p class="byline">Phanuel Mariano, Ryan Tully-Doyle</p>
+</div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3"><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="ch3-4.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="ch3.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="ch3-6.html" title="Next">Next</a></span></div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="ch3-4.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="ch3.html" title="Up">Up</a><a class="next-button button toolbar-item" href="ch3-6.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link"><a href="frontmatter-1.html" data-scroll="frontmatter-1"><span class="title">Front Matter</span></a></li>
+<li class="link">
+<a href="introduction.html" data-scroll="introduction"><span class="codenumber">1</span> <span class="title">Introduction</span></a><ul>
+<li><a href="ch1-1.html" data-scroll="ch1-1">Modeling via differential equations, some solutions and definitions</a></li>
+<li><a href="ch1-2.html" data-scroll="ch1-2">Slope fields (direction fields)</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch2.html" data-scroll="ch2"><span class="codenumber">2</span> <span class="title">First Order Differential Equations</span></a><ul>
+<li><a href="ch2-1.html" data-scroll="ch2-1">Linear equations and integrating factors</a></li>
+<li><a href="ch2-2.html" data-scroll="ch2-2">Separable equations</a></li>
+<li><a href="ch2-3.html" data-scroll="ch2-3">Separable homogeneous equations and the substitution method</a></li>
+<li><a href="ch2-4.html" data-scroll="ch2-4">Modeling with Differential Equations</a></li>
+<li><a href="ch2-5.html" data-scroll="ch2-5">Modeling with differential equations - more problems</a></li>
+<li><a href="ch2-6.html" data-scroll="ch2-6">Existence and Uniqueness of Solutions</a></li>
+<li><a href="ch2-7.html" data-scroll="ch2-7">Autonomous Equations and Population dynamics</a></li>
+<li><a href="ch2-8.html" data-scroll="ch2-8">Exact equations</a></li>
+<li><a href="ch2-9.html" data-scroll="ch2-9">Euler's method</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch3.html" data-scroll="ch3"><span class="codenumber">3</span> <span class="title">Second Order Linear Equations</span></a><ul>
+<li><a href="ch3-1.html" data-scroll="ch3-1">Motivation - mass-spring systems.</a></li>
+<li><a href="ch3-2.html" data-scroll="ch3-2">Second order linear equations</a></li>
+<li><a href="ch3-3.html" data-scroll="ch3-3">Solutions to Linear Equations; the Wronskian</a></li>
+<li><a href="ch3-4.html" data-scroll="ch3-4">Complex roots of the characteristic equation</a></li>
+<li><a href="ch3-5.html" data-scroll="ch3-5" class="active">Repeated roots; Reduction of order</a></li>
+<li><a href="ch3-6.html" data-scroll="ch3-6">Non-homogeneous equations - Undetermined coefficients</a></li>
+<li><a href="section-18.html" data-scroll="section-18">Variation of Parameters</a></li>
+<li><a href="section-19.html" data-scroll="section-19">Harmonic oscillations</a></li>
+<li><a href="section-20.html" data-scroll="section-20">Forced oscillations</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter-4.html" data-scroll="chapter-4"><span class="codenumber">4</span> <span class="title">Higher order differential equations</span></a><ul>
+<li><a href="section-21.html" data-scroll="section-21">Linear equations</a></li>
+<li><a href="section-22.html" data-scroll="section-22">Constant coefficients</a></li>
+<li><a href="section-23.html" data-scroll="section-23">The Method of Undetermined Coefficients</a></li>
+</ul>
+</li>
+<li class="link"><a href="backmatter-1.html" data-scroll="backmatter-1"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="quadratic.html" data-scroll="quadratic"><span class="codenumber">A</span> <span class="title">A fast quadratic method</span></a></li>
+<li class="link">
+<a href="appendix-2.html" data-scroll="appendix-2"><span class="codenumber">B</span> <span class="title">Exercises for Chapter 1</span></a><ul>
+<li><a href="section-24.html" data-scroll="section-24">Section 1.1</a></li>
+<li><a href="section-25.html" data-scroll="section-25">Section 1.2</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-3.html" data-scroll="appendix-3"><span class="codenumber">C</span> <span class="title">Exercises for Chapter 2</span></a><ul>
+<li><a href="section-26.html" data-scroll="section-26">Section 2.1</a></li>
+<li><a href="section-27.html" data-scroll="section-27">Section 2.2</a></li>
+<li><a href="section-28.html" data-scroll="section-28">Section 2.3</a></li>
+<li><a href="section-29.html" data-scroll="section-29">Section 2.4</a></li>
+<li><a href="section-30.html" data-scroll="section-30">Section 2.5</a></li>
+<li><a href="section-31.html" data-scroll="section-31">Section 2.6</a></li>
+<li><a href="section-32.html" data-scroll="section-32">Section 2.7</a></li>
+<li><a href="section-33.html" data-scroll="section-33">Section 2.8</a></li>
+<li><a href="section-34.html" data-scroll="section-34">Section 2.9</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-4.html" data-scroll="appendix-4"><span class="codenumber">D</span> <span class="title">Exercises for Chapter 3</span></a><ul>
+<li><a href="section-35.html" data-scroll="section-35">Section 3.2</a></li>
+<li><a href="section-36.html" data-scroll="section-36">Section 3.3</a></li>
+<li><a href="section-37.html" data-scroll="section-37">Section 3.4</a></li>
+<li><a href="section-38.html" data-scroll="section-38">Section 3.5</a></li>
+<li><a href="section-39.html" data-scroll="section-39">Section 3.6</a></li>
+</ul>
+</li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="ch3-5"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">3.5</span> <span class="title">Repeated roots; Reduction of order</span>
+</h2>
+<a href="ch3-5.html" class="permalink">¶</a><section class="subsection" id="subsection-33"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">3.5.1</span> <span class="title">Repeated roots</span>
+</h3>
+<p id="p-374">Suppose that we are given the differential equation</p>
+<div class="displaymath">
+\begin{equation*}
+ay'' + by' + cy = 0
+\end{equation*}
+</div>
+<p>and that \(b^2 - 4ac = 0\text{.}\) Then the characteristic equation must have the form</p>
+<div class="displaymath">
+\begin{align*}
+ar^2 + br + c \amp= ar^2 + br + \frac{b^2}{4a}\\
+\amp= a(r + \frac{b}{2a})^2
+\end{align*}
+</div>
+<p>That is, the equation has just one root, \(r = -\frac{b}{2a}\text{.}\) The results of the previous section say that the function \(y = e^{-\frac{b}{2a} t}\) is a solution to the equation. But this is just one solution. We can't use another copy of the function as a second solution because it isn't linearly independent from the first - we will not have a fundamental set, nor will we know the general equation.</p>
+<p id="p-375">So the question is how to get a second solution from only our knowledge of the first. Because the roots are repeated, we may well guess that some kind of modification of the first solution \(y_1 = e^{-\frac{b}{2a} t}\) will give us what we want, but we need to use more than a constant or again we'll fail to have a fundamental set. It seems reasonable to guess that the second solution should have the form</p>
+<div class="displaymath">
+\begin{equation*}
+y_2 = u(t) y_1(t)
+\end{equation*}
+</div>
+<p>for some unknown (but non-constant) function \(u\text{.}\)</p>
+<p id="p-376">So suppose that \(y_2 = u y_1\) solves the equation. We'll need to compute expressions for \(y_2''\) and \(y_2'\) so that we can plug our “solution” into the differential equation.</p>
+<div class="displaymath">
+\begin{align*}
+y_2 \amp= u e^{-\frac{b}{2a}t}\\
+y_2' \amp= u' e^{-\frac{b}{2a}t} -\frac{b}{2a} u e^{-\frac{b}{2a}t}\\
+y_2'' \amp= u'' e^{-\frac{b}{2a} t} - \frac{b}{2a} u' e^{-\frac{b}{2a}t} - \frac{b}{2a} u' e^{-\frac{b}{2a}t} + \frac{b^2}{4a^2} u e^{-\frac{b}{2a}t}
+\end{align*}
+</div>
+<p>Then</p>
+<div class="displaymath">
+\begin{align*}
+0 \amp= ay_2'' + b y_2' + cy_2\\
+\amp= ay_2'' + by_2' + \frac{b^2}{4a}y\\
+\amp= a(u'' e^{-\frac{b}{2a} t} - \frac{b}{a} u' e^{-\frac{b}{2a}t} + \frac{b^2}{4a^2} u e^{-\frac{b}{2a}t})\\
+\amp\hspace{.5in} + b(u' e^{-\frac{b}{2a}t} -\frac{b}{2a} u e^{-\frac{b}{2a}t}) + \frac{b^2}{4a}(u e^{-\frac{b}{2a}t})\\
+\amp = a u'' e^{-\frac{b}{2a}t}.
+\end{align*}
+</div>
+<p id="p-377">Since \(a \neq 0\) and \(e^{-\frac{b}{2a}t} \neq 0\text{,}\) then it must be that</p>
+<div class="displaymath">
+\begin{equation*}
+a u'' e^{-\frac{b}{2a} t} = 0 \Rightarrow u'' = 0.
+\end{equation*}
+</div>
+<p>Integrating twice gets us that \(u = Ct + D\) for arbitrary constants \(C, D\text{.}\) Then our second solution is \(y_2 = u y_1 = (Ct + D)y_1\text{.}\) Since we're working with linear differential equations, the principle of superposition allows us to set \(D = 0\) (since we already know that scalar multiples of \(y_1\) are solutions) and \(C = 1\) (since any scalar multiple of a solution is a solution). Thus, \(y_2 = t y_1\) is our proposed second solution.</p>
+<p id="p-378">To check that we have a fundamental set, we can compute the Wronskian \(W(y_1, t y_1)\text{:}\)</p>
+<div class="displaymath">
+\begin{equation*}
+W(y_1, t y_1) = \left| \begin{array}{cc} y_1 \amp t y_1 \\
+y_1' \amp y_1 + t y_1' \end{array}\right| = y_1^2 = e^{-\frac{b}{a}t} \neq 0 \text{ for any } t.
+\end{equation*}
+</div>
+<p>We conclude that the set \(y_1 = e^{-\frac{b}{2a}t}, y_2 = t e^{-\frac{b}{2a}t}\) is a fundemental set of solutions, and so the general solution for an equation with repeated roots is</p>
+<div class="displaymath">
+\begin{equation*}
+y(t) = c_1 e^{-\frac{b}{2a}t} + c_2t e^{-\frac{b}{2a}t}.
+\end{equation*}
+</div>
+<article class="example-like" id="example-59"><a data-knowl="" class="id-ref" data-refid="hk-example-59"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">3.5.1</span>.</h6></a></article><div id="hk-example-59" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-379">Consider the equation</p>
+<div class="displaymath">
+\begin{equation*}
+y'' + 6y' + 9y = 0.
+\end{equation*}
+</div>
+<p>The characteristic equation is</p>
+<div class="displaymath">
+\begin{equation*}
+r^2 + 6r + 9 = (r + 3)^2
+\end{equation*}
+</div>
+<p>and so we have the repeated root \(r = -3\text{.}\) Our first solution is \(y_1 = e^{-3t}\text{.}\) By the argument above, our second linearly independent solution is \(y_2 = t e^{-3t}\) and the general solution is</p>
+<div class="displaymath">
+\begin{equation*}
+y = c_1 e^{-3t} + c_2 t e^{-3}.
+\end{equation*}
+</div></article></div>
+<article class="example-like" id="example-60"><a data-knowl="" class="id-ref" data-refid="hk-example-60"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">3.5.2</span>.</h6></a></article><div id="hk-example-60" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-380">Find the general solution of</p>
+<div class="displaymath">
+\begin{equation*}
+y'' - 10 y' + 25 y = 0
+\end{equation*}
+</div>
+<p id="p-381">The characteristic equation is</p>
+<div class="displaymath">
+\begin{equation*}
+r^2 - 10 r + 25 = (r - 5)^2 = 0,
+\end{equation*}
+</div>
+<p>and so we have the repeated root \(r = 5\text{.}\) Then the general solution is</p>
+<div class="displaymath">
+\begin{equation*}
+y = c_1 e^{5t} + c_2 te^{5t}.
+\end{equation*}
+</div></article></div>
+<article class="assemblage-like" id="assemblage-4"><p id="p-382">The table below summarizes the solutions for homogeneous linear second order differential equations with constant coefficients.</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{array}{|c|c|c|}
+\hline
+\text{roots}: \amp \text{general solution} \amp \text{example}\\
+\hline
+r_{1},r_{2}= \text{real, distinct} \amp y(t)=c_{1}e^{r_{1}t}+c_{2}e^{r_{2}t} \amp \left(r+1\right)\left(r-1\right)=0 \\
+\hline
+r=a\pm ib,\text{imaginary} \amp y(t)=c_{1}e^{a t}\cos b t+c_{2}e^{a t}\sin b t \amp r^{2}+1=0\\
+\hline
+r=r_{1},\text{real, repeated} \amp y(t)=c_{1}e^{r_{1}t}+c_{2}te^{r_{1}t}. \amp \left(r-2\right)^{2}=0\\
+\hline
+\end{array}
+\end{equation*}
+</div></article></section><section class="subsection" id="subsection-34"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">3.5.2</span> <span class="title">Reduction of order</span>
+</h3>
+<p id="p-383">In the previous examples, when we had only one solution \(y_{1}\text{,}\) we found a second solution \(y_{2}=ty_{1}\) by multiplying by \(t\text{.}\) We did this by making the guess that \(y_2 = u y_1\text{.}\) This idea works for general second order homogenous linear equations, not just those with constant coefficients.</p>
+<p id="p-384">For example, suppose we know that \(y_{1}(t)=t\) is a solution to</p>
+<div class="displaymath">
+\begin{equation*}
+t^{2}y^{\prime\prime}+2ty^{\prime}-2y=0,\,\,\,\,\,t&gt;0.
+\end{equation*}
+</div>
+<p>To find the second solution \(y_{2}(t)\) of this ODE, we guess</p>
+<div class="displaymath">
+\begin{equation*}
+y_{2}(t)=v(t)y_{1}(t)=v(t)t.
+\end{equation*}
+</div>
+<p id="p-385">First, take derivatives:</p>
+<div class="displaymath">
+\begin{align*}
+y_{2}(t) \amp =v(t)t\\
+y_{2}^{\prime}(t) \amp =v^{\prime}(t)t+v(t)\\
+y_{2}^{\prime\prime}(t) \amp =v^{\prime\prime}(t)t+v^{\prime}(t)+v^{\prime}(t)\\
+\amp =v^{\prime\prime}(t)t+2v^{\prime}(t).
+\end{align*}
+</div>
+<p>Then plug \(y_{2}\) and its derivatives into the LHS of the ODE:</p>
+<div class="displaymath">
+\begin{align*}
+LHS\amp =t^{2}y_{2}^{\prime\prime}+2ty_{2}^{\prime}-2y_{2}\\
+\amp =t^{2}\left(v^{\prime\prime}(t)t+2v^{\prime}(t)\right) +2t\left(v^{\prime}(t)t+v(t)\right) -2\left(v(t)t\right)\\
+\amp =t^{3}v^{\prime\prime}(t)+2t^{2}v^{\prime}(t) +2t^{2}v^{\prime}(t)+2tv(t) -2tv(t)\\
+\amp= t^{3}v^{\prime\prime}+4t^{2}v^{\prime}.
+\end{align*}
+</div>
+<p id="p-386">Setting the LHS equal to zero means</p>
+<div class="displaymath">
+\begin{equation*}
+v^{\prime\prime}t+4v^{\prime}=0.
+\end{equation*}
+</div>
+<p>Now we notice that</p>
+<div class="displaymath">
+\begin{equation*}
+t^{3}v^{\prime\prime}+4t^{2}v^{\prime}=0
+\end{equation*}
+</div>
+<p>is really a first order equation is disguise, using the substitution \(w=v^{\prime}\text{.}\) <article class="assemblage-like" id="assemblage-5"><p id="p-387">The equation</p>
+<div class="displaymath">
+\begin{equation*}
+a(t)v^{\prime\prime}+b(t)v^{\prime}=0
+\end{equation*}
+</div>
+<p>using the substitution \(w=v^{\prime}\) becomes</p>
+<div class="displaymath">
+\begin{equation*}
+a(t) w' + b(t) w = 0\text{,}
+\end{equation*}
+</div>
+<p>which is separable and first order.</p></article> Then we need to solve</p>
+<div class="displaymath">
+\begin{equation*}
+w^{\prime}+\frac{4}{t}w=0.
+\end{equation*}
+</div>
+<p>This equation is separable, and gives</p>
+<div class="displaymath">
+\begin{equation*}
+w = \frac{k_{1}}{t^{4}}
+\end{equation*}
+</div>
+<p>Now we need to reverse the substitution to find \(v\text{.}\)</p>
+<div class="displaymath">
+\begin{equation*}
+v^{\prime}=w=k_{1}t^{-4}
+\end{equation*}
+</div>
+<p>hence</p>
+<div class="displaymath">
+\begin{equation*}
+v=k_{1}t^{-3}+k_{2}.
+\end{equation*}
+</div>
+<p id="p-388">To finish we have that \(y_{2}=v\cdot t=\left(k_{1}t^{-3}+k_{2}\right)t=k_{1}t^{-2}+k_{2}t\text{.}\) Set \(k_{2}=0\) and \(k_{1}=1\text{.}\) Thus</p>
+<div class="displaymath">
+\begin{equation*}
+y_{2}(t)=t^{-2}
+\end{equation*}
+</div>
+<p>is a linearly independent solution. Hence the general solution is given by</p>
+<div class="displaymath">
+\begin{align*}
+y(t) \amp =c_{1}y_{1}(t)+c_{2}y_{2}(t)\\
+\amp =c_{1}t+c_{2}t^{-2}.
+\end{align*}
+</div> This example illustrates the central ideas of reduction of order. <article class="assemblage-like" id="assemblage-6"><p id="p-389">Given a second order linear differential equation</p>
+<div class="displaymath">
+\begin{equation*}
+a(t) y'' + b(t) y' + c(t) y = r(t)
+\end{equation*}
+</div>
+<p>with a known solution \(y_1\text{,}\) a second solution is given by</p>
+<div class="displaymath">
+\begin{equation*}
+y_2 = v(t)y_1.
+\end{equation*}
+</div>
+<p>This substitution will reduce the order of the equation from second to first in terms of \(w = v'\text{.}\)</p></article></section></section></div></main>
+</div>
+<div class="login-link"><span id="loginlogout" class="login">login</span></div>
+<script src="https://pretextbook.org/js/0.12/login.js"></script>
+</body>
+</html>

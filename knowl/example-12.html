@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:43-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body>
+<article class="example-like"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">2.2.4</span>. <span class="title">(Clever quadratic formula trick).</span>
+</h6>
+<p>Solve the IVP:</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{dy}{dx}=\frac{2x+1}{y+1}\,\,\,\,\,\,y(0)=1
+\end{equation*}
+</div>
+<ul class="disc">
+<li><p>Note there are no equilibrium solutions</p></li>
+<li>
+<p>Use the general separation of variables procedure</p>
+<div class="displaymath">
+\begin{align*}
+\frac{dy}{dt}=\frac{2x+1}{y+1} \amp \iff \amp \int\left(y+1\right)dy=\int\left(2x+1\right)dx\\
+\amp \iff \amp \frac{y^{2}}{2}+y=x^{2}+x+C\\
+\amp \iff \amp \frac{y^{2}}{2}+y-x^{2}-x+c=0\\
+\amp \iff \amp y^{2}+2y-2x^{2}-2x+C=0
+\end{align*}
+</div>
+</li>
+<li>
+<p>Then we can use the quadratic formula on</p>
+<div class="displaymath">
+\begin{equation*}
+ay^{2}+by+c=0
+\end{equation*}
+</div>
+<p>where</p>
+<div class="displaymath">
+\begin{align*}
+a \amp =1\\
+b \amp =2\\
+c \amp =-2x^{2}-2x+C
+\end{align*}
+</div>
+<p>hence an explicit solution is given by</p>
+<div class="displaymath">
+\begin{align*}
+y \amp =\frac{-b\pm\sqrt{b^{2}-4ac}}{2a}\\
+\amp =\frac{-2\pm\sqrt{4-4\left(-2x^{2}-2x+C\right)}}{2}\\
+\amp =-1\pm\sqrt{1+2x^{2}+2x+C}\\
+\amp =-1\pm\sqrt{2x^{2}+2x+C}.
+\end{align*}
+</div>
+<p>Thus the general solution is</p>
+<div class="displaymath">
+\begin{equation*}
+y_g(x)=-1\pm\sqrt{2x^{2}+2x+C}.
+\end{equation*}
+</div>
+</li>
+<li>
+<p>Now to solve the IVP use the initial condition: \(y(0)=1\)</p>
+<div class="displaymath">
+\begin{equation*}
+1=y(0)=-1\pm\sqrt{C}
+\end{equation*}
+</div>
+<p>so that</p>
+<div class="displaymath">
+\begin{equation*}
+2=\pm\sqrt{c}
+\end{equation*}
+</div>
+<p>since the LHS is positive we choose the positive sign in the \(\pm\) so that</p>
+<div class="displaymath">
+\begin{equation*}
+2=\sqrt{c}
+\end{equation*}
+</div>
+<p>hence</p>
+<div class="displaymath">
+\begin{equation*}
+c=4
+\end{equation*}
+</div>
+<p>so that we get the particular solution</p>
+<div class="displaymath">
+\begin{equation*}
+y_p(x)=-1+\sqrt{2x^{2}+2x+4}.
+\end{equation*}
+</div>
+</li>
+</ul>
+<div class="sagecell-sage" id="sage-5"><script type="text/x-sage">x, y = var('x,y')
+g = Graphics()
+g += plot_slope_field((2*x+1)/(y+1), (x, -5,5),(y,-5,5))
+g += plot(-1 + sqrt(2*x^2 + 2*x + 4), (x, -5,5), ymin = -5, ymax = 5)
+g += points([(0,1)], size = 50)
+g.show()
+</script></div></article><span class="incontext"><a href="ch2-2.html#example-12">in-context</a></span>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:44-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<article class="example-like"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">4.3.1</span>.</h6>
+<p>Find the general solution of</p>
+<div class="displaymath">
+\begin{equation*}
+y^{\prime\prime\prime}-y^{\prime\prime}-y^{\prime}+y=2e^{-t}+3.
+\end{equation*}
+</div>
+<p>(Hint: \(r^{3}-r^{2}-r+1=\left(r-1\right)\left(r-1\right)\left(r+1\right)\))</p>
+<p>Step 1: We find \(y_{h}\text{:}\) Solve \(r^{3}-r^{2}-r+1=0\text{,}\) but by the hint</p>
+<div class="displaymath">
+\begin{equation*}
+\left(r-1\right)\left(r-1\right)\left(r+1\right)=0
+\end{equation*}
+</div>
+<p>so that \(y_{h}=c_{1}e^{t}+c_{2}te^{t}+c_{3}e^{-t}\text{.}\)</p>
+<p>Step 2: Find \(y_{p}\text{:}\) We first guess \(y_{p}=Ae^{-t}+B\text{,}\) but there are repeats with \(y_{h}\) hence we get a second guess of</p>
+<div class="displaymath">
+\begin{align*}
+y_{p} \amp =Ate^{-t}+B\\
+y_{p}^{\prime} \amp =Ae^{-t}-Ate^{-t}\\
+y_{p}^{\prime\prime} \amp =-Ae^{-t}-Ae^{-t}+Ate^{-t}=-2Ae^{-t}+Ate^{-t}\\
+y_{p}^{\prime\prime\prime} \amp =2Ae^{-t}+Ae^{-t}-Ate^{-t}=3Ae^{-t}-Ate^{-t}
+\end{align*}
+</div>
+<p>Hence</p>
+<div class="displaymath">
+\begin{align*}
+LHS \amp =3Ae^{-t}-Ate^{-t}\\
+\amp +2Ae^{-t}-Ate^{-t}\\
+\amp -Ae^{-t}+Ate^{-t}\\
+\amp +Ate^{-t}+B\\
+\amp =4Ae^{-t}+B
+\end{align*}
+</div>
+<p>Step 3: Set LHS=RHS so that</p>
+<div class="displaymath">
+\begin{equation*}
+LHS=4Ae^{-t}+B=2e^{-t}+3=RHS
+\end{equation*}
+</div>
+<p>hence</p>
+<div class="displaymath">
+\begin{align*}
+4A=2 \amp ,B=3\\
+A=\frac{1}{2}
+\end{align*}
+</div>
+<p>hence</p>
+<div class="displaymath">
+\begin{equation*}
+y_{p}=\frac{1}{2}te^{-t}+3
+\end{equation*}
+</div>
+<p>so that the General Solution is</p>
+<div class="displaymath">
+\begin{equation*}
+y=c_{1}e^{t}+c_{2}te^{t}+c_{3}e^{-t}+\frac{1}{2}te^{-t}+3.
+\end{equation*}
+</div></article><span class="incontext"><a href="section-23.html#example-81">in-context</a></span>
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-12-13T10:04:42-05:00    *-->
+<!--*    on 2020-03-18T09:31:45-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -13,24 +13,13 @@
 </head>
 <body>
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>A vector space \(V\) with an inner product that satisfies the axioms above is called an <dfn class="terminology">inner product space</dfn>. One immediate feature of an inner product space is that the inner product defines a notion of length (or <dfn class="terminology">norm</dfn>) of a vector:</p>
-<div class="displaymath">
-\begin{equation*}
-\norm{v} = \sqrt{\ip{v}{v}}.
-\end{equation*}
-</div>
-<p>The prototypical example is \(\R^n\) with the standard vector dot product. However, there are many others. For example, one extremely useful inner product space of functions is the vector space of functions \(f\) satisfying</p>
-<div class="displaymath">
-\begin{equation*}
-\int \abs{f(x)}^2 \, dx \lt \infty
-\end{equation*}
-</div>
-<p>- these are sometimes called functions of bounded energy and are referred to as the space \(L^2\) in mathematics. The inner product on \(L^2\) is given by</p>
-<div class="displaymath">
-\begin{equation*}
-\ip{f}{g} = \int f(x)g(x) \, dx.
-\end{equation*}
-</div>
+<p>The dot product is an example of a more general kind of product called an <dfn class="terminology">inner product</dfn> on a vector space. Let \(V\) be a vector space over a field \(F\text{.}\) An operation \(\ip{}{}\) is called an inner product on \(V\) if</p>
+<ol class="decimal">
+<li>positive definite: \(\ip{u}{u} &gt; 0\) whenever \(u \neq 0\)</li>
+<li>conjugate symmetric: \(\ip{u}{v} = \cc{\ip{v}{u}}\)</li>
+<li>linear in the first entry: \(\ip{\alpha u + \beta v}{w} = \alpha \ip{u}{w} + \beta \ip{v}{w}\)</li>
+</ol>
+<p>where \(\cc z\) denotes the complex conjugate. Note that in the case that the field \(F = \R\text{,}\) an inner product is symmetric.</p>
 <span class="incontext"><a href="section-7.html#p-150">in-context</a></span>
 </body>
 </html>

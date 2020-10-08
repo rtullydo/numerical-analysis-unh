@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-12-13T10:04:41-05:00    *-->
+<!--*    on 2020-03-18T09:31:45-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -30,32 +30,18 @@
 </head>
 <body>
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>We will sample this function and then attempt to reconstruct it using polynomial interpolation. Suppose that we choose six equally spaced points from \(f\text{.}\) <div class="sagecell-octave" id="sage-32"><script type="text/x-sage">X = -1:.01:1;
+<p>Polynomial interpolation has a serious drawback in many cases: high degree polynomials can behave wildly between points in a way that doesn't reflect the expected behavior of the underlying function. To see this, consider the function</p>
+<div class="displaymath">
+\begin{equation*}
+f(x) = \frac{1}{x^2 + 25}
+\end{equation*}
+</div>
+<p>which is a typical example of a rational function with no vertical asymptotes. <div class="sagecell-octave" id="sage-31"><script type="text/x-sage">X = -1:.01:1;
 f = @(x) 1./(1 + 25*x.^2);
-
-P = [-1, -.6, -.2, .2, .6, 1];
-
-
 plot(X, f(X))
 set(gca,'xaxislocation','origin')
 set(gca, 'yaxislocation','origin')
-hold on
-scatter(P, f(P), 400)
-</script></div> Now suppose we find the unique polynomial that goes through these six points. (The code here uses the command polyfit.) <div class="sagecell-octave" id="sage-33"><script type="text/x-sage">X = -1:.01:1;
-f = @(x) 1./(1 + 25*x.^2);
-
-P = [-1, -.6, -.2, .2, .6, 1];
-
-
-scatter(P, f(P), 400)
-set(gca,'xaxislocation','origin')
-set(gca, 'yaxislocation','origin')
-hold on
-
-plot(X, f(X))
-p = polyfit(P, f(P), 5)
-plot(X, polyval(p,X))
-</script></div> Notice that the interpolating polynomial doesn't appear to behave like the original function at all, oscillating through the end points. Perhaps we can fix the problem by choosing more points.</p>
+</script></div></p>
 <span class="incontext"><a href="section-5.html#p-102">in-context</a></span>
 </body>
 </html>

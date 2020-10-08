@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:44-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body><article class="example-like"><p>Solve \(\left(y\cos x+2xe^{y}\right)+\left(\sin x+x^{2}e^{y}-y^{2}\right)y^{\prime}=0.\)</p>
+<ol class="decimal">
+<li>To show it's exact note that \(\left(y\cos x+2xe^{y}\right)dx+\left(\sin x+x^{2}e^{y}-y^{2}\right)dy=0,\) and not hard to see that<div class="displaymath">
+\begin{align*}
+M_{y} \amp =\cos x+2xe^{y}\\
+N_{x} \amp =\cos x+2xe^{y}
+\end{align*}
+</div>and they are equal, thus this ODE is exact. Follow the arrows until close the diagram:<div class="displaymath">
+\begin{align*}
+\text{Start here:} \amp \psi_{x}=y\cos x+2xe^{y} \amp \implies \amp \psi=\int\left(y\cos x+2xe^{y}\right)dx+h(y)\\
+\amp  \amp  \amp \boldsymbol{\psi=y\sin x+x^{2}e^{y}+h(y)}\\
+\amp  \amp  \amp \Downarrow\\
+\amp \psi_{y}=\sin x+x^{2}e^{y}-y^{2} \amp \Longleftarrow \amp \psi_{y}=\sin x+x^{2}e^{y}+h^{\prime}(y)
+\end{align*}
+</div>
+</li>
+<li>Solve for \(h(y)\) by noting that since<div class="displaymath">
+\begin{align*}
+\sin x+x^{2}e^{y}-y^{2}=\sin x+x^{2}e^{y}+h^{\prime}(y)\implies \amp h^{\prime}(y)=-y^{2}\\
+\implies \amp h(y)=-\frac{y^{3}}{3}
+\end{align*}
+</div>
+</li>
+<li>Put it all together and get \(\psi(x,y)=y\sin x+x^{2}e^{y}-y\) and hence the <em class="emphasis">implicit solution</em> is \(y\sin x+x^{2}e^{y}-\frac{y^{3}}{3}=C.\)</li>
+</ol>
+<div class="sagecell-sage" id="sage-17"><script type="text/x-sage">var('x,y')
+P = plot_vector_field((y*cos(x) + 2*x*e^y, sin(x) + x^2*e^y - y^2), (-3,3),(-3,3))
+Q = implicit_plot(y *sin(x) + x^2*e^y - y^3/3 - 5,(-3,3),(-3,3), color="red")
+R = implicit_plot(y *sin(x) + x^2*e^y - y^3/3 - 3,(-3,3),(-3,3), color ="orange")
+S = implicit_plot(y *sin(x) + x^2*e^y - y^3/3,(-3,3),(-3,3), color ="blue")
+P + Q +R +S
+</script></div></article></body>
+</html>

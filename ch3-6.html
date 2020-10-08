@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-03-18T09:31:42-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Non-homogeneous equations - Undetermined coefficients</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    asciimath2jax: {
+        ignoreClass: ".*",
+        processClass: "has_am"
+    },
+    jax: ["input/AsciiMath"],
+    extensions: ["asciimath2jax.js"],
+    TeX: {
+        extensions: ["extpfeil.js", "autobold.js", "https://pretextbook.org/js/lib/mathjaxknowl.js", ],
+        // scrolling to fragment identifiers is controlled by other Javascript
+        positionToHash: false,
+        equationNumbers: { autoNumber: "none", useLabelIds: true, },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    // HTML-CSS output Jax to be dropped for MathJax 3.0
+    "HTML-CSS": {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+    CommonHTML: {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+});
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML-full"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.12/pretext.js"></script><script src="https://pretextbook.org/js/0.12/pretext_add_on.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/toc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/setcolors.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/features.css" rel="stylesheet" type="text/css">
+<script>var logged_in = false;
+var role = 'student';
+var guest_access = true;
+var login_required = false;
+var js_version = 0.12;
+</script>
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div class="hidden-content" style="display:none">\(\DeclareMathOperator{\RE}{Re}
+  \DeclareMathOperator{\IM}{Im}
+  \DeclareMathOperator{\ess}{ess}
+  \DeclareMathOperator{\intr}{int}
+  \DeclareMathOperator{\dist}{dist}
+  \DeclareMathOperator{\dom}{dom}
+  \DeclareMathOperator{\diag}{diag}
+  \DeclareMathOperator\re{\mathrm {Re~}}
+  \DeclareMathOperator\im{\mathrm {Im~}}
+  
+  \newcommand\dd{\mathrm d}
+  \newcommand{\eps}{\varepsilon}
+  \newcommand{\To}{\longrightarrow}
+  \newcommand{\hilbert}{\mathcal{H}}
+  \newcommand{\s}{\mathcal{S}_2}
+  \newcommand{\A}{\mathcal{A}}
+  \newcommand\h{\mathcal{H}}
+  \newcommand{\J}{\mathcal{J}}
+  \newcommand{\M}{\mathcal{M}}
+  \newcommand{\F}{\mathbb{F}}
+  \newcommand{\N}{\mathcal{N}}
+  \newcommand{\T}{\mathbb{T}}
+  \newcommand{\W}{\mathcal{W}}
+  \newcommand{\X}{\mathcal{X}}
+  \newcommand{\D}{\mathbb{D}}
+  \newcommand{\C}{\mathbb{C}}
+  \newcommand{\BOP}{\mathbf{B}}
+  \newcommand{\Z}{\mathbb{Z}}
+  \newcommand{\BH}{\mathbf{B}(\mathcal{H})}
+  \newcommand{\KH}{\mathcal{K}(\mathcal{H})}
+  \newcommand{\pick}{\mathcal{P}_2}
+  \newcommand{\schur}{\mathcal{S}_2}
+  \newcommand{\R}{\mathbb{R}}
+  \newcommand{\Complex}{\mathbb{C}}
+  \newcommand{\Field}{\mathbb{F}}
+  \newcommand{\RPlus}{\Real^{+}}
+  \newcommand{\Polar}{\mathcal{P}_{\s}}
+  \newcommand{\Poly}{\mathcal{P}(E)}
+  \newcommand{\EssD}{\mathcal{D}}
+  \newcommand{\Lop}{\mathcal{L}}
+  \newcommand{\cc}[1]{\overline{#1}}
+  \newcommand{\abs}[1]{\left\vert#1\right\vert}
+  \newcommand{\set}[1]{\left\{#1\right\}}
+  \newcommand{\seq}[1]{\left\lt#1\right&gt;}
+  \newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+  \newcommand{\essnorm}[1]{\norm{#1}_{\ess}}
+  \newcommand{\tr}{\operatorname{tr}}
+  \newcommand{\ran}[1]{\operatorname{ran}#1}
+  \newcommand{\nt}{\stackrel{\mathrm {nt}}{\to}}
+  \newcommand{\pnt}{\xrightarrow{pnt}}
+  \newcommand{\ip}[2]{\left\langle #1, #2 \right\rangle}
+  \newcommand{\ad}{^\ast}
+  \newcommand{\inv}{^{-1}}
+  \newcommand{\adinv}{^{\ast -1}}
+  \newcommand{\invad}{^{-1 \ast}}
+  \newcommand\Pick{\mathcal P}
+  \newcommand\Ha{\mathbb{H}}
+  \newcommand{\HH}{\Ha\times\Ha}
+  \newcommand\Htau{\mathbb{H}(\tau)}
+  \newcommand{\vp}{\varphi}
+  \newcommand{\ph}{\varphi}
+  \newcommand\al{\alpha}
+  \newcommand\ga{\gamma}
+  \newcommand\de{\delta}
+  \newcommand\ep{\varepsilon}
+  \newcommand\la{\lambda}
+  \newcommand\up{\upsilon}
+  \newcommand\si{\sigma}
+  \newcommand\beq{\begin{equation}}
+  \newcommand\ds{\displaystyle}
+  \newcommand\eeq{\end{equation}}
+  \newcommand\df{\stackrel{\rm def}{=}}
+  \newcommand\ii{\mathrm i}
+  \newcommand{\vectwo}[2]
+  {
+     \begin{pmatrix} #1 \\ #2 \end{pmatrix}
+  }
+  \newcommand{\vecthree}[3]
+  {
+     \begin{pmatrix} #1 \\ #2 \\ #3 \end{pmatrix}
+  }
+  \newcommand\blue{\color{blue}}
+  \newcommand\black{\color{black}}
+  \newcommand\red{\color{red}}
+  
+  \newcommand\nn{\nonumber}
+  \newcommand\bbm{\begin{bmatrix}}
+  \newcommand\ebm{\end{bmatrix}}
+  \newcommand\bpm{\begin{pmatrix}}
+  \newcommand\epm{\end{pmatrix}}
+  \numberwithin{equation}{section}
+  \newcommand\nin{\noindent}
+  \newcommand{\nCr}[2]{\,_{#1}C_{#2}} 
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="diffeqs.html"><span class="title">Differential Equations</span></a></h1>
+<p class="byline">Phanuel Mariano, Ryan Tully-Doyle</p>
+</div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3"><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="ch3-5.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="ch3.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="section-18.html" title="Next">Next</a></span></div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="ch3-5.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="ch3.html" title="Up">Up</a><a class="next-button button toolbar-item" href="section-18.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link"><a href="frontmatter-1.html" data-scroll="frontmatter-1"><span class="title">Front Matter</span></a></li>
+<li class="link">
+<a href="introduction.html" data-scroll="introduction"><span class="codenumber">1</span> <span class="title">Introduction</span></a><ul>
+<li><a href="ch1-1.html" data-scroll="ch1-1">Modeling via differential equations, some solutions and definitions</a></li>
+<li><a href="ch1-2.html" data-scroll="ch1-2">Slope fields (direction fields)</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch2.html" data-scroll="ch2"><span class="codenumber">2</span> <span class="title">First Order Differential Equations</span></a><ul>
+<li><a href="ch2-1.html" data-scroll="ch2-1">Linear equations and integrating factors</a></li>
+<li><a href="ch2-2.html" data-scroll="ch2-2">Separable equations</a></li>
+<li><a href="ch2-3.html" data-scroll="ch2-3">Separable homogeneous equations and the substitution method</a></li>
+<li><a href="ch2-4.html" data-scroll="ch2-4">Modeling with Differential Equations</a></li>
+<li><a href="ch2-5.html" data-scroll="ch2-5">Modeling with differential equations - more problems</a></li>
+<li><a href="ch2-6.html" data-scroll="ch2-6">Existence and Uniqueness of Solutions</a></li>
+<li><a href="ch2-7.html" data-scroll="ch2-7">Autonomous Equations and Population dynamics</a></li>
+<li><a href="ch2-8.html" data-scroll="ch2-8">Exact equations</a></li>
+<li><a href="ch2-9.html" data-scroll="ch2-9">Euler's method</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch3.html" data-scroll="ch3"><span class="codenumber">3</span> <span class="title">Second Order Linear Equations</span></a><ul>
+<li><a href="ch3-1.html" data-scroll="ch3-1">Motivation - mass-spring systems.</a></li>
+<li><a href="ch3-2.html" data-scroll="ch3-2">Second order linear equations</a></li>
+<li><a href="ch3-3.html" data-scroll="ch3-3">Solutions to Linear Equations; the Wronskian</a></li>
+<li><a href="ch3-4.html" data-scroll="ch3-4">Complex roots of the characteristic equation</a></li>
+<li><a href="ch3-5.html" data-scroll="ch3-5">Repeated roots; Reduction of order</a></li>
+<li><a href="ch3-6.html" data-scroll="ch3-6" class="active">Non-homogeneous equations - Undetermined coefficients</a></li>
+<li><a href="section-18.html" data-scroll="section-18">Variation of Parameters</a></li>
+<li><a href="section-19.html" data-scroll="section-19">Harmonic oscillations</a></li>
+<li><a href="section-20.html" data-scroll="section-20">Forced oscillations</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter-4.html" data-scroll="chapter-4"><span class="codenumber">4</span> <span class="title">Higher order differential equations</span></a><ul>
+<li><a href="section-21.html" data-scroll="section-21">Linear equations</a></li>
+<li><a href="section-22.html" data-scroll="section-22">Constant coefficients</a></li>
+<li><a href="section-23.html" data-scroll="section-23">The Method of Undetermined Coefficients</a></li>
+</ul>
+</li>
+<li class="link"><a href="backmatter-1.html" data-scroll="backmatter-1"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="quadratic.html" data-scroll="quadratic"><span class="codenumber">A</span> <span class="title">A fast quadratic method</span></a></li>
+<li class="link">
+<a href="appendix-2.html" data-scroll="appendix-2"><span class="codenumber">B</span> <span class="title">Exercises for Chapter 1</span></a><ul>
+<li><a href="section-24.html" data-scroll="section-24">Section 1.1</a></li>
+<li><a href="section-25.html" data-scroll="section-25">Section 1.2</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-3.html" data-scroll="appendix-3"><span class="codenumber">C</span> <span class="title">Exercises for Chapter 2</span></a><ul>
+<li><a href="section-26.html" data-scroll="section-26">Section 2.1</a></li>
+<li><a href="section-27.html" data-scroll="section-27">Section 2.2</a></li>
+<li><a href="section-28.html" data-scroll="section-28">Section 2.3</a></li>
+<li><a href="section-29.html" data-scroll="section-29">Section 2.4</a></li>
+<li><a href="section-30.html" data-scroll="section-30">Section 2.5</a></li>
+<li><a href="section-31.html" data-scroll="section-31">Section 2.6</a></li>
+<li><a href="section-32.html" data-scroll="section-32">Section 2.7</a></li>
+<li><a href="section-33.html" data-scroll="section-33">Section 2.8</a></li>
+<li><a href="section-34.html" data-scroll="section-34">Section 2.9</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-4.html" data-scroll="appendix-4"><span class="codenumber">D</span> <span class="title">Exercises for Chapter 3</span></a><ul>
+<li><a href="section-35.html" data-scroll="section-35">Section 3.2</a></li>
+<li><a href="section-36.html" data-scroll="section-36">Section 3.3</a></li>
+<li><a href="section-37.html" data-scroll="section-37">Section 3.4</a></li>
+<li><a href="section-38.html" data-scroll="section-38">Section 3.5</a></li>
+<li><a href="section-39.html" data-scroll="section-39">Section 3.6</a></li>
+</ul>
+</li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="ch3-6"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">3.6</span> <span class="title">Non-homogeneous equations - Undetermined coefficients</span>
+</h2>
+<a href="ch3-6.html" class="permalink">¶</a><section class="subsection" id="subsection-35"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">3.6.1</span> <span class="title">Nonhomogeneous equations</span>
+</h3>
+<p id="p-390">An equation is called <dfn class="terminology">nonhomogeneous</dfn> if there is a <dfn class="terminology">forcing term</dfn> - that is, a function of just the independent variable on the RHS of the equation. For example, consider the nonhomogeneous equation</p>
+<div class="displaymath">
+\begin{equation*}
+y^{\prime\prime}+p(t)y^{\prime}+q(t)y=g(t)
+\end{equation*}
+</div>
+<p>where \(p,q,g\) are (continuous) functions on some open interval \(I\text{.}\) The function \(g(t)\) is the forcing or driving function.</p>
+<p id="p-391">Consider the corresponding homogeneous equation</p>
+<div class="displaymath">
+\begin{equation*}
+y^{\prime\prime}+p(t)y^{\prime}+q(t)y=0,.
+\end{equation*}
+</div>
+<p>whose general solution we'll call \(y_{h}\text{.}\) Now suppose that the <dfn class="terminology">particular solution</dfn> \(y_p(t)\) solves the nonhomogeneous equation. Then \(y_p + y_h\) also solves the equation, since</p>
+<div class="displaymath">
+\begin{align*}
+\amp(y_p + y_h)'' + p(y_p + y_h)' + q(y_p + y_h)\\
+\amp= y_p'' + py_p' +q y_p + y_h'' +p y_h' + qy_h \\
+\amp= g(t) + 0 \\
+\amp= g(t).
+\end{align*}
+</div>
+<p>We record this result in the following theorem.</p>
+<article class="theorem-like" id="thmnonhom"><h6 class="heading">
+<span class="type">Theorem</span> <span class="codenumber">3.6.1</span>.</h6>
+<p id="p-392">The general solution of</p>
+<div class="displaymath">
+\begin{equation*}
+y^{\prime\prime}+p(t)y^{\prime}+q(t)y=g(t)
+\end{equation*}
+</div>
+<p>is given by</p>
+<div class="displaymath">
+\begin{equation*}
+y(t)=c_{1}y_{1}(t)+c_{2}y_{2}(t)+y_{p}(t)
+\end{equation*}
+</div>
+<p>where \(y_{1},y_{2}\) are a fundamental set of solutions of the corresponding homogeneous equation, and \(y_{p}(t)\) is a particular solution to the nonhomogeneous equation.</p></article><p id="p-393">Steps to solving \(y^{\prime\prime}+p(t)y^{\prime}+q(t)y=g(t):\)</p>
+<ol class="decimal">
+<li id="li-197">We already know how to find the fundamental set of solutions \(y_{1},y_{2}\) for the homogeneous equation. We have that \(y_{h}=c_{1}y_{1}+c_{2}y_{2}\) is the general solution to the corresponding homogeneous equation.</li>
+<li id="li-198">Find a particular solution \(y_{p}\) using the <dfn class="terminology">method of undetermined coefficients</dfn>.</li>
+<li id="li-199">The pieces can be summed into the general solution: \(y(t)=y_{h}+y_{p}=c_{1}y_{1}+c_{2}y_{2}+y_{p}\text{.}\)</li>
+</ol></section><section class="subsection" id="subsection-36"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">3.6.2</span> <span class="title">Method of undetermined coefficients</span>
+</h3>
+<p id="p-394">The idea of the method of undetermined coefficients is to guess what the particular solution \(y_{p}\) should be, based on what \(g(t)\) looks like. If we think about the LHS of a differential equation as a machine that takes as input some function \(y\) and produces as output a function \(y'' + py' + qy\text{,}\) we can guess the sort of input that will be required to produce the output \(g(t)\) as a sum of derivatives of \(y\text{.}\)</p>
+<p id="p-395">Our guess of \(y_{p}\) will always be the general form of \(g(t)\text{,}\) for nice function. For example, we will guess that polynomial inputs produce polynomial outputs, that exponential inputs produce exponential outputs, and that trigonometric inputs produce trigonometric outputs.</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{array}{|c|c|}
+\hline
+\text{If } g(t) \text{ looks like }  \amp \text{Then } y_{p}(t) \text{ is}\\
+\hline
+\hline
+P_{n}(t)=a_{n}t^{n}+a_{n-1}t^{n-1}+\cdots+a_{0} \amp t^{s}\left[A_{m}t^{m}+A_{m-1}t^{m-1}+\cdots+A_{0}\right]\\
+\hline
+e^{\alpha t}P_{m}(t) \amp t^{s}e^{\alpha t}\left[A_{m}t^{m}+A_{m-1}t^{m-1}+\cdots+A_{0}\right]\\
+\hline
+P_{m}(t)e^{\alpha t}\cos\beta t \text{ or } P_{m}(t)e^{\alpha t}\sin\beta t \amp t^{s}\left[\left(A_{m}t^{m}+\cdots+A_{0}\right)e^{\alpha t}\cos\beta t\right. \\
+\amp \left.+\left(B_{m}t^{m}+\cdots+B_{0}\right)e^{\alpha t}\sin\beta t\right]\\
+\hline
+\end{array}
+\end{equation*}
+</div>
+<p>This looks more complicated that it actually is because there's a possibility that \(g(t)\) is actually a solution to the homogeneous equation. So \(s=\) the smallest nonnegative integer (\(s=0,1,\)or \(2\)) such that no term of \(y_{p}\) is a solution to the corresponding homogeneous equation. (For example, given the equation \(x'' + 4x' + 4x = e^{-2t}\text{,}\) we can't guess \(y_p = A e^{-2t}\) because this solves the homogeneous equation.)</p>
+<article class="example-like" id="example-61"><a data-knowl="" class="id-ref" data-refid="hk-example-61"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">3.6.2</span>.</h6></a></article><div id="hk-example-61" class="hidden-content tex2jax_ignore"><article class="example-like">Find the solution to the following IVP:<div class="displaymath">
+\begin{equation*}
+y^{\prime\prime}+5y^{\prime}+6y=e^{-t}.\,\,\,\,\,\,\,\,\,y(0)=1,y^{\prime}(0)=\frac{1}{2}
+\end{equation*}
+</div>
+<p id="p-396">Step 1: Find \(y_{h}(t)\) , which is simply the general solution of</p>
+<div class="displaymath">
+\begin{equation*}
+y^{\prime\prime}+5y^{\prime}+6y=0.
+\end{equation*}
+</div>
+<p>Solving the charateristic polynomial \(r^{2}+5r+6=(r+2)(r+3)= 0,\) we get \(r=-2,-3\) so that the solution is</p>
+<div class="displaymath">
+\begin{equation*}
+y_{h}(t)=c_{1}e^{-2t}+c_{2}e^{-3t}.
+\end{equation*}
+</div>
+<p id="p-397">Step 2: We find \(y_{p}(t)\) by making our guess and to find the undertermined coefficient. So we let \(y_{p}(t)=Ae^{-t}\) and plug \(y_{p}\) into the LHS:</p>
+<div class="displaymath">
+\begin{align*}
+y_{p}^{\prime\prime}+5y_{p}^{\prime}+6y_{p} \amp = \amp Ae^{-t}-5Ae^{-t}+6Ae^{-t}\\
+\amp = \amp 2Ae^{-t}
+\end{align*}
+</div>
+<p id="p-398">Step 3: Set the LHS equal to the RHS and solve for \(A\) to get</p>
+<div class="displaymath">
+\begin{equation*}
+2Ae^{-t}=e^{-t}
+\end{equation*}
+</div>
+<p>so that \(A=\frac{1}{2}\text{.}\)</p>
+<p id="p-399">Step 4: Plug \(A\) back in and get \(y_{h}(t)=\frac{1}{2}e^{-t}\) and a general solution of</p>
+<div class="displaymath">
+\begin{equation*}
+y(t)=c_{1}e^{-2t}+c_{2}e^{-3t}+\frac{1}{2}e^{-t}.
+\end{equation*}
+</div>
+<p id="p-400">Final IVP step: Now we need to find \(c_{1}\) and \(c_{2}\) using \(y(0)=1\) and \(y^{\prime}(0)=\frac{1}{2}\) and set up the following system of equations:</p>
+<div class="displaymath">
+\begin{align*}
+c_{1}+c_{2}+\frac{1}{2} \amp = \amp 1\\
+-2c_{1}-3c_{2}-\frac{1}{2} \amp = \amp \frac{1}{2}
+\end{align*}
+</div>
+<p>which comes from \(y(t)=c_{1}e^{-2t}+c_{2}e^{-3t}+\frac{1}{2}e^{-t}\) and \(y^{\prime}(t)=-2k_{1}e^{-2t}-3k_{2}e^{-3t}-\frac{1}{2}e^{-t}.\) Solving this we get \(c_{1}=\frac{5}{2}\) and \(c_{2}=-2\) thus the solution to the IVP is</p>
+<div class="displaymath">
+\begin{equation*}
+y(t)=\frac{5}{2}e^{-2t}-2e^{-3t}+\frac{1}{2}e^{-t}.
+\end{equation*}
+</div></article></div>
+<article class="example-like" id="example-62"><a data-knowl="" class="id-ref" data-refid="hk-example-62"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">3.6.3</span>.</h6></a></article><div id="hk-example-62" class="hidden-content tex2jax_ignore"><article class="example-like">Find the general solution of<div class="displaymath">
+\begin{equation*}
+\frac{d^{2}y}{dt}-5\frac{dy}{dt}+4y=e^{4t}.
+\end{equation*}
+</div>
+<p id="p-401">Step 1: Find \(y_{h}(t)\text{.}\) We solve \(r^{2}-5r+4=(r-1)(r-4)=0\) and get \(r=1,4\) so that the solution is</p>
+<div class="displaymath">
+\begin{equation*}
+y_{h}(t)=c_{1}e^{t}+c_{2}e^{4t}.
+\end{equation*}
+</div>
+<p id="p-402">Step 2: \(y_{p}(t)=Ae^{4t}\) is the wrong guess because</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{d^{2}y_{p}}{dt}-5\frac{dy_{p}}{dt}+4y_{p}=16Ae^{4t}-20Ae^{4t}+4Ae^{4t}=0.
+\end{equation*}
+</div>
+<p>But we should have known that this wouldn't work. The term \(e^{4t}\) is part of the homogeneous solution, so plugging it into the LHS will give 0. We can modify our guess by multiplying by \(t\text{.}\) Our second guess should be \(y_{p}(t)=Ate^{4t}\) . Find \(y_{p}^{\prime}\) and \(y_{p}^{\prime\prime}(t)\) on the side and plug into LHS and get</p>
+<div class="displaymath">
+\begin{align*}
+\frac{d^{2}y_{p}}{dt}-5\frac{dy_{p}}{dt}+4y_{p} \amp = \amp \left(8Ae^{4t}+16Ate^{4t}\right)-5\left(Ae^{4t}+4Ate^{4t}\right)+4Ate^{4t}\\
+\amp = \amp 3Ae^{4t}
+\end{align*}
+</div>
+<p>Now set LHS equal to RHS and get \(3Ae^{4t}=e^{4t}\) so that \(A=\frac{1}{3}\text{.}\)</p>
+<p id="p-403">Step 3: Plug \(A\) back in and get \(y_{p}(t)=\frac{1}{3}e^{4t}\) and a general solution of</p>
+<div class="displaymath">
+\begin{equation*}
+y(t)=c_{1}e^{t}+c_{2}e^{4t}+\frac{1}{3}te^{4t}.
+\end{equation*}
+</div></article></div>
+<article class="example-like" id="example-63"><a data-knowl="" class="id-ref" data-refid="hk-example-63"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">3.6.4</span>.</h6></a></article><div id="hk-example-63" class="hidden-content tex2jax_ignore"><article class="example-like">Find the general solution of<div class="displaymath">
+\begin{equation*}
+\frac{d^{2}y}{dt^{2}}+2\frac{dy}{dt}+10y=4\cos2t
+\end{equation*}
+</div>
+<p id="p-404">Step 1: Find \(y_{h}\) which is the general solution to the unforced equation</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{d^{2}y}{dt^{2}}+2\frac{dy}{dt}+10y=0
+\end{equation*}
+</div>
+<p>which since \(r^{2}+2r+10=0\) gives \(r=-1\pm3i\) must be</p>
+<div class="displaymath">
+\begin{equation*}
+y_{h}(t)=c_{1}e^{-t}\cos3t+c_{2}e^{-t}\sin3t.
+\end{equation*}
+</div>
+<p id="p-405">Step 2: Now as long as the RHS \(g(t)\) is not part of \(y_{c}\) then we can use that as our guess. So we let \(y_{p}(t)=A\cos2t+B\sin2t\text{.}\)</p>
+<p id="p-406">Step 3: Plug into the LHS and set equal to RHS</p>
+<div class="displaymath">
+\begin{align*}
+\frac{d^{2}y_{p}}{dt^{2}}+2\frac{dy_{p}}{dt}+10y \amp = \left[-4A\cos2t-4B\sin2t\right]\\
+\amp +2\left[-2A\sin2t+2B\cos2t\right]+10\left[A\cos2t+B\sin2t\right]
+\end{align*}
+</div>
+<p>which gives us</p>
+<div class="displaymath">
+\begin{equation*}
+\left[-4A+4B+10A\right]\cos2t+\left[-4B-4A+10B\right]\sin2t=4\cos2t
+\end{equation*}
+</div>
+<p>so that</p>
+<div class="displaymath">
+\begin{align*}
+6A+4B \amp = \amp 4\\
+-4A+6B \amp = \amp 0
+\end{align*}
+</div>
+<p>gives us \(A=\frac{6}{13},B=\frac{4}{13}\text{.}\)</p>
+<p id="p-407">Step 4: Plug into general solution of \(y(t)=y_{h}(t)+y_{p}(t)\) and get</p>
+<div class="displaymath">
+\begin{equation*}
+y(t)=c_{1}e^{-t}\cos3t+c_{2}e^{-t}\sin3t+\frac{6}{13}\cos2t+\frac{4}{13}\sin2t.
+\end{equation*}
+</div></article></div>
+<article class="example-like" id="example-64"><a data-knowl="" class="id-ref" data-refid="hk-example-64"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">3.6.5</span>.</h6></a></article><div id="hk-example-64" class="hidden-content tex2jax_ignore"><article class="example-like">Find the general form of a particular solution of<div class="displaymath">
+\begin{equation*}
+y^{\prime\prime}-2y^{\prime}-3y=5te^{-t}.
+\end{equation*}
+</div>
+<p id="p-408">Step 1: Find \(y_{h}\) which is \(y_{h}=c_{1}e^{-t}+c_{2}e^{3t}\text{.}\)</p>
+<p id="p-409">Step 2: Using our table our first guess will be</p>
+<div class="displaymath">
+\begin{equation*}
+y_{p}=\left(At+B\right)e^{-t}
+\end{equation*}
+</div>
+<p>since \(At+B\) is the general form of a one degree polynomial. But this doesn't work because \(Be^{-t}\) is included in the \(y_{c}\) as \(c_{1}e^{-t}\)</p>
+<p id="p-410">Step 2 (Second guess): Now guess</p>
+<div class="displaymath">
+\begin{equation*}
+y_{p}=t\left(At+B\right)e^{-t}
+\end{equation*}
+</div>
+<p>so that both \(At^{2}e^{-t}\) and \(Bte^{-t}\) are different than the terms in \(y_{c}\text{.}\)</p></article></div>
+<article class="example-like" id="example-65"><a data-knowl="" class="id-ref" data-refid="hk-example-65"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">3.6.6</span>.</h6></a></article><div id="hk-example-65" class="hidden-content tex2jax_ignore"><article class="example-like">Find the general form of a particular solution of<div class="displaymath">
+\begin{equation*}
+y^{\prime\prime}+6y^{\prime}+9y=-7te^{-3t}+t^{3}
+\end{equation*}
+</div>
+<p id="p-411">Step 1: The characteristic equation is \(r^{2}+6r+9=(r+3)^{2}=0\text{,}\) which gives the repeated root of \(r_{1}=r_{2}=-3\text{.}\) Hence</p>
+<div class="displaymath">
+\begin{equation*}
+y_{h}(t)=c_{1}e^{-3t}+c_{2}te^{-3t}
+\end{equation*}
+</div>
+<p id="p-412">Using our table we make our first guess as</p>
+<div class="displaymath">
+\begin{equation*}
+y_{p}=\left(At+B\right)e^{-3t}+Ct^{3}+Dt^{2}+Et+F
+\end{equation*}
+</div>
+<p>but this is wrong, since \(\left(At+B\right)e^{-3t}\) is included in the \(y_{h}\text{.}\) So our second guess is to multiply <em class="emphasis">only that part</em> by \(t\text{,}\) and get</p>
+<div class="displaymath">
+\begin{equation*}
+y_{p}=t\left(At+B\right)e^{-3t}+Ct^{3}+Dt^{2}+Et+F.
+\end{equation*}
+</div>
+<p>But this still doesn't work since \(Bte^{-3t}\) is included in the \(y_{c}\) as \(c_{2}te^{-3t}\text{.}\) Our third guess is to multiply again only that part by \(t\) and get</p>
+<div class="displaymath">
+\begin{equation*}
+y_{p}=t^{2}\left(At+B\right)e^{-3t}+Ct^{3}+Dt^{2}+Et+F,
+\end{equation*}
+</div>
+<p>which works since none of the terms in the \(y_{p}\) are included in the homogeneous solution \(y_{h}\text{.}\)</p></article></div>
+<article class="example-like" id="example-66"><a data-knowl="" class="id-ref" data-refid="hk-example-66"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">3.6.7</span>.</h6></a></article><div id="hk-example-66" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-413">Find the general form of a particular solution of</p>
+<div class="displaymath">
+\begin{equation*}
+y^{\prime\prime}+y=t+t\sin t
+\end{equation*}
+</div>
+<p id="p-414">Step 1: As in Example 3 we know \(y_{h}(t)=c_{1}\cos t+c_{2}\sin t.\)</p>
+<p id="p-415">Our first guess would normally be \(y_{p}=At+B+\left[\left(Dt+E\right)\cos t+\left(Ft+G\right)\sin t\right]\) but notice that since \(E\cos t\) and \(G\sin t\) is included in the \(y_{h},\) we need to multiply by \(t\) and get our final guess of</p>
+<div class="displaymath">
+\begin{equation*}
+y_{p}=At+B+t\left[\left(Dt+E\right)\cos t+\left(Ft+G\right)\sin t\right]
+\end{equation*}
+</div></article></div>
+<article class="example-like" id="example-67"><a data-knowl="" class="id-ref" data-refid="hk-example-67"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">3.6.8</span>.</h6></a></article><div id="hk-example-67" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-416">Find the general form of a particular solution of</p>
+<div class="displaymath">
+\begin{equation*}
+y^{\prime\prime}+2y^{\prime}+10y=4e^{-t}\cos3t+17
+\end{equation*}
+</div>
+<p id="p-417">Step 1: As in Example 3 we know \(y_{h}(t)=c_{1}e^{-t}\cos3t+c_{2}e^{-t}\sin3t.\)</p>
+<p id="p-418">Since \(e^{-t}\cos3t\) is already inside our \(y_{c}\) we need to multiply by \(t\) .</p>
+<div class="displaymath">
+\begin{equation*}
+y_{p}=t\left(Ae^{-t}\cos3t+Be^{-t}\sin3t\right)+C.
+\end{equation*}
+</div>
+<p>Note that \(17\) is a zero degree polynomial , which is why we have the \(C\) in the \(y_{p}\text{.}\)</p></article></div></section></section></div></main>
+</div>
+<div class="login-link"><span id="loginlogout" class="login">login</span></div>
+<script src="https://pretextbook.org/js/0.12/login.js"></script>
+</body>
+</html>

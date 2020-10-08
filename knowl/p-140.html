@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--**************************************-->
 <!--*    Generated from PreTeXt source   *-->
-<!--*    on 2019-12-13T10:04:41-05:00    *-->
+<!--*    on 2020-03-18T09:31:45-04:00    *-->
 <!--*                                    *-->
 <!--*      https://pretextbook.org       *-->
 <!--*                                    *-->
@@ -13,13 +13,15 @@
 </head>
 <body>
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<p>Putting this together with the previous computation, we get</p>
+<p>The function \(g(t) =\left(\frac{(t - \frac{\Delta x}{2})^2}{2} - \frac{(\Delta x)^2}{8}\right)\) is a parabola that opens upwards with zeros at \(t = 0\) and \(t = h\text{,}\) and so</p>
 <div class="displaymath">
-\begin{equation*}
-\abs{E_T} \leq nK\frac{(\Delta x)^3}{12} = nK \frac{(b-a)^3}{12 n^3} = \frac{K(b-a)^3}{12 n^2},
-\end{equation*}
+\begin{align*}
+\amp \int_0^{\Delta x} \abs{\left(\frac{(t - \frac{\Delta x}{2})^2}{2} - \frac{(\Delta x)^2}{8}\right)} \, dt\\
+\amp \int_0^{\Delta x} \frac{(\Delta x)^2}{8} - \left(\frac{(t - \frac{\Delta x}{2})^2}{2} \right) \, dt\\
+\amp = \left[\frac{(\Delta x)^2}{8}t - \frac{(t - \frac{\Delta x}{2})^3}{6}\right]_0^{\Delta x} \\
+\amp= \frac{(\Delta x)^3}{12}
+\end{align*}
 </div>
-<p>where \(K\) was an absolute bound for \(f''\) on \([a,b]\text{,}\) and in the worst case, we get \(\abs{E_T} \leq \frac{K(b-a)^3}{12} \frac{1}{n^2} = \frac{C}{n^2}\) - that is, the error is proportional to \(\frac{1}{n^2}\text{,}\) which establishes the claim.</p>
 <span class="incontext"><a href="section-6.html#p-140">in-context</a></span>
 </body>
 </html>
